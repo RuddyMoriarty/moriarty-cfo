@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<title>Prévision Trésorerie 12 Mois — {{COMPANY_NAME}}</title>
+<style>
+  @page { size: A3 landscape; margin: 10mm; }
+  * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Dosis', 'Helvetica Neue', sans-serif; }
+  body { background: #F6F6F6; color: #002E72; padding: 20px; }
+  h1 { font-size: 28px; border-bottom: 2px solid #E14F0A; padding-bottom: 8px; margin-bottom: 16px; }
+  .meta { color: #666; font-size: 14px; margin-bottom: 24px; }
+  .scenarios { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-bottom: 24px; }
+  .scenario { background: #fff; padding: 16px; border-top: 3px solid; }
+  .scenario.optimiste { border-color: #060; }
+  .scenario.realiste { border-color: #002E72; }
+  .scenario.pessimiste { border-color: #C00; }
+  .scenario h3 { font-size: 16px; margin-bottom: 8px; }
+  .scenario .solde { font-size: 24px; font-weight: 700; margin: 8px 0; }
+  table { width: 100%; border-collapse: collapse; font-size: 11px; background: #fff; }
+  th { background: #002E72; color: #fff; padding: 8px; text-align: right; }
+  th:first-child { text-align: left; }
+  td { padding: 6px 8px; border-bottom: 1px solid #ddd; text-align: right; }
+  td:first-child { text-align: left; font-weight: 500; }
+  .negative { color: #C00; font-weight: 700; }
+  .footer { margin-top: 24px; display: flex; height: 15px; }
+  .footer-left { width: 50%; background: #002E72; }
+  .footer-right { width: 50%; background: #E14F0A; }
+</style>
+</head>
+<body>
+  <h1>Prévision de trésorerie 12 mois glissants</h1>
+  <div class="meta">
+    Société : <strong>{{COMPANY_NAME}}</strong> • Généré le {{DATE_GENERATION}} • Solde initial : <strong>{{SOLDE_INITIAL}} €</strong>
+  </div>
+
+  <div class="scenarios">
+    <div class="scenario optimiste">
+      <h3>🟢 Optimiste (20%)</h3>
+      <div class="solde">{{SOLDE_12M_OPT}} €</div>
+      <div>Hypothèses : croissance +{{GROWTH_OPT}}%, marge EBITDA {{MARGE_OPT}}%</div>
+    </div>
+    <div class="scenario realiste">
+      <h3>🔵 Réaliste (60%)</h3>
+      <div class="solde">{{SOLDE_12M_REEL}} €</div>
+      <div>Hypothèses : croissance +{{GROWTH_REEL}}%, marge EBITDA {{MARGE_REEL}}%</div>
+    </div>
+    <div class="scenario pessimiste">
+      <h3>🔴 Pessimiste (20%)</h3>
+      <div class="solde">{{SOLDE_12M_PESS}} €</div>
+      <div>Hypothèses : croissance +{{GROWTH_PESS}}%, marge EBITDA {{MARGE_PESS}}%</div>
+    </div>
+  </div>
+
+  <div style="margin-bottom: 12px; font-weight: 600;">
+    Pondération probabilisée (12M) : <strong>{{SOLDE_PONDERE}} €</strong>
+  </div>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Mois</th>
+        <th>CA</th>
+        <th>EBITDA</th>
+        <th>CAPEX</th>
+        <th>Var BFR</th>
+        <th>Flux net</th>
+        <th>Solde fin (opt)</th>
+        <th>Solde fin (réel)</th>
+        <th>Solde fin (pess)</th>
+      </tr>
+    </thead>
+    <tbody>
+      {{TABLE_ROWS}}  <!-- 12 lignes -->
+    </tbody>
+  </table>
+
+  <div style="margin-top: 24px; font-size: 12px; color: #666;">
+    <strong>Runway scénario pessimiste :</strong> {{RUNWAY_PESS}} mois<br>
+    <strong>Hypothèses clés :</strong> {{HYPOTHESES}}<br>
+    <strong>Actions recommandées :</strong> {{ACTIONS_RECO}}
+  </div>
+
+  <div class="footer">
+    <div class="footer-left"></div>
+    <div class="footer-right"></div>
+  </div>
+</body>
+</html>

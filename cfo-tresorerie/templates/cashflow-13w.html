@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<title>Prévision Trésorerie 13 Semaines — {{COMPANY_NAME}}</title>
+<style>
+  @page { size: A3 landscape; margin: 10mm; }
+  * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Dosis', 'Helvetica Neue', sans-serif; }
+  body { background: #F6F6F6; color: #002E72; padding: 20px; }
+  h1 { font-size: 28px; color: #002E72; border-bottom: 2px solid #E14F0A; padding-bottom: 8px; margin-bottom: 16px; }
+  .meta { color: #666; font-size: 14px; margin-bottom: 24px; }
+  .alert { padding: 16px; margin-bottom: 20px; border-left: 4px solid; }
+  .alert.urgence { background: #FEE; border-color: #C00; }
+  .alert.plan-action { background: #FED; border-color: #F80; }
+  .alert.vigilance { background: #FFC; border-color: #FC0; }
+  .alert.healthy { background: #EFE; border-color: #060; }
+  table { width: 100%; border-collapse: collapse; font-size: 11px; }
+  th { background: #002E72; color: #fff; padding: 8px; text-align: right; font-weight: 600; }
+  th:first-child { text-align: left; }
+  td { padding: 6px 8px; border-bottom: 1px solid #ddd; text-align: right; }
+  td:first-child { text-align: left; font-weight: 500; }
+  tr.section { background: #99B8E0; font-weight: 700; }
+  tr.total { background: #F0F0F0; font-weight: 700; border-top: 2px solid #002E72; }
+  tr.solde-final { background: #002E72; color: #fff; font-weight: 700; }
+  .negative { color: #C00; font-weight: 700; }
+  .footer { margin-top: 24px; display: flex; height: 15px; }
+  .footer-left { width: 50%; background: #002E72; }
+  .footer-right { width: 50%; background: #E14F0A; }
+</style>
+</head>
+<body>
+  <h1>Prévision de trésorerie 13 semaines</h1>
+  <div class="meta">
+    Société : <strong>{{COMPANY_NAME}}</strong> (SIREN {{SIREN}}) •
+    Généré le {{DATE_GENERATION}} •
+    Solde de départ : <strong>{{SOLDE_INITIAL}} €</strong>
+  </div>
+
+  <div class="alert {{ALERT_LEVEL}}">
+    <strong>{{ALERT_TITLE}}</strong><br>
+    {{ALERT_MESSAGE}}
+  </div>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Poste</th>
+        {{WEEK_HEADERS}}  <!-- 13 colonnes W1..W13 -->
+        <th>Total</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr class="section"><td colspan="15">ENCAISSEMENTS</td></tr>
+      <tr><td>Clients (facturation)</td>{{ROW_CLIENTS}}</tr>
+      <tr><td>Clients (récurrent)</td>{{ROW_CLIENTS_RECURRENT}}</tr>
+      <tr><td>Subventions / CIR</td>{{ROW_SUBVENTIONS}}</tr>
+      <tr><td>Autres</td>{{ROW_AUTRES_ENC}}</tr>
+      <tr class="total"><td>Total encaissements</td>{{ROW_TOTAL_ENC}}</tr>
+
+      <tr class="section"><td colspan="15">DÉCAISSEMENTS</td></tr>
+      <tr><td>Salaires & charges</td>{{ROW_SALAIRES}}</tr>
+      <tr><td>URSSAF</td>{{ROW_URSSAF}}</tr>
+      <tr><td>TVA</td>{{ROW_TVA}}</tr>
+      <tr><td>Fournisseurs</td>{{ROW_FOURNISSEURS}}</tr>
+      <tr><td>Loyers</td>{{ROW_LOYERS}}</tr>
+      <tr><td>CAPEX</td>{{ROW_CAPEX}}</tr>
+      <tr><td>Remboursement emprunts</td>{{ROW_EMPRUNTS}}</tr>
+      <tr class="total"><td>Total décaissements</td>{{ROW_TOTAL_DEC}}</tr>
+
+      <tr><td>Flux net hebdo</td>{{ROW_FLUX_NET}}</tr>
+      <tr class="solde-final"><td>SOLDE FIN DE SEMAINE</td>{{ROW_SOLDE_FINAL}}</tr>
+    </tbody>
+  </table>
+
+  <div style="margin-top: 24px; font-size: 12px; color: #666;">
+    <strong>Point bas projeté :</strong> {{POINT_BAS_LABEL}} ({{POINT_BAS_SOLDE}} €)<br>
+    <strong>Seuil de tension :</strong> {{SEUIL_TENSION}} €<br>
+    <strong>Hypothèses retenues :</strong><br>
+    {{HYPOTHESES_LIST}}
+  </div>
+
+  <div class="footer">
+    <div class="footer-left"></div>
+    <div class="footer-right"></div>
+  </div>
+</body>
+</html>

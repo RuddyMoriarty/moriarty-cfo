@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<title>Dashboard CFO — {{COMPANY_NAME}}</title>
+<style>
+  @page { size: A4 landscape; margin: 10mm; }
+  * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Dosis', 'Helvetica Neue', sans-serif; }
+  body { background: #F6F6F6; color: #002E72; padding: 16px; }
+  h1 { font-size: 24px; border-bottom: 2px solid #E14F0A; padding-bottom: 6px; margin-bottom: 12px; }
+  .meta { color: #666; font-size: 13px; margin-bottom: 16px; }
+
+  .kpi-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 12px;
+    margin-bottom: 20px;
+  }
+  .kpi {
+    background: #fff;
+    padding: 14px 16px;
+    border-left: 3px solid #002E72;
+  }
+  .kpi-label { font-size: 11px; color: #666; text-transform: uppercase; letter-spacing: 0.5px; }
+  .kpi-value { font-size: 24px; font-weight: 700; color: #002E72; margin-top: 4px; }
+  .kpi-unit { font-size: 14px; color: #999; margin-left: 4px; font-weight: 400; }
+  .kpi.good { border-left-color: #060; }
+  .kpi.warning { border-left-color: #F80; }
+  .kpi.critical { border-left-color: #C00; }
+
+  h2 { font-size: 16px; color: #002E72; margin: 16px 0 8px; }
+  table { width: 100%; border-collapse: collapse; background: #fff; font-size: 12px; }
+  th { background: #99B8E0; color: #002E72; padding: 6px 8px; text-align: left; font-weight: 600; }
+  td { padding: 6px 8px; border-bottom: 1px solid #eee; }
+  tr:hover { background: #F0F6FF; }
+
+  .footer { margin-top: 16px; display: flex; height: 10px; }
+  .footer-left { width: 50%; background: #002E72; }
+  .footer-right { width: 50%; background: #E14F0A; }
+</style>
+</head>
+<body>
+  <h1>Dashboard CFO Exécutif</h1>
+  <div class="meta">
+    Société : <strong>{{COMPANY_NAME}}</strong> (SIREN {{SIREN}}) • Période : <strong>{{PERIODE}}</strong> • Généré le {{DATE_GEN}}
+  </div>
+
+  <div class="kpi-grid">
+    <div class="kpi">
+      <div class="kpi-label">CA HT</div>
+      <div class="kpi-value">{{CA_HT}}<span class="kpi-unit">€</span></div>
+    </div>
+    <div class="kpi">
+      <div class="kpi-label">Marge brute</div>
+      <div class="kpi-value">{{MARGE_BRUTE}}<span class="kpi-unit">€ ({{TAUX_MARGE_PCT}}%)</span></div>
+    </div>
+    <div class="kpi">
+      <div class="kpi-label">EBE</div>
+      <div class="kpi-value">{{EBE}}<span class="kpi-unit">€ ({{TAUX_EBE_PCT}}%)</span></div>
+    </div>
+    <div class="kpi">
+      <div class="kpi-label">Trésorerie</div>
+      <div class="kpi-value">{{TRESORERIE}}<span class="kpi-unit">€</span></div>
+    </div>
+    <div class="kpi">
+      <div class="kpi-label">BFR</div>
+      <div class="kpi-value">{{BFR}}<span class="kpi-unit">€</span></div>
+    </div>
+    <div class="kpi">
+      <div class="kpi-label">DSO</div>
+      <div class="kpi-value">{{DSO}}<span class="kpi-unit">j</span></div>
+    </div>
+    <div class="kpi">
+      <div class="kpi-label">DPO</div>
+      <div class="kpi-value">{{DPO}}<span class="kpi-unit">j</span></div>
+    </div>
+    <div class="kpi">
+      <div class="kpi-label">Période</div>
+      <div class="kpi-value" style="font-size:18px;">{{PERIODE}}</div>
+    </div>
+  </div>
+
+  <h2>Top 10 variances budget vs réel</h2>
+  <table>
+    <thead>
+      <tr><th>Compte</th><th>Budget</th><th>Réel</th><th>Écart</th><th>Direction</th></tr>
+    </thead>
+    <tbody>
+      {{VARIANCES_ROWS}}
+    </tbody>
+  </table>
+
+  <div class="footer">
+    <div class="footer-left"></div>
+    <div class="footer-right"></div>
+  </div>
+</body>
+</html>

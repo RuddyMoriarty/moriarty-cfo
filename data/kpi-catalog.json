@@ -1,0 +1,60 @@
+{
+  "_meta": {
+    "description": "Catalogue de 30+ KPIs CFO de référence avec formules, secteurs applicables, benchmarks. Utilisé par cfo-controle-gestion et cfo-reporting.",
+    "version": "0.1.0",
+    "last_updated": "2026-04-14",
+    "sources": ["DFCG Vision Finance", "Banque de France FIBEN", "INSEE Esane", "Big 4 publications"]
+  },
+
+  "categories": ["activite", "rentabilite", "structure_financiere", "tresorerie_bfr", "performance_operationnelle", "rh_capital_humain", "investissement_capex"],
+
+  "kpis": [
+    {"id": "ca_ht", "label": "Chiffre d'affaires HT", "category": "activite", "formule": "Sum(comptes 70)", "frequence": "mensuelle", "secteurs": ["all"]},
+    {"id": "growth_yoy", "label": "Croissance CA YoY", "category": "activite", "formule": "(CA_n - CA_n-1) / CA_n-1", "unite": "%", "frequence": "mensuelle", "secteurs": ["all"]},
+    {"id": "production_exercice", "label": "Production de l'exercice", "category": "activite", "formule": "CA + Production stockée + Production immobilisée", "secteurs": ["industrie"]},
+
+    {"id": "marge_brute", "label": "Marge brute", "category": "rentabilite", "formule": "CA HT - Coût d'achat des marchandises vendues", "secteurs": ["commerce", "negoce"]},
+    {"id": "taux_marge_brute", "label": "Taux de marge brute", "category": "rentabilite", "formule": "Marge brute / CA HT", "unite": "%", "benchmark_min": 25, "secteurs": ["commerce"]},
+    {"id": "valeur_ajoutee", "label": "Valeur ajoutée", "category": "rentabilite", "formule": "Production - Consommations en provenance des tiers", "secteurs": ["industrie", "services"]},
+    {"id": "ebe", "label": "Excédent Brut d'Exploitation (EBE)", "category": "rentabilite", "formule": "VA - Charges de personnel - Impôts et taxes + Subventions d'exploitation", "secteurs": ["all"]},
+    {"id": "taux_ebe_ca", "label": "Taux d'EBE / CA", "category": "rentabilite", "formule": "EBE / CA HT", "unite": "%", "benchmark_pme": "8-15%", "secteurs": ["all"]},
+    {"id": "ebitda", "label": "EBITDA", "category": "rentabilite", "formule": "Résultat d'exploitation + Dotations aux amortissements", "secteurs": ["all"]},
+    {"id": "ebit", "label": "EBIT (Résultat d'exploitation)", "category": "rentabilite", "formule": "Produits d'exploitation - Charges d'exploitation", "secteurs": ["all"]},
+    {"id": "resultat_net", "label": "Résultat net", "category": "rentabilite", "formule": "Résultat avant impôt - IS", "secteurs": ["all"]},
+    {"id": "rentabilite_economique", "label": "Rentabilité économique (ROCE)", "category": "rentabilite", "formule": "EBIT × (1-IS) / Capitaux investis", "unite": "%", "benchmark_min": 8, "secteurs": ["all"]},
+    {"id": "rentabilite_financiere", "label": "Rentabilité financière (ROE)", "category": "rentabilite", "formule": "Résultat net / Capitaux propres", "unite": "%", "benchmark_pme": "10-20%", "secteurs": ["all"]},
+
+    {"id": "fonds_de_roulement", "label": "Fonds de roulement (FR)", "category": "structure_financiere", "formule": "Capitaux permanents - Actif immobilisé"},
+    {"id": "bfr", "label": "Besoin en fonds de roulement (BFR)", "category": "tresorerie_bfr", "formule": "Stocks + Créances clients - Dettes fournisseurs - Dettes fiscales/sociales court terme"},
+    {"id": "tresorerie_nette", "label": "Trésorerie nette", "category": "tresorerie_bfr", "formule": "FR - BFR (ou Disponibilités - Concours bancaires)"},
+    {"id": "ratio_autonomie_financiere", "label": "Ratio d'autonomie financière", "category": "structure_financiere", "formule": "Capitaux propres / Total bilan", "unite": "%", "benchmark_min": 30},
+    {"id": "ratio_endettement", "label": "Ratio d'endettement (gearing)", "category": "structure_financiere", "formule": "Dettes financières / Capitaux propres", "benchmark_max": 1.5},
+    {"id": "ratio_capacite_remboursement", "label": "Capacité de remboursement", "category": "structure_financiere", "formule": "Dettes financières / CAF (Capacité d'autofinancement)", "unite": "années", "benchmark_max": 4},
+    {"id": "caf", "label": "Capacité d'autofinancement (CAF)", "category": "structure_financiere", "formule": "Résultat net + DAP + VNC sorties - Reprises - Quote-part subvention"},
+
+    {"id": "dso", "label": "Days Sales Outstanding (DSO)", "category": "tresorerie_bfr", "formule": "Créances clients TTC × 365 / CA TTC", "unite": "jours", "benchmark_pme": "30-60j"},
+    {"id": "dpo", "label": "Days Payable Outstanding (DPO)", "category": "tresorerie_bfr", "formule": "Dettes fournisseurs TTC × 365 / Achats TTC", "unite": "jours", "benchmark_pme": "30-60j"},
+    {"id": "dio", "label": "Days Inventory Outstanding (DIO)", "category": "tresorerie_bfr", "formule": "Stocks × 365 / Coût des ventes", "unite": "jours", "secteurs": ["industrie", "commerce"]},
+    {"id": "cash_conversion_cycle", "label": "Cash Conversion Cycle", "category": "tresorerie_bfr", "formule": "DSO + DIO - DPO", "unite": "jours"},
+    {"id": "bfr_jca", "label": "BFR en jours de CA", "category": "tresorerie_bfr", "formule": "BFR × 365 / CA HT", "unite": "jours"},
+
+    {"id": "cash_burn", "label": "Cash burn mensuel", "category": "performance_operationnelle", "formule": "Variation trésorerie nette mensuelle (négative)", "frequence": "weekly", "secteurs": ["startup", "scaleup"]},
+    {"id": "runway", "label": "Runway", "category": "performance_operationnelle", "formule": "Cash actuel / Cash burn mensuel", "unite": "mois", "benchmark_min": 12, "secteurs": ["startup", "scaleup"]},
+
+    {"id": "cout_personnel_ca", "label": "Coût du personnel / CA", "category": "rh_capital_humain", "formule": "(Salaires + Charges sociales) / CA HT", "unite": "%", "benchmark_services": "40-65%"},
+    {"id": "ca_par_salarie", "label": "CA par salarié", "category": "rh_capital_humain", "formule": "CA HT / Effectif moyen", "unite": "k€", "benchmark_pme": "100-300k€"},
+    {"id": "va_par_salarie", "label": "Valeur ajoutée par salarié", "category": "rh_capital_humain", "formule": "VA / Effectif moyen", "unite": "k€"},
+
+    {"id": "intensite_capitalistique", "label": "Intensité capitalistique", "category": "investissement_capex", "formule": "Immobilisations corporelles brutes / CA HT", "unite": "%"},
+    {"id": "taux_investissement", "label": "Taux d'investissement", "category": "investissement_capex", "formule": "Investissements de l'année / VA", "unite": "%"},
+    {"id": "vetuste_outil", "label": "Vétusté de l'outil productif", "category": "investissement_capex", "formule": "Amortissements cumulés / Immobilisations brutes amortissables", "unite": "%", "benchmark_max": 70}
+  ],
+
+  "kpi_packs_par_secteur": {
+    "saas": ["ca_ht", "growth_yoy", "ebitda", "cash_burn", "runway", "dso", "ca_par_salarie"],
+    "industrie": ["production_exercice", "marge_brute", "valeur_ajoutee", "ebe", "dio", "intensite_capitalistique", "vetuste_outil"],
+    "commerce": ["ca_ht", "marge_brute", "taux_marge_brute", "rotation_stocks", "dso", "dpo"],
+    "services_btob": ["ca_ht", "valeur_ajoutee", "ebe", "cout_personnel_ca", "ca_par_salarie", "dso"],
+    "startup": ["ca_ht", "growth_yoy", "cash_burn", "runway", "ebitda"]
+  }
+}

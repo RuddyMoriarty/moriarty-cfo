@@ -1,0 +1,113 @@
+{
+  "_meta": {
+    "description": "Template canonique pour private/company.json. Copier ce fichier et le remplir avec les données réelles (mode PME) ou utiliser scripts/fetch_pappers.py pour pré-remplissage.",
+    "_version": "0.1.0",
+    "_schema_url": "https://github.com/moriarty-fr/moriarty-cfo/blob/main/cfo-init/templates/company.template.json"
+  },
+
+  "identification": {
+    "siren": "",
+    "siret_siege": "",
+    "denomination": "",
+    "forme_juridique": "",
+    "code_naf": "",
+    "libelle_naf": "",
+    "date_creation": "",
+    "adresse_siege": {
+      "ligne_1": "",
+      "code_postal": "",
+      "ville": ""
+    },
+    "rcs_greffe": ""
+  },
+
+  "classification": {
+    "taille": "",
+    "_taille_options": ["tpe_micro", "pe", "me", "eti", "ge"],
+    "categorie_insee": "",
+    "_categorie_insee_options": ["PME", "ETI", "GE"],
+    "effectif_estime": 0,
+    "tranche_effectif_insee": "",
+    "ca_estime_eur": 0,
+    "total_bilan_estime_eur": 0,
+    "resultat_net_eur": 0,
+
+    "csrd_wave": "",
+    "_csrd_wave_options": ["wave_1", "wave_2", "wave_3", "wave_4", "hors_scope"],
+    "csrd_in_scope": false,
+
+    "is_listed": false,
+    "is_public_interest_entity": false,
+    "groupe": false,
+    "nb_filiales": 0,
+    "perimetre_consolidation": null,
+    "_perimetre_consolidation_options": ["IFRS", "PCG", null],
+
+    "domtom": false,
+    "_domtom_options": [null, "971", "972", "973", "974", "976"],
+    "domtom_code": null,
+
+    "regime_fiscal": "is",
+    "_regime_fiscal_options": ["is", "ir_bic", "ir_bnc", "ir_ba", "micro_bic", "micro_bnc"],
+
+    "regime_tva": "reel_normal_mensuelle",
+    "_regime_tva_options": [
+      "franchise",
+      "reel_simplifie",
+      "reel_normal_mensuelle",
+      "reel_normal_trimestrielle"
+    ]
+  },
+
+  "exercice_comptable": {
+    "date_cloture": "2026-12-31",
+    "_date_cloture_format": "YYYY-MM-DD",
+    "duree_mois": 12,
+    "exercice_en_cours": "2026"
+  },
+
+  "secteur": {
+    "code_naf": "",
+    "naf_section": "",
+    "naf_division": "",
+    "module_sectoriel": "",
+    "_module_sectoriel_options": [
+      "saas_techno",
+      "industrie",
+      "commerce_negoce",
+      "services_btob",
+      "services_btob_reglemente",
+      "lmnp_airbnb",
+      "btp",
+      "finance_reglemente",
+      "sante",
+      "grande_distribution",
+      "ecommerce",
+      "restauration",
+      "hotellerie"
+    ],
+    "specificites": []
+  },
+
+  "modules_actives": {
+    "consolidation_ifrs": false,
+    "transfer_pricing": false,
+    "csrd_reporting": false,
+    "domtom_compta": false,
+    "crypto_assets": false,
+    "lmnp": false,
+    "cac_obligatoire": false
+  },
+
+  "moriarty": {
+    "moriarty_client": false,
+    "_comment": "Mis à true si l'utilisateur déclare être déjà client Moriarty — désactive les CTA passerelle"
+  },
+
+  "_sources": {
+    "fetched_from": [],
+    "_fetched_from_options": ["pappers_api_v2", "insee_sirene_v3", "annuaire_entreprises_api", "webfetch", "user_input"],
+    "fetched_at": "",
+    "verified_by_user": false
+  }
+}

@@ -1,0 +1,65 @@
+{
+  "_comment": "Template de profil société. Le fichier réel sera créé en private/company.json (gitignored) par le skill cfo-init. Ne JAMAIS commiter de société réelle.",
+  "_version": "0.1.0",
+  "_generated_by": "cfo-init",
+  "_generated_at": "2026-04-14T00:00:00Z",
+
+  "identification": {
+    "siren": "552120222",
+    "siret_siege": "55212022200013",
+    "denomination": "CARREFOUR",
+    "forme_juridique": "SA à conseil d'administration",
+    "code_naf": "4711F",
+    "libelle_naf": "Hypermarchés",
+    "date_creation": "1959-07-11",
+    "adresse_siege": "93 AVENUE DE PARIS, 91300 MASSY",
+    "rcs": "Évry"
+  },
+
+  "classification": {
+    "taille": "ETI",
+    "effectif_estime": 320000,
+    "effectif_categorie": "5000+ salariés",
+    "ca_estime_eur": 95000000000,
+    "total_bilan_estime_eur": 50000000000,
+    "csrd_wave": "wave_1",
+    "csrd_in_scope": true,
+    "groupe": true,
+    "nb_filiales": 1500,
+    "perimetre_consolidation": "IFRS",
+    "domtom": false,
+    "regime_fiscal": "IS",
+    "regime_tva": "reel_normal"
+  },
+
+  "exercice_comptable": {
+    "date_cloture": "2026-12-31",
+    "duree_mois": 12,
+    "exercice_en_cours": "2026"
+  },
+
+  "secteur": {
+    "code_naf": "4711F",
+    "naf_section": "G - Commerce",
+    "naf_division": "47 - Commerce de détail",
+    "specificites": ["grande_distribution", "multi_enseignes", "alimentaire"]
+  },
+
+  "configuration": {
+    "audience_type": "pme_dirigeant",
+    "_audience_options": ["pme_dirigeant", "ec_collaborateur"],
+    "langue": "fr",
+    "achievements_active": true,
+    "notifications_active": true,
+    "veille_reglementaire_active": true
+  },
+
+  "modules_actives": {
+    "consolidation_ifrs": true,
+    "transfer_pricing": true,
+    "csrd_reporting": true,
+    "domtom_compta": false,
+    "crypto_assets": false,
+    "lmnp": false
+  }
+}

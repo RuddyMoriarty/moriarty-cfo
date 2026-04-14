@@ -1,0 +1,253 @@
+{
+  "_meta": {
+    "description": "Échéances fiscales et sociales France en offsets relatifs vs date de clôture (sauf échéances calendaires fixes). Utilisé par cfo-init/scripts/compute_calendar.py pour générer les dates absolues du calendrier de la société. Sources : impots.gouv.fr, urssaf.fr.",
+    "version": "0.1.0",
+    "last_updated": "2026-04-14",
+    "convention_offsets": "+Nd = N jours après date de clôture, mensuel = chaque mois pendant 12 mois, calendar = date fixe annuelle"
+  },
+
+  "is_acomptes_solde": {
+    "_applicable_si": "regime_fiscal == 'is'",
+    "_method": "4 acomptes trimestriels + solde 4 mois après clôture",
+    "echeances": [
+      {
+        "id": "is_acompte_1",
+        "label": "Acompte IS n°1",
+        "offset_from_closing": "+75d",
+        "type": "is",
+        "categorie_calendrier": "fiscal",
+        "obligation": "Si IS exigible exercice précédent > 3000€",
+        "skill_recommande": "cfo-fiscalite"
+      },
+      {
+        "id": "is_acompte_2",
+        "label": "Acompte IS n°2",
+        "offset_from_closing": "+165d",
+        "type": "is",
+        "categorie_calendrier": "fiscal",
+        "skill_recommande": "cfo-fiscalite"
+      },
+      {
+        "id": "is_acompte_3",
+        "label": "Acompte IS n°3",
+        "offset_from_closing": "+255d",
+        "type": "is",
+        "categorie_calendrier": "fiscal",
+        "skill_recommande": "cfo-fiscalite"
+      },
+      {
+        "id": "is_acompte_4",
+        "label": "Acompte IS n°4",
+        "offset_from_closing": "+345d",
+        "type": "is",
+        "categorie_calendrier": "fiscal",
+        "skill_recommande": "cfo-fiscalite"
+      },
+      {
+        "id": "is_solde",
+        "label": "Solde IS (relevé de solde 2572)",
+        "offset_from_closing": "+135d",
+        "type": "is",
+        "categorie_calendrier": "fiscal",
+        "skill_recommande": "cfo-fiscalite"
+      },
+      {
+        "id": "liasse_fiscale",
+        "label": "Liasse fiscale (2065 ou 2033)",
+        "offset_from_closing": "+135d",
+        "type": "fiscal",
+        "categorie_calendrier": "fiscal",
+        "obligation": "Toutes sociétés IS",
+        "skill_recommande": "cfo-fiscalite",
+        "renvoi_skill_externe": "paperasse/controleur-fiscal"
+      }
+    ]
+  },
+
+  "tva_mensuelle": {
+    "_applicable_si": "regime_tva == 'reel_normal' AND frequence_declaration == 'mensuelle'",
+    "_method": "Déclaration CA3 chaque mois, échéance entre le 15 et le 24 du mois suivant selon premier digit SIREN",
+    "echeances": [
+      {
+        "id": "tva_mensuelle",
+        "label": "TVA mois M (CA3)",
+        "offset_each_month": "+24d",
+        "type": "tva",
+        "categorie_calendrier": "fiscal",
+        "frequence": "mensuelle",
+        "_comment": "Date exacte selon premier digit SIREN : 0,1,2 → 16-17, 3,4,5,6,7 → 19-20, 8,9 → 21-24",
+        "skill_recommande": "cfo-fiscalite"
+      }
+    ]
+  },
+
+  "tva_trimestrielle": {
+    "_applicable_si": "regime_tva == 'reel_normal' AND tva_annuelle_eur < 4000",
+    "echeances": [
+      {
+        "id": "tva_trimestrielle",
+        "label": "TVA trimestrielle (CA3)",
+        "offset_each_quarter": "+24d",
+        "type": "tva",
+        "categorie_calendrier": "fiscal",
+        "frequence": "trimestrielle",
+        "skill_recommande": "cfo-fiscalite"
+      }
+    ]
+  },
+
+  "tva_annuelle_simplifiee": {
+    "_applicable_si": "regime_tva == 'reel_simplifie'",
+    "echeances": [
+      {
+        "id": "tva_acompte_juillet",
+        "label": "Acompte TVA juillet (CA12)",
+        "offset_calendar": "annual:31/07",
+        "type": "tva",
+        "categorie_calendrier": "fiscal",
+        "skill_recommande": "cfo-fiscalite"
+      },
+      {
+        "id": "tva_acompte_decembre",
+        "label": "Acompte TVA décembre (CA12)",
+        "offset_calendar": "annual:31/12",
+        "type": "tva",
+        "categorie_calendrier": "fiscal",
+        "skill_recommande": "cfo-fiscalite"
+      },
+      {
+        "id": "tva_solde_ca12",
+        "label": "Solde TVA annuelle CA12",
+        "offset_from_closing": "+90d",
+        "type": "tva",
+        "categorie_calendrier": "fiscal",
+        "skill_recommande": "cfo-fiscalite"
+      }
+    ]
+  },
+
+  "social_dsn": {
+    "_applicable_si": "effectif > 0",
+    "_method": "DSN mensuelle, échéance le 5 ou le 15 du mois suivant selon effectif",
+    "echeances": [
+      {
+        "id": "dsn_mensuelle",
+        "label": "DSN (Déclaration Sociale Nominative)",
+        "offset_each_month": "+15d",
+        "type": "social",
+        "categorie_calendrier": "social",
+        "frequence": "mensuelle",
+        "_comment": "Date exacte : 5 du mois suivant si effectif ≥ 50, 15 si effectif < 50 (et certains régimes spéciaux)",
+        "skill_recommande": "cfo-comptabilite"
+      }
+    ]
+  },
+
+  "social_taxes_annuelles": {
+    "_applicable_si": "effectif > 0",
+    "echeances": [
+      {
+        "id": "taxe_apprentissage_solde",
+        "label": "Taxe d'apprentissage (solde via SOLTéA)",
+        "offset_calendar": "annual:05/05",
+        "type": "social",
+        "categorie_calendrier": "social",
+        "skill_recommande": "cfo-comptabilite"
+      },
+      {
+        "id": "participation_formation_continue",
+        "label": "Participation formation professionnelle continue",
+        "offset_calendar": "annual:05/05",
+        "type": "social",
+        "categorie_calendrier": "social",
+        "skill_recommande": "cfo-comptabilite"
+      },
+      {
+        "id": "effort_construction_peec",
+        "label": "Participation à l'effort de construction (1% logement)",
+        "offset_calendar": "annual:30/04",
+        "type": "social",
+        "categorie_calendrier": "social",
+        "applicable_si": "effectif >= 50",
+        "skill_recommande": "cfo-comptabilite"
+      }
+    ]
+  },
+
+  "comptable_cloture": {
+    "echeances": [
+      {
+        "id": "approbation_comptes_ag",
+        "label": "Approbation des comptes en AG",
+        "offset_from_closing": "+180d",
+        "type": "juridique",
+        "categorie_calendrier": "comptable",
+        "obligation": "AG ordinaire dans les 6 mois de la clôture",
+        "skill_recommande": "cfo-comptabilite"
+      },
+      {
+        "id": "depot_comptes_greffe",
+        "label": "Dépôt comptes annuels au greffe",
+        "offset_from_closing": "+210d",
+        "type": "juridique",
+        "categorie_calendrier": "comptable",
+        "obligation": "1 mois après AG d'approbation (2 mois si dépôt électronique)",
+        "skill_recommande": "cfo-comptabilite"
+      },
+      {
+        "id": "fec_disponible",
+        "label": "FEC disponible (sur demande contrôle fiscal)",
+        "offset_from_closing": "+135d",
+        "type": "fiscal",
+        "categorie_calendrier": "comptable",
+        "obligation": "Disponible sous 15 jours sur demande DGFiP",
+        "skill_recommande": "cfo-comptabilite",
+        "penalite_max_eur": 5000
+      }
+    ]
+  },
+
+  "csrd_esg": {
+    "_applicable_si": "csrd_wave != 'hors_scope'",
+    "echeances": [
+      {
+        "id": "csrd_rapport_durabilite",
+        "label": "Rapport de durabilité CSRD (intégré au rapport de gestion)",
+        "offset_from_closing": "+180d",
+        "type": "esg",
+        "categorie_calendrier": "esg",
+        "skill_recommande": "cfo-csrd-esg"
+      }
+    ]
+  },
+
+  "veille_reglementaire_routines": {
+    "_method": "Tâches programmées récurrentes pour veille réglementaire (gérées par cfo-risques-conformite)",
+    "echeances": [
+      {
+        "id": "veille_hebdo_anc_iasb",
+        "label": "Veille hebdo : ANC, IASB, EFRAG, AMF",
+        "offset_recurring": "weekly:lundi:09:00",
+        "type": "veille",
+        "categorie_calendrier": "veille",
+        "skill_recommande": "cfo-risques-conformite"
+      },
+      {
+        "id": "veille_mensuelle_synthese",
+        "label": "Synthèse mensuelle veille réglementaire",
+        "offset_recurring": "monthly:1er:09:00",
+        "type": "veille",
+        "categorie_calendrier": "veille",
+        "skill_recommande": "cfo-risques-conformite"
+      },
+      {
+        "id": "veille_loi_de_finance",
+        "label": "Veille projet loi de finance (PLF)",
+        "offset_calendar": "annual:01/10",
+        "type": "veille",
+        "categorie_calendrier": "veille",
+        "skill_recommande": "cfo-risques-conformite"
+      }
+    ]
+  }
+}

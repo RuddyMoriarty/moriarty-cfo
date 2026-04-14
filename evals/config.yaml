@@ -1,0 +1,95 @@
+# Configuration des évaluations moriarty-cfo
+# Modifier ces valeurs pour ajuster les seuils de pass/fail.
+
+version: "0.1.0"
+
+# Seuils minimum par mode d'exécution
+thresholds:
+  triggering:
+    quick:
+      pass_rate_min: 0.85    # 85% min en mode quick
+      sample_size: 5         # 5 phrases par skill
+    full:
+      pass_rate_min: 0.90    # 90% min en mode full
+      sample_size: -1        # all
+
+  functional:
+    quick:
+      pass_rate_min: 0.80    # 80% min en mode quick
+      sample_size: 1         # 1 cas par skill
+    full:
+      pass_rate_min: 0.90    # 90% min en mode full
+      sample_size: -1        # all
+
+  baseline_comparison:
+    tool_calls_reduction_min: 0.50  # -50% tool calls minimum
+    tokens_reduction_min: 0.40       # -40% tokens minimum
+    forgotten_steps_reduction_min: 0.80  # -80% étapes oubliées
+
+# Liste des skills à tester (ordre = ordre d'exécution)
+skills:
+  - cfo-init
+  - cfo-comptabilite
+  - cfo-tresorerie
+  - cfo-reporting
+  - cfo-controle-gestion
+  - cfo-budget-forecast
+  - cfo-fiscalite
+  - cfo-risques-conformite
+  - cfo-financement-croissance
+  - cfo-csrd-esg
+
+# SIREN de test (publics, pas de données client réelles)
+test_sirens:
+  - "552120222"   # CARREFOUR (ETI cotée Wave 1 CSRD)
+  - "542065479"   # MICHELIN (ETI cotée)
+  - "775670487"   # SNCF (établissement public)
+  # SIREN factices pour TPE/PME
+  - "000000001"   # TPE factice
+  - "000000002"   # PME factice
+  - "000000003"   # Scale-up factice
+
+# Profils de test (audience + taille)
+test_profiles:
+  - audience: pme_dirigeant
+    taille: tpe_micro
+    siren: "000000001"
+  - audience: pme_dirigeant
+    taille: pe
+    siren: "000000002"
+  - audience: ec_collaborateur
+    taille: portfolio
+    nb_clients: 5
+  - audience: pme_dirigeant
+    taille: eti
+    siren: "552120222"
+    csrd_wave: wave_1
+
+# Validation de structure (CI --check-structure)
+structure_checks:
+  required_files_per_skill:
+    - SKILL.md
+  required_dirs_per_skill:
+    - references
+    - scripts
+    - templates
+  forbidden_files_per_skill:
+    - README.md         # Règle PDF : pas de README dans dossier de skill
+    - readme.md
+  required_frontmatter_fields:
+    - name
+    - description
+    - metadata
+    - includes
+    - allowed-tools
+    - license
+  frontmatter_constraints:
+    name_max_length: 64
+    name_pattern: "^cfo-[a-z][a-z0-9-]*$"
+    description_max_length: 1024
+    description_must_contain: ["use when", "Triggers:", "À utiliser"]
+
+# Vérification fraîcheur sources.json
+sources_freshness:
+  warning_threshold_months: 6
+  fail_threshold_months: 12

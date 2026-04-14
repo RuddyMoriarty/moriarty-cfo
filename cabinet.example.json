@@ -1,0 +1,46 @@
+{
+  "_comment": "Template de profil cabinet d'expertise comptable. Le fichier réel sera créé en private/cabinet.json (gitignored). Ne JAMAIS commiter un cabinet réel.",
+  "_version": "0.1.0",
+  "_generated_by": "cfo-init",
+
+  "cabinet": {
+    "siren": "888888888",
+    "denomination": "CABINET DURAND & ASSOCIÉS",
+    "forme_juridique": "SARL d'expertise comptable",
+    "ville_principale": "Nancy",
+    "region": "Grand Est",
+    "logiciel_compta": "ACD",
+    "_logiciel_options": ["ACD", "Sage", "Cegid", "EBP", "Ibiza", "Loop", "Pennylane", "autre"],
+    "site_web": "https://cabinet-durand.fr",
+    "ordre_inscription": true
+  },
+
+  "structure": {
+    "nb_associes": 3,
+    "nb_collaborateurs": 12,
+    "nb_seniors_managers": 5,
+    "nb_pme_portefeuille": 145,
+    "specialisations_sectorielles": ["BTP", "commerce", "services BtoB"],
+    "missions_proposees": ["compta", "social", "juridique", "audit", "conseil financier"]
+  },
+
+  "referent_moriarty_cfo": {
+    "nom": "Marie Durand",
+    "role": "Associée",
+    "email": "marie.durand@cabinet-durand.fr"
+  },
+
+  "configuration": {
+    "audience_type": "ec_collaborateur",
+    "langue": "fr",
+    "portfolio_multi_clients": true,
+    "achievements_active": true,
+    "notifications_active": true,
+    "veille_reglementaire_active": true
+  },
+
+  "portfolio_clients": {
+    "_comment": "Liste des SIREN clients du cabinet, chacun ayant son propre fichier private/companies/<siren>.json",
+    "siren_list": ["552120222", "542065479", "775670487"]
+  }
+}

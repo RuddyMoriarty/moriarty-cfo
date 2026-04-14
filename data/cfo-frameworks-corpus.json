@@ -1,0 +1,157 @@
+{
+  "_meta": {
+    "description": "Synthèse des frameworks canoniques sur le rôle CFO/DAF — sources officielles (DFCG, OEC, CNCC, IFAC, ACCA, CIMA, AFP) + Big 4 (Deloitte, PwC, EY, KPMG) + EU/FR (EFRAG, ACPR, AMF). Référence pour valider la taxonomie des skills.",
+    "version": "0.1.0",
+    "last_updated": "2026-04-14",
+    "phase": "0.2 - canonical CFO frameworks research"
+  },
+
+  "core_functional_domains": {
+    "_consensus": "Consensus inter-frameworks sur 9 domaines core + 4 émergents. Validé par DFCG (FR), IFAC (international), ACCA, CIMA, et les Big 4.",
+    "domains": [
+      {
+        "id": "1_fpa",
+        "label": "Financial Planning & Analysis (FP&A)",
+        "tier": "1 - Core (must-have)",
+        "skill_mapping": "cfo-budget-forecast + cfo-controle-gestion",
+        "sources_consensus": ["DFCG", "IFAC", "ACCA", "CIMA", "Deloitte", "PwC", "EY"],
+        "trends_2025_2026": "Performance management = priorité #1 français (PwC/DFCG 2026). AI-driven predictive forecasting. Intégration ESG dans scénarios."
+      },
+      {
+        "id": "2_treasury_liquidity",
+        "label": "Treasury & Liquidity Management",
+        "tier": "1 - Core (must-have)",
+        "skill_mapping": "cfo-tresorerie",
+        "sources_consensus": ["DFCG", "AFP", "Deloitte", "PwC", "EY"],
+        "trends_2025_2026": "Cash management = strategic lever. Resilience modeling (geopolitical hedging). Automation via fintech platforms."
+      },
+      {
+        "id": "3_financial_reporting_accounting",
+        "label": "Financial Reporting & Accounting Operations",
+        "tier": "1 - Core (must-have)",
+        "skill_mapping": "cfo-comptabilite + cfo-reporting",
+        "sources_consensus": ["DFCG", "OEC", "CNCC", "IFAC", "Deloitte", "PwC", "EY"],
+        "fr_specifics": ["PCG (Plan Comptable Général)", "FEC obligatoire 15j sur demande DGFiP", "Liasse Fiscale annuelle", "DEB/DES intra-EU", "CAC obligatoire au-delà des seuils"]
+      },
+      {
+        "id": "4_risk_internal_controls",
+        "label": "Corporate Risk Management & Internal Controls",
+        "tier": "2 - Strategic & Governance",
+        "skill_mapping": "cfo-risques-conformite",
+        "sources_consensus": ["COSO", "DFCG", "Deloitte", "KPMG", "EY"],
+        "fr_specifics": ["AFEP/MEDEF code", "LCB-FT", "TRACFIN", "Pas de SOX en propre mais équivalent pour cotées"]
+      },
+      {
+        "id": "5_taxation_compliance",
+        "label": "Taxation & Tax Compliance",
+        "tier": "2 - Strategic & Governance",
+        "skill_mapping": "cfo-fiscalite",
+        "sources_consensus": ["DFCG", "OEC", "Deloitte", "PwC", "EY", "KPMG"],
+        "fr_specifics": ["URSSAF mensuel le 15", "DGFiP", "AGFF", "AEOI/FATCA/CRS", "BEPS Pillar 2 pour multinationales"]
+      },
+      {
+        "id": "6_csrd_esg_sustainability",
+        "label": "Sustainability Reporting & ESG Compliance (CSRD/ESRS)",
+        "tier": "3 - Émergent (rapidly growing)",
+        "skill_mapping": "cfo-csrd-esg",
+        "sources_consensus": ["EFRAG", "European Commission", "Big 4 publications CSRD", "DFCG groupe travail CSRD"],
+        "fr_specifics": ["Wave 1 = cotées 500+ (déjà), Wave 2 = 250+ employés (2028 après Stop-the-Clock 2025/794), Wave 3 = PME cotées (2028)", "Intégration au rapport de gestion (L. 225-102-1 C. com.)", "External assurance obligatoire"],
+        "comment_critique": "82% des CFOs globalement reportent expanded ESG responsibilities. CFO/CSO co-leadership model (65% single ownership / 35% co-leadership selon EFRAG 2024)."
+      },
+      {
+        "id": "7_ma_corporate_dev",
+        "label": "Mergers & Acquisitions (M&A) & Corporate Development",
+        "tier": "2 - Strategic (context-dependent)",
+        "skill_mapping": "cfo-financement-croissance (sub-module M&A)",
+        "sources_consensus": ["DFCG", "Big 4", "AFGE"],
+        "fr_specifics": ["Notification CSE obligatoire", "Antitrust ADLC", "Sector-specific approvals (ACPR/banking, défense)"]
+      },
+      {
+        "id": "8_financing_ir_capital",
+        "label": "Financing, Investor Relations & Capital Allocation",
+        "tier": "1-2 - Core selon profil",
+        "skill_mapping": "cfo-financement-croissance",
+        "sources_consensus": ["DFCG", "AFP", "Big 4"],
+        "fr_specifics": ["AMF compliance pour cotées", "OAT / Euronext / Euroclear", "Banque de France obligations"]
+      },
+      {
+        "id": "9_finance_ops_digital",
+        "label": "Finance Function Operations & Digital Transformation",
+        "tier": "3 - Émergent (transformational)",
+        "skill_mapping": "cross-skill (transverse)",
+        "sources_consensus": ["DFCG (training catalog 2026)", "Big 4", "WEF"],
+        "trends_2025_2026": "54% des CFOs (Deloitte Q4 2025) citent AI agent integration comme top priorité. Talent reconfiguration vers analytics/digital. Hybrid finance models (in-house + SSC + outsourced + agentic)."
+      }
+    ]
+  },
+
+  "emerging_domains_2025_2026": [
+    {
+      "id": "cyber_risk_governance",
+      "label": "Cybersecurity & Cyber Risk Governance",
+      "intensity": "HIGH",
+      "skill_addressed": "cfo-risques-conformite (sub-module cyber)",
+      "key_dimensions": ["cyber risk quantification (downtime cost, breach response, regulatory fines)", "third-party/supplier cyber risk", "incident response & business continuity", "non-human identity governance (AI agents, service accounts)", "quantum readiness", "board/investor cyber disclosures"],
+      "sources": ["KPMG Cybersecurity Considerations 2026", "Deloitte CFO Expectations 2026", "PwC CFO Pulse"]
+    },
+    {
+      "id": "ai_agentic_finance",
+      "label": "AI/Agentic Finance Governance & Responsible AI",
+      "intensity": "CRITICAL",
+      "skill_addressed": "cross-skill (transverse)",
+      "key_dimensions": ["AI use case governance (inventory, model risk, bias, compliance)", "model risk management", "agentic AI controls (human-in-loop)", "data quality & bias mitigation", "regulatory compliance (EU AI Act, GDPR, sectorielles)", "talent & capability building"],
+      "sources": ["Deloitte Q4 2025 (87% des CFOs)", "EY CFO Forum 2026", "PwC", "DFCG training curriculum"]
+    },
+    {
+      "id": "stakeholder_value_multicapital",
+      "label": "Stakeholder Value & Multi-Capital Thinking",
+      "intensity": "MEDIUM-HIGH",
+      "skill_addressed": "cfo-csrd-esg + cfo-reporting",
+      "key_dimensions": ["integrated reporting (financier + ESG + stratégique)", "double materiality assessment", "stakeholder engagement (employés, communautés, NGOs)", "long-term value articulation (vs quarterly earnings)", "remuneration alignment (ESG + financial KPIs)"],
+      "sources": ["IFAC Vision for CFO", "CIMA Strategic Scorecard", "WEF Future of Finance", "ACCA CFO of the Future"]
+    },
+    {
+      "id": "veille_reglementaire",
+      "label": "Regulatory Watchdog (Veille Réglementaire)",
+      "intensity": "MEDIUM",
+      "skill_addressed": "cfo-risques-conformite (sub-module veille)",
+      "key_dimensions": ["regulatory horizon scanning (taxation, IFRS/IAS, LCB-FT, CSRD, labor law, environmental, cyber)", "impact assessment (financial, operational, disclosure)", "internal communication (CFO, audit committee)", "policy advocacy (DFCG, OEC, CNCC)", "compliance calendar"],
+      "sources": ["DFCG (intelligence régulière)", "Légifrance", "ACPR/AMF guidance"]
+    }
+  ],
+
+  "french_specific_obligations_checklist": {
+    "_method": "Checklist exhaustive des obligations CFO/DAF spécifiques au contexte français. Toutes intégrées dans les skills concernés.",
+    "obligations": [
+      {"domain": "Accounting Standards", "obligation": "PCG (Plan Comptable Général) pour comptes statutaires", "frequency": "Annual", "skill": "cfo-comptabilite"},
+      {"domain": "Accounting Standards", "obligation": "IFRS/IAS pour consolidé si coté", "frequency": "Annual", "skill": "cfo-comptabilite"},
+      {"domain": "Tax", "obligation": "Liasse Fiscale (2065 SAS-SA / 2033 SARL-EI)", "frequency": "Annual (mai)", "skill": "cfo-fiscalite"},
+      {"domain": "Tax", "obligation": "FEC (Fichier Echanges Comptables) à DGFiP sur demande sous 15j (pénalité 5000€)", "frequency": "On-demand", "skill": "cfo-comptabilite"},
+      {"domain": "Tax", "obligation": "DEB/DES (Intrastat) intra-EU si > 1M€", "frequency": "Quarterly", "skill": "cfo-fiscalite"},
+      {"domain": "Social", "obligation": "DSN URSSAF (5 ou 15 du mois suivant selon effectif)", "frequency": "Monthly", "skill": "cfo-comptabilite"},
+      {"domain": "Social", "obligation": "Apprentissage / Formation continue (SOLTéA mai)", "frequency": "Annual", "skill": "cfo-comptabilite"},
+      {"domain": "LCB-FT", "obligation": "Compliance officer designation + risk-based KYC + TRACFIN reporting", "frequency": "Continuous", "skill": "cfo-risques-conformite"},
+      {"domain": "Audit", "obligation": "CAC (Commissaire aux Comptes) si seuils dépassés (1.55M€ CA / 750k€ bilan / 50 employés)", "frequency": "Annual", "skill": "cfo-risques-conformite"},
+      {"domain": "Audit", "obligation": "Rapport sustainability ESRS si CSRD in-scope - external assurance", "frequency": "Annual (Wave 1 since 2025)", "skill": "cfo-csrd-esg"},
+      {"domain": "Investor Relations", "obligation": "Annual report + auditor opinion + governance statement (AMF si coté)", "frequency": "Annual + Quarterly updates", "skill": "cfo-reporting"},
+      {"domain": "Governance", "obligation": "Audit committee charter (PIE)", "frequency": "Per governance rules", "skill": "cfo-risques-conformite"},
+      {"domain": "Debt/Covenants", "obligation": "Covenant monitoring + bond trustee reporting", "frequency": "Per loan agreement", "skill": "cfo-tresorerie"},
+      {"domain": "Works Council CSE", "obligation": "Notification + consultation pour M&A, offshoring, restructuring", "frequency": "Prior to decision", "skill": "cfo-financement-croissance"},
+      {"domain": "Data Privacy GDPR", "obligation": "DPO designation + breach notification CNIL 72h", "frequency": "Continuous", "skill": "cfo-risques-conformite"}
+    ]
+  },
+
+  "modern_vs_traditional_cfo_distinction": {
+    "traditional_cfo_pre_2024": {
+      "primary_focus": "Reporting financier précis et conforme, contrôle interne, gestion des coûts",
+      "scope": "Direction de la fonction finance, 'gardien des comptes'",
+      "board_interaction": "Earnings trimestriel, audit annuel, risque financier uniquement"
+    },
+    "modern_strategic_cfo_2025_2026": {
+      "primary_focus": "Strategic business partner, propriétaire risque enterprise unifié, steward ESG, champion technologie/AI",
+      "scope": "+20% de responsabilités vs traditional (Deloitte). 82% des CFOs reportent accountability au-delà de la finance.",
+      "key_additions": ["Cyber risk integration", "CSRD governance", "AI/agentic oversight", "Multi-capital value creation", "Supply chain sustainability"],
+      "required_mindsets": ["Systems thinker", "Technology-first", "Stakeholder capitalism", "Continuous learning (AI, ESG, regulatory agility)"]
+    }
+  }
+}

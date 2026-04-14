@@ -1,0 +1,55 @@
+# Données société/cabinet — TOUJOURS LOCALES, JAMAIS DANS LE REPO
+private/
+private/**/*
+*.local.json
+.env
+.env.*
+!.env.example
+
+# Profils company/cabinet réels (les .example.json sont commités)
+company.json
+company-*.json
+companies/
+cabinet.json
+cabinet-*.json
+cabinets/
+!company.example.json
+!cabinet.example.json
+
+# État de progression et achievements (local-only)
+cfo-progress.json
+calendar-fiscal.json
+audit.log
+
+# Sortie générée (rapports, dashboards, exports)
+out/
+output/
+tmp/
+exports/
+*.pdf
+*.xlsx
+!templates/*.xlsx
+!templates/*.pdf
+
+# Dépendances
+node_modules/
+__pycache__/
+*.pyc
+.pytest_cache/
+.venv/
+venv/
+
+# IDE & OS
+.DS_Store
+.vscode/
+.idea/
+*.swp
+
+# Logs
+*.log
+logs/
+
+# Builds Python
+dist/
+build/
+*.egg-info/

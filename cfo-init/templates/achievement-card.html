@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<title>{{ achievement.label }} — moriarty-cfo</title>
+<style>
+  /*
+   * Carte d'achievement format portrait A6 (105 × 148 mm).
+   * Style Moriarty : Navy #002E72, Orange #E14F0A, Dosis font.
+   * Variables remplacées côté Python via str.format ou Jinja2.
+   */
+  @page { size: A6 portrait; margin: 0; }
+
+  @font-face {
+    font-family: 'Dosis';
+    src: local('Dosis');
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'Dosis', 'Helvetica Neue', sans-serif;
+    background: #F6F6F6;
+    color: #002E72;
+    width: 105mm;
+    height: 148mm;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .card {
+    width: 100%;
+    height: 100%;
+    background: #fff;
+    display: flex;
+    flex-direction: column;
+    padding: 8mm 8mm 0 8mm;
+  }
+
+  .card-header {
+    border-bottom: 2px solid #E14F0A;
+    padding-bottom: 4mm;
+    margin-bottom: 6mm;
+  }
+
+  .tier-badge {
+    display: inline-block;
+    font-size: 14px;
+    font-weight: 600;
+    color: #E14F0A;
+    letter-spacing: 1px;
+  }
+
+  .achievement-icon {
+    font-size: 48px;
+    text-align: center;
+    margin: 6mm 0;
+  }
+
+  .achievement-label {
+    font-size: 22px;
+    font-weight: 700;
+    color: #002E72;
+    text-align: center;
+    margin-bottom: 3mm;
+  }
+
+  .achievement-desc {
+    font-size: 13px;
+    font-weight: 400;
+    color: #333;
+    text-align: center;
+    line-height: 1.5;
+    margin-bottom: 6mm;
+  }
+
+  .points {
+    font-size: 28px;
+    font-weight: 700;
+    color: #E14F0A;
+    text-align: center;
+    margin-bottom: 4mm;
+  }
+
+  .progress-bar {
+    height: 6px;
+    background: #F0F0F0;
+    border-radius: 0;
+    position: relative;
+    margin-bottom: 2mm;
+  }
+
+  .progress-fill {
+    height: 100%;
+    background: #99B8E0;
+    width: {{ totals.percentage }}%;
+  }
+
+  .progress-label {
+    font-size: 11px;
+    color: #666;
+    text-align: center;
+    margin-bottom: 6mm;
+  }
+
+  .unlock-date {
+    font-size: 11px;
+    color: #999;
+    text-align: center;
+    font-style: italic;
+  }
+
+  /* Footer bicolore Moriarty */
+  .footer {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 15px;
+    display: flex;
+  }
+  .footer-left { width: 50%; background: #002E72; }
+  .footer-right { width: 50%; background: #E14F0A; }
+
+  /* Motif quart de cercle pointillé orange en haut à droite */
+  .decor {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 30mm;
+    height: 30mm;
+    background:
+      radial-gradient(circle at 100% 0%, #E14F0A 2%, transparent 2.5%) 0 0 / 4mm 4mm;
+    opacity: 0.3;
+    pointer-events: none;
+  }
+</style>
+</head>
+<body>
+  <div class="decor"></div>
+
+  <div class="card">
+    <div class="card-header">
+      <span class="tier-badge">{{ totals.current_tier_emoji }} {{ totals.current_tier }}</span>
+    </div>
+
+    <div class="achievement-icon">{{ achievement.label | split(' ') | first }}</div>
+    <div class="achievement-label">{{ achievement.label | split(' ') | rest | join(' ') }}</div>
+    <div class="achievement-desc">{{ achievement.description }}</div>
+
+    <div class="points">+{{ achievement.points }} pts</div>
+
+    <div class="progress-bar"><div class="progress-fill"></div></div>
+    <div class="progress-label">{{ totals.achievements_unlocked }} / {{ totals.achievements_total }} achievements · {{ totals.points_earned }} / {{ totals.points_max }} pts</div>
+
+    <div class="unlock-date">Débloqué le {{ unlocked_at_human }}</div>
+  </div>
+
+  <div class="footer">
+    <div class="footer-left"></div>
+    <div class="footer-right"></div>
+  </div>
+</body>
+</html>

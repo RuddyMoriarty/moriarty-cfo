@@ -1,0 +1,100 @@
+{
+  "_meta": {
+    "description": "Template canonique pour private/cabinet.json (mode EC). Créé par cfo-init si l'utilisateur se déclare expert-comptable ou collaborateur de cabinet.",
+    "_version": "0.1.0"
+  },
+
+  "cabinet": {
+    "siren": "",
+    "denomination": "",
+    "forme_juridique": "",
+    "_forme_juridique_options": [
+      "SARL d'expertise comptable",
+      "SAS d'expertise comptable",
+      "SA d'expertise comptable",
+      "EI",
+      "SELARL",
+      "SELAS",
+      "Autre"
+    ],
+    "ville_principale": "",
+    "region": "",
+    "adresse_siege": "",
+    "site_web": "",
+    "ordre_inscription": true,
+    "_ordre_inscription_comment": "Inscription à l'Ordre des Experts-Comptables (obligatoire pour exercer)"
+  },
+
+  "stack_logiciel": {
+    "logiciel_compta_principal": "",
+    "_logiciel_compta_options": [
+      "ACD",
+      "Sage",
+      "Cegid",
+      "EBP",
+      "Ibiza",
+      "Loop",
+      "Pennylane",
+      "QuickBooks",
+      "Tiime",
+      "Autre"
+    ],
+    "logiciel_paie": "",
+    "outils_specifiques": [],
+    "_outils_options": ["ADP", "Silae", "Nibelis", "Tiime", "Autre"]
+  },
+
+  "structure": {
+    "nb_associes": 0,
+    "nb_collaborateurs": 0,
+    "nb_seniors": 0,
+    "nb_managers": 0,
+    "nb_pme_portefeuille": 0,
+    "specialisations_sectorielles": [],
+    "missions_proposees": [],
+    "_missions_options": [
+      "mission_presentation",
+      "examen_limite",
+      "audit_legal_cac",
+      "social_paie",
+      "juridique",
+      "conseil_financier",
+      "cir_cii",
+      "aides_publiques",
+      "m_and_a",
+      "csrd_esrs"
+    ]
+  },
+
+  "referent_moriarty_cfo": {
+    "_comment": "Personne qui utilise le skill moriarty-cfo dans le cabinet",
+    "nom": "",
+    "role": "",
+    "_role_options": ["Associé", "Manager", "Senior", "Collaborateur"],
+    "email": ""
+  },
+
+  "configuration": {
+    "audience_type": "ec_collaborateur",
+    "langue": "fr",
+    "portfolio_multi_clients": true,
+    "achievements_active": true,
+    "notifications_active": true,
+    "notifications_level": 1,
+    "veille_reglementaire_active": true
+  },
+
+  "portfolio_clients": {
+    "_comment": "Liste des SIREN clients du cabinet. Chaque client a son propre fichier private/companies/<siren>.json suivant le schéma company.template.json",
+    "siren_list": [],
+    "_example": ["552120222", "542065479", "775670487"]
+  },
+
+  "moriarty_partenariat": {
+    "_comment": "Si le cabinet est partenaire Moriarty, ces champs sont remplis. Sinon ignorer.",
+    "partenaire_moriarty": false,
+    "date_signature": null,
+    "commission_pct": null,
+    "url_dashboard": null
+  }
+}

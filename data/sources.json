@@ -1,0 +1,281 @@
+{
+  "_meta": {
+    "description": "Source-of-truth pour toutes les données externes utilisées par le bundle moriarty-cfo. Chaque entrée a URL canonique, date dernière vérification, conditions d'usage. Skill `cfo-init` avertit si data > 6 mois.",
+    "version": "0.1.0",
+    "last_updated": "2026-04-14"
+  },
+  "categories": {
+    "identification_societe": {
+      "pappers_web": {
+        "url": "https://www.pappers.fr",
+        "type": "web_scraping",
+        "tos": "https://www.pappers.fr/cgu - usage non commercial massif interdit, requête raisonnable autorisée",
+        "data_provided": ["dénomination", "siret", "siren", "forme juridique", "code naf", "adresse", "dirigeants", "comptes annuels publiés"],
+        "auth_required": false,
+        "rate_limit": "raisonnable (pas plus de 1 requête/seconde)",
+        "last_verified": "2026-04-14"
+      },
+      "pappers_api": {
+        "url": "https://api.pappers.fr/v2",
+        "type": "api_official",
+        "tos": "https://www.pappers.fr/api - quota gratuit 1000 req/mois, paid au-delà",
+        "auth_required": true,
+        "auth_method": "api_key (PAPPERS_API_KEY env var)",
+        "data_provided": ["fiche complète entreprise", "comptes annuels", "documents officiels", "bénéficiaires effectifs"],
+        "last_verified": "2026-04-14"
+      },
+      "insee_sirene_api": {
+        "url": "https://api.insee.fr/entreprises/sirene/V3.11",
+        "type": "api_official",
+        "tos": "Licence Ouverte 2.0 - usage libre y compris commercial avec attribution",
+        "auth_required": true,
+        "auth_method": "OAuth2 (INSEE_CONSUMER_KEY + INSEE_CONSUMER_SECRET)",
+        "data_provided": ["unite_legale", "etablissement", "historique modifications"],
+        "last_verified": "2026-04-14"
+      },
+      "annuaire_entreprises_data_gouv": {
+        "url": "https://annuaire-entreprises.data.gouv.fr",
+        "type": "web_scraping",
+        "tos": "Licence Ouverte 2.0 + ToS data.gouv.fr",
+        "auth_required": false,
+        "data_provided": ["fiche officielle entreprise", "documents bilan", "associés"],
+        "last_verified": "2026-04-14"
+      },
+      "annuaire_entreprises_api": {
+        "url": "https://recherche-entreprises.api.gouv.fr/v3",
+        "type": "api_official",
+        "tos": "API publique, gratuite, sans authentification",
+        "auth_required": false,
+        "rate_limit": "7 requêtes/seconde, 7000/jour",
+        "last_verified": "2026-04-14"
+      }
+    },
+    "comptabilite_fiscalite": {
+      "pcg_anc": {
+        "url": "https://www.anc.gouv.fr/sites/anc/accueil/normes-francaises/recueil-pcg.html",
+        "type": "documentation_officielle",
+        "data_provided": ["Plan Comptable Général 2024 complet"],
+        "last_verified": "2026-04-14"
+      },
+      "pcg_github_arrhes": {
+        "url": "https://github.com/arrhes/PCG",
+        "type": "open_data_github",
+        "tos": "Licence ouverte (cf. repo)",
+        "data_provided": ["pcg.json structure machine-readable du PCG"],
+        "last_verified": "2026-04-14"
+      },
+      "impots_gouv_calendrier": {
+        "url": "https://www.impots.gouv.fr/professionnel/calendrier-fiscal",
+        "type": "documentation_officielle",
+        "data_provided": ["calendrier fiscal des entreprises"],
+        "last_verified": "2026-04-14"
+      },
+      "bofip": {
+        "url": "https://bofip.impots.gouv.fr",
+        "type": "documentation_officielle",
+        "data_provided": ["bulletin officiel des finances publiques - doctrine fiscale"],
+        "last_verified": "2026-04-14"
+      },
+      "urssaf": {
+        "url": "https://www.urssaf.fr/portail/home/employeur/calculer-les-cotisations/les-taux-de-cotisations.html",
+        "type": "documentation_officielle",
+        "data_provided": ["taux cotisations sociales", "plafonds annuels SS"],
+        "last_verified": "2026-04-14"
+      },
+      "service_public_pro": {
+        "url": "https://www.service-public.fr/professionnels-entreprises",
+        "type": "documentation_officielle",
+        "data_provided": ["démarches administratives entreprises"],
+        "last_verified": "2026-04-14"
+      },
+      "legifrance": {
+        "url": "https://www.legifrance.gouv.fr",
+        "type": "documentation_officielle",
+        "data_provided": ["code commerce", "code général impôts", "lois de finance"],
+        "last_verified": "2026-04-14"
+      },
+      "data_gouv_nomenclature_liasse": {
+        "url": "https://www.data.gouv.fr/datasets/nomenclature-fiscale-du-compte-de-resultat/",
+        "type": "open_data",
+        "tos": "Licence Ouverte 2.0",
+        "data_provided": ["cases liasse fiscale 2033 et 2050"],
+        "last_verified": "2026-04-14"
+      }
+    },
+    "benchmarks_sectoriels": {
+      "banque_france_fiben": {
+        "url": "https://entreprises.banque-france.fr",
+        "type": "service_payant_partiellement_ouvert",
+        "tos": "Accès FIBEN sur abonnement, données agrégées en open data",
+        "data_provided": ["ratios sectoriels par taille et secteur"],
+        "last_verified": "2026-04-14"
+      },
+      "insee_esane": {
+        "url": "https://www.insee.fr/fr/information/3210767",
+        "type": "open_data",
+        "tos": "Licence Ouverte 2.0",
+        "data_provided": ["statistiques structurelles entreprises par secteur (Esane)"],
+        "last_verified": "2026-04-14"
+      },
+      "naf_codes_insee": {
+        "url": "https://www.insee.fr/fr/information/2406147",
+        "type": "open_data",
+        "data_provided": ["nomenclature NAF rev 2"],
+        "last_verified": "2026-04-14"
+      }
+    },
+    "frameworks_cfo": {
+      "dfcg": {
+        "url": "https://www.dfcg.fr",
+        "type": "association_professionnelle",
+        "data_provided": ["référentiel DAF", "Vision Finance baromètre", "guides méthodologiques"],
+        "last_verified": "2026-04-14"
+      },
+      "dfcg_pwc_2026": {
+        "url": "https://www.pwc.fr/fr/publications/finance/etude-priorites-daf-2026-pwc-dfcg.html",
+        "type": "etude_publique",
+        "data_provided": ["priorités DAF français 2026"],
+        "last_verified": "2026-04-14"
+      },
+      "oec_ordre_experts_comptables": {
+        "url": "https://www.experts-comptables.fr",
+        "type": "ordre_professionnel",
+        "data_provided": ["guides mission EC PME", "déontologie"],
+        "last_verified": "2026-04-14"
+      },
+      "cncc": {
+        "url": "https://www.cncc.fr",
+        "type": "ordre_professionnel",
+        "data_provided": ["mission CAC", "norme NEP"],
+        "last_verified": "2026-04-14"
+      },
+      "deloitte_cfo_signals": {
+        "url": "https://www.deloitte.com/global/en/services/consulting/research/cfo-signals.html",
+        "type": "etude_publique_big4",
+        "data_provided": ["sondage CFO trimestriel"],
+        "last_verified": "2026-04-14"
+      },
+      "pwc_cfo_pulse": {
+        "url": "https://www.pwc.com/us/en/executive-leadership-hub/cfo.html",
+        "type": "etude_publique_big4",
+        "data_provided": ["CFO insights"],
+        "last_verified": "2026-04-14"
+      },
+      "ey_cfo_forum": {
+        "url": "https://www.ey.com/en_bg/cfo-forum-2026",
+        "type": "etude_publique_big4",
+        "data_provided": ["CFO Forum 2026 - AI dans la finance"],
+        "last_verified": "2026-04-14"
+      },
+      "kpmg_cyber_2026": {
+        "url": "https://kpmg.com/xx/en/our-insights/ai-and-technology/cybersecurity-considerations-2026.html",
+        "type": "etude_publique_big4",
+        "data_provided": ["Cybersecurity Considerations 2026"],
+        "last_verified": "2026-04-14"
+      },
+      "ifac": {
+        "url": "https://www.ifac.org",
+        "type": "standards_internationaux",
+        "data_provided": ["rôle CFO global"],
+        "last_verified": "2026-04-14"
+      },
+      "acca": {
+        "url": "https://www.accaglobal.com",
+        "type": "standards_internationaux",
+        "data_provided": ["The CFO of the Future"],
+        "last_verified": "2026-04-14"
+      },
+      "cima": {
+        "url": "https://www.aicpa-cima.com",
+        "type": "standards_internationaux",
+        "data_provided": ["Strategic Scorecard CFO Programme"],
+        "last_verified": "2026-04-14"
+      },
+      "afp": {
+        "url": "https://www.financialprofessionals.org",
+        "type": "association_professionnelle_us",
+        "data_provided": ["FP&A certification, treasury core competencies"],
+        "last_verified": "2026-04-14"
+      }
+    },
+    "csrd_esg": {
+      "efrag_esrs": {
+        "url": "https://www.efrag.org/en/sustainability-reporting",
+        "type": "documentation_officielle_eu",
+        "data_provided": ["ESRS Set 1 standards", "implementation guidance"],
+        "last_verified": "2026-04-14"
+      },
+      "ec_csrd_directive": {
+        "url": "https://finance.ec.europa.eu/capital-markets-union-and-financial-markets/company-reporting-and-auditing/company-reporting/corporate-sustainability-reporting_en",
+        "type": "documentation_officielle_eu",
+        "data_provided": ["Directive CSRD", "vagues d'application"],
+        "last_verified": "2026-04-14"
+      },
+      "anc_normes": {
+        "url": "https://www.anc.gouv.fr",
+        "type": "documentation_officielle",
+        "data_provided": ["normes françaises CSRD"],
+        "last_verified": "2026-04-14"
+      }
+    },
+    "risque_conformite": {
+      "coso_erm": {
+        "url": "https://www.coso.org/guidance-erm",
+        "type": "framework_international",
+        "data_provided": ["COSO ERM 2017 framework"],
+        "last_verified": "2026-04-14"
+      },
+      "acpr": {
+        "url": "https://acpr.banque-france.fr/fr/",
+        "type": "regulateur",
+        "data_provided": ["LCB-FT", "régulation banque/assurance"],
+        "last_verified": "2026-04-14"
+      },
+      "amf": {
+        "url": "https://www.amf-france.org/en",
+        "type": "regulateur",
+        "data_provided": ["régulation marchés financiers", "obligations cotées"],
+        "last_verified": "2026-04-14"
+      },
+      "tracfin": {
+        "url": "https://www.economie.gouv.fr/tracfin",
+        "type": "regulateur",
+        "data_provided": ["déclarations soupçon LCB-FT"],
+        "last_verified": "2026-04-14"
+      }
+    },
+    "fiches_de_poste": {
+      "_comment": "Sources scrapées en Phase 0.1 - voir cfo-job-corpus.json pour le détail des 142 tâches identifiées",
+      "malt": {
+        "url": "https://www.malt.fr/s/tags/directeur-financier-602e4444681b9605c1c999d5",
+        "type": "marketplace_freelances",
+        "last_verified": "2026-04-14"
+      },
+      "welcome_to_the_jungle": {
+        "url": "https://www.welcometothejungle.com",
+        "type": "job_board",
+        "last_verified": "2026-04-14"
+      },
+      "apec": {
+        "url": "https://www.apec.fr/tous-nos-metiers/gestion-finance-et-administration/directeur-administratif-et-financier.html",
+        "type": "fiche_metier_officielle",
+        "last_verified": "2026-04-14"
+      },
+      "france_travail_rome_m1205": {
+        "url": "https://candidat.francetravail.fr/metierscope/fiche-metier/M1205",
+        "type": "fiche_rome_officielle",
+        "last_verified": "2026-04-14"
+      },
+      "robert_half": {
+        "url": "https://www.roberthalf.com/fr/fr/details-emploi/directeur-administratif-et-financier",
+        "type": "cabinet_recrutement",
+        "last_verified": "2026-04-14"
+      },
+      "michael_page": {
+        "url": "https://www.michaelpage.fr/jobs/directeur-administratif-et-financier",
+        "type": "cabinet_recrutement",
+        "last_verified": "2026-04-14"
+      }
+    }
+  }
+}

@@ -1,0 +1,204 @@
+{
+  "_meta": {
+    "description": "Corpus de tâches CFO/DAF identifiées dans les annonces d'emploi françaises et les offres de services CFO-as-a-service. Source de vérité pour le périmètre fonctionnel des 10 skills du bundle.",
+    "version": "0.1.0",
+    "last_updated": "2026-04-14",
+    "phase": "0.1 - job posting research",
+    "method": "WebFetch + WebSearch sur Malt, Welcome to the Jungle, APEC, France Travail (ROME M1205), LinkedIn Jobs, cabinets de recrutement (Robert Half, Hays, Walters People, Michael Page), services CFO part-time (myDAF, Eleven Strategy, SmashGroup, DigiDAF, Kashflo, Advimotion)",
+    "postings_analyzed": 50,
+    "tasks_identified": 142,
+    "categories_count": 16
+  },
+
+  "summary": {
+    "top_15_tasks_by_occurrence": [
+      {"id": "tax-annual-tax-return", "label": "Préparation déclaration fiscale annuelle", "occurrences": 51, "skill": "cfo-fiscalite"},
+      {"id": "compta-cloture-annuelle", "label": "Clôture annuelle & liasse fiscale", "occurrences": 52, "skill": "cfo-comptabilite"},
+      {"id": "compta-cloture-mensuelle", "label": "Clôture comptable mensuelle", "occurrences": 47, "skill": "cfo-comptabilite"},
+      {"id": "cg-kpi-dashboards", "label": "Mise en place KPIs & tableaux de bord", "occurrences": 47, "skill": "cfo-controle-gestion"},
+      {"id": "budget-annual-budget", "label": "Élaboration budget annuel", "occurrences": 44, "skill": "cfo-budget-forecast"},
+      {"id": "hr-payroll-management", "label": "Gestion paie & calcul salaires", "occurrences": 44, "skill": "cfo-comptabilite"},
+      {"id": "tresor-cash-flow-forecast", "label": "Prévisions de trésorerie (cash forecasting)", "occurrences": 43, "skill": "cfo-tresorerie"},
+      {"id": "compta-journal-entries", "label": "Saisie et validation journaux comptables", "occurrences": 42, "skill": "cfo-comptabilite"},
+      {"id": "tax-vat-return", "label": "Gestion TVA & déclaration TVA", "occurrences": 42, "skill": "cfo-fiscalite"},
+      {"id": "cg-profitability-analysis", "label": "Analyse rentabilité par produit/client/activité", "occurrences": 41, "skill": "cfo-controle-gestion"},
+      {"id": "compta-reconciliation", "label": "Rapprochement de comptes bancaires et comptables", "occurrences": 39, "skill": "cfo-comptabilite"},
+      {"id": "tresor-bank-relations", "label": "Gestion relations bancaires & négociation facilités", "occurrences": 38, "skill": "cfo-tresorerie"},
+      {"id": "tax-payroll-taxes", "label": "Charges sociales & paie (partie fiscale)", "occurrences": 38, "skill": "cfo-comptabilite"},
+      {"id": "report-board-reporting", "label": "Board reporting & présentation conseil d'admin", "occurrences": 32, "skill": "cfo-reporting"},
+      {"id": "audit-cac-coordination", "label": "Coordination avec commissaires aux comptes (CAC)", "occurrences": 32, "skill": "cfo-risques-conformite"}
+    ]
+  },
+
+  "categories": {
+    "1_comptabilite_production": {
+      "label": "Comptabilité et Production Comptable",
+      "skill_target": "cfo-comptabilite",
+      "tasks_count": 10,
+      "key_tasks": ["compta-cloture-mensuelle", "compta-cloture-annuelle", "compta-reconciliation", "compta-reporting-mensuel", "compta-provision-depreciation", "compta-journal-entries", "compta-immobilisations", "compta-devises", "compta-stocks-inventory", "compta-cut-off"]
+    },
+    "2_tresorerie_liquidite": {
+      "label": "Trésorerie et Gestion de Liquidités",
+      "skill_target": "cfo-tresorerie",
+      "tasks_count": 9,
+      "key_tasks": ["tresor-cash-flow-forecast", "tresor-cash-burn-runway", "tresor-bank-relations", "tresor-cash-pooling", "tresor-working-capital", "tresor-discount-management", "tresor-liquidity-management", "tresor-covenant-monitoring", "tresor-hedging"]
+    },
+    "3_budget_forecasting": {
+      "label": "Gestion Budgétaire et Forecasting",
+      "skill_target": "cfo-budget-forecast",
+      "tasks_count": 7,
+      "key_tasks": ["budget-annual-budget", "budget-forecasting-quarterly", "budget-variance-analysis", "budget-three-year-plan", "budget-capex-planning", "budget-scenario-analysis", "budget-bottleneck-identification"]
+    },
+    "4_controle_gestion": {
+      "label": "Contrôle de Gestion et Analyse de Performance",
+      "skill_target": "cfo-controle-gestion",
+      "tasks_count": 9,
+      "key_tasks": ["cg-kpi-dashboards", "cg-profitability-analysis", "cg-cost-accounting", "cg-margin-analysis", "cg-customer-profitability", "cg-activity-based-costing", "cg-variance-investigation", "cg-pricing-optimization", "cg-break-even-analysis"]
+    },
+    "5_reporting_communication": {
+      "label": "Reporting Financier et Communication",
+      "skill_target": "cfo-reporting",
+      "tasks_count": 7,
+      "key_tasks": ["report-financial-statements", "report-board-reporting", "report-investor-relations", "report-management-reporting", "report-shareholder-comm", "report-external-communications", "report-slides-presentations"]
+    },
+    "6_consolidation_groupes": {
+      "label": "Consolidation et Normes Comptables (Groupes)",
+      "skill_target": "cfo-comptabilite (sub-module groupes)",
+      "tasks_count": 6,
+      "key_tasks": ["conso-consolidation-ifrs", "conso-ifrs-restatement", "conso-elimination-internal", "conso-goodwill-management", "conso-inter-company-pricing", "conso-segment-reporting"]
+    },
+    "7_fiscalite": {
+      "label": "Fiscalité et Optimisation Fiscale",
+      "skill_target": "cfo-fiscalite",
+      "tasks_count": 9,
+      "key_tasks": ["tax-annual-tax-return", "tax-corporate-tax-planning", "tax-cir-credit-recherche", "tax-cii-credit-competitiveness", "tax-vat-return", "tax-payroll-taxes", "tax-transfer-pricing", "tax-deductibility-review", "tax-fiscal-positions"]
+    },
+    "8_controle_interne_audit": {
+      "label": "Contrôle Interne, Audit et Conformité",
+      "skill_target": "cfo-risques-conformite",
+      "tasks_count": 7,
+      "key_tasks": ["audit-internal-control-design", "audit-cac-coordination", "audit-statutory-audit-prep", "audit-sox-testing", "audit-internal-audit-support", "audit-audit-committee-reporting", "audit-compliance-monitoring"]
+    },
+    "9_gestion_risques": {
+      "label": "Gestion des Risques et Assurance",
+      "skill_target": "cfo-risques-conformite",
+      "tasks_count": 6,
+      "key_tasks": ["risk-risk-mapping", "risk-lcb-ft-compliance", "risk-insurance-management", "risk-contingency-planning", "risk-hedging-derivatives", "risk-operational-risk-mgmt"]
+    },
+    "10_veille_reglementaire": {
+      "label": "Veille Réglementaire et Conformité Normative",
+      "skill_target": "cfo-risques-conformite (sub-module veille)",
+      "tasks_count": 6,
+      "key_tasks": ["regul-compliance-updates", "regul-csrd-esg-reporting", "regul-data-privacy-gdpr", "regul-ifrs-updates", "regul-accounting-standards", "regul-industry-compliance"]
+    },
+    "11_rh_paie": {
+      "label": "Ressources Humaines et Gestion Paie",
+      "skill_target": "cfo-comptabilite (sub-module HR/Paie)",
+      "tasks_count": 8,
+      "key_tasks": ["hr-payroll-management", "hr-social-policy", "hr-personnel-administration", "hr-bonus-incentive", "hr-works-council-relations", "hr-headcount-planning", "hr-restructuring-plans", "hr-training-development"]
+    },
+    "12_administratif_juridique": {
+      "label": "Gestion Administrative et Juridique",
+      "skill_target": "cross-skill (cfo-comptabilite + cfo-risques-conformite)",
+      "tasks_count": 7,
+      "key_tasks": ["legal-contracts-management", "legal-litigation-management", "legal-corporate-governance", "legal-shareholder-meetings", "legal-property-management", "legal-environmental-compliance", "legal-real-estate-transactions"]
+    },
+    "13_strategie_ma": {
+      "label": "Stratégie Financière et M&A",
+      "skill_target": "cfo-financement-croissance",
+      "tasks_count": 7,
+      "key_tasks": ["ma-due-diligence", "ma-valuation", "ma-integration-planning", "strategy-business-plan", "strategy-capex-investment", "strategy-performance-improvement", "restructuring-financial-turnaround"]
+    },
+    "14_financement_levee": {
+      "label": "Financement, Levées de Fonds et Relations Banquiers",
+      "skill_target": "cfo-financement-croissance",
+      "tasks_count": 7,
+      "key_tasks": ["finance-fundraising-prep", "finance-investor-pitch", "finance-debt-negotiation", "finance-credit-facility-mgmt", "finance-ipo-preparation", "finance-equity-management", "finance-grants-subsidies"]
+    },
+    "15_transformation_digitale": {
+      "label": "Transformation Digitale et IT Finance",
+      "skill_target": "cross-skill (transverse, embedded dans tous les skills)",
+      "tasks_count": 8,
+      "key_tasks": ["it-erp-implementation", "it-erp-optimization", "it-bi-dashboard-implementation", "it-process-automation", "it-cloud-migration", "it-data-governance", "it-systems-integration", "it-cybersecurity-finance"]
+    },
+    "16_achats_supply_chain": {
+      "label": "Achats Stratégiques et Supply Chain Finance",
+      "skill_target": "cfo-tresorerie (sub-module supply chain)",
+      "tasks_count": 5,
+      "key_tasks": ["supply-procurement-oversight", "supply-supplier-negotiation", "supply-supply-chain-finance", "supply-vendor-risk-mgmt", "supply-category-management"]
+    }
+  },
+
+  "frequency_patterns_by_size": {
+    "tpe_micro_<10": {
+      "primary_focus": ["compta-cloture-mensuelle (souvent outsourcée à EC)", "tax-annual-tax-return", "tresor-cash-flow-forecast (Excel basique)"],
+      "skill_priorities": ["cfo-comptabilite (light)", "cfo-fiscalite", "cfo-tresorerie (light)"]
+    },
+    "pme_10_249": {
+      "primary_focus": ["compta-cloture-mensuelle J+5", "report-board-reporting mensuel", "budget-annual-budget", "cg-kpi-dashboards", "audit-cac-coordination si seuil"],
+      "skill_priorities": ["TIER 1 complet", "cfo-controle-gestion", "cfo-budget-forecast"]
+    },
+    "eti_250_4999": {
+      "primary_focus": ["conso-consolidation-ifrs (groupes)", "regul-csrd-esg-reporting (Wave 2 dès 2028)", "tax-transfer-pricing si cross-border", "cg-kpi-dashboards complexe", "report-board-reporting trimestriel"],
+      "skill_priorities": ["cfo-csrd-esg DEVIENT critique", "cfo-comptabilite (sub-module groupes)", "cfo-risques-conformite (audit committee)"]
+    },
+    "scale_up_startup": {
+      "primary_focus": ["tresor-cash-burn-runway WEEKLY", "finance-investor-pitch", "budget-three-year-plan", "tresor-cash-flow-forecast 13w", "ma-due-diligence si exit"],
+      "skill_priorities": ["cfo-tresorerie (cash burn mode)", "cfo-financement-croissance", "cfo-budget-forecast (rolling forecasts)"]
+    },
+    "groupe_multinational": {
+      "primary_focus": ["conso-consolidation-ifrs annuel obligatoire", "tax-transfer-pricing documentation annuelle", "conso-segment-reporting", "tresor-cash-pooling", "conso-inter-company-pricing"],
+      "skill_priorities": ["cfo-comptabilite (sub-module groupes ON)", "cfo-fiscalite (transfer pricing)", "cfo-tresorerie (cash pooling)"]
+    }
+  },
+
+  "emerging_trends_2025_2026": {
+    "csrd_esg_integration": {
+      "trend_intensity": "HIGH",
+      "occurrences": 16,
+      "skill_addressed": "cfo-csrd-esg",
+      "comment": "Wave 2 (250+ employés) repoussée à 2028 par directive Stop-the-Clock 2025/794, mais préparation 2026-2027 critique"
+    },
+    "real_time_cash_forecasting": {
+      "trend_intensity": "HIGH",
+      "occurrences": 43,
+      "skill_addressed": "cfo-tresorerie",
+      "comment": "Monthly J+5 close no longer sufficient. Weekly dashboards expected for PME+. Rolling forecasts mandatory."
+    },
+    "bi_analytics_dependency": {
+      "trend_intensity": "MEDIUM-HIGH",
+      "occurrences": 47,
+      "skill_addressed": "cfo-reporting + cfo-controle-gestion",
+      "comment": "Excel-only workflow = uncompetitive. BI tools (Qlik, Power BI, Tableau) baseline expectation. Data governance = new CFO accountability."
+    },
+    "ai_automation_finance": {
+      "trend_intensity": "EMERGING",
+      "occurrences": 10,
+      "skill_addressed": "cross-skill",
+      "comment": "RPA for close processes, predictive analytics for cash, AI-powered variance investigation. 87% des CFOs Deloitte 2026 considèrent AI extrêmement/très important."
+    },
+    "cyber_risk_governance": {
+      "trend_intensity": "HIGH",
+      "skill_addressed": "cfo-risques-conformite",
+      "comment": "Cyber risk parity with financial/operational risk in 2026. Explicit CFO accountability per KPMG 2026."
+    }
+  },
+
+  "_validation_against_4_skill_initial_design": {
+    "skills_initialement_proposes": ["cfo-init", "cfo-reporting", "cfo-tresorerie", "cfo-financement"],
+    "categories_couvertes_par_4_skills": ["partial: 5_reporting", "partial: 2_tresorerie", "partial: 14_financement"],
+    "categories_manquantes_4_skills": [
+      "1_comptabilite_production (47+52+39+42+28+26 = 234 occurrences manquées)",
+      "4_controle_gestion (47+41+33+28+22 = 171 occurrences manquées)",
+      "7_fiscalite (51+42+38+18 = 149 occurrences manquées)",
+      "8_controle_interne_audit (32+28+26+18 = 104 occurrences)",
+      "9_gestion_risques (24+21+19 = 64 occurrences)",
+      "11_rh_paie (44+32+22+19 = 117 occurrences)",
+      "10_veille_reglementaire (28+16+14+12 = 70 occurrences)",
+      "13_strategie_ma (entirely missing)",
+      "6_consolidation_groupes (entirely missing for ETI+/groupes)",
+      "16_achats_supply_chain (sub-domain partial)"
+    ],
+    "conclusion": "Le design initial à 4 skills aurait laissé non couvertes 60%+ du temps réel d'un CFO français. La taxonomie actuelle de 10 skills couvre l'intégralité des 16 catégories avec un mix tier 1/2/3 cohérent."
+  }
+}

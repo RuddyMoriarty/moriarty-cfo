@@ -1,0 +1,311 @@
+{
+  "_meta": {
+    "description": "Système de gamification — 25 achievements organisés par catégorie. Stockés dans private/cfo-progress.json (gitignored). Affichés à chaque session via cfo-init.",
+    "version": "0.1.0",
+    "last_updated": "2026-04-14",
+    "total_achievements": 25,
+    "max_points": 730
+  },
+
+  "categories": [
+    "onboarding",
+    "comptabilite",
+    "tresorerie",
+    "reporting",
+    "controle_gestion",
+    "budget",
+    "fiscalite",
+    "conformite",
+    "financement",
+    "csrd_esg"
+  ],
+
+  "achievements": [
+    {
+      "id": "welcome-aboard",
+      "label": "🎓 Welcome aboard",
+      "category": "onboarding",
+      "description": "Première session CFO complétée",
+      "points": 10,
+      "skill": "cfo-init",
+      "trigger": "session_initialized"
+    },
+    {
+      "id": "profile-complete",
+      "label": "🏢 Profil société complet",
+      "category": "onboarding",
+      "description": "Profil société validé et calendrier fiscal généré",
+      "points": 20,
+      "skill": "cfo-init",
+      "trigger": "company_profile_validated"
+    },
+    {
+      "id": "ec-portfolio-ready",
+      "label": "👥 Portfolio EC initialisé",
+      "category": "onboarding",
+      "description": "Cabinet EC : portfolio multi-clients configuré (≥ 3 clients)",
+      "points": 30,
+      "skill": "cfo-init",
+      "trigger": "portfolio_min_3_clients",
+      "audience_required": "ec_collaborateur"
+    },
+
+    {
+      "id": "first-monthly-close",
+      "label": "📚 Première clôture mensuelle",
+      "category": "comptabilite",
+      "description": "Première clôture mensuelle complétée",
+      "points": 25,
+      "skill": "cfo-comptabilite",
+      "trigger": "monthly_close_completed"
+    },
+    {
+      "id": "j5-close-achieved",
+      "label": "📅 Clôture J+5 atteinte",
+      "category": "comptabilite",
+      "description": "Clôture mensuelle finalisée dans les 5 jours suivant fin de mois",
+      "points": 50,
+      "skill": "cfo-comptabilite",
+      "trigger": "monthly_close_day_5"
+    },
+    {
+      "id": "six-month-streak",
+      "label": "🏆 6 clôtures mensuelles consécutives",
+      "category": "comptabilite",
+      "description": "6 clôtures J+5 consécutives - rythme CFO mature",
+      "points": 100,
+      "skill": "cfo-comptabilite",
+      "trigger": "streak_6_months_close_j5"
+    },
+    {
+      "id": "annual-close-mastered",
+      "label": "📑 Clôture annuelle livrée",
+      "category": "comptabilite",
+      "description": "Clôture annuelle complète avec liasse fiscale, FEC et états financiers",
+      "points": 75,
+      "skill": "cfo-comptabilite",
+      "trigger": "annual_close_completed"
+    },
+
+    {
+      "id": "captain-cashflow",
+      "label": "💰 Captain Cash Flow",
+      "category": "tresorerie",
+      "description": "Première prévision de trésorerie 13 semaines créée",
+      "points": 50,
+      "skill": "cfo-tresorerie",
+      "trigger": "cashflow_13w_generated"
+    },
+    {
+      "id": "cash-master",
+      "label": "📊 Cash Master",
+      "category": "tresorerie",
+      "description": "Suivi cash flow actif sur 6 mois consécutifs",
+      "points": 100,
+      "skill": "cfo-tresorerie",
+      "trigger": "cashflow_6_months_consecutive"
+    },
+    {
+      "id": "crisis-manager",
+      "label": "🚨 Crisis Manager",
+      "category": "tresorerie",
+      "description": "Gestion d'une tension de trésorerie (alerte traitée + plan d'action)",
+      "points": 75,
+      "skill": "cfo-tresorerie",
+      "trigger": "tension_handled_action_plan"
+    },
+
+    {
+      "id": "first-dashboard",
+      "label": "📈 First Dashboard",
+      "category": "reporting",
+      "description": "Premier tableau de bord CFO mensuel généré",
+      "points": 30,
+      "skill": "cfo-reporting",
+      "trigger": "first_dashboard_generated"
+    },
+    {
+      "id": "board-reporting-pro",
+      "label": "📑 Board Reporting Pro",
+      "category": "reporting",
+      "description": "Premier board pack trimestriel complet",
+      "points": 60,
+      "skill": "cfo-reporting",
+      "trigger": "board_pack_quarterly_generated"
+    },
+    {
+      "id": "investor-letter",
+      "label": "🎯 Investor Letter Master",
+      "category": "reporting",
+      "description": "Première lettre trimestrielle aux investisseurs",
+      "points": 40,
+      "skill": "cfo-reporting",
+      "trigger": "investor_letter_generated"
+    },
+
+    {
+      "id": "kpi-master",
+      "label": "📊 KPI Master",
+      "category": "controle_gestion",
+      "description": "Catalogue de 10+ KPIs sectoriels personnalisés",
+      "points": 40,
+      "skill": "cfo-controle-gestion",
+      "trigger": "kpi_catalog_personalized_10"
+    },
+    {
+      "id": "margin-detective",
+      "label": "🔍 Margin Detective",
+      "category": "controle_gestion",
+      "description": "Première analyse de rentabilité produit/client",
+      "points": 35,
+      "skill": "cfo-controle-gestion",
+      "trigger": "profitability_analysis_generated"
+    },
+
+    {
+      "id": "budget-builder",
+      "label": "💼 Budget Builder",
+      "category": "budget",
+      "description": "Premier budget annuel construit",
+      "points": 50,
+      "skill": "cfo-budget-forecast",
+      "trigger": "annual_budget_generated"
+    },
+    {
+      "id": "forecaster",
+      "label": "🔮 Forecaster",
+      "category": "budget",
+      "description": "Premier rolling forecast trimestriel",
+      "points": 35,
+      "skill": "cfo-budget-forecast",
+      "trigger": "rolling_forecast_generated"
+    },
+
+    {
+      "id": "tva-on-time",
+      "label": "📋 TVA sans accroc",
+      "category": "fiscalite",
+      "description": "Première déclaration TVA respectée dans les délais",
+      "points": 25,
+      "skill": "cfo-fiscalite",
+      "trigger": "tva_filed_before_deadline"
+    },
+    {
+      "id": "cir-hunter",
+      "label": "💡 CIR Hunter",
+      "category": "fiscalite",
+      "description": "Estimation de CIR éligible (R&D)",
+      "points": 50,
+      "skill": "cfo-fiscalite",
+      "trigger": "cir_estimated"
+    },
+    {
+      "id": "is-optimizer",
+      "label": "🏛️ IS Optimizer",
+      "category": "fiscalite",
+      "description": "Optimisation IS effectuée avant clôture annuelle",
+      "points": 40,
+      "skill": "cfo-fiscalite",
+      "trigger": "is_optimization_before_close"
+    },
+
+    {
+      "id": "risk-mapper",
+      "label": "🛡️ Risk Mapper",
+      "category": "conformite",
+      "description": "Première cartographie des risques (méthodologie COSO ERM)",
+      "points": 45,
+      "skill": "cfo-risques-conformite",
+      "trigger": "risk_mapping_generated"
+    },
+    {
+      "id": "audit-ready",
+      "label": "✅ Audit Ready",
+      "category": "conformite",
+      "description": "Préparation CAC complétée (checklist + dossier de travail)",
+      "points": 60,
+      "skill": "cfo-risques-conformite",
+      "trigger": "cac_audit_prep_done"
+    },
+    {
+      "id": "lcb-ft-champion",
+      "label": "🔐 LCB-FT Champion",
+      "category": "conformite",
+      "description": "Politique LCB-FT formalisée",
+      "points": 45,
+      "skill": "cfo-risques-conformite",
+      "trigger": "lcb_ft_policy_formalized"
+    },
+
+    {
+      "id": "bankers-friend",
+      "label": "🏦 Banker's Friend",
+      "category": "financement",
+      "description": "Premier dossier de financement bancaire produit",
+      "points": 50,
+      "skill": "cfo-financement-croissance",
+      "trigger": "bank_dossier_generated"
+    },
+    {
+      "id": "fundraising-pro",
+      "label": "💎 Fundraising Pro",
+      "category": "financement",
+      "description": "Pack levée de fonds complet (teaser + deck + cap table)",
+      "points": 80,
+      "skill": "cfo-financement-croissance",
+      "trigger": "fundraising_pack_complete"
+    },
+    {
+      "id": "moriarty-discoverer",
+      "label": "🇫🇷 Moriarty Discoverer",
+      "category": "financement",
+      "description": "Premier diagnostic Moriarty découvert (aides publiques)",
+      "points": 30,
+      "skill": "cfo-financement-croissance",
+      "trigger": "moriarty_cta_clicked",
+      "_comment": "Détecté par retour utilisateur ou next-session report"
+    },
+
+    {
+      "id": "esg-initiate",
+      "label": "🌱 ESG Initiate",
+      "category": "csrd_esg",
+      "description": "Première matrice de double matérialité construite",
+      "points": 50,
+      "skill": "cfo-csrd-esg",
+      "trigger": "double_materiality_matrix_generated"
+    },
+    {
+      "id": "csrd-compliant",
+      "label": "🌍 CSRD Compliant",
+      "category": "csrd_esg",
+      "description": "Rapport de durabilité CSRD prêt à publier",
+      "points": 100,
+      "skill": "cfo-csrd-esg",
+      "trigger": "csrd_report_ready"
+    }
+  ],
+
+  "tiers": [
+    {
+      "label": "🥉 Apprenti CFO",
+      "min_points": 0,
+      "max_points": 99
+    },
+    {
+      "label": "🥈 CFO confirmé",
+      "min_points": 100,
+      "max_points": 299
+    },
+    {
+      "label": "🥇 CFO senior",
+      "min_points": 300,
+      "max_points": 599
+    },
+    {
+      "label": "💎 CFO master",
+      "min_points": 600,
+      "max_points": 730
+    }
+  ]
+}

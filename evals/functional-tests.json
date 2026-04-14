@@ -1,0 +1,78 @@
+{
+  "_meta": {
+    "description": "Tests fonctionnels par skill. Cas réels avec entrées + assertions sur la sortie attendue. À enrichir au fur et à mesure de l'implémentation des skills.",
+    "version": "0.1.0",
+    "last_updated": "2026-04-14"
+  },
+
+  "tests": [
+    {
+      "id": "cfo-init-fct-01",
+      "skill": "cfo-init",
+      "label": "Onboarding minimal PME (SIREN public connu)",
+      "input": {
+        "phrase": "Lance cfo-init pour SIREN 552120222",
+        "context": {"first_session": true}
+      },
+      "expected_outputs": [
+        "private/profile.json créé",
+        "private/company.json créé avec siren 552120222",
+        "private/calendar-fiscal.json créé",
+        "private/cfo-progress.json créé avec achievement welcome-aboard débloqué",
+        "Réponse contient les sections: identification société, classification taille, calendrier 30j, suggestions"
+      ],
+      "must_contain": ["CARREFOUR", "ETI", "Calendrier fiscal", "🎓 Welcome aboard", "Welcome aboard"],
+      "must_not_contain": ["error", "exception", "TODO"],
+      "max_duration_seconds": 30
+    },
+    {
+      "id": "cfo-init-fct-02",
+      "skill": "cfo-init",
+      "label": "Audience EC + portfolio multi-clients",
+      "input": {
+        "phrase": "Initialise mon cabinet expert-comptable avec 3 clients PME",
+        "context": {"first_session": true}
+      },
+      "expected_outputs": [
+        "private/profile.json avec audience_type=ec_collaborateur",
+        "private/cabinet.json créé",
+        "Question explicite sur les SIREN clients",
+        "Achievement profile-complete proposé"
+      ],
+      "must_contain": ["cabinet", "portfolio", "SIREN", "EC"],
+      "must_not_contain": ["dirigeant", "votre PME"],
+      "max_duration_seconds": 45
+    },
+    {
+      "id": "cfo-init-fct-03",
+      "skill": "cfo-init",
+      "label": "Calendrier fiscal société à clôture 30/06",
+      "input": {
+        "phrase": "Société test SIREN 000000002, clôture au 30 juin, régime IS, TVA mensuelle",
+        "context": {"first_session": false}
+      },
+      "expected_outputs": [
+        "Calendrier généré avec dates absolues",
+        "Acompte IS 1 ≈ 13/09",
+        "Liasse fiscale ≈ 13/11",
+        "Pas d'erreur sur le décalage clôture"
+      ],
+      "must_contain": ["30/06", "13/11", "Acompte IS"],
+      "max_duration_seconds": 20
+    }
+  ],
+
+  "_skills_pending_implementation": [
+    "cfo-comptabilite",
+    "cfo-tresorerie",
+    "cfo-reporting",
+    "cfo-controle-gestion",
+    "cfo-budget-forecast",
+    "cfo-fiscalite",
+    "cfo-risques-conformite",
+    "cfo-financement-croissance",
+    "cfo-csrd-esg"
+  ],
+
+  "_note": "Les tests fonctionnels pour les 9 skills restants seront ajoutés au fur et à mesure de leur implémentation. Cible : minimum 3 tests fonctionnels par skill = 30 tests min en v0.1.0."
+}

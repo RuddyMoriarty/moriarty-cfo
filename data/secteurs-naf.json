@@ -1,0 +1,89 @@
+{
+  "_meta": {
+    "description": "Codes NAF (Nomenclature d'Activités Française) — sections de référence + mapping vers les modules sectoriels des skills. Source : INSEE NAF Rev 2.",
+    "version": "0.1.0",
+    "last_updated": "2026-04-14",
+    "source": "https://www.insee.fr/fr/information/2406147"
+  },
+
+  "sections_naf": [
+    {"code": "A", "label": "Agriculture, sylviculture et pêche"},
+    {"code": "B", "label": "Industries extractives"},
+    {"code": "C", "label": "Industrie manufacturière", "module_sectoriel": "industrie"},
+    {"code": "D", "label": "Production et distribution d'électricité, de gaz, de vapeur et d'air conditionné", "module_sectoriel": "industrie"},
+    {"code": "E", "label": "Production et distribution d'eau ; assainissement, gestion des déchets et dépollution"},
+    {"code": "F", "label": "Construction", "module_sectoriel": "btp"},
+    {"code": "G", "label": "Commerce ; réparation d'automobiles et de motocycles", "module_sectoriel": "commerce_negoce"},
+    {"code": "H", "label": "Transports et entreposage"},
+    {"code": "I", "label": "Hébergement et restauration", "module_sectoriel": "services_b2c"},
+    {"code": "J", "label": "Information et communication", "module_sectoriel": "services_btob_techno"},
+    {"code": "K", "label": "Activités financières et d'assurance", "module_sectoriel": "finance_reglemente"},
+    {"code": "L", "label": "Activités immobilières", "module_sectoriel": "immobilier"},
+    {"code": "M", "label": "Activités spécialisées, scientifiques et techniques", "module_sectoriel": "services_btob"},
+    {"code": "N", "label": "Activités de services administratifs et de soutien", "module_sectoriel": "services_btob"},
+    {"code": "O", "label": "Administration publique"},
+    {"code": "P", "label": "Enseignement"},
+    {"code": "Q", "label": "Santé humaine et action sociale", "module_sectoriel": "sante"},
+    {"code": "R", "label": "Arts, spectacles et activités récréatives"},
+    {"code": "S", "label": "Autres activités de services"}
+  ],
+
+  "codes_naf_communs": {
+    "_comment": "Codes NAF fréquemment rencontrés dans les sessions cfo-init",
+    "6201Z": {"label": "Programmation informatique", "section": "J", "module": "saas_techno"},
+    "6202A": {"label": "Conseil en systèmes et logiciels informatiques", "section": "J", "module": "saas_techno"},
+    "6202B": {"label": "Tierce maintenance de systèmes et d'applications informatiques", "section": "J", "module": "saas_techno"},
+    "7022Z": {"label": "Conseil pour les affaires et autres conseils de gestion", "section": "M", "module": "services_btob"},
+    "6920Z": {"label": "Activités comptables", "section": "M", "module": "services_btob_reglemente"},
+    "6910Z": {"label": "Activités juridiques", "section": "M", "module": "services_btob_reglemente"},
+    "4711F": {"label": "Hypermarchés", "section": "G", "module": "grande_distribution"},
+    "4711D": {"label": "Supermarchés", "section": "G", "module": "grande_distribution"},
+    "4791A": {"label": "Vente à distance sur catalogue général", "section": "G", "module": "ecommerce"},
+    "4791B": {"label": "Vente à distance sur catalogue spécialisé", "section": "G", "module": "ecommerce"},
+    "5610A": {"label": "Restauration traditionnelle", "section": "I", "module": "restauration"},
+    "5510Z": {"label": "Hôtels et hébergement similaire", "section": "I", "module": "hotellerie"},
+    "5520Z": {"label": "Hébergement touristique et autre hébergement de courte durée (LMNP/LMCD)", "section": "I", "module": "lmnp_airbnb"},
+    "4120A": {"label": "Construction de maisons individuelles", "section": "F", "module": "btp"},
+    "4120B": {"label": "Construction d'autres bâtiments", "section": "F", "module": "btp"}
+  },
+
+  "modules_sectoriels_actives": {
+    "saas_techno": {
+      "kpi_pack": "saas",
+      "achievements_sectoriels": ["mrr-tracker", "churn-master", "burn-multiple-watcher"],
+      "skills_renforces": ["cfo-tresorerie (cash burn / runway)", "cfo-financement-croissance (levée fonds)", "cfo-controle-gestion (MRR / ARR)"]
+    },
+    "industrie": {
+      "kpi_pack": "industrie",
+      "specificites": ["Stocks valorisés CMP/PEPS/LIFO", "Comptabilité analytique par centre de coût", "Amortissements accélérés possibles"],
+      "skills_renforces": ["cfo-comptabilite (stocks)", "cfo-controle-gestion (compta analytique)"]
+    },
+    "commerce_negoce": {
+      "kpi_pack": "commerce",
+      "specificites": ["Marge brute key driver", "Rotation stocks", "Saisonnalité"],
+      "skills_renforces": ["cfo-controle-gestion (marge produit)", "cfo-tresorerie (BFR)"]
+    },
+    "services_btob": {
+      "kpi_pack": "services_btob",
+      "specificites": ["TJM / production facturable", "DSO élevé fréquent", "Compta analytique par mission"],
+      "skills_renforces": ["cfo-controle-gestion (productivité)", "cfo-reporting (analytics par mission)"]
+    },
+    "lmnp_airbnb": {
+      "kpi_pack": "immobilier_locatif",
+      "specificites": ["Amortissements bien immobilier", "Régime BIC", "Commission Airbnb compte 622", "CFE obligatoire"],
+      "skills_renforces": ["cfo-comptabilite (LMNP)", "cfo-fiscalite (BIC)"],
+      "renvoi_skill_externe": "paperasse/comptable - section LMNP"
+    },
+    "finance_reglemente": {
+      "kpi_pack": "services_btob",
+      "specificites": ["Régulation ACPR/AMF", "LCB-FT renforcé", "Fonds propres réglementaires"],
+      "skills_renforces": ["cfo-risques-conformite (réglementation sectorielle)"],
+      "warning": "Ce bundle ne couvre PAS la conformité prudentielle banque/assurance (consulter spécialiste)"
+    },
+    "btp": {
+      "kpi_pack": "industrie",
+      "specificites": ["Comptabilité par chantier", "Sous-traitance", "Garantie décennale", "TVA autoliquidation"],
+      "skills_renforces": ["cfo-comptabilite (chantiers)", "cfo-fiscalite (TVA BTP)"]
+    }
+  }
+}

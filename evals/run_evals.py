@@ -553,7 +553,13 @@ def check_functional(
 
 
 def run_executable_test(test: dict[str, Any], skill: str) -> TestResult:
-    """Exécute un test fonctionnel avec son executable et vérifie les assertions."""
+    """Exécute un test fonctionnel avec son executable et vérifie les assertions.
+
+    Résolution des paths (relative ou absolue) :
+    - cwd : si `.`/`./`/absent ou relatif, résolu depuis ROOT (repo root).
+    - script : si relatif, essayé d'abord depuis cwd, sinon depuis ROOT.
+    Jamais de path en dur type `/Users/...` (casserait sur CI Linux).
+    """
     test_id = test.get("id", f"fct:{skill}:unknown")
     label = test.get("label", "")
     exec_ = test.get("executable", {})
@@ -562,15 +568,35 @@ def run_executable_test(test: dict[str, Any], skill: str) -> TestResult:
     exec_type = exec_.get("type", "python")
     script = exec_.get("script", "")
     args = exec_.get("args", [])
-    cwd_str = exec_.get("cwd", str(ROOT / skill))
-    cwd = Path(cwd_str)
+
+    # cwd resolution : default = ROOT / skill. "." ou "./" = ROOT. Relatif = ROOT / cwd_str.
+    cwd_str = exec_.get("cwd")
+    if cwd_str in (None, "", "."):
+        cwd = ROOT if cwd_str in ("", ".") else (ROOT / skill)
+    elif Path(cwd_str).is_absolute():
+        cwd = Path(cwd_str)
+    else:
+        cwd = ROOT / cwd_str
 
     if not script:
         return TestResult(test_id, f"[{skill}] {label}", False, "executable.script manquant")
 
-    script_path = cwd / script if not Path(script).is_absolute() else Path(script)
+    # script resolution : absolute, or try cwd first, then ROOT (repo-relative).
+    script_path_input = Path(script)
+    if script_path_input.is_absolute():
+        script_path = script_path_input
+    else:
+        candidate_cwd = cwd / script
+        candidate_root = ROOT / script
+        script_path = candidate_cwd if candidate_cwd.exists() else candidate_root
+
     if not script_path.exists():
-        return TestResult(test_id, f"[{skill}] {label}", False, f"Script introuvable : {script_path}")
+        return TestResult(
+            test_id,
+            f"[{skill}] {label}",
+            False,
+            f"Script introuvable (tenté : {candidate_cwd} et {candidate_root})",
+        )
 
     # Tempdir pour {tmp}
     with tempfile.TemporaryDirectory(prefix="cfo-eval-") as tmp:

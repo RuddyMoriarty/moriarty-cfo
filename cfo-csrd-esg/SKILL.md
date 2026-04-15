@@ -1,8 +1,8 @@
 ---
 name: cfo-csrd-esg
 description: |
-  Skill de reporting durabilité et ESG pour entreprises in-scope CSRD (Corporate Sustainability Reporting Directive). Détermine la wave CSRD applicable (1, 2, 3, 4 ou hors scope), accompagne le mapping aux ESRS (E1 climat, E2 pollution, E3 eau, E4 biodiversité, E5 ressources, S1-S4 social, G1 gouvernance), construit la matrice de double matérialité, mesure les Scope 1/2/3 d'émissions, prépare le rapport de durabilité intégré au rapport de gestion (L. 225-102-1 C. com.), et coordonne avec l'auditeur sustainability. Différenciateur 2026, Wave 2 reportée à 2028.
-  Triggers: CSRD, ESG, ESRS, sustainability, durabilité, double matérialité, climat, climate, scope 1, scope 2, scope 3, GHG, émissions carbone, EFRAG, taxonomie verte, transition climatique, supply chain DD, rapport durabilité, rapport intégré, audit ESG, sustainability assurance, GRI, TCFD, SBTi
+  Skill de rapport durabilité pour entités in-scope CSRD. Wave CSRD applicable, mapping ESRS (E1-E5 environnement, S1-S4 social, G1 gouvernance), matrice double matérialité, émissions Scope 1/2/3 (GHG Protocol), rapport durabilité intégré au rapport de gestion (L. 225-102-1 C. com.), climate risk scenario TCFD, supply chain due diligence, coordination auditeur sustainability.
+  Triggers: CSRD corporate sustainability, ESRS standards durabilité, rapport durabilité CSRD, double matérialité financière impact, climate risk scenario analysis TCFD aligned, émissions scope GHG protocol carbone, EFRAG, taxonomie verte européenne, transition climatique 1.5°C 2°C, supply chain due diligence devoir vigilance, rapport intégré financier ESG, external assurance sustainability externe audit, ESG data governance gouvernance données, co-leadership CFO CSO CSRD, GRI SBTi, Net-Zero 2050, wave 2 2028 cotées
 metadata:
   last_updated: 2026-04-14
   version: 0.1.0

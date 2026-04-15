@@ -1,8 +1,8 @@
 ---
 name: cfo-comptabilite
 description: |
-  Skill de production comptable pour PME/TPE françaises et cabinets d'expertise comptable. Couvre la clôture mensuelle (objectif J+5), la clôture annuelle complète (liasse fiscale 2033/2065, FEC, états financiers), la coordination CAC, les écritures de cut-off, les provisions et amortissements, le sub-module HR/Paie (DSN, URSSAF) et le sub-module consolidation groupes (IFRS, intercos, transfer pricing). À utiliser pour toute tâche de production comptable mensuelle ou annuelle. Renvoie à paperasse/comptable pour le détail PCG.
-  Triggers: comptabilité, clôture, clôture mensuelle, clôture annuelle, liasse, liasse fiscale, 2033, 2065, FEC, écriture comptable, journal, provision, amortissement, dépréciation, cut-off, rattachement, CAC, commissaire aux comptes, coordination audit, NEP, paie, DSN, URSSAF, cotisations sociales, consolidation, IFRS, intercos, intercompany, transfer pricing, goodwill, segment reporting, closing, accounting close, annual close, French GAAP
+  Skill de production comptable. Clôture mensuelle J+5, clôture annuelle (FEC, états financiers, rapport de gestion), écritures de cut-off et de rattachement, provisions, amortissements, dépréciations, sub-module paie (DSN, URSSAF) et sub-module consolidation de groupes (IFRS, éliminations intercos, segment reporting). Renvoie à paperasse/comptable pour le détail PCG et à cfo-fiscalite pour la liasse fiscale et les problématiques fiscales.
+  Triggers: comptabilité, clôture J+5, clôture annuelle, FEC fichier écritures, écriture comptable, journal comptable, provision, amortissement, dépréciation, cut-off, écritures rattachement, coordination CAC, commissaire aux comptes, NEP CNCC, paie, DSN, URSSAF, cotisations sociales, consolidation, IFRS, intercos, goodwill, segment reporting, closing accounting, French GAAP, PCG, balance comptable, compte résultat, bilan
 metadata:
   last_updated: 2026-04-14
   version: 0.1.0

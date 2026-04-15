@@ -1,8 +1,8 @@
 ---
 name: cfo-reporting
 description: |
-  Skill de reporting financier et communication pour PME/TPE françaises et cabinets EC. Produit le reporting mensuel, trimestriel, annuel, le board pack, les lettres investisseurs trimestrielles, et le tableau de bord CFO exécutif (5-8 KPIs) au format HTML/PDF via Chrome headless. Adapte le ton et le contenu selon l'audience (dirigeant, board, investisseurs, CAC). À utiliser pour toute production de reporting financier.
-  Triggers: reporting, reporting mensuel, reporting trimestriel, reporting annuel, board, board pack, CA, conseil administration, comité audit, investisseurs, investor relations, lettre trimestrielle, dashboard, tableau de bord, KPI, flash mensuel, rapport gestion, AG, présentation board, présentation directoire, variances budget, financial reporting, quarterly, monthly close review
+  Skill de reporting financier. Flash mensuel M+5, reporting trimestriel YoY, rapport annuel, board pack exécutif, lettres trimestrielles investisseurs, rapport RNS actionnaires, compte rendu gestion AG, tableau de bord CFO exécutif (5 à 8 KPIs) HTML/PDF via Chrome headless. Présentation résultats directoire et équipe.
+  Triggers: reporting financier, reporting mensuel mars, reporting trimestriel YoY, reporting annuel, board pack exécutif, conseil administration, comité audit, investisseurs, investor relations, lettre trimestrielle investisseurs, rapport RNS actionnaires, rapport gestion AG, compte rendu AG, dashboard CFO, tableau bord exécutif KPI, flash mensuel M+5, top variances vs budget, financial reporting, quarterly report, monthly close review, présentation résultats directoire équipe
 metadata:
   last_updated: 2026-04-14
   version: 0.1.0

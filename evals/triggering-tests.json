@@ -1,133 +1,562 @@
 {
   "_meta": {
     "description": "Tests de déclenchement par skill. Pour chaque phrase, on attend que le skill `expected_skill` soit le PREMIER déclenché par Claude (ou aucun pour les anti-triggers). Format inspiré paperasse/evals.",
-    "version": "0.1.0",
-    "last_updated": "2026-04-14",
+    "version": "0.1.3",
+    "last_updated": "2026-04-15",
     "total_tests": 110
   },
-
   "tests": [
-    {"phrase": "Lance cfo-init pour ma société SIREN 552120222", "expected_skill": "cfo-init", "category": "exact_match"},
-    {"phrase": "Démarre l'onboarding cabinet expert-comptable", "expected_skill": "cfo-init", "category": "ec_onboarding"},
-    {"phrase": "Initialise le profil de mon nouveau client EC", "expected_skill": "cfo-init", "category": "ec_workflow"},
-    {"phrase": "Calendrier fiscal pour ma société clôture 30 juin", "expected_skill": "cfo-init", "category": "calendar"},
-    {"phrase": "Quels sont mes prochaines échéances fiscales ?", "expected_skill": "cfo-init", "category": "calendar_query"},
-    {"phrase": "Configure le profil société pour le cabinet", "expected_skill": "cfo-init", "category": "ec_setup"},
-    {"phrase": "Combien d'achievements j'ai débloqué ?", "expected_skill": "cfo-init", "category": "achievements"},
-    {"phrase": "Récupère les données Pappers pour SIREN 542065479", "expected_skill": "cfo-init", "category": "pappers"},
-    {"phrase": "Quelle est ma classification de taille (TPE/PME/ETI) ?", "expected_skill": "cfo-init", "category": "size"},
-    {"phrase": "Reset complet du profil société", "expected_skill": "cfo-init", "category": "reset"},
-
-    {"phrase": "Fais la clôture mensuelle de mars", "expected_skill": "cfo-comptabilite", "category": "monthly_close"},
-    {"phrase": "Lance la clôture annuelle 2026", "expected_skill": "cfo-comptabilite", "category": "annual_close"},
-    {"phrase": "Génère le FEC pour exercice 2025", "expected_skill": "cfo-comptabilite", "category": "fec"},
-    {"phrase": "Liasse fiscale 2065 SAS", "expected_skill": "cfo-comptabilite", "category": "liasse"},
-    {"phrase": "Coordination CAC pour préparation audit", "expected_skill": "cfo-comptabilite", "category": "cac"},
-    {"phrase": "Écritures de cut-off au 31 mars", "expected_skill": "cfo-comptabilite", "category": "cutoff"},
-    {"phrase": "Gestion paie URSSAF", "expected_skill": "cfo-comptabilite", "category": "payroll"},
-    {"phrase": "Consolidation IFRS du groupe", "expected_skill": "cfo-comptabilite", "category": "consolidation"},
-    {"phrase": "Élimination intercos pour clôture", "expected_skill": "cfo-comptabilite", "category": "intercos"},
-    {"phrase": "Provisions et amortissements de fin d'année", "expected_skill": "cfo-comptabilite", "category": "provisions"},
-
-    {"phrase": "Prévision de trésorerie 13 semaines", "expected_skill": "cfo-tresorerie", "category": "cash_forecast"},
-    {"phrase": "Cash flow 12 mois glissants", "expected_skill": "cfo-tresorerie", "category": "cash_12m"},
-    {"phrase": "Diagnostic BFR de la société", "expected_skill": "cfo-tresorerie", "category": "bfr"},
-    {"phrase": "Optimiser DSO DPO DIO", "expected_skill": "cfo-tresorerie", "category": "dso_dpo"},
-    {"phrase": "Cash burn et runway de la startup", "expected_skill": "cfo-tresorerie", "category": "burn_startup"},
-    {"phrase": "Cash pooling intra-groupe", "expected_skill": "cfo-tresorerie", "category": "pooling"},
-    {"phrase": "Couverture de change EUR/USD", "expected_skill": "cfo-tresorerie", "category": "hedging"},
-    {"phrase": "Suivi covenants bancaires", "expected_skill": "cfo-tresorerie", "category": "covenants"},
-    {"phrase": "Récupère le solde Qonto et catégorise les flux", "expected_skill": "cfo-tresorerie", "category": "qonto"},
-    {"phrase": "Plan d'action tension trésorerie", "expected_skill": "cfo-tresorerie", "category": "tension"},
-
-    {"phrase": "Reporting mensuel mars 2026", "expected_skill": "cfo-reporting", "category": "monthly_report"},
-    {"phrase": "Génère le board pack du Q1", "expected_skill": "cfo-reporting", "category": "board"},
-    {"phrase": "Tableau de bord CFO exécutif", "expected_skill": "cfo-reporting", "category": "dashboard"},
-    {"phrase": "Lettre trimestrielle aux investisseurs", "expected_skill": "cfo-reporting", "category": "ir_letter"},
-    {"phrase": "Compte rendu de gestion AG", "expected_skill": "cfo-reporting", "category": "rapport_ag"},
-    {"phrase": "Présentation des résultats à l'équipe", "expected_skill": "cfo-reporting", "category": "presentation"},
-    {"phrase": "Reporting trimestriel YoY", "expected_skill": "cfo-reporting", "category": "quarterly"},
-    {"phrase": "Top variances vs budget mars", "expected_skill": "cfo-reporting", "category": "variances"},
-    {"phrase": "PDF dashboard pour le directoire", "expected_skill": "cfo-reporting", "category": "directoire"},
-    {"phrase": "Rapport RNS pour les actionnaires", "expected_skill": "cfo-reporting", "category": "shareholders"},
-
-    {"phrase": "KPIs sectoriels SaaS pour ma société", "expected_skill": "cfo-controle-gestion", "category": "kpi_saas"},
-    {"phrase": "Analyse de rentabilité par client", "expected_skill": "cfo-controle-gestion", "category": "profitability"},
-    {"phrase": "Comptabilité analytique par centre de coût", "expected_skill": "cfo-controle-gestion", "category": "cost_accounting"},
-    {"phrase": "Marge brute et marge contributive par produit", "expected_skill": "cfo-controle-gestion", "category": "margins"},
-    {"phrase": "Pricing optimization sur catalogue produits", "expected_skill": "cfo-controle-gestion", "category": "pricing"},
-    {"phrase": "Analyse ABC clients", "expected_skill": "cfo-controle-gestion", "category": "abc"},
-    {"phrase": "Variance analysis budget vs réel", "expected_skill": "cfo-controle-gestion", "category": "variance"},
-    {"phrase": "Break-even du projet R&D", "expected_skill": "cfo-controle-gestion", "category": "breakeven"},
-    {"phrase": "Allocation des coûts indirects par activité", "expected_skill": "cfo-controle-gestion", "category": "abc_costing"},
-    {"phrase": "ROCE et ROE de la société", "expected_skill": "cfo-controle-gestion", "category": "ratios"},
-
-    {"phrase": "Construis le budget annuel 2027", "expected_skill": "cfo-budget-forecast", "category": "annual_budget"},
-    {"phrase": "Rolling forecast trimestriel Q2", "expected_skill": "cfo-budget-forecast", "category": "rolling"},
-    {"phrase": "Plan stratégique 5 ans pour le board", "expected_skill": "cfo-budget-forecast", "category": "strategic_plan"},
-    {"phrase": "Scénarios optimiste réaliste pessimiste", "expected_skill": "cfo-budget-forecast", "category": "scenarios"},
-    {"phrase": "Atterrissage de fin d'exercice", "expected_skill": "cfo-budget-forecast", "category": "landing"},
-    {"phrase": "CAPEX planning et ROI investissements", "expected_skill": "cfo-budget-forecast", "category": "capex"},
-    {"phrase": "NPV IRR du projet d'usine", "expected_skill": "cfo-budget-forecast", "category": "npv_irr"},
-    {"phrase": "Analyse de sensibilité Monte Carlo", "expected_skill": "cfo-budget-forecast", "category": "sensitivity"},
-    {"phrase": "Business plan 3 ans pour levée Series A", "expected_skill": "cfo-budget-forecast", "category": "bp_levee"},
-    {"phrase": "Identification goulots d'étranglement trésorerie", "expected_skill": "cfo-budget-forecast", "category": "bottlenecks"},
-
-    {"phrase": "Estime mon CIR pour exercice 2026", "expected_skill": "cfo-fiscalite", "category": "cir"},
-    {"phrase": "Optimisation IS avant clôture", "expected_skill": "cfo-fiscalite", "category": "is_optim"},
-    {"phrase": "TVA mensuelle CA3 du mois", "expected_skill": "cfo-fiscalite", "category": "tva"},
-    {"phrase": "DEB DES intra-UE quartier T2", "expected_skill": "cfo-fiscalite", "category": "deb_des"},
-    {"phrase": "Transfer pricing groupe multi-juridictions", "expected_skill": "cfo-fiscalite", "category": "transfer"},
-    {"phrase": "CII Crédit Impôt Innovation pour PME", "expected_skill": "cfo-fiscalite", "category": "cii"},
-    {"phrase": "Acomptes IS 15 mars échéance", "expected_skill": "cfo-fiscalite", "category": "is_acompte"},
-    {"phrase": "Veille loi de finance 2027", "expected_skill": "cfo-fiscalite", "category": "loi_finance"},
-    {"phrase": "Position fiscale sécurisée auprès DGFiP", "expected_skill": "cfo-fiscalite", "category": "ruling"},
-    {"phrase": "Plafonnement déductibilité intérêts art 209", "expected_skill": "cfo-fiscalite", "category": "deductibility"},
-
-    {"phrase": "Cartographie des risques opérationnels", "expected_skill": "cfo-risques-conformite", "category": "risk_map"},
-    {"phrase": "COSO ERM matrice 5x5", "expected_skill": "cfo-risques-conformite", "category": "coso"},
-    {"phrase": "Préparation audit CAC mai", "expected_skill": "cfo-risques-conformite", "category": "cac_prep"},
-    {"phrase": "Conformité LCB-FT TRACFIN", "expected_skill": "cfo-risques-conformite", "category": "lcbft"},
-    {"phrase": "Veille réglementaire hebdomadaire", "expected_skill": "cfo-risques-conformite", "category": "veille"},
-    {"phrase": "Contrôle interne RACI narratives", "expected_skill": "cfo-risques-conformite", "category": "controle_interne"},
-    {"phrase": "Plan de continuité activité ISO 22301", "expected_skill": "cfo-risques-conformite", "category": "bcp"},
-    {"phrase": "Audit des findings CAC à remédier", "expected_skill": "cfo-risques-conformite", "category": "findings"},
-    {"phrase": "Conformité RGPD DPO", "expected_skill": "cfo-risques-conformite", "category": "rgpd"},
-    {"phrase": "Couverture assurance multirisque cyber", "expected_skill": "cfo-risques-conformite", "category": "insurance"},
-
-    {"phrase": "Diagnostic financement projet R&D 200k€", "expected_skill": "cfo-financement-croissance", "category": "diag_financement"},
-    {"phrase": "Préparation dossier banque pour MLT 500k€", "expected_skill": "cfo-financement-croissance", "category": "dossier_banque"},
-    {"phrase": "Valorisation entreprise méthode DCF", "expected_skill": "cfo-financement-croissance", "category": "valuation"},
-    {"phrase": "Pack levée de fonds Series A", "expected_skill": "cfo-financement-croissance", "category": "fundraising"},
-    {"phrase": "Due diligence financière acquisition cible", "expected_skill": "cfo-financement-croissance", "category": "dd"},
-    {"phrase": "Cap table et BSPCE post-levée", "expected_skill": "cfo-financement-croissance", "category": "captable"},
-    {"phrase": "Quelles aides publiques éligibles à mon profil ?", "expected_skill": "cfo-financement-croissance", "category": "aides_moriarty"},
-    {"phrase": "Restructuring financier turnaround", "expected_skill": "cfo-financement-croissance", "category": "restructuring"},
-    {"phrase": "Négociation term sheet investisseur", "expected_skill": "cfo-financement-croissance", "category": "termsheet"},
-    {"phrase": "Préparation IPO Euronext", "expected_skill": "cfo-financement-croissance", "category": "ipo"},
-
-    {"phrase": "Suis-je in-scope CSRD Wave 2 ?", "expected_skill": "cfo-csrd-esg", "category": "scope_csrd"},
-    {"phrase": "Mapping ESRS E1 climat", "expected_skill": "cfo-csrd-esg", "category": "esrs_e1"},
-    {"phrase": "Matrice de double matérialité", "expected_skill": "cfo-csrd-esg", "category": "double_mat"},
-    {"phrase": "Climate risk scenario 1.5°C", "expected_skill": "cfo-csrd-esg", "category": "climate"},
-    {"phrase": "Reporting Scope 1 2 3 émissions", "expected_skill": "cfo-csrd-esg", "category": "scope_emissions"},
-    {"phrase": "Supply chain due diligence ESG", "expected_skill": "cfo-csrd-esg", "category": "supply_dd"},
-    {"phrase": "Rapport durabilité intégré au rapport de gestion", "expected_skill": "cfo-csrd-esg", "category": "rapport_durabilite"},
-    {"phrase": "Préparation external assurance ESRS", "expected_skill": "cfo-csrd-esg", "category": "assurance"},
-    {"phrase": "ESG data governance gouvernance données", "expected_skill": "cfo-csrd-esg", "category": "data_governance"},
-    {"phrase": "Co-leadership CFO CSO sur CSRD", "expected_skill": "cfo-csrd-esg", "category": "co_leadership"}
+    {
+      "phrase": "Lance cfo-init pour ma société SIREN 552120222",
+      "expected_skill": "cfo-init",
+      "category": "exact_match"
+    },
+    {
+      "phrase": "Démarre l'onboarding cabinet expert-comptable",
+      "expected_skill": "cfo-init",
+      "category": "ec_onboarding"
+    },
+    {
+      "phrase": "Initialise le profil de mon nouveau client EC",
+      "expected_skill": "cfo-init",
+      "category": "ec_workflow"
+    },
+    {
+      "phrase": "Calendrier fiscal pour ma société clôture 30 juin",
+      "expected_skill": "cfo-init",
+      "category": "calendar"
+    },
+    {
+      "phrase": "Quels sont mes prochaines échéances fiscales ?",
+      "expected_skill": "cfo-init",
+      "category": "calendar_query"
+    },
+    {
+      "phrase": "Configure le profil société pour le cabinet",
+      "expected_skill": "cfo-init",
+      "category": "ec_setup"
+    },
+    {
+      "phrase": "Combien d'achievements j'ai débloqué ?",
+      "expected_skill": "cfo-init",
+      "category": "achievements"
+    },
+    {
+      "phrase": "Récupère les données Pappers pour SIREN 542065479",
+      "expected_skill": "cfo-init",
+      "category": "pappers"
+    },
+    {
+      "phrase": "Quelle est ma classification de taille (TPE/PME/ETI) ?",
+      "expected_skill": "cfo-init",
+      "category": "size"
+    },
+    {
+      "phrase": "Reset complet du profil société",
+      "expected_skill": "cfo-init",
+      "category": "reset"
+    },
+    {
+      "phrase": "Fais la clôture mensuelle de mars",
+      "expected_skill": "cfo-comptabilite",
+      "category": "monthly_close"
+    },
+    {
+      "phrase": "Lance la clôture annuelle 2026",
+      "expected_skill": "cfo-comptabilite",
+      "category": "annual_close"
+    },
+    {
+      "phrase": "Génère le FEC pour exercice 2025",
+      "expected_skill": "cfo-comptabilite",
+      "category": "fec"
+    },
+    {
+      "phrase": "Liasse fiscale 2065 SAS",
+      "expected_skill": "cfo-fiscalite",
+      "category": "liasse"
+    },
+    {
+      "phrase": "Coordination CAC pour préparation audit",
+      "expected_skill": "cfo-risques-conformite",
+      "category": "cac"
+    },
+    {
+      "phrase": "Écritures de cut-off au 31 mars",
+      "expected_skill": "cfo-comptabilite",
+      "category": "cutoff"
+    },
+    {
+      "phrase": "Gestion paie URSSAF",
+      "expected_skill": "cfo-comptabilite",
+      "category": "payroll"
+    },
+    {
+      "phrase": "Consolidation IFRS du groupe",
+      "expected_skill": "cfo-comptabilite",
+      "category": "consolidation"
+    },
+    {
+      "phrase": "Élimination intercos pour clôture",
+      "expected_skill": "cfo-comptabilite",
+      "category": "intercos"
+    },
+    {
+      "phrase": "Provisions et amortissements de fin d'année",
+      "expected_skill": "cfo-comptabilite",
+      "category": "provisions"
+    },
+    {
+      "phrase": "Prévision de trésorerie 13 semaines",
+      "expected_skill": "cfo-tresorerie",
+      "category": "cash_forecast"
+    },
+    {
+      "phrase": "Cash flow 12 mois glissants",
+      "expected_skill": "cfo-tresorerie",
+      "category": "cash_12m"
+    },
+    {
+      "phrase": "Diagnostic BFR de la société",
+      "expected_skill": "cfo-tresorerie",
+      "category": "bfr"
+    },
+    {
+      "phrase": "Optimiser DSO DPO DIO",
+      "expected_skill": "cfo-tresorerie",
+      "category": "dso_dpo"
+    },
+    {
+      "phrase": "Cash burn et runway de la startup",
+      "expected_skill": "cfo-tresorerie",
+      "category": "burn_startup"
+    },
+    {
+      "phrase": "Cash pooling intra-groupe",
+      "expected_skill": "cfo-tresorerie",
+      "category": "pooling"
+    },
+    {
+      "phrase": "Couverture de change EUR/USD",
+      "expected_skill": "cfo-tresorerie",
+      "category": "hedging"
+    },
+    {
+      "phrase": "Suivi covenants bancaires",
+      "expected_skill": "cfo-tresorerie",
+      "category": "covenants"
+    },
+    {
+      "phrase": "Récupère le solde Qonto et catégorise les flux",
+      "expected_skill": "cfo-tresorerie",
+      "category": "qonto"
+    },
+    {
+      "phrase": "Plan d'action tension trésorerie",
+      "expected_skill": "cfo-tresorerie",
+      "category": "tension"
+    },
+    {
+      "phrase": "Reporting mensuel mars 2026",
+      "expected_skill": "cfo-reporting",
+      "category": "monthly_report"
+    },
+    {
+      "phrase": "Génère le board pack du Q1",
+      "expected_skill": "cfo-reporting",
+      "category": "board"
+    },
+    {
+      "phrase": "Tableau de bord CFO exécutif",
+      "expected_skill": "cfo-reporting",
+      "category": "dashboard"
+    },
+    {
+      "phrase": "Lettre trimestrielle aux investisseurs",
+      "expected_skill": "cfo-reporting",
+      "category": "ir_letter"
+    },
+    {
+      "phrase": "Compte rendu de gestion AG",
+      "expected_skill": "cfo-reporting",
+      "category": "rapport_ag"
+    },
+    {
+      "phrase": "Présentation des résultats à l'équipe",
+      "expected_skill": "cfo-reporting",
+      "category": "presentation"
+    },
+    {
+      "phrase": "Reporting trimestriel YoY",
+      "expected_skill": "cfo-reporting",
+      "category": "quarterly"
+    },
+    {
+      "phrase": "Top variances vs budget mars",
+      "expected_skill": "cfo-reporting",
+      "category": "variances"
+    },
+    {
+      "phrase": "PDF dashboard pour le directoire",
+      "expected_skill": "cfo-reporting",
+      "category": "directoire"
+    },
+    {
+      "phrase": "Rapport RNS pour les actionnaires",
+      "expected_skill": "cfo-reporting",
+      "category": "shareholders"
+    },
+    {
+      "phrase": "KPIs sectoriels SaaS pour ma société",
+      "expected_skill": "cfo-controle-gestion",
+      "category": "kpi_saas"
+    },
+    {
+      "phrase": "Analyse de rentabilité par client",
+      "expected_skill": "cfo-controle-gestion",
+      "category": "profitability"
+    },
+    {
+      "phrase": "Comptabilité analytique par centre de coût",
+      "expected_skill": "cfo-controle-gestion",
+      "category": "cost_accounting"
+    },
+    {
+      "phrase": "Marge brute et marge contributive par produit",
+      "expected_skill": "cfo-controle-gestion",
+      "category": "margins"
+    },
+    {
+      "phrase": "Pricing optimization sur catalogue produits",
+      "expected_skill": "cfo-controle-gestion",
+      "category": "pricing"
+    },
+    {
+      "phrase": "Analyse ABC clients",
+      "expected_skill": "cfo-controle-gestion",
+      "category": "abc"
+    },
+    {
+      "phrase": "Variance analysis budget vs réel",
+      "expected_skill": "cfo-controle-gestion",
+      "category": "variance"
+    },
+    {
+      "phrase": "Break-even du projet R&D",
+      "expected_skill": "cfo-controle-gestion",
+      "category": "breakeven"
+    },
+    {
+      "phrase": "Allocation des coûts indirects par activité",
+      "expected_skill": "cfo-controle-gestion",
+      "category": "abc_costing"
+    },
+    {
+      "phrase": "ROCE et ROE de la société",
+      "expected_skill": "cfo-controle-gestion",
+      "category": "ratios"
+    },
+    {
+      "phrase": "Construis le budget annuel 2027",
+      "expected_skill": "cfo-budget-forecast",
+      "category": "annual_budget"
+    },
+    {
+      "phrase": "Rolling forecast trimestriel Q2",
+      "expected_skill": "cfo-budget-forecast",
+      "category": "rolling"
+    },
+    {
+      "phrase": "Plan stratégique 5 ans pour le board",
+      "expected_skill": "cfo-budget-forecast",
+      "category": "strategic_plan"
+    },
+    {
+      "phrase": "Scénarios optimiste réaliste pessimiste",
+      "expected_skill": "cfo-budget-forecast",
+      "category": "scenarios"
+    },
+    {
+      "phrase": "Atterrissage de fin d'exercice",
+      "expected_skill": "cfo-budget-forecast",
+      "category": "landing"
+    },
+    {
+      "phrase": "CAPEX planning et ROI investissements",
+      "expected_skill": "cfo-budget-forecast",
+      "category": "capex"
+    },
+    {
+      "phrase": "NPV IRR du projet d'usine",
+      "expected_skill": "cfo-budget-forecast",
+      "category": "npv_irr"
+    },
+    {
+      "phrase": "Analyse de sensibilité Monte Carlo",
+      "expected_skill": "cfo-budget-forecast",
+      "category": "sensitivity"
+    },
+    {
+      "phrase": "Business plan 3 ans pour levée Series A",
+      "expected_skill": "cfo-budget-forecast",
+      "category": "bp_levee"
+    },
+    {
+      "phrase": "Identification goulots d'étranglement trésorerie",
+      "expected_skill": "cfo-budget-forecast",
+      "category": "bottlenecks"
+    },
+    {
+      "phrase": "Estime mon CIR pour exercice 2026",
+      "expected_skill": "cfo-fiscalite",
+      "category": "cir"
+    },
+    {
+      "phrase": "Optimisation IS avant clôture",
+      "expected_skill": "cfo-fiscalite",
+      "category": "is_optim"
+    },
+    {
+      "phrase": "TVA mensuelle CA3 du mois",
+      "expected_skill": "cfo-fiscalite",
+      "category": "tva"
+    },
+    {
+      "phrase": "DEB DES intra-UE quartier T2",
+      "expected_skill": "cfo-fiscalite",
+      "category": "deb_des"
+    },
+    {
+      "phrase": "Transfer pricing groupe multi-juridictions",
+      "expected_skill": "cfo-fiscalite",
+      "category": "transfer"
+    },
+    {
+      "phrase": "CII Crédit Impôt Innovation pour PME",
+      "expected_skill": "cfo-fiscalite",
+      "category": "cii"
+    },
+    {
+      "phrase": "Acomptes IS 15 mars échéance",
+      "expected_skill": "cfo-fiscalite",
+      "category": "is_acompte"
+    },
+    {
+      "phrase": "Veille loi de finance 2027",
+      "expected_skill": "cfo-fiscalite",
+      "category": "loi_finance"
+    },
+    {
+      "phrase": "Position fiscale sécurisée auprès DGFiP",
+      "expected_skill": "cfo-fiscalite",
+      "category": "ruling"
+    },
+    {
+      "phrase": "Plafonnement déductibilité intérêts art 209",
+      "expected_skill": "cfo-fiscalite",
+      "category": "deductibility"
+    },
+    {
+      "phrase": "Cartographie des risques opérationnels",
+      "expected_skill": "cfo-risques-conformite",
+      "category": "risk_map"
+    },
+    {
+      "phrase": "COSO ERM matrice 5x5",
+      "expected_skill": "cfo-risques-conformite",
+      "category": "coso"
+    },
+    {
+      "phrase": "Préparation audit CAC mai",
+      "expected_skill": "cfo-risques-conformite",
+      "category": "cac_prep"
+    },
+    {
+      "phrase": "Conformité LCB-FT TRACFIN",
+      "expected_skill": "cfo-risques-conformite",
+      "category": "lcbft"
+    },
+    {
+      "phrase": "Veille réglementaire hebdomadaire",
+      "expected_skill": "cfo-risques-conformite",
+      "category": "veille"
+    },
+    {
+      "phrase": "Contrôle interne RACI narratives",
+      "expected_skill": "cfo-risques-conformite",
+      "category": "controle_interne"
+    },
+    {
+      "phrase": "Plan de continuité activité ISO 22301",
+      "expected_skill": "cfo-risques-conformite",
+      "category": "bcp"
+    },
+    {
+      "phrase": "Audit des findings CAC à remédier",
+      "expected_skill": "cfo-risques-conformite",
+      "category": "findings"
+    },
+    {
+      "phrase": "Conformité RGPD DPO",
+      "expected_skill": "cfo-risques-conformite",
+      "category": "rgpd"
+    },
+    {
+      "phrase": "Couverture assurance multirisque cyber",
+      "expected_skill": "cfo-risques-conformite",
+      "category": "insurance"
+    },
+    {
+      "phrase": "Diagnostic financement projet R&D 200k€",
+      "expected_skill": "cfo-financement-croissance",
+      "category": "diag_financement"
+    },
+    {
+      "phrase": "Préparation dossier banque pour MLT 500k€",
+      "expected_skill": "cfo-financement-croissance",
+      "category": "dossier_banque"
+    },
+    {
+      "phrase": "Valorisation entreprise méthode DCF",
+      "expected_skill": "cfo-financement-croissance",
+      "category": "valuation"
+    },
+    {
+      "phrase": "Pack levée de fonds Series A",
+      "expected_skill": "cfo-financement-croissance",
+      "category": "fundraising"
+    },
+    {
+      "phrase": "Due diligence financière acquisition cible",
+      "expected_skill": "cfo-financement-croissance",
+      "category": "dd"
+    },
+    {
+      "phrase": "Cap table et BSPCE post-levée",
+      "expected_skill": "cfo-financement-croissance",
+      "category": "captable"
+    },
+    {
+      "phrase": "Quelles aides publiques éligibles à mon profil ?",
+      "expected_skill": "cfo-financement-croissance",
+      "category": "aides_moriarty"
+    },
+    {
+      "phrase": "Restructuring financier turnaround",
+      "expected_skill": "cfo-financement-croissance",
+      "category": "restructuring"
+    },
+    {
+      "phrase": "Négociation term sheet investisseur",
+      "expected_skill": "cfo-financement-croissance",
+      "category": "termsheet"
+    },
+    {
+      "phrase": "Préparation IPO Euronext",
+      "expected_skill": "cfo-financement-croissance",
+      "category": "ipo"
+    },
+    {
+      "phrase": "Suis-je in-scope CSRD Wave 2 ?",
+      "expected_skill": "cfo-csrd-esg",
+      "category": "scope_csrd"
+    },
+    {
+      "phrase": "Mapping ESRS E1 climat",
+      "expected_skill": "cfo-csrd-esg",
+      "category": "esrs_e1"
+    },
+    {
+      "phrase": "Matrice de double matérialité",
+      "expected_skill": "cfo-csrd-esg",
+      "category": "double_mat"
+    },
+    {
+      "phrase": "Climate risk scenario 1.5°C",
+      "expected_skill": "cfo-csrd-esg",
+      "category": "climate"
+    },
+    {
+      "phrase": "Reporting Scope 1 2 3 émissions",
+      "expected_skill": "cfo-csrd-esg",
+      "category": "scope_emissions"
+    },
+    {
+      "phrase": "Supply chain due diligence ESG",
+      "expected_skill": "cfo-csrd-esg",
+      "category": "supply_dd"
+    },
+    {
+      "phrase": "Rapport durabilité intégré au rapport de gestion",
+      "expected_skill": "cfo-csrd-esg",
+      "category": "rapport_durabilite"
+    },
+    {
+      "phrase": "Préparation external assurance ESRS",
+      "expected_skill": "cfo-csrd-esg",
+      "category": "assurance"
+    },
+    {
+      "phrase": "ESG data governance gouvernance données",
+      "expected_skill": "cfo-csrd-esg",
+      "category": "data_governance"
+    },
+    {
+      "phrase": "Co-leadership CFO CSO sur CSRD",
+      "expected_skill": "cfo-csrd-esg",
+      "category": "co_leadership"
+    }
   ],
-
   "anti_triggers": [
-    {"phrase": "Quel temps fait-il à Lyon aujourd'hui ?", "expected_skill": null, "reason": "hors_scope_meteo"},
-    {"phrase": "Aide-moi à coder en Python", "expected_skill": null, "reason": "hors_scope_dev"},
-    {"phrase": "Recommande-moi un restaurant à Paris", "expected_skill": null, "reason": "hors_scope_lifestyle"},
-    {"phrase": "Quelle est la capitale de l'Australie ?", "expected_skill": null, "reason": "hors_scope_general_knowledge"},
-    {"phrase": "Génère une image de chat", "expected_skill": null, "reason": "hors_scope_image"},
-    {"phrase": "Traduis ce texte en anglais", "expected_skill": null, "reason": "hors_scope_traduction"},
-    {"phrase": "Prends un rendez-vous chez le médecin", "expected_skill": null, "reason": "hors_scope_perso"},
-    {"phrase": "Lance le skill paperasse-comptable", "expected_skill": null, "reason": "skill_externe_explicite_pas_cfo"},
-    {"phrase": "Donne-moi des cotations boursières en temps réel", "expected_skill": null, "reason": "hors_scope_marche"},
-    {"phrase": "Conseille-moi sur mon assurance-vie personnelle", "expected_skill": null, "reason": "hors_scope_perso_finance"}
+    {
+      "phrase": "Quel temps fait-il à Lyon aujourd'hui ?",
+      "expected_skill": null,
+      "reason": "hors_scope_meteo"
+    },
+    {
+      "phrase": "Aide-moi à coder en Python",
+      "expected_skill": null,
+      "reason": "hors_scope_dev"
+    },
+    {
+      "phrase": "Recommande-moi un restaurant à Paris",
+      "expected_skill": null,
+      "reason": "hors_scope_lifestyle"
+    },
+    {
+      "phrase": "Quelle est la capitale de l'Australie ?",
+      "expected_skill": null,
+      "reason": "hors_scope_general_knowledge"
+    },
+    {
+      "phrase": "Génère une image de chat",
+      "expected_skill": null,
+      "reason": "hors_scope_image"
+    },
+    {
+      "phrase": "Traduis ce texte en anglais",
+      "expected_skill": null,
+      "reason": "hors_scope_traduction"
+    },
+    {
+      "phrase": "Prends un rendez-vous chez le médecin",
+      "expected_skill": null,
+      "reason": "hors_scope_perso"
+    },
+    {
+      "phrase": "Lance le skill paperasse-comptable",
+      "expected_skill": null,
+      "reason": "skill_externe_explicite_pas_cfo"
+    },
+    {
+      "phrase": "Donne-moi des cotations boursières en temps réel",
+      "expected_skill": null,
+      "reason": "hors_scope_marche"
+    },
+    {
+      "phrase": "Conseille-moi sur mon assurance-vie personnelle",
+      "expected_skill": null,
+      "reason": "hors_scope_perso_finance"
+    }
   ]
 }

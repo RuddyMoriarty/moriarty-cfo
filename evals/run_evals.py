@@ -231,14 +231,55 @@ STOPWORDS = {
     "très", "vous", "votre", "vos", "lance", "fait", "faire", "donne",
     "génère", "genere", "génerer", "produire",
     "with", "from", "this", "that", "have", "what", "your", "have",
+    # Termes génériques qui apparaissent dans toutes les descriptions
+    # et ne discriminent pas entre skills du bundle.
+    "société", "societe", "entreprise", "entreprises", "pme/tpe", "skill",
+    "française", "francaise", "françaises", "francaises", "cabinets", "cabinet",
+    "skills", "bundle", "compte", "utiliser", "utilisez", "question", "questions",
+    "toute", "détail", "detail", "produit", "produite", "toutes", "selon",
+    "niveau", "type", "types", "module", "modules", "gestion",
+}
+
+# Acronymes métier CFO à 2-3 lettres qu'on veut conserver même sous le seuil 4 chars
+# Whitelist explicite pour éviter d'ajouter du bruit avec "le", "de", "ok"…
+BUSINESS_ACRONYMS = {
+    # Comptabilité
+    "fec", "pcg", "cga", "nep", "dsn", "ias", "ifrs", "gaap",
+    # Fiscalité
+    "is", "tva", "cir", "cii", "cvae", "cet", "cfe", "deb", "des",
+    "bic", "bnc", "ba", "plf", "tvs", "ice",
+    # Trésorerie
+    "dso", "dpo", "dio", "ccc", "bfr", "ebe", "ofr", "ffcf",
+    # Budget / investissement
+    "npv", "irr", "roi", "roe", "roce", "ebit", "ebitda", "wacc", "ltv", "cac",
+    "arr", "mrr", "arpu", "nrr", "grr", "trs", "oee", "nps", "abc",
+    # Risques / conformité
+    "coso", "erm", "bcp", "rgpd", "lcbft", "nop", "acpr", "amf",
+    # Financement
+    "pge", "mlt", "ipo", "lbo", "vc", "pe", "sri", "bspce", "aga", "bsa",
+    "tpe", "pme", "eti", "etb",
+    # CSRD / ESG
+    "ghg", "gri", "tcfd", "sbti", "esg", "dma", "efrag", "csrd", "esrs",
+    # Divers
+    "ag", "kyc", "kpi", "kpis", "ca", "rnv", "rns", "pdg", "dg", "daf",
+    "cfo", "cso", "dgfip", "urssaf", "drfip", "cac3", "ca3",
 }
 
 
 def tokenize(text: str) -> set[str]:
-    """Extrait les mots significatifs (≥4 chars, hors stopwords) d'un texte."""
-    text = text.lower()
-    words = re.findall(r"\b[a-zàâéèêëîïôùûüÿç0-9-]{4,}\b", text)
-    return {w for w in words if w not in STOPWORDS}
+    """Extrait les mots significatifs d'un texte.
+
+    Deux catégories :
+    - Mots usuels ≥4 caractères (hors stopwords).
+    - Acronymes métier de 2-3 caractères (whitelist BUSINESS_ACRONYMS).
+    """
+    text_lower = text.lower()
+    # Mots ≥4 caractères (comportement historique)
+    long_words = set(re.findall(r"\b[a-zàâéèêëîïôùûüÿç0-9-]{4,}\b", text_lower))
+    # Acronymes 2-3 caractères de la whitelist
+    all_words_23 = set(re.findall(r"\b[a-zàâéèêëîïôùûüÿç0-9]{2,3}\b", text_lower))
+    short_acronyms = all_words_23 & BUSINESS_ACRONYMS
+    return (long_words | short_acronyms) - STOPWORDS
 
 
 def extract_triggers(fm: dict[str, Any]) -> set[str]:

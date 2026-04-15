@@ -1,8 +1,8 @@
 ---
 name: cfo-init
 description: |
-  Initialise une session de CFO virtuel pour PME/TPE françaises ou cabinets d'expertise comptable. Détecte l'audience (EC vs dirigeant PME), identifie la société via Pappers/SIREN/INSEE, classifie sa taille (TPE/PE/ME/ETI) et sa scope CSRD, calcule le calendrier fiscal selon la date de clôture, programme les notifications d'échéances et active le système d'achievements. À utiliser au démarrage de toute conversation CFO/DAF ou comme étape préalable aux autres skills du bundle moriarty-cfo.
-  Triggers: CFO, DAF, directeur financier, expert-comptable, cabinet, nouvelle société, SIREN, SIRET, Pappers, calendrier fiscal, clôture annuelle, onboarding cabinet, démarrage mission, kickoff, début mission, new company, accounting firm, CFO onboarding, lance cfo-init, initialise, setup profil société
+  Initialise une session de CFO virtuel pour dirigeant ou collaborateur de cabinet d'expertise comptable. Détecte l'audience (cabinet vs dirigeant), identifie l'entité via Pappers/SIREN/INSEE, classifie sa taille (TPE/PE/ME/ETI) et sa wave CSRD, calcule le calendrier fiscal depuis la date de clôture, programme les routines de production et les notifications des prochaines échéances, et active le système d'achievements. À utiliser au démarrage de toute conversation CFO/DAF ou comme étape préalable avant les autres skills du bundle.
+  Triggers: directeur financier, expert-comptable, nouvelle entité, SIREN, SIRET, Pappers, INSEE, calendrier fiscal, onboarding cabinet, démarrage mission, kickoff, début mission, classification taille, mes prochaines échéances fiscales, quelles sont mes échéances, échéances à venir, profil entité, setup initial profil société, new company, accounting firm, lance cfo-init, reset complet profil, initialise profil
 metadata:
   last_updated: 2026-04-14
   version: 0.1.0

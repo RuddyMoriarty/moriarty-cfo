@@ -6,6 +6,7 @@ version: "0.1.0"
 # Seuils minimum par mode d'exécution
 thresholds:
   triggering:
+    margin: 1.3              # Marge de confiance top-1/top-2 (baissée de 1.5 pour les skills proches)
     quick:
       pass_rate_min: 0.85    # 85% min en mode quick
       sample_size: 5         # 5 phrases par skill

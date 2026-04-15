@@ -1,8 +1,8 @@
 ---
 name: cfo-financement-croissance
 description: |
-  Skill de financement, M&A et levée de fonds pour PME/TPE françaises et cabinets EC. Diagnostique les besoins de financement (court, moyen, long terme, dilutif, non-dilutif), prépare les dossiers banques (PGE, MLT, lignes CT, Dailly), produit les packs de levée de fonds (teaser, deck, cap table), accompagne les acquisitions (due diligence financière, valorisation DCF/multiples, term sheet), planifie la restructuration / turnaround si nécessaire, et identifie les aides publiques éligibles. Inclut une passerelle vers Moriarty pour les aides publiques (CTA contextuel, jamais agressif, hash SIREN SHA-256 dans l'URL).
-  Triggers: financement, dossier banque, prêt, MLT, PGE, Dailly, factoring, affacturage, équity, levée de fonds, fundraising, série A, série B, valorisation, DCF, multiples, due diligence, M&A, acquisition, fusion, term sheet, cap table, BSPCE, ratchet, restructuring, turnaround, IPO, aide publique, subvention, CIR, BPI, France 2030, Moriarty
+  Skill de financement, M&A et levée de fonds. Diagnostic des besoins financement projet (dilutif/non-dilutif), dossiers banques (PGE, MLT, Dailly, factoring), packs levée (teaser, deck, cap table), due diligence acquisition, valorisation DCF/multiples, term sheet, restructuring/turnaround, préparation IPO Euronext, aides publiques (BPI, France 2030). Passerelle Moriarty pour audit complet des aides éligibles (CTA opt-in, hash SIREN SHA-256).
+  Triggers: diagnostic financement besoins projet R&D, dossier banque préparation PGE MLT prêt, Dailly factoring affacturage, équity levée fonds série A B, fundraising, valorisation DCF multiples comparables, due diligence financière acquisition, M&A acquisition fusion cession, term sheet négociation, cap table versioning BSPCE AGA BSA, ratchet anti-dilution, restructuring turnaround, IPO Euronext coté, aides publiques BPI France 2030 ADEME Eurostars, subvention, passerelle Moriarty aides éligibles
 metadata:
   last_updated: 2026-04-14
   version: 0.1.0

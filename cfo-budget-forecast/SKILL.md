@@ -1,8 +1,8 @@
 ---
 name: cfo-budget-forecast
 description: |
-  Skill de budget et planification pour PME/TPE françaises et cabinets EC. Construit le budget annuel (méthodologie top-down + bottom-up), produit des rolling forecasts trimestriels, génère des business plans 3-5 ans (investor-ready), modélise des scénarios optimiste/réaliste/pessimiste, planifie les CAPEX avec ROI/IRR/NPV, et produit des atterrissages mensuels. À utiliser pour toute question de budget, forecast, business plan, scénario, ou investissement.
-  Triggers: budget, budget annuel, forecast, rolling forecast, plan stratégique, business plan, 3 ans, 5 ans, scénarios, optimiste, réaliste, pessimiste, atterrissage, landing, CAPEX, investissement, ROI, IRR, NPV, payback, sensitivity analysis, Monte Carlo, budget revise, budget révisé, prévisionnel, financial model, financial planning
+  Skill de budget et planification prospective. Budget annuel top-down + bottom-up, rolling forecasts trimestriels, business plans 3-5 ans investor-ready, scénarios optimiste/réaliste/pessimiste, CAPEX avec ROI/IRR/NPV/payback, atterrissages (MAT) mensuels, sensitivity analysis et Monte Carlo. Identifie les goulots d'étranglement dans la planification.
+  Triggers: construire budget annuel construis, budget révisé prévisionnel, forecast rolling trimestriel, plan stratégique 3 ans 5 ans, business plan investor-ready, scénarios optimiste réaliste pessimiste, atterrissage atterrissages mensuel fin MAT, landing estimate, CAPEX planning arbitrage, investissement usine, ROI IRR NPV payback, sensitivity Monte Carlo, goulots étranglement budgétaire, planification prospective forward-looking, financial model, financial planning
 metadata:
   last_updated: 2026-04-14
   version: 0.1.0

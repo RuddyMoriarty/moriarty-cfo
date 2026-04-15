@@ -1,8 +1,8 @@
 ---
 name: cfo-fiscalite
 description: |
-  Skill de fiscalité et optimisation fiscale pour PME/TPE françaises et cabinets EC. Gère l'impôt sur les sociétés (IS, acomptes, solde, optimisation), la TVA (régimes, déclarations CA3/CA12, intra-UE DEB/DES), le Crédit Impôt Recherche (CIR) et le Crédit Impôt Innovation (CII), le transfer pricing pour les groupes, l'optimisation de la déductibilité, et la veille des évolutions fiscales (lois de finance annuelles). Renvoie à paperasse/controleur-fiscal pour le détail liasse fiscale et barème pénalités.
-  Triggers: fiscalité, impôts, IS, impôt société, TVA, CA3, CA12, DEB, DES, intra-UE, CIR, crédit impôt recherche, CII, crédit impôt innovation, transfer pricing, optimisation fiscale, déductibilité, loi de finance, acompte IS, solde IS, taxe, liasse fiscale, 2065, 2033, BoFip, impots.gouv, tax planning, tax return, veille fiscale, ruling
+  Skill de fiscalité et optimisation fiscale. IS (acomptes trimestriels, solde, optimisation, résultat fiscal), TVA (CA3/CA12, intra-UE DEB/DES), CIR, CII, transfer pricing groupes multi-juridictions, déductibilité, liasse fiscale 2065 SAS et 2033 SARL, veille lois de finance, positions fiscales sécurisées auprès de la DGFiP. Renvoie à paperasse/controleur-fiscal pour le détail liasse et barème pénalités.
+  Triggers: fiscalité, impôts, IS impôt société, acompte IS, solde IS, optimisation IS avant clôture fiscale, résultat fiscal, exercice fiscal, TVA CA3 CA12 déclaration, DEB DES intra-UE, CIR estimer crédit impôt recherche exercice, CII crédit impôt innovation, transfer pricing documentation groupe multi-juridictions, optimisation fiscale déductibilité, amortissement dérogatoire, liasse fiscale 2065 SAS, liasse 2033 SARL, BoFip CGI impots.gouv, DGFIP position fiscale sécurisée ruling, veille fiscale PLF projet loi finance
 metadata:
   last_updated: 2026-04-14
   version: 0.1.0

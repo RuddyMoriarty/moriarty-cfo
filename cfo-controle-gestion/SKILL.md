@@ -1,8 +1,8 @@
 ---
 name: cfo-controle-gestion
 description: |
-  Skill de contrôle de gestion et analyse de performance pour PME/TPE françaises et cabinets EC. Produit les analyses de rentabilité par produit/client/canal/activité, la comptabilité analytique (ABC, full cost, direct cost), les analyses de marges, le pricing optimization, le break-even, et la variance analysis avec investigation des écarts. Catalogue 32 KPIs CFO selon secteur. À utiliser pour toute question de rentabilité, performance, marges ou analyse financière détaillée.
-  Triggers: contrôle de gestion, KPIs, performance, rentabilité, rentabilité produit, rentabilité client, marge brute, marge contributive, comptabilité analytique, ABC, allocation coûts, centres de coûts, variance analysis, pricing, break-even, seuil rentabilité, ROCE, ROE, analyse financière, benchmark sectoriel, performance analysis, management control, cost accounting
+  Skill de contrôle performance et analyse de rentabilité. Rentabilité par produit, client, canal ou activité, comptabilité analytique (ABC, full cost, direct cost), analyses de marges (brute, contributive, opérationnelle), pricing optimization, break-even. Variance analysis détaillée avec plans correctifs. Catalogue 32 KPIs CFO avec benchmarks sectoriels SaaS, industrie, commerce, services B2B. Ratios ROCE et ROE par NAF.
+  Triggers: contrôle performance, KPI sectoriel SaaS, performance opérationnelle, rentabilité produit client canal, marge brute contributive opérationnelle, comptabilité analytique ABC activity-based, allocation coûts centres, variance analysis écarts réel investigation, pricing optimization catalogue, break-even seuil rentabilité projet, ROCE capital employé, ROE fonds propres, analyse ABC clients segment, benchmark sectoriel NAF, management control, cost accounting, leading indicators
 metadata:
   last_updated: 2026-04-14
   version: 0.1.0

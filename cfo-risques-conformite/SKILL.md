@@ -1,8 +1,8 @@
 ---
 name: cfo-risques-conformite
 description: |
-  Skill de gestion des risques et conformité pour PME/TPE françaises et cabinets EC. Couvre la cartographie des risques (méthodologie COSO ERM 2017), le contrôle interne, la conformité LCB-FT (lutte contre le blanchiment et le financement du terrorisme), la coordination avec le commissaire aux comptes (CAC), la gestion des assurances, l'audit interne, la conformité RGPD/ACPR/AMF, et la veille réglementaire programmée (lois de finance, IFRS, PCG, URSSAF, CSRD). Programme automatiquement des tâches de veille hebdomadaires et mensuelles.
-  Triggers: risques, cartographie risques, COSO ERM, contrôle interne, LCB-FT, blanchiment, TRACFIN, CAC, commissaire aux comptes, audit interne, conformité, compliance, RGPD, ACPR, AMF, assurance, BCP, plan continuité, veille réglementaire, lois de finance, monitoring, gouvernance, comité audit, dispositif controle interne, COSO, risk mapping, internal audit
+  Skill de gestion des risques opérationnels et de conformité. Cartographie des risques (COSO ERM 2017, matrice 5x5), contrôle interne, LCB-FT (TRACFIN), préparation des audits CAC (dossier travail, findings, lettre affirmation, remédiation trimestrielle), polices d'assurance (RC, multirisque cyber), audit interne, RGPD/ACPR/AMF, veille IFRS/PCG/URSSAF.
+  Triggers: cartographie risques opérationnels, COSO ERM 2017 matrice 5x5, contrôle interne dispositif, LCB-FT blanchiment TRACFIN, préparation audit CAC mai trimestre, findings CAC remédier, lettre affirmation, audit interne, conformité compliance, RGPD DPO, ACPR banque, AMF marchés, couverture police assurance multirisque cyber mandataires, plan continuité BCP ISO 22301, veille réglementaire, monitoring trimestriel, gouvernance comité audit, risk mapping, internal audit
 metadata:
   last_updated: 2026-04-14
   version: 0.1.0

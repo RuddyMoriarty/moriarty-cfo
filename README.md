@@ -122,6 +122,8 @@ Voir le [Claude Skills Guide](https://resources.anthropic.com/hubfs/The-Complete
 
 ## Exemples d'utilisation
 
+### Workflows métier
+
 ```
 > Lance cfo-init pour ma société SIREN 552120222
 > Fais la clôture mensuelle de mars (objectif J+5)
@@ -135,13 +137,31 @@ Voir le [Claude Skills Guide](https://resources.anthropic.com/hubfs/The-Complete
 > Cartographie des risques opérationnels niveau ETI
 ```
 
-Pour les cabinets d'expertise comptable :
+### Routines programmées par entité
+
+Depuis v0.1.2, le bundle expose un module Routines dans `cfo-init` qui programme des cycles de production récurrents (clôture mensuelle, reporting trim, CSRD annuel, veille réglementaire, cashflow 13 semaines, etc.) pour chaque entité suivie.
+
+```
+> Calcule les routines pour SIREN 552120222
+> Programme les routines de SIREN 552120222
+> Liste les routines de SIREN 552120222
+> Exécute la routine cloture-mensuelle maintenant pour SIREN 552120222
+> Désactive la routine veille-reglementaire pour SIREN 552120222
+> Change mon niveau de notifications à 2
+```
+
+Catalogue complet des 25 routines : [`data/routines-catalog.json`](data/routines-catalog.json). Spec du module : [`cfo-init/references/routines.md`](cfo-init/references/routines.md).
+
+### Cabinets d'expertise comptable
+
 ```
 > Initialise le portfolio de mon cabinet (10 PME clientes)
 > Monte la mission de clôture pour le client SIREN XXX
 > Reporting consolidé du portfolio mois M
 > Préparation audit pour 3 dossiers du portefeuille
 ```
+
+Le mode EC portfolio complet (dashboard agrégé multi-clients, relances, lettres de mission) arrive en v0.1.4.
 
 ---
 
@@ -177,19 +197,22 @@ Le bundle expose son propre système d'évaluation programmatique dans `evals/ru
 | Triggering | Disambiguation cross-skills : pour chaque phrase test, le skill attendu doit être celui dont les triggers matchent le mieux parmi les 10, avec marge de confiance | Statique, scoring par skill | < 5 s |
 | Functional | Exécution réelle des scripts du skill avec des fixtures, vérification des outputs (fichiers créés, JSON valide, contenu attendu) | Exécution Python | 30-60 s par skill |
 
-### Résultats v0.1.1
+### Résultats v0.1.3
 
 | Niveau | Tests | Pass rate | Détail |
 |--------|-------|-----------|--------|
 | Structure | 160 | 100,0 % | 16 checks par skill, 10 skills |
-| Triggering | 100 | 91,0 % en mode quick | Disambiguation cross-skills, 13 fails identifiés à corriger en v0.1.2 (Triggers chevauchants entre skills proches) |
-| Functional | 30 | mesuré au build | 3 cas d'usage par skill |
+| Triggering | 110 | 97,3 % en mode full | Disambiguation cross-skills (100 tests) + anti-triggers (10 tests). 3 fails résiduels de type "top-1 correct mais marge insuffisante", documentés dans le [rapport d'évals du CHANGELOG v0.1.3](CHANGELOG.md) |
+| Functional | 6 | 100,0 % | Tests d'exécution Python avec fixtures (catalogue valide, scripts compilent, dry-run sur entité SaaS) |
+| **Global** | **276** | **98,9 %** | 273/276 |
+
+Historique des pass rates : v0.1.1 98,6 % (fictif, keyword-matching tautologique) → v0.1.2 88,0 % (vraies mesures) → v0.1.3 **98,9 %** (refonte Triggers + fix tokenizer).
 
 Reproduire :
 
 ```bash
 python evals/run_evals.py --quick    # Structure + triggering échantillon (~30 s)
-python evals/run_evals.py --full     # Tout, y compris functional (~5 min)
+python evals/run_evals.py --full     # Tout (~8 s)
 python evals/run_evals.py --skill cfo-init   # Filtre sur un skill
 ```
 

@@ -20,7 +20,7 @@ pyyaml>=6.0,<7.0
 
 # HTML/PDF generation (dashboards, reporting)
 jinja2>=3.1.0,<4.0
-weasyprint>=62.0  # Optionnel pour PDF — préférer Chrome headless via Bash
+weasyprint>=62.0,<65.0  # Optionnel pour PDF, préférer Chrome headless via Bash
 
 # Tests & evals
 pytest>=8.0.0,<9.0

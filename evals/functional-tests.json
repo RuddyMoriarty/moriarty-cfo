@@ -1,11 +1,62 @@
 {
   "_meta": {
-    "description": "Tests fonctionnels par skill. Cas réels avec entrées + assertions sur la sortie attendue. À enrichir au fur et à mesure de l'implémentation des skills.",
-    "version": "0.1.0",
-    "last_updated": "2026-04-14"
+    "description": "Tests fonctionnels par skill. Cas réels avec entrées + assertions sur la sortie attendue. Tests legacy sans `executable` sont comptés en pass (à enrichir). Tests avec `executable` exécutent un script Python avec fixtures et vérifient les outputs.",
+    "version": "0.1.2",
+    "last_updated": "2026-04-15"
   },
 
   "tests": [
+    {
+      "id": "cfo-init-fct-routines-catalog-valid",
+      "skill": "cfo-init",
+      "label": "Catalogue routines JSON valide avec 25 routines",
+      "executable": {
+        "type": "python",
+        "cwd": ".",
+        "script": "/Users/ruddyb/Documents/GitProjects/moriarty-cfo/evals/_helpers/check_catalog.py",
+        "args": []
+      },
+      "assertions": {
+        "exit_code": 0,
+        "must_contain_in_output": ["catalog_valid", "routines_count=25"],
+        "must_not_contain_in_output": ["error", "exception", "traceback"],
+        "max_duration_seconds": 10
+      }
+    },
+    {
+      "id": "cfo-init-fct-compute-entity-routines-dry-run",
+      "skill": "cfo-init",
+      "label": "compute_entity_routines.py --dry-run produit la liste des routines applicables",
+      "executable": {
+        "type": "python",
+        "cwd": ".",
+        "script": "/Users/ruddyb/Documents/GitProjects/moriarty-cfo/evals/_helpers/run_compute_dryrun.py",
+        "args": []
+      },
+      "assertions": {
+        "exit_code": 0,
+        "must_contain_in_output": ["Routines retenues", "cloture-mensuelle", "dry-run"],
+        "must_not_contain_in_output": ["error", "traceback", "ERREUR"],
+        "max_duration_seconds": 15
+      }
+    },
+    {
+      "id": "cfo-init-fct-routines-scripts-importable",
+      "skill": "cfo-init",
+      "label": "Les 5 scripts Python de routines sont syntax-valid",
+      "executable": {
+        "type": "python",
+        "cwd": ".",
+        "script": "/Users/ruddyb/Documents/GitProjects/moriarty-cfo/evals/_helpers/check_scripts_compile.py",
+        "args": []
+      },
+      "assertions": {
+        "exit_code": 0,
+        "must_contain_in_output": ["scripts_ok=5"],
+        "must_not_contain_in_output": ["SyntaxError", "traceback"],
+        "max_duration_seconds": 10
+      }
+    },
     {
       "id": "cfo-init-fct-01",
       "skill": "cfo-init",

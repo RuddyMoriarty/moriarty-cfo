@@ -1,0 +1,634 @@
+{
+  "_meta": {
+    "description": "Catalogue des routines programmées du bundle moriarty-cfo. Une routine = cycle de production récurrent par entité suivie. Chaque routine produit un artefact métier concret (reporting, dashboard, rapport) via orchestration d'un ou plusieurs skills du bundle.",
+    "version": "0.1.2",
+    "last_updated": "2026-04-15",
+    "count_universelles": 12,
+    "count_conditionnelles": 13,
+    "total": 25
+  },
+
+  "_schema": {
+    "id": "Identifiant kebab-case unique",
+    "name": "Nom lisible court",
+    "description": "Une phrase qui décrit le cycle",
+    "category": "universelle | taille | secteur | capital | dette | scope | cabinet",
+    "frequency": "daily | weekly | monthly | quarterly | yearly | on_trigger",
+    "trigger": {
+      "type": "cron_day_of_month | cron_day_of_week | date_derived | date_fixed | condition_based",
+      "day": "1-31 ou iso weekday 1-7",
+      "hour": "0-23",
+      "minute_pool": "Liste de minutes sûres hors :00 et :30",
+      "offset_from_closing_days": "Entier signé (negatif = avant, positif = après)",
+      "fire_at_absolute": "Date ISO si date_fixed"
+    },
+    "conditions": {
+      "always": "Bool - si true, routine universelle",
+      "size_in": "Liste - TPE/PE/ME/ETI/GE",
+      "secteur_naf_prefix": "Liste de préfixes NAF (ex: ['6201', '6202'])",
+      "secteur_category": "Enum - saas | industrie | commerce | services_b2b | immo_lmnp | generaliste",
+      "is_startup": "Bool",
+      "has_investors": "Bool (equity funding raised)",
+      "has_covenants": "Bool",
+      "is_groupe": "Bool",
+      "has_employees": "Bool (effectif > 0)",
+      "csrd_wave_in": "Liste - wave_1 | wave_2 | wave_3 | hors_scope",
+      "seuil_audit": "Bool (CA >= 1.55M€)",
+      "has_stocks": "Bool (secteur avec inventaire)"
+    },
+    "skills_chain": "Liste ordonnée des skills à invoquer",
+    "artefact": {
+      "type": "html | pdf | xlsx | json | markdown",
+      "template": "Chemin relatif vers template",
+      "path_pattern": "Pattern avec placeholders {siren}, {yyyy}, {mm}, {qq}"
+    },
+    "notifications": {
+      "before": "Liste d'offsets (J-15, J-7, J-1) pour rappels AVANT trigger",
+      "level_min": "Niveau min (1-4) pour activer la notification"
+    },
+    "level_min": "Niveau min (1-4) pour que la routine soit programmée"
+  },
+
+  "routines": [
+    {
+      "id": "cloture-mensuelle",
+      "name": "Clôture mensuelle",
+      "description": "Clôture comptable J+5 fin de mois, suivie de la production du flash mensuel.",
+      "category": "universelle",
+      "frequency": "monthly",
+      "trigger": {
+        "type": "cron_day_of_month",
+        "day": 5,
+        "hour": 8,
+        "minute_pool": [7, 13, 17, 23, 37, 53]
+      },
+      "conditions": {"always": true},
+      "skills_chain": ["cfo-comptabilite", "cfo-reporting"],
+      "artefact": {
+        "type": "html",
+        "template": "templates/routines/cloture-mensuelle.md",
+        "path_pattern": "private/companies/{siren}/artefacts/flash-{yyyy}-{mm}.html"
+      },
+      "notifications": {"before": ["J-3"], "level_min": 1},
+      "level_min": 1
+    },
+    {
+      "id": "reporting-trimestriel",
+      "name": "Reporting trimestriel",
+      "description": "Board pack trimestriel après clôture T. Inclut comparatif YoY et variance vs budget.",
+      "category": "universelle",
+      "frequency": "quarterly",
+      "trigger": {
+        "type": "cron_day_of_month",
+        "day": 10,
+        "hour": 9,
+        "minute_pool": [3, 17, 27, 43, 53],
+        "months_only": [1, 4, 7, 10]
+      },
+      "conditions": {"always": true},
+      "skills_chain": ["cfo-comptabilite", "cfo-reporting", "cfo-controle-gestion"],
+      "artefact": {
+        "type": "html",
+        "template": "templates/routines/reporting-trimestriel.md",
+        "path_pattern": "private/companies/{siren}/artefacts/board-pack-{yyyy}-T{qq}.html"
+      },
+      "notifications": {"before": ["J-7", "J-1"], "level_min": 1},
+      "level_min": 1
+    },
+    {
+      "id": "cloture-annuelle",
+      "name": "Clôture annuelle",
+      "description": "Clôture de l'exercice, liasse fiscale 2033/2065, FEC, rapport de gestion, coordination CAC. Déclenche à clôture+135 jours.",
+      "category": "universelle",
+      "frequency": "yearly",
+      "trigger": {
+        "type": "date_derived",
+        "offset_from_closing_days": -45,
+        "hour": 9,
+        "minute_pool": [7, 13, 23, 37, 47]
+      },
+      "conditions": {"always": true},
+      "skills_chain": ["cfo-comptabilite", "cfo-fiscalite", "cfo-reporting", "cfo-risques-conformite"],
+      "artefact": {
+        "type": "html",
+        "template": "templates/routines/cloture-annuelle.md",
+        "path_pattern": "private/companies/{siren}/artefacts/cloture-annuelle-{yyyy}.html"
+      },
+      "notifications": {"before": ["J-30", "J-15", "J-7"], "level_min": 1},
+      "level_min": 1
+    },
+    {
+      "id": "veille-reglementaire",
+      "name": "Veille réglementaire hebdomadaire",
+      "description": "Revue hebdomadaire des publications ANC, IASB, AMF, ACPR, Légifrance, Bofip. Synthèse des changements applicables au profil de l'entité.",
+      "category": "universelle",
+      "frequency": "weekly",
+      "trigger": {
+        "type": "cron_day_of_week",
+        "day": 1,
+        "hour": 8,
+        "minute_pool": [17, 23, 37, 47, 53]
+      },
+      "conditions": {"always": true},
+      "skills_chain": ["cfo-risques-conformite"],
+      "artefact": {
+        "type": "markdown",
+        "template": "templates/routines/veille-reglementaire.md",
+        "path_pattern": "private/companies/{siren}/artefacts/veille-reg-{yyyy}-W{ww}.md"
+      },
+      "notifications": {"before": [], "level_min": 2},
+      "level_min": 2
+    },
+    {
+      "id": "cashflow-13w",
+      "name": "Prévision trésorerie 13 semaines",
+      "description": "Mise à jour hebdomadaire de la prévision de trésorerie glissante 13 semaines. Catégorise les flux récurrents et projette encaissements/décaissements.",
+      "category": "universelle",
+      "frequency": "weekly",
+      "trigger": {
+        "type": "cron_day_of_week",
+        "day": 1,
+        "hour": 8,
+        "minute_pool": [7, 13, 27, 37, 47]
+      },
+      "conditions": {"always": true},
+      "skills_chain": ["cfo-tresorerie"],
+      "artefact": {
+        "type": "html",
+        "template": "templates/routines/cashflow-13w.md",
+        "path_pattern": "private/companies/{siren}/artefacts/cashflow-13w-{yyyy}-W{ww}.html"
+      },
+      "notifications": {"before": [], "level_min": 1},
+      "level_min": 1
+    },
+    {
+      "id": "dashboard-cfo",
+      "name": "Dashboard CFO exécutif",
+      "description": "Tableau de bord 5-8 KPIs. Fréquence adaptée à la taille : hebdo pour startups, mensuel M+5 pour PME/ETI.",
+      "category": "universelle",
+      "frequency": "monthly",
+      "trigger": {
+        "type": "cron_day_of_month",
+        "day": 5,
+        "hour": 9,
+        "minute_pool": [13, 23, 37, 47]
+      },
+      "trigger_override_if_startup": {
+        "type": "cron_day_of_week",
+        "day": 1,
+        "hour": 9,
+        "minute_pool": [23, 37, 47]
+      },
+      "conditions": {"always": true},
+      "skills_chain": ["cfo-reporting", "cfo-controle-gestion"],
+      "artefact": {
+        "type": "html",
+        "template": "templates/routines/dashboard-cfo.md",
+        "path_pattern": "private/companies/{siren}/artefacts/dashboard-{yyyy}-{mm}.html"
+      },
+      "notifications": {"before": ["J-1"], "level_min": 1},
+      "level_min": 1
+    },
+    {
+      "id": "atterrissage-mat",
+      "name": "Atterrissage mensuel",
+      "description": "Mise à jour de l'atterrissage (MAT) à chaque fin de mois. Variance vs budget et reprojection fin d'année.",
+      "category": "universelle",
+      "frequency": "monthly",
+      "trigger": {
+        "type": "cron_day_of_month",
+        "day": 8,
+        "hour": 9,
+        "minute_pool": [13, 27, 37, 53]
+      },
+      "conditions": {"always": true},
+      "skills_chain": ["cfo-budget-forecast"],
+      "artefact": {
+        "type": "xlsx",
+        "template": "templates/routines/atterrissage-mat.md",
+        "path_pattern": "private/companies/{siren}/artefacts/mat-{yyyy}-{mm}.xlsx"
+      },
+      "notifications": {"before": [], "level_min": 2},
+      "level_min": 2
+    },
+    {
+      "id": "variance-analysis",
+      "name": "Variance analysis",
+      "description": "Analyse des écarts budget/réel après chaque clôture mensuelle. Investigation des top variances et plan d'action.",
+      "category": "universelle",
+      "frequency": "monthly",
+      "trigger": {
+        "type": "cron_day_of_month",
+        "day": 7,
+        "hour": 10,
+        "minute_pool": [13, 27, 43, 53]
+      },
+      "conditions": {"always": true},
+      "skills_chain": ["cfo-controle-gestion", "cfo-reporting"],
+      "artefact": {
+        "type": "markdown",
+        "template": "templates/routines/variance-analysis.md",
+        "path_pattern": "private/companies/{siren}/artefacts/variance-{yyyy}-{mm}.md"
+      },
+      "notifications": {"before": [], "level_min": 2},
+      "level_min": 2
+    },
+    {
+      "id": "paie-dsn",
+      "name": "Revue paie et DSN",
+      "description": "Conformité DSN mensuelle, cotisations URSSAF, taxe apprentissage, effort formation. Active uniquement si l'entité a des salariés.",
+      "category": "universelle",
+      "frequency": "monthly",
+      "trigger": {
+        "type": "cron_day_of_month",
+        "day": 15,
+        "hour": 9,
+        "minute_pool": [7, 13, 27, 43]
+      },
+      "conditions": {"always": true, "has_employees": true},
+      "skills_chain": ["cfo-comptabilite"],
+      "artefact": {
+        "type": "markdown",
+        "template": "templates/routines/paie-dsn.md",
+        "path_pattern": "private/companies/{siren}/artefacts/paie-dsn-{yyyy}-{mm}.md"
+      },
+      "notifications": {"before": ["J-1"], "level_min": 1},
+      "level_min": 1
+    },
+    {
+      "id": "forecast-12m",
+      "name": "Forecast 12 mois glissant",
+      "description": "Reprojection trimestrielle du P&L, du bilan et du cash flow sur 12 mois glissants. Scénarios optimiste/réaliste/pessimiste.",
+      "category": "universelle",
+      "frequency": "quarterly",
+      "trigger": {
+        "type": "cron_day_of_month",
+        "day": 15,
+        "hour": 9,
+        "minute_pool": [17, 27, 43, 53],
+        "months_only": [1, 4, 7, 10]
+      },
+      "conditions": {"always": true},
+      "skills_chain": ["cfo-budget-forecast"],
+      "artefact": {
+        "type": "html",
+        "template": "templates/routines/forecast-12m.md",
+        "path_pattern": "private/companies/{siren}/artefacts/forecast-12m-{yyyy}-T{qq}.html"
+      },
+      "notifications": {"before": ["J-7"], "level_min": 2},
+      "level_min": 2
+    },
+    {
+      "id": "revue-assurances",
+      "name": "Revue des assurances",
+      "description": "Revue annuelle des polices d'assurance (RC pro, RC mandataires, multirisque, cyber, dommages) avant la période de renouvellement de fin d'année.",
+      "category": "universelle",
+      "frequency": "yearly",
+      "trigger": {
+        "type": "date_fixed_annual",
+        "month": 11,
+        "day": 15,
+        "hour": 10,
+        "minute_pool": [17, 27, 37, 47]
+      },
+      "conditions": {"always": true},
+      "skills_chain": ["cfo-risques-conformite"],
+      "artefact": {
+        "type": "markdown",
+        "template": "templates/routines/revue-assurances.md",
+        "path_pattern": "private/companies/{siren}/artefacts/assurances-{yyyy}.md"
+      },
+      "notifications": {"before": ["J-15", "J-7"], "level_min": 2},
+      "level_min": 2
+    },
+    {
+      "id": "veille-sectorielle",
+      "name": "Veille sectorielle",
+      "description": "Alerte mensuelle sur les évolutions du secteur NAF : concurrence, prix de marché, consolidation, réglementations sectorielles.",
+      "category": "universelle",
+      "frequency": "monthly",
+      "trigger": {
+        "type": "cron_day_of_month",
+        "day": 20,
+        "hour": 9,
+        "minute_pool": [17, 27, 43, 53]
+      },
+      "conditions": {"always": true},
+      "skills_chain": ["cfo-risques-conformite", "cfo-controle-gestion"],
+      "artefact": {
+        "type": "markdown",
+        "template": "templates/routines/veille-sectorielle.md",
+        "path_pattern": "private/companies/{siren}/artefacts/veille-sect-{yyyy}-{mm}.md"
+      },
+      "notifications": {"before": [], "level_min": 2},
+      "level_min": 2
+    },
+
+    {
+      "id": "cash-burn-runway",
+      "name": "Cash burn et runway",
+      "description": "Suivi hebdomadaire du cash burn et du runway. Alerte si runway < 6 mois. Routine startup/scale-up.",
+      "category": "capital",
+      "frequency": "weekly",
+      "trigger": {
+        "type": "cron_day_of_week",
+        "day": 1,
+        "hour": 8,
+        "minute_pool": [27, 37, 47, 53]
+      },
+      "conditions": {"is_startup": true},
+      "skills_chain": ["cfo-tresorerie"],
+      "artefact": {
+        "type": "html",
+        "template": "templates/routines/cash-burn-runway.md",
+        "path_pattern": "private/companies/{siren}/artefacts/runway-{yyyy}-W{ww}.html"
+      },
+      "notifications": {"before": [], "level_min": 1},
+      "level_min": 1
+    },
+    {
+      "id": "mrr-arr-tracking",
+      "name": "Suivi MRR/ARR",
+      "description": "Tracking hebdomadaire des indicateurs SaaS : ARR, NRR, churn, CAC payback, gross/net retention. Pour éditeurs SaaS.",
+      "category": "secteur",
+      "frequency": "weekly",
+      "trigger": {
+        "type": "cron_day_of_week",
+        "day": 1,
+        "hour": 9,
+        "minute_pool": [13, 23, 37, 43]
+      },
+      "conditions": {"secteur_category": "saas"},
+      "skills_chain": ["cfo-tresorerie", "cfo-reporting"],
+      "artefact": {
+        "type": "html",
+        "template": "templates/routines/mrr-arr-tracking.md",
+        "path_pattern": "private/companies/{siren}/artefacts/arr-{yyyy}-W{ww}.html"
+      },
+      "notifications": {"before": [], "level_min": 2},
+      "level_min": 2
+    },
+    {
+      "id": "burn-multiple",
+      "name": "Burn multiple",
+      "description": "Calcul hebdo du burn multiple (net burn / net new ARR). Indicateur d'efficience post-SaaS. Pour scale-ups.",
+      "category": "capital",
+      "frequency": "weekly",
+      "trigger": {
+        "type": "cron_day_of_week",
+        "day": 1,
+        "hour": 9,
+        "minute_pool": [17, 27, 37, 47]
+      },
+      "conditions": {"is_startup": true, "secteur_category": "saas"},
+      "skills_chain": ["cfo-tresorerie", "cfo-budget-forecast"],
+      "artefact": {
+        "type": "markdown",
+        "template": "templates/routines/burn-multiple.md",
+        "path_pattern": "private/companies/{siren}/artefacts/burn-mult-{yyyy}-W{ww}.md"
+      },
+      "notifications": {"before": [], "level_min": 3},
+      "level_min": 3
+    },
+    {
+      "id": "unit-economics",
+      "name": "Unit economics",
+      "description": "Revue mensuelle LTV, CAC, LTV/CAC ratio, payback period. Efficience par unité commerciale.",
+      "category": "secteur",
+      "frequency": "monthly",
+      "trigger": {
+        "type": "cron_day_of_month",
+        "day": 5,
+        "hour": 10,
+        "minute_pool": [23, 37, 47, 53]
+      },
+      "conditions": {"secteur_category": "saas"},
+      "skills_chain": ["cfo-controle-gestion"],
+      "artefact": {
+        "type": "html",
+        "template": "templates/routines/unit-economics.md",
+        "path_pattern": "private/companies/{siren}/artefacts/unit-econ-{yyyy}-{mm}.html"
+      },
+      "notifications": {"before": [], "level_min": 2},
+      "level_min": 2
+    },
+    {
+      "id": "rotation-stocks-dio",
+      "name": "Rotation stocks et DIO",
+      "description": "Analyse mensuelle de la rotation des stocks et du DIO vs cible. Alerte sur surstock ou rupture. Industrie, commerce, négoce.",
+      "category": "secteur",
+      "frequency": "monthly",
+      "trigger": {
+        "type": "cron_day_of_month",
+        "day": 10,
+        "hour": 10,
+        "minute_pool": [17, 27, 43, 53]
+      },
+      "conditions": {"has_stocks": true},
+      "skills_chain": ["cfo-controle-gestion"],
+      "artefact": {
+        "type": "markdown",
+        "template": "templates/routines/rotation-stocks-dio.md",
+        "path_pattern": "private/companies/{siren}/artefacts/stocks-{yyyy}-{mm}.md"
+      },
+      "notifications": {"before": [], "level_min": 2},
+      "level_min": 2
+    },
+    {
+      "id": "tjm-productivite",
+      "name": "TJM et productivité facturée",
+      "description": "Suivi hebdomadaire du taux d'utilisation, du TJM moyen et de la productivité par consultant. Services B2B.",
+      "category": "secteur",
+      "frequency": "weekly",
+      "trigger": {
+        "type": "cron_day_of_week",
+        "day": 1,
+        "hour": 10,
+        "minute_pool": [23, 37, 43, 53]
+      },
+      "conditions": {"secteur_category": "services_b2b"},
+      "skills_chain": ["cfo-reporting", "cfo-controle-gestion"],
+      "artefact": {
+        "type": "html",
+        "template": "templates/routines/tjm-productivite.md",
+        "path_pattern": "private/companies/{siren}/artefacts/tjm-{yyyy}-W{ww}.html"
+      },
+      "notifications": {"before": [], "level_min": 2},
+      "level_min": 2
+    },
+    {
+      "id": "dso-aging",
+      "name": "DSO aging",
+      "description": "Analyse mensuelle du vieillissement des créances clients (30/60/90j). Plan de relances. Services B2B où le DSO est fréquent.",
+      "category": "secteur",
+      "frequency": "monthly",
+      "trigger": {
+        "type": "cron_day_of_month",
+        "day": 7,
+        "hour": 10,
+        "minute_pool": [17, 27, 43, 53]
+      },
+      "conditions": {"secteur_category": "services_b2b"},
+      "skills_chain": ["cfo-tresorerie", "cfo-reporting"],
+      "artefact": {
+        "type": "html",
+        "template": "templates/routines/dso-aging.md",
+        "path_pattern": "private/companies/{siren}/artefacts/dso-{yyyy}-{mm}.html"
+      },
+      "notifications": {"before": [], "level_min": 2},
+      "level_min": 2
+    },
+    {
+      "id": "covenant-monitoring",
+      "name": "Suivi des covenants",
+      "description": "Monitoring trimestriel des covenants bancaires (DSCR, leverage, ICR) avant arrêté de clôture. Alerte si breach imminent.",
+      "category": "dette",
+      "frequency": "quarterly",
+      "trigger": {
+        "type": "cron_day_of_month",
+        "day": 25,
+        "hour": 9,
+        "minute_pool": [17, 27, 43, 53],
+        "months_only": [3, 6, 9, 12]
+      },
+      "conditions": {"has_covenants": true},
+      "skills_chain": ["cfo-tresorerie", "cfo-fiscalite"],
+      "artefact": {
+        "type": "markdown",
+        "template": "templates/routines/covenant-monitoring.md",
+        "path_pattern": "private/companies/{siren}/artefacts/covenants-{yyyy}-T{qq}.md"
+      },
+      "notifications": {"before": ["J-7"], "level_min": 1},
+      "level_min": 1
+    },
+    {
+      "id": "consolidation-ifrs",
+      "name": "Consolidation IFRS",
+      "description": "Consolidation trimestrielle partielle et annuelle complète. Méthode par intégration globale, proportionnelle ou mise en équivalence selon le périmètre.",
+      "category": "scope",
+      "frequency": "quarterly",
+      "trigger": {
+        "type": "cron_day_of_month",
+        "day": 20,
+        "hour": 9,
+        "minute_pool": [17, 27, 43, 53],
+        "months_only": [1, 4, 7, 10]
+      },
+      "conditions": {"is_groupe": true},
+      "skills_chain": ["cfo-comptabilite"],
+      "artefact": {
+        "type": "xlsx",
+        "template": "templates/routines/consolidation-ifrs.md",
+        "path_pattern": "private/companies/{siren}/artefacts/conso-ifrs-{yyyy}-T{qq}.xlsx"
+      },
+      "notifications": {"before": ["J-7"], "level_min": 1},
+      "level_min": 1
+    },
+    {
+      "id": "intercos-eliminations",
+      "name": "Éliminations intercos",
+      "description": "Éliminations mensuelles des opérations intra-groupe (CA, achats, créances, dettes, marge en stock). Réconciliation entre entités.",
+      "category": "scope",
+      "frequency": "monthly",
+      "trigger": {
+        "type": "cron_day_of_month",
+        "day": 7,
+        "hour": 11,
+        "minute_pool": [13, 27, 37, 53]
+      },
+      "conditions": {"is_groupe": true},
+      "skills_chain": ["cfo-comptabilite"],
+      "artefact": {
+        "type": "xlsx",
+        "template": "templates/routines/intercos-eliminations.md",
+        "path_pattern": "private/companies/{siren}/artefacts/intercos-{yyyy}-{mm}.xlsx"
+      },
+      "notifications": {"before": [], "level_min": 2},
+      "level_min": 2
+    },
+    {
+      "id": "cap-table-version",
+      "name": "Cap table versioning",
+      "description": "Mise à jour trimestrielle de la table de capitalisation : BSPCE, AGA, BSA, dilution scenarios. Ad hoc sur chaque levée.",
+      "category": "capital",
+      "frequency": "quarterly",
+      "trigger": {
+        "type": "cron_day_of_month",
+        "day": 15,
+        "hour": 10,
+        "minute_pool": [23, 37, 43, 53],
+        "months_only": [1, 4, 7, 10]
+      },
+      "conditions": {"has_investors": true},
+      "skills_chain": ["cfo-financement-croissance"],
+      "artefact": {
+        "type": "xlsx",
+        "template": "templates/routines/cap-table-version.md",
+        "path_pattern": "private/companies/{siren}/artefacts/cap-table-{yyyy}-T{qq}.xlsx"
+      },
+      "notifications": {"before": [], "level_min": 2},
+      "level_min": 2
+    },
+    {
+      "id": "csrd-rapport-annuel",
+      "name": "Rapport CSRD/ESRS annuel",
+      "description": "Production du rapport de durabilité annuel. Double matérialité, ESRS E1-E5, S1-S4, G1. Déclenche 180 jours avant clôture.",
+      "category": "scope",
+      "frequency": "yearly",
+      "trigger": {
+        "type": "date_derived",
+        "offset_from_closing_days": -180,
+        "hour": 10,
+        "minute_pool": [17, 27, 43, 53]
+      },
+      "conditions": {"csrd_wave_in": ["wave_1", "wave_2", "wave_3"]},
+      "skills_chain": ["cfo-csrd-esg", "cfo-comptabilite"],
+      "artefact": {
+        "type": "html",
+        "template": "templates/routines/csrd-rapport-annuel.md",
+        "path_pattern": "private/companies/{siren}/artefacts/csrd-{yyyy}.html"
+      },
+      "notifications": {"before": ["J-60", "J-30", "J-7"], "level_min": 1},
+      "level_min": 1
+    },
+    {
+      "id": "audit-prep-cac",
+      "name": "Préparation audit CAC",
+      "description": "Coordination avec le commissaire aux comptes : dossier de travail, lettre d'affirmation, findings précédents, plan de remédiation. Déclenche chaque trimestre avant revue CAC.",
+      "category": "taille",
+      "frequency": "quarterly",
+      "trigger": {
+        "type": "cron_day_of_month",
+        "day": 25,
+        "hour": 10,
+        "minute_pool": [17, 27, 43, 53],
+        "months_only": [3, 6, 9, 12]
+      },
+      "conditions": {"seuil_audit": true},
+      "skills_chain": ["cfo-risques-conformite", "cfo-comptabilite"],
+      "artefact": {
+        "type": "markdown",
+        "template": "templates/routines/audit-prep-cac.md",
+        "path_pattern": "private/companies/{siren}/artefacts/cac-prep-{yyyy}-T{qq}.md"
+      },
+      "notifications": {"before": ["J-15", "J-7"], "level_min": 1},
+      "level_min": 1
+    }
+  ],
+
+  "_notes": {
+    "mode_ec_portfolio": "Routines EC (suivi portfolio, relances, lettres mission, encaissements, forfaits) sont prévues pour v0.1.3. Non incluses dans ce catalogue v0.1.2.",
+    "routines_ecartees": [
+      "COSO ERM détaillé (diagnostic unique + ad hoc)",
+      "Transfer pricing documentation (ad hoc, multinationales)",
+      "Test dépréciation goodwill (annuel + événementiel)",
+      "Revue provisions juridiques (trim + ad hoc, non cyclique stricte)",
+      "Audit interne SOX (entreprises cotées US, spec demand)",
+      "Reporting ACPR/AMF (consultants dédiés, banques/assurances)",
+      "Supply chain finance (ad hoc si cash constraint)",
+      "Retraitement IFRS mensuel (trim suffit sauf coté)"
+    ],
+    "deduplication": "Les IDs de tâches programmées suivent le pattern : cfo-{routine_id}-{siren}-{yyyymm} (mensuel) | cfo-{routine_id}-{siren}-{yyyy}-T{qq} (trim) | cfo-{routine_id}-{siren}-{yyyy} (annuel) | cfo-{routine_id}-{siren}-W{ww} (hebdo). Garantit l'idempotence : relancer la programmation ne crée pas de doublons.",
+    "minute_pool_strategy": "Les minutes sont choisies hors :00 et :30 pour éviter les collisions de pic serveur. Le choix dans le pool se fait par hash du SIREN (stable par entité mais différent d'une entité à l'autre)."
+  }
+}

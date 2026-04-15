@@ -132,16 +132,43 @@ Code couleur :
 
 **Renvoi détaillé** : [references/calendrier-fiscal.md](references/calendrier-fiscal.md).
 
-### Étape 5, Programmation notifications
+### Étape 5, Calcul et programmation des routines
 
-Pour chacune des 6 prochaines échéances, programmer 3 rappels (J-15, J-7, J-1) :
+Deux activités complémentaires pour cette entité :
 
-- **Court terme session** : via `CronCreate` (one-shot)
-- **Long terme cross-session** : via `mcp__scheduled-tasks__create_scheduled_task` (persistant)
+**A. Rappels d'échéances fiscales** (calendrier généré à l'étape 4)
 
-Le niveau de notification est configurable (1 à 4, voir [references/notifications.md](references/notifications.md)).
+Pour chacune des 6 prochaines échéances du calendrier fiscal, programmer 3 rappels (J-15, J-7, J-1) :
+- Court terme session : via `CronCreate` (one-shot, ne survit pas à la fin de session)
+- Long terme cross-session : via `mcp__scheduled-tasks__create_scheduled_task`
 
 Templates des messages : [shared/notification-templates.md](../shared/notification-templates.md).
+
+**B. Routines de production** (cycles de production internes par entité)
+
+Une routine est un cycle récurrent (hebdo, mensuel, trim, annuel) qui produit un artefact métier en orchestrant un ou plusieurs skills du bundle. Le catalogue contient 25 routines (12 universelles + 13 conditionnelles par profil). Source de vérité : [`data/routines-catalog.json`](../data/routines-catalog.json).
+
+Exécuter dans l'ordre :
+
+```bash
+# 1. Dérive les routines applicables selon le profil de l'entité
+python3 scripts/routines/compute_entity_routines.py --siren <SIREN>
+
+# 2. Génère les payloads scheduled-tasks (cron + prompt) pour chaque routine
+python3 scripts/routines/schedule_routines.py --siren <SIREN> --output /tmp/routines_payload.json
+```
+
+Le second script produit un JSON de payloads. Le harnais Claude Code les transforme ensuite en appels réels à `mcp__scheduled-tasks__create_scheduled_task` (un par routine).
+
+Les task_ids sont stables et idempotents : relancer `schedule_routines.py` ne crée pas de doublons.
+
+**Spec détaillée** : [references/routines.md](references/routines.md), [references/notifications.md](references/notifications.md).
+
+**Niveau de notifications** (stocké dans `private/profile.json > notifications_level`, 1 à 4) :
+- 1, Standard : routines critiques uniquement (clôtures, reporting trim, dashboard)
+- 2, Intensif : +veille, variance, atterrissage, forecast 12m, sectoriel (défaut recommandé)
+- 3, Maximum : +burn multiple et toutes conditionnelles applicables
+- 4, Aucune : rien n'est programmé
 
 ### Étape 6, Système d'achievements
 
@@ -205,16 +232,45 @@ Voir [shared/brand-voice.md](../shared/brand-voice.md). En résumé :
 
 ## Commandes secondaires (sans relancer toute l'init)
 
-L'utilisateur peut invoquer ce skill pour des actions ciblées :
+L'utilisateur peut invoquer ce skill pour des actions ciblées.
+
+### Profil et progression
 
 | Commande utilisateur | Action |
 |---------------------|--------|
-| "Affiche ma progression" | Lit `private/cfo-progress.json` + affiche le format synthèse complète |
-| "Quelles sont mes échéances" | Lit `private/calendar-fiscal.json` + filtre prochains 30j |
-| "Reset complet" | Demande confirmation → `rm -rf private/` (reset destructif) |
+| "Affiche ma progression" | Lit `private/cfo-progress.json` et affiche la synthèse |
+| "Quelles sont mes échéances" | Lit `private/calendar-fiscal.json` et filtre les 30 prochains jours |
+| "Reset complet" | Demande confirmation puis `rm -rf private/` (reset destructif) |
 | "Change d'audience" | Modifie `private/profile.json > audience_type` |
-| "Suspendre les notifications" | `private/profile.json > notifications_active = false` |
-| "Ajouter un client au portfolio" (EC) | Nouvelle fiche `private/companies/<siren>.json` |
+| "Ajouter un client au portfolio" (mode EC) | Nouvelle fiche `private/companies/<siren>/company.json` |
+
+### Routines et notifications par entité
+
+| Commande utilisateur | Script invoqué |
+|---------------------|----------------|
+| "Calcule les routines pour SIREN X" | `scripts/routines/compute_entity_routines.py --siren X` |
+| "Programme les routines de SIREN X" | `scripts/routines/schedule_routines.py --siren X` |
+| "Liste les routines de SIREN X" ou "Statut routines" | `scripts/routines/list_routines.py --siren X [--detailed]` |
+| "Exécute la routine X maintenant pour SIREN Y" | `scripts/routines/run_routine.py --siren Y --routine X [--period ...]` |
+| "Désactive la routine X pour SIREN Y" | `scripts/routines/purge_routines.py --siren Y --routine X` |
+| "Purge toutes les routines de SIREN X" | `scripts/routines/purge_routines.py --siren X --all` |
+| "Change mon niveau de notifications à 2" | Met `notifications_level=2`, recompute + reschedule |
+| "Suspendre toutes les routines" | `notifications_active=false`, tasks restent mais ne fire pas |
+| "Reprendre les routines" | `notifications_active=true` |
+
+Après chaque `compute` ou `schedule`, le script écrit dans `private/routines.log` pour observabilité.
+
+### Workflow type d'invocation des routines
+
+```
+Utilisateur : "Calcule les routines pour ma société"
+    └→ Lance compute_entity_routines.py --siren <SIREN>
+       └→ Affiche les N routines retenues (nom, fréquence, prochain fire)
+          └→ Demande : "Je les programme toutes ? [oui/non]"
+             └→ Si oui : schedule_routines.py --output /tmp/payloads.json
+                └→ Pour chaque payload, appelle mcp__scheduled-tasks__create_scheduled_task
+                   └→ Affiche la confirmation : "X routines programmées, prochaines occurrences dans ..."
+```
 
 ## Composabilité avec les autres skills du bundle
 

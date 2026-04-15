@@ -4,6 +4,43 @@ Toutes les évolutions notables de `moriarty-cfo` sont documentées ici.
 
 Le format suit [Keep a Changelog](https://keepachangelog.com/fr/1.1.0/) et le projet adhère au [Semantic Versioning](https://semver.org/lang/fr/).
 
+## [0.1.2], 2026-04-15
+
+Ajout du module Routines dans `cfo-init`. Une routine est un cycle de production récurrent par entité suivie, qui orchestre un ou plusieurs skills du bundle pour produire un artefact métier concret (flash mensuel, board pack, rapport CSRD, synthèse veille).
+
+### Added, catalogue de routines
+
+- `data/routines-catalog.json` (nouveau, source de vérité) : catalogue de 25 routines avec conditions d'activation (profil, taille, secteur, capital, dette, scope CSRD), trigger (cron ou date dérivée), skills à orchestrer, pattern d'artefact. 12 routines universelles (clôture mensuelle, reporting trimestriel, clôture annuelle, veille réglementaire, cashflow 13 semaines, dashboard CFO, atterrissage mensuel, variance analysis, paie-DSN, forecast 12m, revue assurances, veille sectorielle) et 13 routines conditionnelles (cash burn startup, MRR/ARR SaaS, burn multiple, unit economics, rotation stocks DIO, TJM productivité, DSO aging, covenant monitoring, consolidation IFRS, intercos eliminations, cap table versioning, CSRD annuel, audit prep CAC).
+- Audit des sources internes (`data/cfo-job-corpus.json`, `data/cfo-frameworks-corpus.json`, les 10 SKILL.md) pour construire ce catalogue, 35 patterns cycliques identifiés dont 25 retenus et 8 écartés (trop contextuels, déjà couverts, ou pas cyclables).
+
+### Added, spec et scripts
+
+- `cfo-init/references/routines.md` (nouveau) : spec complète du module Routines. Architecture à deux horizons (CronCreate session vs scheduled-tasks cross-session), deux niveaux de stockage (par entité dans `private/companies/<siren>/routines.json`, index global dans `private/routines-index.json`), flow d'activation, règles d'idempotence avec IDs stables, mapping profil vers routines, orchestration skills_chain, observabilité via `private/routines.log`.
+- `cfo-init/scripts/routines/compute_entity_routines.py` : dérive les routines applicables à une entité en lisant `company.json` et le catalogue. Applique les conditions, calcule les cron expressions ou les dates dérivées de la clôture. Mode dry-run pour inspection.
+- `cfo-init/scripts/routines/schedule_routines.py` : génère les payloads scheduled-tasks (cron + prompt + description) pour chaque routine retenue. Produit un JSON de payloads que le harnais Claude Code transforme en appels `mcp__scheduled-tasks__create_scheduled_task`. IDs stables pour garantir l'idempotence.
+- `cfo-init/scripts/routines/run_routine.py` : exécute une routine, substitue les placeholders du template, écrit l'artefact au chemin configuré, met à jour routines.json.
+- `cfo-init/scripts/routines/list_routines.py` : affiche les routines actives d'une entité (mode compact et mode `--detailed`).
+- `cfo-init/scripts/routines/purge_routines.py` : nettoyage avec 4 modes (une routine, toutes pour une entité, toutes les entités en mode force, suspension sans suppression).
+
+### Added, 25 templates d'artefacts
+
+- `cfo-init/templates/routines/` : un template par routine du catalogue. Utilise le format board (Pourquoi / Chiffres clés / Options / Recommandation / Next) pour les sorties de décision (reporting, dashboard, cashflow, runway, MRR, covenants, cap table, DSO, TJM, stocks, burn multiple, unit economics, atterrissage) et le format technique (Faits / Hypothèses / Analyse / Risques / Actions / Limites) pour les analyses traçables (clôtures, paie-DSN, intercos, consolidation, CSRD, audit-CAC, veilles). Placeholders {{siren}}, {{denomination}}, {{yyyy}}, {{mm}}, etc. substitués par `run_routine.py`.
+
+### Changed, cfo-init
+
+- `cfo-init/SKILL.md` étape 5 réécrite. Distingue explicitement rappels d'échéances fiscales (via `CronCreate` / `scheduled-tasks`, templates dans `shared/notification-templates.md`) et routines de production (via le nouveau module). Donne les commandes Python à invoquer dans l'ordre.
+- `cfo-init/SKILL.md` section Commandes secondaires étendue avec 9 commandes dédiées aux routines (calcule, programme, liste, exécute, désactive, purge, change niveau, suspend, reprend).
+
+### Added, evals
+
+- `evals/_helpers/check_catalog.py`, `check_scripts_compile.py`, `run_compute_dryrun.py` : helpers de test qui valident le catalogue JSON, compilent les 5 scripts Python, et exécutent `compute_entity_routines.py --dry-run` sur une fixture SaaS startup.
+- 3 tests fonctionnels ajoutés à `evals/functional-tests.json` qui invoquent ces helpers. Full evals passe à 88 % (243/276), les 13 échecs restants sont liés aux Triggers chevauchants entre skills (fix prévu v0.1.3).
+
+### Notes
+
+- Mode EC portfolio (dashboard agrégé multi-clients, relances dossier incomplet, lettres de mission, pilotage encaissements, suivi forfaits vs réel) reste reporté en v0.1.3 comme prévu.
+- Les artefacts ne sont pas encore générés automatiquement au format final (HTML/PDF). Le template markdown est écrit tel quel par `run_routine.py`, le harnais Claude Code peut ensuite le rendre via les skills compagnons (headless Chrome, etc.).
+
 ## [0.1.1], 2026-04-15
 
 Refonte qualité majeure suite à un audit interne. La v0.1.0 contenait des éléments à revoir : système d'évaluations qui ne mesurait rien (keyword-matching tautologique), métriques de performance inventées dans le README, mimétisme structurel d'autres bundles sans valeur ajoutée propre, et violations de la brand voice annoncée. Cette release corrige tout cela.

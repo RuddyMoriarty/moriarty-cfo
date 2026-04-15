@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-forecast_13w.py — génère une prévision de trésorerie 13 semaines.
+forecast_13w.py, génère une prévision de trésorerie 13 semaines.
 
 Input : historique flux bancaires (CSV) + projections encaissements/décaissements
 Output : HTML + CSV avec 13 colonnes, point bas identifié, alertes automatiques.

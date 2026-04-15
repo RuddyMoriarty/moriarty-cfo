@@ -46,8 +46,8 @@ Le forecast des mois restants est :
 - {Hypothèse 2}
 
 ## Actions en cours pour combler l'écart
-- {Action 1 — impact}
-- {Action 2 — impact}
+- {Action 1, impact}
+- {Action 2, impact}
 ```
 
 ## Seuils d'alerte

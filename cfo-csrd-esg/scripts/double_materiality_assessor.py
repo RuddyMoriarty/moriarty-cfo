@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-double_materiality_assessor.py — construit la matrice de double matérialité.
+double_materiality_assessor.py, construit la matrice de double matérialité.
 
 Input : CSV avec colonnes sujet,standard_esrs,score_impact(1-5),score_financial(1-5)
 Output : matrice + liste sujets matériels + sujets à reporter
@@ -89,7 +89,7 @@ def main() -> int:
         "sujets_materiels": sujets_materiels,
         "sujets_non_materiels": sujets_non_materiels,
         "note": (
-            "ESRS E1 (climat) bénéficie d'une présomption de matérialité — si non "
+            "ESRS E1 (climat) bénéficie d'une présomption de matérialité, si non "
             "matériel, justifier explicitement. Pour les sujets matériels, reporter "
             "l'intégralité du standard ESRS correspondant."
         ),

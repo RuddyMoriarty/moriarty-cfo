@@ -1,4 +1,4 @@
-# Réconciliation résultat comptable → résultat fiscal — Exercice {{ANNEE}}
+# Réconciliation résultat comptable → résultat fiscal, Exercice {{ANNEE}}
 
 **Société** : {{COMPANY_NAME}} (SIREN {{SIREN}})
 **Exercice** : {{ANNEE}}
@@ -49,7 +49,7 @@
 
 | Tranche | Base | Taux | IS |
 |---------|------|------|-----|
-| 0 — 42 500 € | {{BASE_REDUIT}} € | 15% | {{IS_REDUIT}} € |
+| 0, 42 500 € | {{BASE_REDUIT}} € | 15% | {{IS_REDUIT}} € |
 | > 42 500 € | {{BASE_NORMAL}} € | 25% | {{IS_NORMAL}} € |
 | **Total IS brut** | | | **{{IS_BRUT}} €** |
 
@@ -84,6 +84,6 @@ Taux effectif = IS brut / Résultat comptable = **{{TAUX_EFFECTIF}}%**
 
 ---
 
-_Préparé par : {{NOM_PREPARATEUR}} — {{DATE}}_
-_Validé par expert-comptable : {{NOM_EC}} — {{DATE_VALIDATION_EC}}_
+_Préparé par : {{NOM_PREPARATEUR}}, {{DATE}}_
+_Validé par expert-comptable : {{NOM_EC}}, {{DATE_VALIDATION_EC}}_
 _Télétransmission TDFC : {{DATE_TDFC}}_

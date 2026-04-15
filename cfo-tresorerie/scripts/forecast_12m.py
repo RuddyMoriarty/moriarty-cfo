@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-forecast_12m.py — prévision de trésorerie 12 mois glissants avec scénarios.
+forecast_12m.py, prévision de trésorerie 12 mois glissants avec scénarios.
 
 Input : hypothèses CA + variations BFR + CAPEX + service de la dette
 Output : JSON avec 12 mois × 3 scénarios (opt/réel/pess) + probabilité pondérée.
@@ -65,7 +65,7 @@ def generate_scenario(
         var_bfr = var_bfr_mensuel
 
         # Cash flow approché : EBITDA - CAPEX - remboursement dette - variation BFR
-        # (simplification : on n'intègre pas IS mensuel, taxes, etc. — v0.2 raffinera)
+        # (simplification : on n'intègre pas IS mensuel, taxes, etc., v0.2 raffinera)
         flux_net = ebitda - capex - pret - var_bfr
 
         result.append({

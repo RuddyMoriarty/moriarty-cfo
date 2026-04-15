@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-veille_scheduler.py — programme les tâches de veille réglementaire.
+veille_scheduler.py, programme les tâches de veille réglementaire.
 
 Génère le payload pour mcp__scheduled-tasks__create_scheduled_task selon le
 niveau de veille configuré dans private/profile.json.
@@ -42,7 +42,7 @@ def generate_tasks(siren: str, niveau: int = 2) -> list[dict]:
             "cron_expression": f"{minute} 9 * * 1",  # lundi 9h+jit
             "description": "Veille réglementaire hebdomadaire (lundi 9h)",
             "prompt": (
-                "Veille réglementaire hebdomadaire — semaine en cours.\n\n"
+                "Veille réglementaire hebdomadaire, semaine en cours.\n\n"
                 "Sources à consulter (lire data/sources.json categories.frameworks_cfo et risque_conformite) :\n"
                 "- Légifrance (lois publiées cette semaine)\n"
                 "- BoFip (instructions fiscales)\n"
@@ -73,7 +73,7 @@ def generate_tasks(siren: str, niveau: int = 2) -> list[dict]:
             ),
         })
 
-    # Annuel : 1er octobre (PLF) — tous niveaux >= 1
+    # Annuel : 1er octobre (PLF), tous niveaux >= 1
     if niveau >= 1:
         tasks.append({
             "task_id": f"veille-plf-{siren[:6]}",

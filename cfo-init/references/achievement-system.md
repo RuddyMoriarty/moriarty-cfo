@@ -1,4 +1,4 @@
-# Système d'achievements — logique et triggers
+# Système d'achievements, logique et triggers
 
 Gamification discrète style Xbox, orientée jalons CFO. Le stockage est 100% local dans `private/cfo-progress.json`.
 
@@ -40,7 +40,7 @@ Voir le schéma complet dans `../../shared/achievement-templates.md`. Structure 
 }
 ```
 
-## Triggers — quand débloquer un achievement
+## Triggers, quand débloquer un achievement
 
 Chaque achievement de `data/achievements.json` a un `trigger` textuel. La logique d'unlock est implémentée dans chaque skill qui déclenche l'événement correspondant.
 
@@ -159,7 +159,7 @@ Quand le total passe un palier :
 
 Si un achievement attendu ne se débloque pas :
 
-1. Vérifier `private/cfo-progress.json` — est-il bien créé ?
+1. Vérifier `private/cfo-progress.json`, est-il bien créé ?
 2. Vérifier que le skill appelant a bien exécuté `init_progress.py --unlock <id>`
 3. Vérifier que l'achievement existe dans `data/achievements.json` avec le bon `id`
 4. Logs : passer `--verbose` au script pour voir l'état avant/après

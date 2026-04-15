@@ -1,4 +1,4 @@
-# ESRS — European Sustainability Reporting Standards (Set 1)
+# ESRS, European Sustainability Reporting Standards (Set 1)
 
 10 standards thématiques + 2 standards transverses (ESRS 1 et ESRS 2).
 
@@ -6,11 +6,11 @@ Source : EFRAG (https://www.efrag.org/en/sustainability-reporting).
 
 ## Standards transverses (obligatoires si in-scope)
 
-### ESRS 1 — General Requirements
+### ESRS 1, General Requirements
 
 Cadre général : périmètre, principe de double matérialité, référentiels, formats.
 
-### ESRS 2 — General Disclosures
+### ESRS 2, General Disclosures
 
 Informations transverses obligatoires :
 - Stratégie (BP1 à BP6)
@@ -22,7 +22,7 @@ Informations transverses obligatoires :
 
 ## Standards Environment (E)
 
-### E1 — Climate Change
+### E1, Climate Change
 
 **Obligatoire pour tous les in-scope** (présomption de matérialité).
 
@@ -34,7 +34,7 @@ Contenu :
 - CAPEX & OPEX décarbonation
 - Liens avec taxonomie verte (alignment)
 
-### E2 — Pollution
+### E2, Pollution
 
 Si matériel :
 - Pollution air / eau / sol
@@ -42,7 +42,7 @@ Si matériel :
 - Microplastiques
 - Plan d'action pollution
 
-### E3 — Water and Marine Resources
+### E3, Water and Marine Resources
 
 Si matériel :
 - Consommation eau (m³/an)
@@ -50,7 +50,7 @@ Si matériel :
 - Pollution eau
 - Plan d'action eau
 
-### E4 — Biodiversity and Ecosystems
+### E4, Biodiversity and Ecosystems
 
 Si matériel :
 - Sites en zones sensibles biodiversité
@@ -58,7 +58,7 @@ Si matériel :
 - Espèces menacées impactées
 - Plan d'action biodiversité
 
-### E5 — Resource Use and Circular Economy
+### E5, Resource Use and Circular Economy
 
 Si matériel :
 - Consommation ressources (matières premières)
@@ -68,7 +68,7 @@ Si matériel :
 
 ## Standards Social (S)
 
-### S1 — Own Workforce
+### S1, Own Workforce
 
 Si matériel (presque toujours) :
 - Effectif total + breakdown (par genre, âge, contrat, géographie)
@@ -80,7 +80,7 @@ Si matériel (presque toujours) :
 - Diversité, inclusion
 - Cas de discrimination / harcèlement traités
 
-### S2 — Workers in the Value Chain
+### S2, Workers in the Value Chain
 
 Si matériel :
 - Travailleurs en amont / aval (sous-traitants, fournisseurs, prestataires)
@@ -88,14 +88,14 @@ Si matériel :
 - Devoir de vigilance (cf. loi française 2017)
 - Audit fournisseurs (% audités, résultats)
 
-### S3 — Affected Communities
+### S3, Affected Communities
 
 Si matériel :
 - Communautés locales impactées par les opérations
 - Engagements communautaires
 - Conflits / réclamations
 
-### S4 — Consumers and End-Users
+### S4, Consumers and End-Users
 
 Si matériel :
 - Sécurité produits / services
@@ -105,7 +105,7 @@ Si matériel :
 
 ## Standard Gouvernance (G)
 
-### G1 — Business Conduct
+### G1, Business Conduct
 
 Si matériel (presque toujours) :
 - Code de conduite
@@ -117,13 +117,13 @@ Si matériel (presque toujours) :
 
 ## Cadre d'application
 
-### Étape 1 — Double matérialité
+### Étape 1, Double matérialité
 
 Pour chaque standard E, S, G : évaluer si le sujet est matériel **financièrement** ou **en termes d'impact**.
 
 → Si matériel sur **au moins un des deux axes**, le standard doit être **complètement reporté**.
 
-### Étape 2 — Disclosures requises
+### Étape 2, Disclosures requises
 
 Pour chaque standard matériel :
 - Disclosures obligatoires (X dans le standard)
@@ -131,10 +131,10 @@ Pour chaque standard matériel :
 - Targets si fixés
 - Politiques + actions
 
-### Étape 3 — Format
+### Étape 3, Format
 
 Le rapport sustainability est intégré au **rapport de gestion** (L. 225-102-1 C. com.).
-Format **xHTML** pour digitalisation (ESEF — European Single Electronic Format) à terme.
+Format **xHTML** pour digitalisation (ESEF, European Single Electronic Format) à terme.
 
 ## Ressources EFRAG
 

@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-moriarty_link.py — génère un lien Moriarty avec hash SHA-256 du SIREN.
+moriarty_link.py, génère un lien Moriarty avec hash SHA-256 du SIREN.
 
 Le SIREN est hashé pour respecter la privacy (irréversible).
 Permet à Moriarty de reconnaître un visiteur récurrent SANS recevoir le SIREN clair.

@@ -97,4 +97,4 @@ Date : {DATE_SIGNATURE}
 
 *Cette lettre est établie conformément à la norme NEP 580 (Déclarations de la direction). Elle ne couvre que les éléments à la date de signature ; en cas d'événement postérieur connu avant la date du rapport du CAC, la lettre devra être complétée.*
 
-*Document généré par moriarty-cfo / cfo-comptabilite v0.1.0 — à personnaliser selon votre situation.*
+*Document généré par moriarty-cfo / cfo-comptabilite v0.1.0, à personnaliser selon votre situation.*

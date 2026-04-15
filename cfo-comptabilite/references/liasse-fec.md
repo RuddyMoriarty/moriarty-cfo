@@ -1,6 +1,6 @@
 # Liasse fiscale et FEC
 
-## FEC — Fichier des Écritures Comptables
+## FEC, Fichier des Écritures Comptables
 
 ### Obligation légale
 
@@ -65,7 +65,7 @@ Le FEC doit être conservé **6 ans** (art. L. 102 B du LPF).
 
 | Régime | Formulaire principal | Annexes principales |
 |--------|----------------------|---------------------|
-| Micro-BIC / micro-BNC | Pas de liasse — uniquement CA dans déclaration IR | — |
+| Micro-BIC / micro-BNC | Pas de liasse, uniquement CA dans déclaration IR |, |
 | Réel simplifié IS | **2033-SD** | 2033-A à 2033-G |
 | Réel simplifié IR (BIC) | 2031-SD | 2033-A à 2033-G |
 | Réel normal IS | **2065-SD** | 2050 à 2059 |
@@ -115,7 +115,7 @@ Le FEC doit être conservé **6 ans** (art. L. 102 B du LPF).
 
 Template : `templates/liasse-2065-brouillon.md` (à créer en v0.2, pour l'instant renvoyer à `paperasse/controleur-fiscal > templates/liasse-fiscale-2033.md`).
 
-Le brouillon liasse **n'est pas la liasse définitive** : il sert de support à l'EC pour remplir le formulaire officiel sur le site impots.gouv.fr (TDFC — Transfert des Données Fiscales et Comptables).
+Le brouillon liasse **n'est pas la liasse définitive** : il sert de support à l'EC pour remplir le formulaire officiel sur le site impots.gouv.fr (TDFC, Transfert des Données Fiscales et Comptables).
 
 ### Télétransmission TDFC
 

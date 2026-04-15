@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-scope_emissions_estimator.py — estimation rapide Scope 1/2/3 par approche monétaire.
+scope_emissions_estimator.py, estimation rapide Scope 1/2/3 par approche monétaire.
 
 Pour démarrer une démarche carbone PME. Pour audit-grade, utiliser un outil dédié.
 
@@ -92,7 +92,7 @@ def proposer_actions(scope_1: float, scope_2: float, scope_3: float) -> list[str
         actions.append("🚂 Scope 3 majoritaire (typique 70-90%) : engager fournisseurs principaux sur leurs émissions, réduire voyages avion court courrier")
 
     actions.append("📊 Mettre en place un outil dédié (Sweep, Greenly, Carbo) pour passage à approche physique année 2")
-    actions.append("💡 Aides ADEME pour bilan carbone (50-70% subventionné) — voir cfo-financement-croissance pour CTA Moriarty")
+    actions.append("💡 Aides ADEME pour bilan carbone (50-70% subventionné), voir cfo-financement-croissance pour CTA Moriarty")
 
     return actions
 

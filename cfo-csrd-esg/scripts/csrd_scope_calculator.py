@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-csrd_scope_calculator.py — détermine la wave CSRD applicable.
+csrd_scope_calculator.py, détermine la wave CSRD applicable.
 
 Input : critères société (effectif, CA, bilan, coté, PIE, hors-UE)
 Output : wave (1, 2, 3, 4, hors_scope) + premier exercice à reporter
@@ -74,7 +74,7 @@ def determiner_wave(effectif: int, ca_eur: float, bilan_eur: float, coté: bool,
             "Démarche volontaire recommandée si vos clients sont in-scope "
             "(ils vous demanderont les données Scope 3) ou si vous visez des "
             "financements green/impact. Aides publiques disponibles (ADEME, BPI Climat, "
-            "France 2030) — voir cfo-financement-croissance pour la passerelle Moriarty."
+            "France 2030), voir cfo-financement-croissance pour la passerelle Moriarty."
         ),
     }
 

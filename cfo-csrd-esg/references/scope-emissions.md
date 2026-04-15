@@ -1,4 +1,4 @@
-# Émissions GES — Scope 1, 2, 3
+# Émissions GES, Scope 1, 2, 3
 
 Méthodologie de mesure des émissions de gaz à effet de serre.
 
@@ -12,7 +12,7 @@ Les 3 sont **alignées et compatibles**. CSRD impose la conformité au GHG Proto
 
 ## Les 3 scopes
 
-### Scope 1 — Émissions directes
+### Scope 1, Émissions directes
 
 **Définition** : émissions issues de **sources possédées ou contrôlées** par la société.
 
@@ -33,7 +33,7 @@ Exemple :
 - 10 000 L diesel × 2,52 kgCO2e/L = 25,2 tCO2e
 - 5 000 m³ gaz × 0,205 tCO2e/m³ = 1,025 tCO2e
 
-### Scope 2 — Émissions indirectes énergie
+### Scope 2, Émissions indirectes énergie
 
 **Définition** : émissions issues de l'**électricité, vapeur, chaleur, froid achetés**.
 
@@ -57,7 +57,7 @@ Exemple :
 - 1 000 000 kWh avec contrat 100% renouvelable certifié → 0 tCO2e
 - 1 000 000 kWh sans contrat spécifique → utiliser facteur moyen résiduel
 
-### Scope 3 — Autres émissions indirectes
+### Scope 3, Autres émissions indirectes
 
 **Définition** : toutes les **autres émissions liées aux activités** de la société (en amont + en aval).
 

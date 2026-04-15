@@ -6,17 +6,17 @@ Surveillance continue des évolutions fiscales françaises et internationales.
 
 ### France
 
-- **Légifrance** (https://www.legifrance.gouv.fr) — textes législatifs et réglementaires
-- **BoFip** (https://bofip.impots.gouv.fr) — doctrine administrative
-- **impots.gouv.fr** — communication DGFiP
-- **ANC** (https://www.anc.gouv.fr) — normes comptables françaises (qui peuvent impacter le fiscal)
-- **AMF** (https://www.amf-france.org) — sociétés cotées
+- **Légifrance** (https://www.legifrance.gouv.fr), textes législatifs et réglementaires
+- **BoFip** (https://bofip.impots.gouv.fr), doctrine administrative
+- **impots.gouv.fr**, communication DGFiP
+- **ANC** (https://www.anc.gouv.fr), normes comptables françaises (qui peuvent impacter le fiscal)
+- **AMF** (https://www.amf-france.org), sociétés cotées
 
 ### International
 
-- **OCDE** (https://www.oecd.org) — Pillar 2 (taxation minimale globale 15%), BEPS
-- **Commission européenne** — directives fiscales UE
-- **IASB** (https://www.iasb.org) — IFRS (qui impactent le fiscal des groupes cotés)
+- **OCDE** (https://www.oecd.org), Pillar 2 (taxation minimale globale 15%), BEPS
+- **Commission européenne**, directives fiscales UE
+- **IASB** (https://www.iasb.org), IFRS (qui impactent le fiscal des groupes cotés)
 
 ## Cadence de veille
 
@@ -88,27 +88,27 @@ Impactent le régime TVA (franchise, simplifié, normal) et l'éligibilité au t
 
 ## Méthodologie veille
 
-### Étape 1 — Sourcing
+### Étape 1, Sourcing
 
 Abonnements :
 - Gratuits : Légifrance (flux RSS), BoFip (newsletter)
 - Payants : EFL (Editions Francis Lefebvre), Lamy Fiscal, Dictionnaire Permanent Fiscal
 
-### Étape 2 — Tri et priorisation
+### Étape 2, Tri et priorisation
 
 Filtrer selon :
 - Pertinence sectorielle (société concernée)
 - Matérialité financière (impact > 1% du résultat ?)
 - Urgence (application immédiate vs progressive)
 
-### Étape 3 — Analyse d'impact
+### Étape 3, Analyse d'impact
 
 Pour chaque évolution retenue :
 - Qualitatif : quel risque / opportunité ?
 - Quantitatif : chiffrer l'impact sur le résultat / cash
 - Actions : mise en œuvre nécessaire (changement process, nouvelle déclaration, mise à jour système)
 
-### Étape 4 — Communication
+### Étape 4, Communication
 
 - Note interne au CODIR / CFO committee
 - Intégration dans le prochain board pack si impact matériel

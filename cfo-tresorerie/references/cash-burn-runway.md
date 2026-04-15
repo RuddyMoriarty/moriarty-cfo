@@ -1,4 +1,4 @@
-# Cash burn & Runway — mode startup / scale-up
+# Cash burn & Runway, mode startup / scale-up
 
 Activé si `classification.taille ∈ {tpe, pe}` + `secteur.module_sectoriel = saas_techno` ou si l'utilisateur déclare "startup" / "scale-up" lors de `cfo-init`.
 
@@ -100,7 +100,7 @@ Démarrer la levée **quand il reste 9-12 mois de runway** (jamais quand il rest
 
 ## Écritures comptables
 
-Pas de traitement comptable spécifique — le burn n'est pas un poste du bilan, c'est un **indicateur managérial** calculé sur l'évolution du cash.
+Pas de traitement comptable spécifique, le burn n'est pas un poste du bilan, c'est un **indicateur managérial** calculé sur l'évolution du cash.
 
 ## Dashboard startup
 

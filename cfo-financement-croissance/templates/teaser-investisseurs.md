@@ -1,4 +1,4 @@
-# Teaser investisseurs — {{COMPANY_NAME}}
+# Teaser investisseurs, {{COMPANY_NAME}}
 
 **Confidentiel** | {{DATE}}
 
@@ -80,21 +80,21 @@ Fondée en {{ANNEE_CREATION}} par {{FONDATEURS}}, basée à {{VILLE}}.
 
 ## Équipe
 
-- **{{FONDATEUR_1}}** — {{ROLE_1}} — {{EXPERIENCE_1}}
-- **{{FONDATEUR_2}}** — {{ROLE_2}} — {{EXPERIENCE_2}}
-- **{{KEY_HIRE_1}}** — {{ROLE_K1}}
+- **{{FONDATEUR_1}}**, {{ROLE_1}}, {{EXPERIENCE_1}}
+- **{{FONDATEUR_2}}**, {{ROLE_2}}, {{EXPERIENCE_2}}
+- **{{KEY_HIRE_1}}**, {{ROLE_K1}}
 
 ---
 
 ## Contact
 
-**{{CONTACT_NOM}}** — {{ROLE_CONTACT}}
+**{{CONTACT_NOM}}**, {{ROLE_CONTACT}}
 📧 {{EMAIL}}
 🌐 {{WEBSITE}}
 📱 {{LINKEDIN}}
 
 ---
 
-_Document confidentiel — diffusion limitée aux investisseurs avec NDA._
+_Document confidentiel, diffusion limitée aux investisseurs avec NDA._
 
-_2 pages format A4 — version courte. Pitch deck complet sur demande._
+_2 pages format A4, version courte. Pitch deck complet sur demande._

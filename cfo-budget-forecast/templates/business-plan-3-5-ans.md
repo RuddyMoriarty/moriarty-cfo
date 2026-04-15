@@ -1,4 +1,4 @@
-# Business Plan 3-5 ans — {COMPANY_NAME}
+# Business Plan 3-5 ans, {COMPANY_NAME}
 
 **Date** : {DATE}
 **Version** : {VERSION}
@@ -104,8 +104,8 @@ Pour atteindre ces objectifs, nous levons {MONTANT_LEVE} € en {TYPE_LEVEE} Ser
 ## 6. Equipe
 
 ### Fondateurs
-- {FONDATEUR_1} — {EXPERIENCE_1}
-- {FONDATEUR_2} — {EXPERIENCE_2}
+- {FONDATEUR_1}, {EXPERIENCE_1}
+- {FONDATEUR_2}, {EXPERIENCE_2}
 
 ### Top management
 {TOP_MANAGEMENT}
@@ -167,6 +167,6 @@ Pour atteindre ces objectifs, nous levons {MONTANT_LEVE} € en {TYPE_LEVEE} Ser
 
 ---
 
-_Document confidentiel — ne pas diffuser sans accord des fondateurs._
+_Document confidentiel, ne pas diffuser sans accord des fondateurs._
 
 _Contact : {CONTACT_EMAIL}_

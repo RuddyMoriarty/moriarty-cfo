@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-capex_analyzer.py — calcule Payback, NPV, IRR, ROI pour un projet CAPEX.
+capex_analyzer.py, calcule Payback, NPV, IRR, ROI pour un projet CAPEX.
 """
 
 from __future__ import annotations

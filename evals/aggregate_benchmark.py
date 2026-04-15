@@ -39,7 +39,7 @@ def main() -> int:
         print("# Benchmark Report\n_Aucun résultat exploitable_")
         return 0
 
-    print("# Benchmark Report — moriarty-cfo")
+    print("# Benchmark Report, moriarty-cfo")
     print(f"\n_Généré le {datetime.now().isoformat()}_\n")
     print("| Skill | Tâche | Tool calls Δ | Tokens Δ | Étapes Δ |")
     print("|-------|-------|--------------|----------|----------|")

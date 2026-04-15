@@ -1,4 +1,4 @@
-# Notifications et tâches programmées — stratégie
+# Notifications et tâches programmées, stratégie
 
 Les rappels d'échéances et la veille réglementaire sont programmés via deux mécanismes complémentaires :
 
@@ -69,10 +69,10 @@ Stocker dans `private/scheduled-notifications.json` les IDs des tâches programm
 
 | Niveau | Quoi |
 |--------|------|
-| 1 — Standard (défaut) | Échéances fiscales J-15/J-7/J-1 uniquement |
-| 2 — Intensif | + Veille réglementaire hebdo + routines mensuelles |
-| 3 — Maximum | + Alertes trésorerie hebdo + suggestions achievements |
-| 4 — Aucune | Rien |
+| 1, Standard (défaut) | Échéances fiscales J-15/J-7/J-1 uniquement |
+| 2, Intensif | + Veille réglementaire hebdo + routines mensuelles |
+| 3, Maximum | + Alertes trésorerie hebdo + suggestions achievements |
+| 4, Aucune | Rien |
 
 ## Implémentation dans cfo-init (étape 5)
 
@@ -148,7 +148,7 @@ Compromis :
 - `scheduled-tasks` : local, gratuit, ne fire que si Claude Code tourne
 - `RemoteTrigger` : cloud Anthropic, fire toujours, nécessite OAuth
 
-Non implémenté en v0.1 — à décider selon les retours utilisateurs.
+Non implémenté en v0.1, à décider selon les retours utilisateurs.
 
 ## Références
 

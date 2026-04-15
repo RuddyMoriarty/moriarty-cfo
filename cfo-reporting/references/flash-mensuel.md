@@ -5,7 +5,7 @@ Document d'une page livré **5 jours ouvrés après la fin du mois**. Destiné a
 ## Structure
 
 ```markdown
-# Flash {MOIS} {ANNEE} — {SOCIETE}
+# Flash {MOIS} {ANNEE}, {SOCIETE}
 
 📅 Arrêté au {DATE_ARRETE} · Publié le {DATE_PUB}
 
@@ -25,8 +25,8 @@ Document d'une page livré **5 jours ouvrés après la fin du mois**. Destiné a
 | CA HT | {CA} k€ | {DELTA_M1}% | {DELTA_BUDGET}% |
 | EBITDA | {EBITDA} k€ | {DELTA} | {DELTA} |
 | Marge brute | {MB}% | {DELTA} pts | {DELTA} pts |
-| Cash | {CASH} k€ | {DELTA} | — |
-| Runway (si startup) | {RUNWAY} mois | {DELTA} | — |
+| Cash | {CASH} k€ | {DELTA} |, |
+| Runway (si startup) | {RUNWAY} mois | {DELTA} |, |
 
 ## Trésorerie
 - Solde : {SOLDE} k€
@@ -54,7 +54,7 @@ Le script `scripts/generate_dashboard.py --flash` génère le flash automatiquem
 ## Exemple rempli
 
 ```markdown
-# Flash Mars 2026 — Acme SAS
+# Flash Mars 2026, Acme SAS
 
 📅 Arrêté au 31/03/2026 · Publié le 07/04/2026
 
@@ -74,8 +74,8 @@ Le script `scripts/generate_dashboard.py --flash` génère le flash automatiquem
 | CA HT | 1 250 k€ | +8% 🟢 | +3% 🟢 |
 | EBITDA | -85 k€ | +25% 🟢 | -50% 🔴 |
 | Marge brute | 68% | -2 pts 🟠 | -3 pts 🔴 |
-| Cash | 2 450 k€ | -120 k€ | — |
-| Runway | 18 mois | +4 🟢 | — |
+| Cash | 2 450 k€ | -120 k€ |, |
+| Runway | 18 mois | +4 🟢 |, |
 
 ## Trésorerie
 - Solde : 2 450 k€

@@ -49,15 +49,15 @@ Chaque échéance a un champ `_applicable_si` ou `obligation` qui filtre si elle
 ## Code couleur à l'affichage
 
 ```
-🔴 < 7 jours    — urgence critique, s'y mettre maintenant
-🟠 7-14 jours   — élevé, préparer cette semaine
-🟡 15-30 jours  — moyen, sur la roadmap du mois
-🟢 > 30 jours   — standard, sur le planning
+🔴 < 7 jours   , urgence critique, s'y mettre maintenant
+🟠 7-14 jours  , élevé, préparer cette semaine
+🟡 15-30 jours , moyen, sur la roadmap du mois
+🟢 > 30 jours  , standard, sur le planning
 ```
 
 ## Exemples de calculs
 
-### Exemple 1 — SAS à l'IS, clôture 31/12/2026, TVA mensuelle, 40 salariés
+### Exemple 1, SAS à l'IS, clôture 31/12/2026, TVA mensuelle, 40 salariés
 
 Échéances dans les 30 prochains jours (au 14/04/2026) :
 
@@ -67,7 +67,7 @@ Chaque échéance a un champ `_applicable_si` ou `obligation` qui filtre si elle
 | 05/05/2026 | DSN avril 2026 | 🟡 J+21 | Social |
 | 05/05/2026 | Taxe apprentissage (solde) | 🟡 J+21 | Social |
 
-### Exemple 2 — SARL à l'IR BIC, clôture 30/06/2026, TVA réel simplifié
+### Exemple 2, SARL à l'IR BIC, clôture 30/06/2026, TVA réel simplifié
 
 | Date | Label | Couleur | Type |
 |------|-------|---------|------|
@@ -76,10 +76,10 @@ Chaque échéance a un champ `_applicable_si` ou `obligation` qui filtre si elle
 | 12/11/2026 | Solde IS | | Fiscal |
 | 31/12/2026 | Acompte TVA décembre (CA12) | | TVA |
 
-### Exemple 3 — ETI cotée CSRD Wave 1, clôture 31/12
+### Exemple 3, ETI cotée CSRD Wave 1, clôture 31/12
 
 Échéances spécifiques CSRD :
-- 30/06/2027 : Rapport de durabilité CSRD (offset +180j) — à publier intégré au rapport de gestion
+- 30/06/2027 : Rapport de durabilité CSRD (offset +180j), à publier intégré au rapport de gestion
 
 ## Fichier généré `private/calendar-fiscal.json`
 

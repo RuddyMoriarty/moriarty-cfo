@@ -1,4 +1,4 @@
-# Double matérialité — méthodologie EFRAG IG1
+# Double matérialité, méthodologie EFRAG IG1
 
 Concept fondateur de la CSRD. Détermine **quels sujets ESG** doivent être reportés dans la sustainability statement.
 
@@ -47,21 +47,21 @@ Financial materiality
 
 ## Méthodologie EFRAG IG1 (Implementation Guidance 1)
 
-### Étape 1 — Identification du contexte business
+### Étape 1, Identification du contexte business
 
 - Business model
 - Chaîne de valeur (en amont + en aval)
 - Géographies, secteurs
 - Parties prenantes principales
 
-### Étape 2 — Identification des IROs (Impacts, Risks, Opportunities)
+### Étape 2, Identification des IROs (Impacts, Risks, Opportunities)
 
 Pour chaque sujet ESG (10 standards ESRS + leurs sub-topics) :
 - Quels impacts la société génère-t-elle ?
 - Quels risques l'ESG fait-il peser sur la société ?
 - Quelles opportunités ESG la société peut saisir ?
 
-### Étape 3 — Évaluation de la matérialité
+### Étape 3, Évaluation de la matérialité
 
 Pour chaque IRO :
 - Score impact materiality (1-5)
@@ -69,7 +69,7 @@ Pour chaque IRO :
 
 Seuils définis par la société (en cohérence avec sa taille / secteur).
 
-### Étape 4 — Validation par parties prenantes
+### Étape 4, Validation par parties prenantes
 
 Workshop avec :
 - Top management
@@ -79,7 +79,7 @@ Workshop avec :
 - Investisseurs / financeurs
 - Experts externes
 
-### Étape 5 — Documentation
+### Étape 5, Documentation
 
 - Méthodologie utilisée
 - Liste des sujets matériels
@@ -91,20 +91,20 @@ Workshop avec :
 Liste minimale à scorer :
 
 ### Environnement
-- Climat (E1) — **présomption de matérialité**, justifier seulement si non matériel
+- Climat (E1), **présomption de matérialité**, justifier seulement si non matériel
 - Pollution (E2)
 - Eau (E3)
 - Biodiversité (E4)
 - Ressources et économie circulaire (E5)
 
 ### Social
-- Workforce (S1) — quasi systématiquement matériel
+- Workforce (S1), quasi systématiquement matériel
 - Workers in value chain (S2)
 - Affected communities (S3)
 - Consumers (S4)
 
 ### Gouvernance
-- Business conduct (G1) — quasi systématiquement matériel
+- Business conduct (G1), quasi systématiquement matériel
 
 ## Sub-topics par standard
 
@@ -164,11 +164,11 @@ Prend en entrée un questionnaire (CSV avec sujets + scores) et produit la matri
 | Pollution sols sites | 5 | 3 | ✓ | E2 |
 | Biodiversité | 1 | 1 | ✗ | E4 |
 | Économie circulaire | 4 | 4 | ✓ | E5 |
-| Workforce — santé sécurité | 5 | 4 | ✓ | S1 |
-| Workforce — diversité | 3 | 2 | ✓ (impact) | S1 |
+| Workforce, santé sécurité | 5 | 4 | ✓ | S1 |
+| Workforce, diversité | 3 | 2 | ✓ (impact) | S1 |
 | Workers value chain | 3 | 4 | ✓ | S2 |
 | Affected communities | 2 | 1 | ✗ | S3 |
-| Consumers — sécurité produit | 5 | 5 | ✓ | S4 |
+| Consumers, sécurité produit | 5 | 5 | ✓ | S4 |
 | Anti-corruption | 2 | 4 | ✓ (financier) | G1 |
 
 → Sujets matériels à reporter : E1, E2, E3, E5, S1, S2, S4, G1.

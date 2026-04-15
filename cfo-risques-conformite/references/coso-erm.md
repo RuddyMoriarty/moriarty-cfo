@@ -1,4 +1,4 @@
-# COSO ERM 2017 — Enterprise Risk Management
+# COSO ERM 2017, Enterprise Risk Management
 
 Framework de référence international pour la gestion des risques d'entreprise. Mis à jour en 2017 (vs 2004).
 
@@ -35,7 +35,7 @@ Framework de référence international pour la gestion des risques d'entreprise.
 - Communication transverse
 - Reporting au CODIR + comité d'audit (si applicable)
 
-## Matrice 5×5 — exemple
+## Matrice 5×5, exemple
 
 ```
 Impact
@@ -107,25 +107,25 @@ Légende :
 
 ## Workflow de cartographie
 
-### Étape 1 — Brainstorming par fonction
+### Étape 1, Brainstorming par fonction
 
 Pour chaque fonction (Commercial, Production, IT, Finance, RH...), identifier les top 5 risques.
 
-### Étape 2 — Consolidation
+### Étape 2, Consolidation
 
 Tableau commun (souvent 30-60 risques bruts).
 
-### Étape 3 — Évaluation
+### Étape 3, Évaluation
 
 Pour chaque risque, scorer 1-5 sur :
 - **Probabilité** : combien de chances que ça arrive dans les 12 mois ?
 - **Impact** : si ça arrive, combien ça coûte (€ + réputation + opérationnel) ?
 
-### Étape 4 — Priorisation
+### Étape 4, Priorisation
 
 Garder les **top 10-15 risques majeurs** (impact 3+ et proba 3+).
 
-### Étape 5 — Réponse
+### Étape 5, Réponse
 
 Pour chaque risque majeur :
 - **Stratégie** : éviter / réduire / partager / accepter
@@ -134,7 +134,7 @@ Pour chaque risque majeur :
 - **Deadline** : date cible
 - **KRI** (Key Risk Indicator) : métrique de suivi
 
-### Étape 6 — Reporting
+### Étape 6, Reporting
 
 - Dashboard mensuel : état des KRI
 - Comité d'audit trimestriel : revue cartographie + actions

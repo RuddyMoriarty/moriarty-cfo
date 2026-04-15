@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-fetch_pappers.py — récupération de la fiche société via Pappers.
+fetch_pappers.py, récupération de la fiche société via Pappers.
 
 Mode hybride :
   - Si PAPPERS_API_KEY dans env → API Pappers (https://api.pappers.fr/v2)
@@ -143,7 +143,7 @@ def main() -> int:
         try:
             result = fetch_via_api(siren, api_key)
         except Exception as e:
-            print(f"⚠️ API Pappers échec : {e} — fallback WebFetch", file=sys.stderr)
+            print(f"⚠️ API Pappers échec : {e}, fallback WebFetch", file=sys.stderr)
             result = print_web_fetch_instruction(siren)
 
     output = json.dumps(result, indent=2, ensure_ascii=False)

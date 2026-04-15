@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-generate_dashboard.py — génère un dashboard HTML responsive + PDF (Chrome headless).
+generate_dashboard.py, génère un dashboard HTML responsive + PDF (Chrome headless).
 
 Input : KPIs (JSON depuis compute_kpis.py) + variances (JSON depuis extract_variances.py)
 Output : HTML + PDF (si Chrome dispo)
@@ -33,7 +33,7 @@ def find_chrome() -> str | None:
 
 
 def render_html(template: str, data: dict) -> str:
-    """Rendu simple par remplacement {{KEY}} — pas de Jinja2 en v0.1 pour rester léger."""
+    """Rendu simple par remplacement {{KEY}}, pas de Jinja2 en v0.1 pour rester léger."""
     out = template
     for key, value in data.items():
         placeholder = "{{" + key + "}}"
@@ -53,10 +53,10 @@ def build_data(kpis: dict, variances: dict, company: dict) -> dict:
         variances_rows += f"<tr><td>{v['compte']}</td><td>{v['budget']:,.0f}€</td><td>{v['reel']:,.0f}€</td><td>{v['ecart_eur']:+,.0f}€ ({v['ecart_pct']:+.1f}%)</td><td>{direction_emoji}</td></tr>\n"
 
     return {
-        "COMPANY_NAME": company.get("denomination", "—"),
-        "SIREN": company.get("siren", "—"),
-        "PERIODE": kpis.get("periode", "—"),
-        "DATE_GEN": kpis.get("periode", "—"),
+        "COMPANY_NAME": company.get("denomination", "-"),
+        "SIREN": company.get("siren", "-"),
+        "PERIODE": kpis.get("periode", "-"),
+        "DATE_GEN": kpis.get("periode", "-"),
         "CA_HT": f"{pl.get('ca_ht', 0):,.0f}",
         "MARGE_BRUTE": f"{pl.get('marge_brute', 0):,.0f}",
         "TAUX_MARGE_PCT": f"{pl.get('taux_marge_brute_pct', 0):.1f}",
@@ -73,7 +73,7 @@ def build_data(kpis: dict, variances: dict, company: dict) -> dict:
 def export_pdf(html_path: Path, pdf_path: Path) -> bool:
     chrome = find_chrome()
     if not chrome:
-        print("⚠️ Chrome introuvable — PDF non généré", file=sys.stderr)
+        print("⚠️ Chrome introuvable, PDF non généré", file=sys.stderr)
         return False
 
     try:

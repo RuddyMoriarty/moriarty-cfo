@@ -1,4 +1,4 @@
-# Data Room — Checklist de constitution
+# Data Room, Checklist de constitution
 
 Documents à préparer pour la due diligence d'une levée de fonds ou cession.
 
@@ -147,5 +147,5 @@ Pour chaque acquisition :
 
 ---
 
-_Préparé par : {{PREPARATEUR}} — {{DATE}}_
+_Préparé par : {{PREPARATEUR}}, {{DATE}}_
 _Mis à jour : {{DATE_MAJ}}_

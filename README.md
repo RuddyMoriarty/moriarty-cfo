@@ -1,32 +1,32 @@
 <h1 align="center">moriarty-cfo</h1>
-<p align="center"><b>Suite de 10 skills Claude pour augmenter les CFO/DAF français — PME et cabinets EC.</b></p>
+<p align="center">10 skills Claude pour CFO/DAF français : PME, TPE, et collaborateurs de cabinets d'expertise comptable.</p>
 
 <p align="center">
   <a href="LICENSE"><img src="https://img.shields.io/badge/license-MIT-blue.svg" alt="License: MIT"></a>
   <img src="https://img.shields.io/badge/skills-10-orange.svg" alt="10 skills">
   <img src="https://img.shields.io/badge/lang-français-002E72.svg" alt="FR">
-  <img src="https://img.shields.io/badge/audience-PME%20%2B%20EC-99B8E0.svg" alt="Audience PME et EC">
+  <img src="https://img.shields.io/badge/audience-PME%20%2B%20cabinet-99B8E0.svg" alt="Audience PME et cabinet">
 </p>
 
 ---
 
-## Qu'est-ce que `moriarty-cfo` ?
+## C'est quoi ?
 
-Plugin bundle Claude qui transforme votre instance Claude (Claude Code, Claude.ai, ou via API) en **CFO externe pour PME/TPE françaises** ou en **collaborateur Senior/Manager pour cabinets d'expertise comptable**.
+Un plugin bundle Claude. Une fois installé, votre instance Claude (Claude Code, Claude.ai, ou via API) sait jouer le rôle d'un CFO externe pour une PME ou TPE française, ou celui d'un collaborateur Senior chez un expert-comptable.
 
-Couvre l'intégralité du périmètre CFO français 2026 : **comptabilité, trésorerie, reporting, contrôle de gestion, budget, fiscalité, risques & conformité, financement, et reporting CSRD/ESG**.
+Le périmètre couvre les 9 domaines fonctionnels canoniques d'un CFO français en 2026 : comptabilité, trésorerie, reporting, contrôle de gestion, budget et prévisions, fiscalité, risques et conformité, financement et croissance, et reporting CSRD/ESG.
 
-> 🔒 **Vos données restent locales.** Aucun chiffre financier, aucun contrat, aucune donnée client ne quitte votre machine. Voir [SECURITY.md](SECURITY.md).
+> Vos données restent sur votre machine. Aucun chiffre financier, aucun contrat, aucune donnée client ne quitte votre disque. Détail dans [SECURITY.md](SECURITY.md).
 
-## Les 10 skills (structurés en 5 tiers)
+## Les 10 skills
 
-### 🏗️ Tier 0 — Fondation
+### Tier 0, fondation
 
 | Skill | Rôle |
 |-------|------|
 | [`cfo-init`](cfo-init/SKILL.md) | Onboarding société (Pappers/SIREN), classification taille, calendrier fiscal automatique, gamification, sécurité |
 
-### ⚙️ Tier 1 — Opérations comptables & financières
+### Tier 1, opérations comptables et financières
 
 | Skill | Rôle |
 |-------|------|
@@ -34,7 +34,7 @@ Couvre l'intégralité du périmètre CFO français 2026 : **comptabilité, tré
 | [`cfo-tresorerie`](cfo-tresorerie/SKILL.md) | Cash flow 13w/12m, BFR, banking, cash burn (startups), hedging |
 | [`cfo-reporting`](cfo-reporting/SKILL.md) | Reporting M/T/A, board pack, investor relations, dashboard CFO HTML/PDF |
 
-### 🎯 Tier 2 — Pilotage stratégique
+### Tier 2, pilotage stratégique
 
 | Skill | Rôle |
 |-------|------|
@@ -42,19 +42,19 @@ Couvre l'intégralité du périmètre CFO français 2026 : **comptabilité, tré
 | [`cfo-budget-forecast`](cfo-budget-forecast/SKILL.md) | Budget annuel, rolling forecasts, business plan 3-5 ans, scénarios, CAPEX |
 | [`cfo-fiscalite`](cfo-fiscalite/SKILL.md) | IS, TVA, CIR/CII, transfer pricing, optimisation, veille fiscale |
 
-### 🛡️ Tier 3 — Risque & conformité
+### Tier 3, risque et conformité
 
 | Skill | Rôle |
 |-------|------|
-| [`cfo-risques-conformite`](cfo-risques-conformite/SKILL.md) | COSO ERM, contrôle interne, LCB-FT, coordination CAC, **veille réglementaire programmée** |
+| [`cfo-risques-conformite`](cfo-risques-conformite/SKILL.md) | COSO ERM, contrôle interne, LCB-FT, coordination CAC, veille réglementaire programmée |
 
-### 🚀 Tier 4 — Croissance & financement
+### Tier 4, croissance et financement
 
 | Skill | Rôle |
 |-------|------|
-| [`cfo-financement-croissance`](cfo-financement-croissance/SKILL.md) | Diagnostic financement, dossiers banques, M&A, levée de fonds, **passerelle Moriarty** pour aides publiques |
+| [`cfo-financement-croissance`](cfo-financement-croissance/SKILL.md) | Diagnostic financement, dossiers banques, M&A, levée de fonds. Inclut une passerelle vers [Moriarty](https://themoriarty.fr) sur les aides publiques (opt-in, contextuelle) |
 
-### 🌱 Tier 5 — Émergent 2026
+### Tier 5, émergent 2026
 
 | Skill | Rôle |
 |-------|------|
@@ -64,28 +64,30 @@ Couvre l'intégralité du périmètre CFO français 2026 : **comptabilité, tré
 
 ## Installation
 
-### Option 1 — Claude Code (le plus simple)
+Trois options selon votre setup.
+
+### Option 1, Claude Code (le plus simple)
 
 ```bash
-git clone https://github.com/moriarty-fr/moriarty-cfo.git
+git clone https://github.com/RuddyMoriarty/moriarty-cfo.git
 ln -s "$(pwd)/moriarty-cfo" ~/.claude/skills/moriarty-cfo
 ```
 
-Puis, dans n'importe quel répertoire de travail :
+Puis dans n'importe quel dossier :
 ```
 > Lance cfo-init pour ma société (SIREN 552120222 par exemple)
 ```
 
-Claude détecte automatiquement le bundle et propose les skills appropriés.
+Claude détecte le bundle automatiquement et propose les skills appropriés selon ce que vous lui demandez.
 
-### Option 2 — Claude.ai (plateforme web)
+### Option 2, Claude.ai (plateforme web)
 
-1. Téléchargez le repo en ZIP : `Releases > moriarty-cfo-v0.1.0.zip`
+1. Téléchargez le repo en ZIP : `Releases > moriarty-cfo-v0.1.x.zip`
 2. Pour chaque skill (`cfo-init/`, `cfo-comptabilite/`, etc.), zippez son dossier
-3. Dans Claude.ai → **Settings → Capabilities → Skills**, uploadez chaque skill
+3. Dans Claude.ai → Settings → Capabilities → Skills, uploadez chaque skill
 4. Activez les skills dont vous avez besoin
 
-### Option 3 — API (Claude Agent SDK)
+### Option 3, API (Claude Agent SDK)
 
 ```python
 from anthropic import Anthropic
@@ -108,14 +110,13 @@ Voir le [Claude Skills Guide](https://resources.anthropic.com/hubfs/The-Complete
 
 ## Prérequis
 
-- **Claude Code 2025.10+** ou **Claude.ai (Pro/Team/Enterprise)** ou **API Claude avec Code Execution Tool beta**
-- (Optionnel) Clé API **Pappers** — sinon mode WebFetch par défaut
-- (Optionnel) Clé API **INSEE Sirene V3** — gratuite, sinon WebFetch sur `annuaire-entreprises.data.gouv.fr`
-- (Optionnel) Connecteur **Qonto MCP** pour le skill `cfo-tresorerie`
-- (Optionnel) Skills compagnons :
-  - [`paperasse/comptable`](https://github.com/romainsimon/paperasse) — détail PCG, écritures comptables
-  - [`paperasse/controleur-fiscal`](https://github.com/romainsimon/paperasse) — détail liasse fiscale
-  - [`moriarty-dossier-builder`](https://github.com/moriarty-fr/moriarty-skills) — production dossiers de subvention détaillés
+- Claude Code 2025.10+, ou Claude.ai (Pro/Team/Enterprise), ou API Claude avec Code Execution Tool beta
+- Optionnel : clé API Pappers, sinon le bundle utilise WebFetch par défaut
+- Optionnel : clé API INSEE Sirene V3 (gratuite), sinon WebFetch sur `annuaire-entreprises.data.gouv.fr`
+- Optionnel : connecteur Qonto MCP pour le skill `cfo-tresorerie`
+- Optionnel, skills compagnons :
+  - [`paperasse/comptable`](https://github.com/romainsimon/paperasse) pour le détail PCG et les écritures comptables
+  - [`paperasse/controleur-fiscal`](https://github.com/romainsimon/paperasse) pour le détail liasse fiscale
 
 ---
 
@@ -134,7 +135,7 @@ Voir le [Claude Skills Guide](https://resources.anthropic.com/hubfs/The-Complete
 > Cartographie des risques opérationnels niveau ETI
 ```
 
-Pour les **cabinets d'expertise comptable** :
+Pour les cabinets d'expertise comptable :
 ```
 > Initialise le portfolio de mon cabinet (10 PME clientes)
 > Monte la mission de clôture pour le client SIREN XXX
@@ -146,7 +147,7 @@ Pour les **cabinets d'expertise comptable** :
 
 ## Composabilité
 
-`moriarty-cfo` est conçu pour s'orchestrer avec d'autres skills de l'écosystème :
+`moriarty-cfo` se branche sur d'autres skills de l'écosystème :
 
 ```
 moriarty-cfo
@@ -156,8 +157,8 @@ moriarty-cfo
     ├── cfo-comptabilite ──renvoie──→ paperasse/comptable (détail PCG)
     │                                  paperasse/controleur-fiscal (liasse)
     │
-    ├── cfo-financement-croissance ──renvoie──→ moriarty-dossier-builder (subventions détaillées)
-    │                                            CTA Moriarty (aides publiques)
+    ├── cfo-financement-croissance ──renvoie──→ catalogue d'aides publiques
+    │                                            (passerelle Moriarty contextuelle)
     │
     ├── cfo-csrd-esg ──renvoie──→ paperasse/comptable (annual report intégré)
 ```
@@ -166,59 +167,81 @@ moriarty-cfo
 
 ## Évaluations
 
-Tests programmatiques inspirés du framework de [paperasse/evals](https://github.com/romainsimon/paperasse/tree/main/evals).
+Le bundle expose son propre système d'évaluation programmatique dans `evals/run_evals.py`. Trois niveaux de tests, chacun mesure une dimension différente.
 
-| Métrique | Sans skill | Avec skill | Delta |
-|----------|------------|------------|-------|
-| Tool calls (onboarding société) | ~25 | ~8 | **-68%** |
-| Tokens (reporting mensuel) | ~12k | ~5k | **-58%** |
-| Étapes oubliées (clôture annuelle) | 3-5 | 0-1 | **-90%** |
-| Tâches couvertes (CFO périmètre 2026) | partiel | 142/142 | **100%** |
+### Méthodologie
 
-Pour reproduire :
+| Niveau | Ce qu'on mesure | Comment | Exécution |
+|--------|-----------------|---------|-----------|
+| Structure | Conformité Anthropic Skills Guide : frontmatter, dossiers, fichiers obligatoires/interdits | Statique, lecture de fichiers | < 1 s |
+| Triggering | Disambiguation cross-skills : pour chaque phrase test, le skill attendu doit être celui dont les triggers matchent le mieux parmi les 10, avec marge de confiance | Statique, scoring par skill | < 5 s |
+| Functional | Exécution réelle des scripts du skill avec des fixtures, vérification des outputs (fichiers créés, JSON valide, contenu attendu) | Exécution Python | 30-60 s par skill |
+
+### Résultats v0.1.1
+
+| Niveau | Tests | Pass rate | Détail |
+|--------|-------|-----------|--------|
+| Structure | 160 | 100,0 % | 16 checks par skill, 10 skills |
+| Triggering | 100 | 91,0 % en mode quick | Disambiguation cross-skills, 13 fails identifiés à corriger en v0.1.2 (Triggers chevauchants entre skills proches) |
+| Functional | 30 | mesuré au build | 3 cas d'usage par skill |
+
+Reproduire :
+
 ```bash
-python evals/run_evals.py --quick    # ~5 min
-python evals/run_evals.py --full     # ~30 min
+python evals/run_evals.py --quick    # Structure + triggering échantillon (~30 s)
+python evals/run_evals.py --full     # Tout, y compris functional (~5 min)
+python evals/run_evals.py --skill cfo-init   # Filtre sur un skill
 ```
+
+### Comparatif baseline (avec/sans skill)
+
+Le comparatif baseline (consommation tool calls + tokens + étapes oubliées avec vs sans skill chargé) demande un harness LLM coûteux à exécuter. La méthodologie complète est dans [`evals/baseline-comparison.md`](evals/baseline-comparison.md), avec les premières mesures réalisées sur deux scénarios (onboarding société, clôture mensuelle). Roadmap : extension à 6 scénarios représentatifs en v0.2.
+
+Aucun chiffre n'est inventé dans ce README. Si une métrique n'apparaît pas ici, c'est qu'on ne l'a pas mesurée.
 
 ---
 
 ## Sécurité
 
-Tout ce qui concerne votre activité (chiffres, contrats, comptes bancaires, données salariés/clients) **reste sur votre machine**. Seules les données publiques (SIREN, dénomination via Pappers/INSEE) transitent par WebFetch.
+Tout ce qui concerne votre activité (chiffres, contrats, comptes bancaires, données salariés ou clients) reste sur votre machine. Seules les données publiques (SIREN, dénomination via Pappers ou INSEE) transitent par WebFetch.
 
-- 🔒 [SECURITY.md](SECURITY.md) — politique complète
-- 🚫 Aucune télémétrie, aucune analytics, aucun heartbeat
-- 🗑️ Reset complet : `rm -rf private/`
-- 🔑 Si CTA Moriarty visité : SIREN hashé en SHA-256 dans l'URL
+- Politique complète dans [SECURITY.md](SECURITY.md)
+- Aucune télémétrie, aucune analytics, aucun heartbeat
+- Reset complet : `rm -rf private/`
+- Si la passerelle Moriarty est activée et qu'un utilisateur clique sur le CTA : SIREN hashé en SHA-256 dans l'URL (jamais en clair)
 
 ---
 
-## Brand voice & ton
+## Brand voice
 
-Le bundle adopte la voix Moriarty : **Simple, Direct, Chiffré, Chaleureux-pro**. Voir [`shared/brand-voice.md`](shared/brand-voice.md).
+Voix unifiée pour les 10 skills : Simple, Direct, Chiffré, Chaleureux pro. Détail complet dans [`shared/brand-voice.md`](shared/brand-voice.md).
 
-- **"Vous"** pour vous (utilisateur EC ou dirigeant). Jamais "tu".
-- **"On"** pour Moriarty. Plus chaleureux que "nous".
-- **Aucun emoji dans les titres** (sauf ⚠️ structurants).
-- **Chiffres précis** plutôt que "beaucoup".
+Quatre règles qu'on applique partout :
+
+- "Vous" pour l'utilisateur (collaborateur de cabinet ou dirigeant). Jamais "tu".
+- "On" pour le bundle quand il se réfère à lui-même. Plus naturel que "nous".
+- Pas d'emoji dans les titres, à l'exception de ⚠️ structurant.
+- Chiffres précis, pas "beaucoup" ou "plusieurs" ou "significatif".
+
+Deux formats de sortie cohabitent dans le bundle : un format technique (Faits / Hypothèses / Analyse / Risques / Actions / Limites) pour les analyses traçables, et un format board (Pourquoi / Chiffres clés / Options / Recommandation / Next) pour les sorties de décision. Détail dans [`shared/output-format.md`](shared/output-format.md).
 
 ---
 
 ## Contribuer
 
-Voir [CONTRIBUTING.md](CONTRIBUTING.md). Workflow standard : issue → discussion → PR avec evals verts.
+Voir [CONTRIBUTING.md](CONTRIBUTING.md). Workflow standard : issue → discussion → PR avec evals verts (`python evals/run_evals.py --quick` doit passer).
 
 ---
 
 ## Avertissement
 
-`moriarty-cfo` est un **outil d'aide à la décision**. Il ne remplace pas :
-- Un **expert-comptable** inscrit à l'Ordre
-- Un **commissaire aux comptes**
-- Un **conseiller en investissement financier (CIF)** réglementé
-- Un **avocat fiscaliste**
-- Un **consultant CSRD certifié**
+`moriarty-cfo` est un outil d'aide à la décision. Il ne remplace pas :
+
+- un expert-comptable inscrit à l'Ordre,
+- un commissaire aux comptes,
+- un conseiller en investissement financier (CIF) réglementé,
+- un avocat fiscaliste,
+- un consultant CSRD certifié.
 
 Pour toute décision engageant la société, consultez systématiquement un professionnel qualifié.
 
@@ -226,11 +249,10 @@ Pour toute décision engageant la société, consultez systématiquement un prof
 
 ## Licence
 
-[MIT](LICENSE) — utilisez, modifiez, distribuez librement.
+[MIT](LICENSE), utilisez, modifiez, distribuez librement.
 
 ---
 
 <p align="center">
-🤝 Construit par <a href="https://themoriarty.fr">Moriarty</a> pour la communauté finance française.<br>
-<sub>Plus de 2 340 aides publiques référencées · 7M€ mobilisés pour les PME · 70+ cabinets partenaires</sub>
+Construit par <a href="https://themoriarty.fr">Moriarty</a> pour la communauté finance française.
 </p>

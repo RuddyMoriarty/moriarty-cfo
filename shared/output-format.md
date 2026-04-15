@@ -1,48 +1,60 @@
-# Format de sortie standard — moriarty-cfo
+# Format de sortie, moriarty-cfo
 
-Tous les skills du bundle produisent leurs analyses dans un format unifié, calqué sur `paperasse/comptable`. Ce format garantit la **comparabilité cross-skills**, la **traçabilité des hypothèses**, et la **transparence sur les limites**.
+Deux formats coexistent dans le bundle. Le bon format dépend de la nature de la sortie : analyse traçable (technique) ou décision à porter au board (board-level).
 
-## Structure obligatoire (6 sections)
+## Quand utiliser quel format ?
+
+| Sortie | Format | Raison |
+|--------|--------|--------|
+| Clôture mensuelle / annuelle | Technique | Hypothèses comptables à valider, traçabilité requise |
+| Liasse fiscale, FEC, CIR | Technique | Document opposable, audit trail nécessaire |
+| Cartographie des risques | Technique | Méthodologie COSO ERM, niveau de granularité |
+| Préparation CAC, audit | Technique | Format attendu par les auditeurs |
+| Reporting board / direction | Board | Décision à prendre, pas mécanique à montrer |
+| Dossier financement (banque, BPI, VC) | Board | Le décideur lit la reco, pas la procédure |
+| Budget annuel, scénarios stratégiques | Board | Forward-looking, arbitrage |
+| Diagnostic financement (arbre de décision) | Board | Question fermée : "quelle option ?" |
+| Lettre investisseurs trimestrielle | Board | Audience non-technique |
+| Présentation stratégique CSRD | Board | Vision, priorités, allocation |
+
+Hybride possible : un dossier financement peut contenir un appendix au format technique (annexes comptables) sous une note principale au format board.
+
+---
+
+## Format technique (6 sections)
+
+Adapté de la grammaire des outputs comptables traçables. Chaque section est obligatoire.
 
 ```markdown
 ## Faits
-[Ce qui est documenté et vérifiable. Sources avec dates.]
+[Données certaines + sources avec dates]
 
 ## Hypothèses
-[Ce qui est supposé en l'absence d'info. À valider par l'utilisateur.]
+[Suppositions explicites à valider, préfixées H1, H2…]
 
 ## Analyse
-[Traitement métier : calculs, raisonnement, comparaisons.]
+[Calculs, raisonnement, comparaisons]
 
 ## Risques
-[Points d'attention, erreurs possibles, sensitivités.]
+[Points d'attention hiérarchisés 🔴 / 🟠 / 🟡 / 🟢]
 
 ## Actions
-[Liste à cocher, verbe à l'infinitif, action concrète.]
+[Liste à cocher, verbe à l'infinitif]
 
 ## Limites
-[Quand consulter un professionnel humain — EC, CAC, avocat, consultant.]
+[Quand consulter un pro humain]
 ```
-
-## Quand utiliser ce format
-
-- **OBLIGATOIRE** pour toute analyse engageante : clôture, reporting, diagnostic, recommandation
-- **OBLIGATOIRE** pour les sorties qui produisent un fichier (HTML, PDF, JSON)
-- **OPTIONNEL** pour les Q&A simples (réponse directe à une question factuelle)
-
-## Détail par section
 
 ### Faits
 
-- Énumère uniquement ce qui est **certain** et **sourcé**
-- Cite les sources avec leur date (`data/sources.json` pour le détail)
-- Si la donnée vient de `private/company.json` : préciser
-- Si la donnée vient d'un site officiel : citer URL + date dernière vérification
+- Énumère uniquement ce qui est **certain et sourcé**.
+- Cite les sources avec leur date (`data/sources.json` pour le détail).
+- Si la donnée vient de `private/company.json` : préciser.
+- Si la donnée vient d'un site officiel : citer URL + date dernière vérification.
 
-**Exemple :**
 ```
 ## Faits
-- Société : ACME SAS, SIREN 552120222 (source : private/company.json, créé le 2026-04-14)
+- Société : ACME SAS, SIREN 552120222 (source : private/company.json, 2026-04-14)
 - Date de clôture : 31/12/2026 (source : Pappers, vérifié le 2026-04-14)
 - Effectif : 25 salariés (source : input utilisateur)
 - Régime fiscal : IS taux normal 25% (source : impots.gouv.fr, valeurs 2026)
@@ -50,116 +62,152 @@ Tous les skills du bundle produisent leurs analyses dans un format unifié, calq
 
 ### Hypothèses
 
-- Liste **explicitement** les suppositions faites en l'absence d'info
-- Préfixer chaque hypothèse par `H1`, `H2`, etc. pour permettre la validation
-- Inviter l'utilisateur à corriger
-
-**Exemple :**
-```
-## Hypothèses
-- H1 : Régime TVA mensuel (à confirmer — peut être trimestriel si TVA annuelle < 4000€)
-- H2 : Pas de filiales étrangères (à confirmer — sinon transfer pricing à activer)
-- H3 : Pas de DOM-TOM (à confirmer — sinon abattement IS 33,33% applicable)
-
-→ Pour valider/corriger ces hypothèses : "H1 est trimestriel" ou "H2 false, on a une filiale au Luxembourg"
-```
+- Liste **explicitement** les suppositions faites en l'absence d'info.
+- Préfixer chaque hypothèse par `H1`, `H2`, etc.
+- Inviter l'utilisateur à corriger : "Pour valider/corriger : 'H1 est trimestriel'".
 
 ### Analyse
 
-- Section principale du raisonnement métier
-- Peut contenir tableaux, formules, comparaisons benchmarks
-- Citer les sources des benchmarks (`data/sources.json`)
-- Pour les calculs : montrer la formule et le résultat
-
-**Exemple :**
-```
-## Analyse
-
-### BFR à fin mars
-- DSO actuel : 65 jours (créances clients TTC × 365 / CA TTC)
-- DPO actuel : 38 jours
-- DIO : N/A (pas de stocks significatifs - secteur services)
-- **Cash Conversion Cycle : 27 jours** → tension modérée
-
-### Benchmark sectoriel
-- Médiane services BtoB : DSO 45-55j (source : Banque de France FIBEN, 2024)
-- Votre DSO est **+15j vs médiane** → potentiel optimisation 12k€ de BFR libéré
-```
+- Section principale du raisonnement métier.
+- Tableaux, formules, comparaisons benchmarks.
+- Pour les calculs : montrer la formule et le résultat.
 
 ### Risques
 
-- Lister les points d'attention et erreurs possibles
-- Hiérarchiser : 🔴 Critique / 🟠 Élevé / 🟡 Moyen / 🟢 Mineur
-- Pour chaque risque : description + mitigation
-
-**Exemple :**
-```
-## Risques
-
-🟠 **Hypothèse régime TVA non validée**
-   → Si TVA en réalité trimestrielle, échéances décalées de 2 mois
-
-🟡 **DSO basé sur projection annualisée**
-   → Saisonnalité possible non capturée (vérifier sur 12 mois glissants)
-
-🟢 **Benchmark Banque de France 2024**
-   → Données 2025/2026 non encore publiées, écart potentiel mineur
-```
+- Hiérarchiser : `🔴 Critique` / `🟠 Élevé` / `🟡 Moyen` / `🟢 Mineur`.
+- Pour chaque risque : description + mitigation.
 
 ### Actions
 
-- Liste de tâches **concrètes** à cocher
-- Verbe à l'infinitif en début ("Vérifier", "Lancer", "Demander")
-- Préciser le destinataire si pas vous (ex : "[à transmettre à l'EC]")
-- Ordre : par priorité décroissante
-
-**Exemple :**
-```
-## Actions
-
-- [ ] Confirmer le régime TVA (mensuel vs trimestriel)
-- [ ] Lancer une relance des 5 plus grosses créances clients > 60j
-- [ ] Renégocier les conditions de paiement avec le top 3 fournisseurs (cible : DPO 45j)
-- [ ] [À transmettre à l'EC] Valider la projection BFR pour le compte rendu trimestriel
-- [ ] Re-lancer cfo-tresorerie dans 30 jours pour mesurer l'effet
-```
+- Verbe à l'infinitif en début ("Vérifier", "Lancer", "Demander").
+- Préciser le destinataire si pas vous (ex : "[à transmettre à l'EC]").
+- Ordonner par priorité décroissante.
 
 ### Limites
 
-- **OBLIGATOIRE** sur toute sortie engageante
-- Préciser à quel professionnel humain s'adresser selon le sujet
-- Éviter les formules vides ("attention à bien vérifier")
+- Obligatoire sur toute sortie engageante.
+- Préciser à quel professionnel humain s'adresser selon le sujet.
+- Éviter les formules vides ("attention à bien vérifier").
 
-**Exemple :**
+---
+
+## Format board (5 sections)
+
+Adapté de la grammaire des présentations CFO devant un board. La décision et les chiffres clés arrivent en premier. Le contexte vient ensuite. Pas de procédure étalée.
+
+```markdown
+## Pourquoi
+[1-3 lignes : la décision en jeu, le délai, l'enjeu chiffré]
+
+## Chiffres clés
+[3-5 KPIs qui éclairent la décision, avec comparatif period-over-period ou vs cible]
+
+## Options
+[2-3 options crédibles, chacune avec impact $, risque, timing]
+
+## Recommandation
+[Une option choisie + 2 raisons + 1 caveat]
+
+## Next
+[Action concrète, qui, quand]
 ```
-## Limites
 
-Cette analyse de BFR est un outil d'aide à la décision. Pour validation 
-des hypothèses comptables et des écritures associées, consultez votre 
-expert-comptable inscrit à l'Ordre. Pour les négociations bancaires 
-résultantes, votre conseiller bancaire reste l'interlocuteur officiel.
+### Pourquoi
 
-Données utilisées : balances générées au 31/03/2026 (à actualiser à 
-chaque clôture). Benchmarks Banque de France de 2024 (mise à jour 
-2026 en attente).
+- Une à trois lignes maximum. Si vous écrivez plus, ce n'est pas le bon format.
+- Format type : "Décision : [X]. Délai : [Y]. Enjeu : [montant ou ratio]."
+
+```
+## Pourquoi
+Décision : valider le passage à l'affacturage non-recours. 
+Délai : signature avant le 30 juin (échéance ligne BFR actuelle). 
+Enjeu : 800 k€ de cash libéré, +0,8 pt de coût financier annualisé.
 ```
 
-## Avertissement fraîcheur des données
+### Chiffres clés
 
-À ajouter en haut de la section "Faits" si une donnée externe a plus de 6 mois :
+- 3 à 5 KPIs maximum. Pas de tableau de 30 lignes.
+- Chaque KPI : valeur actuelle + comparatif (vs N-1, vs budget, vs cible) + signal (↗ ↘ →).
+- Encadré ou bloc visuellement séparé.
+
+```
+## Chiffres clés
+| KPI | Actuel | Cible 2026 | Δ | Signal |
+|-----|--------|------------|---|--------|
+| BFR (j de CA) | 67 j | 50 j | +17 j | ↘ tension |
+| Coût financier (% CA) | 0,3 % | 0,4 % | +0,1 pt acceptable | → |
+| Cash en banque | 1,2 M€ | > 2 M€ | -0,8 M€ | ↘ alerte |
+```
+
+### Options
+
+- 2 ou 3 options crédibles. Pas une option et deux strawmen.
+- Pour chaque : impact chiffré (cash, P&L, ratio), risque principal, timing.
+- Pas de bla-bla qualitatif sans nombre.
+
+```
+## Options
+
+**A. Affacturage non-recours (recommandée)**
+Cash : +800 k€ immédiat. Coût : 1,2 % du CA factor (~150 k€/an). 
+Risque : dégradation relation clients top 5. Timing : signature 30j.
+
+**B. Financement court terme bancaire (Dailly)**
+Cash : +500 k€ dans 60j. Coût : 4,5 % annuel (~22 k€). 
+Risque : bloque la ligne pour usage CAPEX. Timing : 60j.
+
+**C. Statu quo + relance clients agressive**
+Cash : +200 k€ espérés sur 90j. Coût : 0. 
+Risque : non-atteinte cible BFR, alertes covenants. Timing : 90j.
+```
+
+### Recommandation
+
+- Une option choisie clairement.
+- Deux raisons principales (pas vingt).
+- Un caveat honnête (ce qu'on accepte de risquer).
+
+```
+## Recommandation
+
+**Option A, affacturage non-recours.** 
+Deux raisons : (1) seule option qui sécurise le covenant cash banque 
+au 30 juin ; (2) coût financier marginal acceptable vs alternative B 
+qui bloque la ligne pour le CAPEX outillage prévu Q3.
+
+Caveat : la dégradation relation top 5 clients est réelle. À encadrer 
+par une note client signée + un appel personnel du DG aux 5 contacts 
+avant déploiement.
+```
+
+### Next
+
+- Une action concrète. Pas trois.
+- Qui la fait. Quand.
+
+```
+## Next
+Validation board → consultation 3 factors (BNP, CIC, Eurofactor) → 
+shortlist sous 10j. CFO porteur, échéance 30 avril.
+```
+
+---
+
+## Avertissement fraîcheur
+
+À ajouter en haut de la section `## Faits` (format technique) ou `## Chiffres clés` (format board) si une donnée externe a plus de 6 mois :
 
 ```
 > ⚠️ FRAÎCHEUR DES DONNÉES
-> Les benchmarks Banque de France utilisés datent de 2024. 
-> Vérifier les évolutions sur entreprises.banque-france.fr avant 
+> Les benchmarks Banque de France utilisés datent de 2024.
+> Vérifier les évolutions sur entreprises.banque-france.fr avant
 > toute communication externe.
 ```
 
-## Format adapté pour sorties spécifiques
+## Sortie composite (analyse + artefact)
 
-Pour les sorties qui ne sont pas une analyse (ex : génération HTML d'un dashboard, génération d'un template Excel), ce format ne s'applique pas en sortie. Il s'applique au **commentaire d'accompagnement** de la sortie.
+Quand un skill produit un artefact (HTML dashboard, PDF rapport, JSON data), le format ne s'applique pas à l'artefact lui-même. Il s'applique au **commentaire d'accompagnement** :
 
-**Exemple commentaire dashboard mensuel** :
 ```
 ## Faits
 - Dashboard généré : out/dashboard-mars-2026.html
@@ -167,7 +215,7 @@ Pour les sorties qui ne sont pas une analyse (ex : génération HTML d'un dashbo
 - Source données : private/company.json + balance générée
 
 ## Hypothèses
-- Variation budget = projection N-1 + 5% (par défaut)
+- Variation budget = projection N-1 + 5 % (par défaut)
 - Saisonnalité non modélisée
 
 ## Analyse
@@ -179,6 +227,6 @@ Pour les sorties qui ne sont pas une analyse (ex : génération HTML d'un dashbo
 - [ ] Exporter en PDF pour le board pack si AG dans le mois
 
 ## Limites
-Ce dashboard est un outil de pilotage interne. Pour publication 
+Ce dashboard est un outil de pilotage interne. Pour publication
 externe (investisseurs, organisme bancaire), validation EC requise.
 ```

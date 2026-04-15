@@ -4,7 +4,7 @@ Principe comptable : **le résultat d'un exercice doit rattacher toutes les char
 
 ## Les 4 types d'écritures de rattachement
 
-### FAR — Factures à Recevoir
+### FAR, Factures à Recevoir
 
 **Définition** : le fournisseur a livré la marchandise ou effectué la prestation **avant** la clôture, mais la facture **n'est pas encore reçue** au jour de la clôture.
 
@@ -22,11 +22,11 @@ Principe comptable : **le résultat d'un exercice doit rattacher toutes les char
     44586 TVA sur factures non parvenues  20,00
 ```
 
-### FNP — Factures Non Parvenues
+### FNP, Factures Non Parvenues
 
 Quasi-synonyme de FAR (certains distinguent : FAR pour marchandises, FNP pour services). En pratique, on utilise le **compte 408** pour les deux.
 
-### PCA — Produits Constatés d'Avance
+### PCA, Produits Constatés d'Avance
 
 **Définition** : un produit a été facturé et encaissé **avant** la clôture, mais il concerne une prestation qui sera fournie **après**.
 
@@ -44,7 +44,7 @@ Quasi-synonyme de FAR (certains distinguent : FAR pour marchandises, FNP pour se
     706 Prestations de services       500,00
 ```
 
-### CCA — Charges Constatées d'Avance
+### CCA, Charges Constatées d'Avance
 
 **Définition** : une charge a été facturée et payée **avant** la clôture, mais elle concerne une période **après**.
 
@@ -98,10 +98,10 @@ Le script `scripts/generate_closing_journal.py` peut générer **automatiquement
 
 ### Règles non automatisables (input utilisateur requis)
 
-- **FAR** (liste des fournisseurs ayant livré sans facturer) — nécessite revue
-- **Provisions pour litiges** — jugement du CFO / avocat
-- **Dépréciation clients douteux** — jugement
-- **Valorisation stocks obsolètes** — inventaire physique
+- **FAR** (liste des fournisseurs ayant livré sans facturer), nécessite revue
+- **Provisions pour litiges**, jugement du CFO / avocat
+- **Dépréciation clients douteux**, jugement
+- **Valorisation stocks obsolètes**, inventaire physique
 
 ## Fiscalité
 
@@ -110,7 +110,7 @@ Le script `scripts/generate_closing_journal.py` peut générer **automatiquement
 - **FAR / FNP** : intégralement déductibles si la prestation / livraison est bien antérieure à la clôture
 - **PCA** : reportent le produit imposable à N+1
 - **CCA** : reportent la charge déductible à N+1
-- **Provisions** : déductibles uniquement si **individualisées**, **probables**, et **non encore certaines** — sinon réintégration fiscale
+- **Provisions** : déductibles uniquement si **individualisées**, **probables**, et **non encore certaines**, sinon réintégration fiscale
 
 ### Documentation à conserver
 

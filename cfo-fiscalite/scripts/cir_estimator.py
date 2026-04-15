@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-cir_estimator.py — estime le CIR éligible pour un projet R&D.
+cir_estimator.py, estime le CIR éligible pour un projet R&D.
 
 Input : dépenses R&D ventilées (salaires chercheurs, sous-traitance, amortissements, brevets)
 Output : CIR estimé + avertissements sur les points à risque
@@ -46,7 +46,7 @@ def estimate_cir(
 
     warnings = []
     if salaires_chercheurs == 0:
-        warnings.append("⚠️ Sans salaires chercheurs, le CIR est très faible — vérifiez l'éligibilité de l'activité comme R&D")
+        warnings.append("⚠️ Sans salaires chercheurs, le CIR est très faible, vérifiez l'éligibilité de l'activité comme R&D")
     if sous_traitance_agreee > salaires_chercheurs * 2:
         warnings.append("⚠️ Sous-traitance > 2× salaires internes : vérifier plafond (limité à 2× dépenses internes)")
     if veille_technologique > 60000:

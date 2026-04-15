@@ -4,7 +4,7 @@ Vue d'ensemble des solutions disponibles pour les PME/TPE/scale-ups françaises.
 
 ## 1. Aides publiques (non dilutif, taux faible ou nul)
 
-### CIR — Crédit Impôt Recherche
+### CIR, Crédit Impôt Recherche
 
 - **Quoi** : 30% des dépenses R&D éligibles (jusqu'à 100 M€)
 - **Qui** : toutes sociétés à l'IS faisant de la R&D
@@ -12,7 +12,7 @@ Vue d'ensemble des solutions disponibles pour les PME/TPE/scale-ups françaises.
 - **Délai remboursement** : 4 mois pour PME < 150 k€, sinon imputation IS sur 3 ans
 - **Détail** : voir [`cfo-fiscalite/references/cir.md`](../../cfo-fiscalite/references/cir.md)
 
-### CII — Crédit Impôt Innovation
+### CII, Crédit Impôt Innovation
 
 - **Quoi** : 20% des dépenses prototypes, plafond 80 k€/an
 - **Qui** : PME au sens UE
@@ -41,7 +41,7 @@ Chaque région a ses propres dispositifs :
 - **CNES / DGA** : spatial / défense
 - **Eurostars** : projets UE transnationaux
 
-### JEI — Jeune Entreprise Innovante
+### JEI, Jeune Entreprise Innovante
 
 - **Quoi** : exonération IS (2 exos full + abattement 50%) + exonérations cotisations sociales chercheurs
 - **Qui** : < 8 ans, < 250 sal, > 15% des charges en R&D

@@ -6,7 +6,6 @@ description: |
 metadata:
   last_updated: 2026-04-14
   version: 0.1.0
-  author: Moriarty
   audience: [ec, pme]
   tier: 3
   bundle: moriarty-cfo
@@ -25,7 +24,7 @@ allowed-tools:
 license: MIT
 ---
 
-# cfo-risques-conformite — Risk management & internal controls
+# cfo-risques-conformite, Risk management & internal controls
 
 Huitième skill. Tier 3 (risque & gouvernance).
 
@@ -41,11 +40,11 @@ Huitième skill. Tier 3 (risque & gouvernance).
 Référence : [references/coso-erm.md](references/coso-erm.md).
 
 **5 composantes COSO ERM** :
-1. **Governance & Culture** — gouvernance, ton du top management
-2. **Strategy & Objective Setting** — alignement stratégie/risque
-3. **Performance** — identification, évaluation, priorisation des risques
-4. **Review & Revision** — surveillance continue
-5. **Information, Communication & Reporting** — flux d'information
+1. **Governance & Culture**, gouvernance, ton du top management
+2. **Strategy & Objective Setting**, alignement stratégie/risque
+3. **Performance**, identification, évaluation, priorisation des risques
+4. **Review & Revision**, surveillance continue
+5. **Information, Communication & Reporting**, flux d'information
 
 **Matrice 5×5** : Probabilité × Impact (chacun de 1 à 5).
 

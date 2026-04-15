@@ -1,4 +1,4 @@
-# BCP — Plan de Continuité d'Activité
+# BCP, Plan de Continuité d'Activité
 
 Méthodologie ISO 22301. Plan permettant à la société de maintenir ou reprendre ses activités critiques en cas de crise majeure.
 
@@ -20,7 +20,7 @@ Méthodologie ISO 22301. Plan permettant à la société de maintenir ou reprend
 
 ## Étapes méthodologiques
 
-### Étape 1 — Identifier les activités critiques
+### Étape 1, Identifier les activités critiques
 
 Lister les processus essentiels au business :
 - Production (si industrie)
@@ -39,7 +39,7 @@ Pour chaque activité critique : RTO et RPO.
   - Ex. transactions : RPO 0 (pas de perte)
   - Ex. mails : RPO 24h
 
-### Étape 2 — Analyser l'impact business (BIA)
+### Étape 2, Analyser l'impact business (BIA)
 
 Pour chaque scénario × chaque activité critique :
 - Impact financier (CA perdu / coûts supplémentaires)
@@ -47,7 +47,7 @@ Pour chaque scénario × chaque activité critique :
 - Impact réglementaire (pénalités si arrêt)
 - Impact réputationnel
 
-### Étape 3 — Identifier les ressources nécessaires
+### Étape 3, Identifier les ressources nécessaires
 
 - **Humaines** : qui doit être joignable et opérationnel ?
 - **Techniques** : quels SI / serveurs sont critiques ?
@@ -55,7 +55,7 @@ Pour chaque scénario × chaque activité critique :
 - **Fournisseurs** : alternatives possibles ?
 - **Données** : sauvegardes localisées ailleurs ?
 
-### Étape 4 — Définir les stratégies de continuité
+### Étape 4, Définir les stratégies de continuité
 
 #### Pour le SI (priorité n°1 cyber)
 
@@ -74,7 +74,7 @@ Pour chaque scénario × chaque activité critique :
 - Identification d'alternatives pour les fournisseurs critiques
 - Stocks de sécurité (industrie)
 
-### Étape 5 — Documenter le plan
+### Étape 5, Documenter le plan
 
 Sections obligatoires :
 1. **Pilotage de la crise** : cellule de crise, rôles, escalade
@@ -85,7 +85,7 @@ Sections obligatoires :
 6. **Annuaire de crise** (numéros d'urgence : DG, CFO, CTO, banque, assureur, avocat...)
 7. **Procédures pas-à-pas**
 
-### Étape 6 — Tester et exercer
+### Étape 6, Tester et exercer
 
 **Exercices annuels** au minimum :
 - Tabletop (revue théorique en réunion)
@@ -94,7 +94,7 @@ Sections obligatoires :
 
 Documenter les résultats : ce qui a fonctionné, ce qui doit être amélioré.
 
-### Étape 7 — Maintenance et amélioration continue
+### Étape 7, Maintenance et amélioration continue
 
 - Revue annuelle du BCP
 - Mise à jour à chaque changement majeur (réorganisation, nouvelle filiale, nouveau site)
@@ -153,7 +153,7 @@ Documenter les résultats : ce qui a fonctionné, ce qui doit être amélioré.
 
 ### Acteurs publics à connaître
 
-- **ANSSI** — Agence Nationale de la Sécurité des SI : appui technique
+- **ANSSI**, Agence Nationale de la Sécurité des SI : appui technique
 - **Cybermalveillance.gouv.fr** : aide aux victimes
 - **C3N** : Centre de lutte contre la criminalité numérique (gendarmerie)
 - **OCLCTIC** : Office central de lutte contre la criminalité liée aux TIC

@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-risk_mapping_generator.py — génère matrice de risques 5x5 + plan d'action.
+risk_mapping_generator.py, génère matrice de risques 5x5 + plan d'action.
 
 Input : CSV avec id_risque,libelle,categorie,probabilite(1-5),impact(1-5),owner
 Output : matrice + top 10 risques + KRI proposés

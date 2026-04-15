@@ -6,7 +6,6 @@ description: |
 metadata:
   last_updated: 2026-04-14
   version: 0.1.0
-  author: Moriarty
   audience: [ec, pme]
   tier: 2
   bundle: moriarty-cfo
@@ -25,7 +24,7 @@ allowed-tools:
 license: MIT
 ---
 
-# cfo-fiscalite — Fiscalité & optimisation
+# cfo-fiscalite, Fiscalité & optimisation
 
 Septième skill. Tier 2. Couvre IS, TVA, CIR/CII, transfer pricing, optimisation, veille fiscale.
 
@@ -39,7 +38,7 @@ Septième skill. Tier 2. Couvre IS, TVA, CIR/CII, transfer pricing, optimisation
 
 ## Workflows principaux
 
-### 1. IS — déclaration, acomptes, optimisation
+### 1. IS, déclaration, acomptes, optimisation
 
 Référence : [references/is.md](references/is.md).
 
@@ -48,7 +47,7 @@ Référence : [references/is.md](references/is.md).
 - Taux : 15% PME sur les 42 500 premiers €, 25% au-delà
 - Optimisations légitimes : CIR/CII, amortissements dérogatoires, report en arrière, provisions déductibles
 
-### 2. TVA — régimes et déclarations
+### 2. TVA, régimes et déclarations
 
 Référence : [references/tva.md](references/tva.md).
 
@@ -57,7 +56,7 @@ Référence : [references/tva.md](references/tva.md).
 - CA12 annuelle : 3-5 mois après clôture
 - DEB/DES pour intra-UE : trimestriel si CA HT intra-UE > 1M€
 
-### 3. CIR — Crédit Impôt Recherche
+### 3. CIR, Crédit Impôt Recherche
 
 Référence : [references/cir.md](references/cir.md).
 
@@ -67,7 +66,7 @@ Référence : [references/cir.md](references/cir.md).
 - Déclaration : 2069-A-SD + dossier justificatif (descriptif R&D, preuves de nouveauté)
 - Remboursement : PME < 150k€ en 4 mois, autres en 3 ans (imputation sur IS)
 
-### 4. CII — Crédit Impôt Innovation
+### 4. CII, Crédit Impôt Innovation
 
 Référence : [references/cii.md](references/cii.md).
 

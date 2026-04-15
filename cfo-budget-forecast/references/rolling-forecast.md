@@ -57,7 +57,7 @@ Output : rolling forecast avec les trimestres restants ajustés.
 ## Exemple de commentaire rolling forecast
 
 ```markdown
-## Rolling forecast Q2 N — {SOCIÉTÉ}
+## Rolling forecast Q2 N, {SOCIÉTÉ}
 
 **Performance YTD (S1)** :
 - CA : 530 k€ (vs budget 520 k€, +2%)

@@ -1,4 +1,4 @@
-# ESG Data Governance — modèle CFO/CSO co-leadership
+# ESG Data Governance, modèle CFO/CSO co-leadership
 
 ## Le défi des données ESG
 
@@ -19,7 +19,7 @@ Mais les données ESG sont **éparpillées** :
 
 ## Modèles d'organisation
 
-### Modèle 1 — CFO seul ownership (33% des entreprises)
+### Modèle 1, CFO seul ownership (33% des entreprises)
 
 Avantages :
 - Discipline financial reporting
@@ -30,7 +30,7 @@ Inconvénients :
 - Manque d'expertise sustainability
 - Risque de minimiser sujets non quantifiables
 
-### Modèle 2 — CSO seul ownership (32%)
+### Modèle 2, CSO seul ownership (32%)
 
 Avantages :
 - Expertise sustainability
@@ -41,7 +41,7 @@ Inconvénients :
 - Manque de discipline reporting
 - Coordination difficile avec finance
 
-### Modèle 3 — Co-leadership CFO + CSO (35%)
+### Modèle 3, Co-leadership CFO + CSO (35%)
 
 **Source EFRAG 2024 : modèle le plus répandu.**
 
@@ -113,7 +113,7 @@ Limites : pas scalable au-delà de la 1ère année, audit difficile.
 
 ## Procédures de collecte
 
-### Étape 1 — Cartographie des sources
+### Étape 1, Cartographie des sources
 
 Pour chaque indicateur ESG :
 - D'où vient la donnée ?
@@ -121,7 +121,7 @@ Pour chaque indicateur ESG :
 - Quelle fréquence de collecte ?
 - Quelle qualité ?
 
-### Étape 2 — Procédure formalisée
+### Étape 2, Procédure formalisée
 
 Pour chaque indicateur :
 - Qui collecte (rôle, pas une personne)
@@ -129,14 +129,14 @@ Pour chaque indicateur :
 - Quand (deadline)
 - Comment vérifier (contrôle)
 
-### Étape 3 — Validation multi-niveaux
+### Étape 3, Validation multi-niveaux
 
 - Niveau 1 : collecte par opérationnel
 - Niveau 2 : revue par responsable de fonction
 - Niveau 3 : consolidation par CSO/CFO
 - Niveau 4 : validation finale par Comité ESG
 
-### Étape 4 — Pistes d'audit
+### Étape 4, Pistes d'audit
 
 Pour chaque donnée publiée :
 - Source originale (facture, attestation, calcul)

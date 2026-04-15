@@ -1,4 +1,4 @@
-# BFR Optimization — Diagnostic + 7 leviers
+# BFR Optimization, Diagnostic + 7 leviers
 
 Le BFR (Besoin en Fonds de Roulement) est le cash **bloqué dans le cycle d'exploitation**. Le libérer, c'est gagner de la trésorerie sans s'endetter ni lever de fonds.
 
@@ -29,7 +29,7 @@ Benchmarks indicatifs :
 
 ## Les 4 ratios clés
 
-### DSO — Days Sales Outstanding
+### DSO, Days Sales Outstanding
 
 ```
 DSO = Créances clients TTC × 365 / CA TTC
@@ -43,7 +43,7 @@ Représente le nombre de jours moyens entre la facturation et l'encaissement.
 - Export : 75-120 jours
 - B2C / e-commerce : < 10 jours (paiement à la commande)
 
-### DPO — Days Payable Outstanding
+### DPO, Days Payable Outstanding
 
 ```
 DPO = Dettes fournisseurs TTC × 365 / Achats TTC
@@ -56,7 +56,7 @@ Jours moyens entre la réception de la facture fournisseur et son paiement.
 - PME industrie : 45-65 jours
 - Grands comptes avec pouvoir de négo : 60-90 jours
 
-### DIO — Days Inventory Outstanding
+### DIO, Days Inventory Outstanding
 
 ```
 DIO = Stocks × 365 / Coût des ventes (achats + variation stocks)
@@ -69,7 +69,7 @@ Jours moyens de rotation des stocks.
 - Industrie / fabrication : 60-120 jours
 - Automobile / biens d'équipement : 90-180 jours
 
-### CCC — Cash Conversion Cycle
+### CCC, Cash Conversion Cycle
 
 ```
 CCC = DSO + DIO - DPO
@@ -81,7 +81,7 @@ Jours entre la sortie de cash (paiement fournisseur) et la rentrée de cash (enc
 
 ## Les 7 leviers d'optimisation
 
-### Levier 1 — Relance active des créances
+### Levier 1, Relance active des créances
 
 **Gain potentiel** : -10 à -30 jours de DSO
 **Difficulté** : ⭐ Facile
@@ -92,7 +92,7 @@ Jours entre la sortie de cash (paiement fournisseur) et la rentrée de cash (enc
 - Prévoir **conditions pénalité de retard** dans les CGV (taux BCE +10 pts + indemnité forfaitaire 40€)
 - Suivre DSO top 20 clients mensuellement
 
-### Levier 2 — Acompte / Avance client
+### Levier 2, Acompte / Avance client
 
 **Gain potentiel** : -50 à -80% du DSO
 **Difficulté** : ⭐⭐ Moyen (nécessite accord client)
@@ -102,7 +102,7 @@ Jours entre la sortie de cash (paiement fournisseur) et la rentrée de cash (enc
 - Facturation à l'étape (vs. à la fin de projet)
 - Abonnement annuel à la place de mensuel (avec remise 10-15%)
 
-### Levier 3 — Escompte fournisseurs
+### Levier 3, Escompte fournisseurs
 
 **Gain potentiel** : pas de réduction DPO mais gain marge
 **Difficulté** : ⭐⭐ Moyen
@@ -111,7 +111,7 @@ Jours entre la sortie de cash (paiement fournisseur) et la rentrée de cash (enc
 - Demander un escompte 1-2% en échange d'un paiement à 10 jours
 - Arbitrer escompte vs. coût du financement (si escompte > coût = optimisation)
 
-### Levier 4 — Renégociation conditions fournisseurs
+### Levier 4, Renégociation conditions fournisseurs
 
 **Gain potentiel** : +20 à +45 jours de DPO
 **Difficulté** : ⭐⭐⭐ Difficile (rapport de force)
@@ -119,9 +119,9 @@ Jours entre la sortie de cash (paiement fournisseur) et la rentrée de cash (enc
 **Actions** :
 - Rationaliser le panel fournisseurs (top 20 = 80% du volume)
 - Négocier contrats cadres annuels avec paiement 60j
-- **Attention loi LME** : 60 jours date d'émission facture ou 45 jours fin de mois — PAS 90 jours
+- **Attention loi LME** : 60 jours date d'émission facture ou 45 jours fin de mois, PAS 90 jours
 
-### Levier 5 — Factoring (affacturage)
+### Levier 5, Factoring (affacturage)
 
 **Gain potentiel** : -100% des créances éligibles
 **Difficulté** : ⭐⭐ Moyen (contrat factor)
@@ -134,7 +134,7 @@ Jours entre la sortie de cash (paiement fournisseur) et la rentrée de cash (enc
 
 Arbitrage : coût factor vs. coût du financement bancaire alternatif.
 
-### Levier 6 — Optimisation stocks (JIT)
+### Levier 6, Optimisation stocks (JIT)
 
 **Gain potentiel** : -30 à -60% du DIO
 **Difficulté** : ⭐⭐⭐ (industrie)
@@ -145,14 +145,14 @@ Arbitrage : coût factor vs. coût du financement bancaire alternatif.
 - ABC analysis : focus sur 20% de références = 80% de la valeur
 - Liquider les stocks obsolètes (dépréciation N en charges plutôt que N+1, N+2)
 
-### Levier 7 — Mobilisation créances (Dailly, Cession Dailly)
+### Levier 7, Mobilisation créances (Dailly, Cession Dailly)
 
 **Gain potentiel** : anticipation d'encaissements
 **Difficulté** : ⭐⭐ Moyen (ligne bancaire spécifique)
 
 **Actions** :
 - Ouverture d'une ligne de mobilisation de créances (Dailly) auprès de la banque principale
-- Cession des factures contre avance immédiate (90% typique) — solde à l'encaissement
+- Cession des factures contre avance immédiate (90% typique), solde à l'encaissement
 - Coût : taux bancaire + commissions (généralement 0.3% à 0.6% par cession)
 
 ## Calcul du gain potentiel
@@ -174,7 +174,7 @@ Prend en entrée la balance comptable + données CA/achats, calcule BFR/DSO/DPO/
 
 **Mode EC** : souvent le premier diagnostic "cash" en mission. Vulgariser les ratios pour le client. Proposer un plan d'action chiffré.
 
-**Mode PME** : focus **actions concrètes chiffrées**. Exemple : "En relançant le top 10 créances > 60j (350k€), tu libères ~250k€ de cash en 30-45 jours."
+**Mode PME** : focus **actions concrètes chiffrées**. Exemple : "En relançant le top 10 créances > 60j (350 k€), vous libérez ~250 k€ de cash en 30-45 jours."
 
 ## Orchestration
 

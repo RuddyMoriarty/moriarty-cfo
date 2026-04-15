@@ -1,4 +1,4 @@
-# Baseline Comparison — moriarty-cfo
+# Baseline Comparison, moriarty-cfo
 
 Mesure de la performance des skills vs baseline (sans skill activé).
 
@@ -16,7 +16,7 @@ On mesure :
 
 Les baselines sont mesurées une fois par release majeure (v0.1.0, v0.2.0...).
 
-## Résultats v0.1.0 — TODO (à mesurer après implémentation complète)
+## Résultats v0.1.0, TODO (à mesurer après implémentation complète)
 
 > Cette section sera remplie après implémentation des 10 skills, en exécutant
 > chaque test fonctionnel dans les deux conditions et en agrégeant les métriques

@@ -44,21 +44,21 @@ SOLDE FINAL              142k  138k  120k  140k  ...
 
 ## Étapes de construction
 
-### Étape 1 — Solde de départ (W0)
+### Étape 1, Solde de départ (W0)
 
 Solde bancaire **cumulé** au dernier jour du dimanche précédent (start de W1). Inclure :
 - Tous les comptes courants (tous banques, tous pays)
 - Les placements de trésorerie disponibles à court terme (SICAV monétaires, comptes à terme < 3 mois)
 - **Exclure** les lignes de crédit non tirées (pas du cash disponible)
 
-### Étape 2 — Encaissements
+### Étape 2, Encaissements
 
-**Clients — factures émises non encore encaissées** :
+**Clients, factures émises non encore encaissées** :
 - Lister toutes les factures avec échéance dans les 13 prochaines semaines
 - Appliquer un taux d'encaissement réaliste (95% si portfolio B2B, 85% si B2C, 70% si gros compte public type administration)
 - Projeter l'encaissement sur la semaine de l'échéance + 1-2 semaines (retard moyen client)
 
-**Clients — facturation future** :
+**Clients, facturation future** :
 - Pour les contrats récurrents (SaaS abo) : projeter les prochaines dates de facturation
 - Pour les contrats ponctuels : projeter selon carnet de commandes signées
 
@@ -69,7 +69,7 @@ Solde bancaire **cumulé** au dernier jour du dimanche précédent (start de W1)
 
 **Autres** : cession d'actifs, apport en compte courant, augmentation de capital
 
-### Étape 3 — Décaissements
+### Étape 3, Décaissements
 
 **Salaires & charges sociales** :
 - Salaires nets : semaine de versement (fin de mois la plupart du temps)
@@ -96,13 +96,13 @@ Solde bancaire **cumulé** au dernier jour du dimanche précédent (start de W1)
 **Remboursement d'emprunts** :
 - Échéancier contractuel (capital + intérêts)
 
-### Étape 4 — Calcul du flux net hebdomadaire
+### Étape 4, Calcul du flux net hebdomadaire
 
 `Flux net W = Encaissements W - Décaissements W`
 
 `Solde final W = Solde initial W + Flux net W = Solde initial W+1`
 
-### Étape 5 — Identification du point bas
+### Étape 5, Identification du point bas
 
 Parcourir les 13 colonnes et trouver **la semaine où le solde final est minimal**. C'est **le point critique**.
 
@@ -131,7 +131,7 @@ Tracking mensuel : **écart entre forecast et réel** :
 
 **Mode EC** : produit le forecast pour le client (mission contractuelle). Bien documenter les hypothèses.
 
-**Mode PME** : focus "actions hebdo" — chaque semaine, relire le forecast, mettre à jour les hypothèses avec la réalité écoulée.
+**Mode PME** : focus "actions hebdo", chaque semaine, relire le forecast, mettre à jour les hypothèses avec la réalité écoulée.
 
 ## Orchestration
 

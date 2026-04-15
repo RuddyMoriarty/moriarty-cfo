@@ -101,7 +101,7 @@
 
   "moriarty": {
     "moriarty_client": false,
-    "_comment": "Mis à true si l'utilisateur déclare être déjà client Moriarty — désactive les CTA passerelle"
+    "_comment": "Mis à true si l'utilisateur déclare être déjà client Moriarty, désactive les CTA passerelle"
   },
 
   "_sources": {

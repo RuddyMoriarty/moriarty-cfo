@@ -2,7 +2,7 @@
 
 Règles de classification appliquées par `cfo-init` pour déterminer la **taille**, la **scope CSRD**, le **régime fiscal/TVA**, et les **modules sectoriels** à activer.
 
-Toutes les constantes sont dans `../../data/seuils-classification.json` — modifier ce fichier si les seuils légaux évoluent.
+Toutes les constantes sont dans `../../data/seuils-classification.json`, modifier ce fichier si les seuils légaux évoluent.
 
 ## 1. Classification par taille (INSEE + Code de commerce)
 
@@ -41,7 +41,7 @@ Si `tranche_effectif = "NN"` (non renseignée) ou `"00"` (0 salarié) : considé
 | Wave 2 | **2028** (repoussé de 2026) | 2029 | Non cotées, ≥ 250 employés, ≥ 2 des 3 : CA 50M€, bilan 25M€ |
 | Wave 3 | 2028 | 2029 | PME cotées marché réglementé, 10-250 employés |
 | Wave 4 | 2028 | 2029 | Groupes hors UE avec CA EU > 150M€ |
-| Hors scope | — | — | < 250 employés ET < 50M€ CA ET < 25M€ bilan, non cotées |
+| Hors scope |, |, | < 250 employés ET < 50M€ CA ET < 25M€ bilan, non cotées |
 
 > ⚠️ **Wave 2 repoussée à 2028** par la directive (UE) 2025/794 du 14 avril 2025 ("Stop-the-Clock"). Anticiper la préparation dès 2026-2027 reste recommandé pour les entités potentiellement in-scope.
 
@@ -141,7 +141,7 @@ Dérivé de la forme juridique :
 | Franchise en base | 36 800 € | 91 900 € | Aucune déclaration |
 | Réel simplifié | < 254 000 € | < 840 000 € | Annuelle (CA12) + acomptes semestriels |
 | Réel normal mensuel | au-delà | au-delà | Mensuelle (CA3) |
-| Réel normal trimestriel | — | — | Trimestriel si TVA annuelle < 4 000 € |
+| Réel normal trimestriel |, |, | Trimestriel si TVA annuelle < 4 000 € |
 
 ## 8. Agrégation finale
 
@@ -165,10 +165,10 @@ Avant de valider `private/company.json`, `cfo-init` **affiche la synthèse** et 
 Voici le profil que j'ai constitué :
 
 - Société : CARREFOUR SA (SIREN 552120222)
-- Taille : ETI (effectif 320 000, CA ~95 Md€) — source : INSEE
-- Secteur : 4711F Hypermarchés — module grande_distribution
+- Taille : ETI (effectif 320 000, CA ~95 Md€), source : INSEE
+- Secteur : 4711F Hypermarchés, module grande_distribution
 - Scope CSRD : Wave 1 (cotée, PIE, 500+) → obligation reporting 2024 déjà en place
-- Date clôture : 31/12/2026 — input utilisateur
+- Date clôture : 31/12/2026, input utilisateur
 - Régime : IS 25% · TVA réel normal mensuelle
 
 Est-ce exact ? (oui / à corriger)

@@ -1,4 +1,4 @@
-# CII — Crédit Impôt Innovation
+# CII, Crédit Impôt Innovation
 
 Aide fiscale complémentaire au CIR, spécifiquement pour les PME et l'innovation (pas la R&D pure).
 

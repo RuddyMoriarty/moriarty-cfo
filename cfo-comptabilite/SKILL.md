@@ -6,7 +6,6 @@ description: |
 metadata:
   last_updated: 2026-04-14
   version: 0.1.0
-  author: Moriarty
   audience: [ec, pme]
   tier: 1
   bundle: moriarty-cfo
@@ -23,7 +22,7 @@ allowed-tools:
 license: MIT
 ---
 
-# cfo-comptabilite — Production comptable
+# cfo-comptabilite, Production comptable
 
 Deuxième skill du bundle `moriarty-cfo`. Gère la production comptable mensuelle et annuelle, en mode dual EC (mission de présentation, NEP CNCC) ou PME (vulgarisation, renvoi EC humain).
 
@@ -32,18 +31,18 @@ Deuxième skill du bundle `moriarty-cfo`. Gère la production comptable mensuell
 Ce skill lit `private/company.json` produit par `cfo-init`. Si ce fichier n'existe pas, **lancer d'abord `cfo-init`**.
 
 Champs du profil utilisés :
-- `classification.taille` — adapte le niveau de détail (J+5 attendu pour PME+, optionnel pour TPE)
-- `classification.groupe` — si `true`, active le sub-module consolidation
-- `classification.domtom` — si `true`, applique les règles DOM-TOM (cf. `paperasse/comptable`)
-- `classification.regime_fiscal` — IS vs IR, conditionne les écritures IS
-- `exercice_comptable.date_cloture` — référence pour la clôture annuelle
-- `modules_actives.cac_obligatoire` — si `true`, active la checklist coordination CAC
+- `classification.taille`, adapte le niveau de détail (J+5 attendu pour PME+, optionnel pour TPE)
+- `classification.groupe`, si `true`, active le sub-module consolidation
+- `classification.domtom`, si `true`, applique les règles DOM-TOM (cf. `paperasse/comptable`)
+- `classification.regime_fiscal`, IS vs IR, conditionne les écritures IS
+- `exercice_comptable.date_cloture`, référence pour la clôture annuelle
+- `modules_actives.cac_obligatoire`, si `true`, active la checklist coordination CAC
 
 ## Composabilité
 
-- `paperasse/comptable` (skill externe, recommandé) — pour le détail PCG (plan de 800+ comptes), écritures type PCG, spécificités DOM-TOM/LMNP/crypto
-- `paperasse/controleur-fiscal` (skill externe, recommandé) — pour le détail liasse fiscale (cases 2033/2050) et barème pénalités
-- `cfo-fiscalite` (ce bundle) — prend le relais pour l'optimisation IS, CIR, transfer pricing avancé
+- `paperasse/comptable` (skill externe, recommandé), pour le détail PCG (plan de 800+ comptes), écritures type PCG, spécificités DOM-TOM/LMNP/crypto
+- `paperasse/controleur-fiscal` (skill externe, recommandé), pour le détail liasse fiscale (cases 2033/2050) et barème pénalités
+- `cfo-fiscalite` (ce bundle), prend le relais pour l'optimisation IS, CIR, transfer pricing avancé
 
 ## Workflows principaux
 
@@ -53,13 +52,13 @@ Workflow détaillé : [references/workflow-cloture-mensuelle.md](references/work
 
 **Étapes standard** (checklist M+5) :
 
-1. **Collecte transactions** — banque, ventes, achats, paie
-2. **Catégorisation** — affectation PCG, renvoi `paperasse/comptable` pour le détail
-3. **Rapprochement bancaire** — balance ≠ grand livre = alerte
-4. **Cut-off** — FAR, FNP, PCA, CCA (voir [references/cut-off-ecritures.md](references/cut-off-ecritures.md))
-5. **Écritures d'inventaire mensualisées** — provisions, amortissements au prorata
-6. **Validation balance** — débit = crédit
-7. **Reporting mensuel** — renvoie à `cfo-reporting` pour la génération du pack
+1. **Collecte transactions**, banque, ventes, achats, paie
+2. **Catégorisation**, affectation PCG, renvoi `paperasse/comptable` pour le détail
+3. **Rapprochement bancaire**, balance ≠ grand livre = alerte
+4. **Cut-off**, FAR, FNP, PCA, CCA (voir [references/cut-off-ecritures.md](references/cut-off-ecritures.md))
+5. **Écritures d'inventaire mensualisées**, provisions, amortissements au prorata
+6. **Validation balance**, débit = crédit
+7. **Reporting mensuel**, renvoie à `cfo-reporting` pour la génération du pack
 
 **Output attendu** :
 - `out/cloture-YYYY-MM-checklist.md` (checklist cochée)
@@ -99,7 +98,7 @@ Workflow détaillé : [references/workflow-cloture-annuelle.md](references/workf
 
 Workflow détaillé : [references/coordination-cac.md](references/coordination-cac.md).
 
-**Applicable si** : `modules_actives.cac_obligatoire = true` (seuils : CA > 8M€, bilan > 4M€, effectif > 50 — 2 critères sur 3).
+**Applicable si** : `modules_actives.cac_obligatoire = true` (seuils : CA > 8M€, bilan > 4M€, effectif > 50, 2 critères sur 3).
 
 **Deliverables à préparer** :
 - Dossier de travail annuel (chronique, FAR/FNP justifiés, échantillons)
@@ -123,7 +122,7 @@ Référence : [references/paie-urssaf.md](references/paie-urssaf.md).
 - Effort construction PEEC (annuel, si effectif ≥ 50)
 - Plans sociaux / ruptures conventionnelles (ad-hoc)
 
-**Renvoi** : pour la production paie elle-même, utiliser l'outil de paie de l'entreprise (Silae, Nibelis, Tiime, etc.) — ce skill fait la **coordination comptable** (DSN, écritures de paie, rapprochement URSSAF).
+**Renvoi** : pour la production paie elle-même, utiliser l'outil de paie de l'entreprise (Silae, Nibelis, Tiime, etc.), ce skill fait la **coordination comptable** (DSN, écritures de paie, rapprochement URSSAF).
 
 ### 5. Sub-module Consolidation groupes
 
@@ -137,7 +136,7 @@ Référence : [references/consolidation-groupes.md](references/consolidation-gro
 - Éliminations intercompanies (marge stock, dividendes, dettes/créances)
 - Goodwill (amortissement interdit en IFRS, test de dépréciation annuel)
 - Segment reporting (IFRS 8)
-- Transfer pricing documentation (méthodes CUP, RPM, TNMM — renvoyer à `cfo-fiscalite`)
+- Transfer pricing documentation (méthodes CUP, RPM, TNMM, renvoyer à `cfo-fiscalite`)
 
 ## Format de sortie
 
@@ -167,7 +166,7 @@ Toutes les analyses suivent le format standard [shared/output-format.md](../shar
 | [references/workflow-cloture-mensuelle.md](references/workflow-cloture-mensuelle.md) | Workflow J+5 détaillé |
 | [references/workflow-cloture-annuelle.md](references/workflow-cloture-annuelle.md) | 12 étapes clôture annuelle |
 | [references/coordination-cac.md](references/coordination-cac.md) | Préparation audit CAC, lettre d'affirmation, findings |
-| [references/cut-off-ecritures.md](references/cut-off-ecritures.md) | FAR, FNP, PCA, CCA — règles et écritures |
+| [references/cut-off-ecritures.md](references/cut-off-ecritures.md) | FAR, FNP, PCA, CCA, règles et écritures |
 | [references/liasse-fec.md](references/liasse-fec.md) | Génération FEC + liasse fiscale 2033/2065 |
 | [references/paie-urssaf.md](references/paie-urssaf.md) | Sub-module HR/Paie |
 | [references/consolidation-groupes.md](references/consolidation-groupes.md) | Sub-module groupes (IFRS, intercos) |

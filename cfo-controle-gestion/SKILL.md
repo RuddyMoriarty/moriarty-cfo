@@ -6,7 +6,6 @@ description: |
 metadata:
   last_updated: 2026-04-14
   version: 0.1.0
-  author: Moriarty
   audience: [ec, pme]
   tier: 2
   bundle: moriarty-cfo
@@ -23,11 +22,11 @@ allowed-tools:
 license: MIT
 ---
 
-# cfo-controle-gestion — Performance & rentabilité
+# cfo-controle-gestion, Performance & rentabilité
 
-Cinquième skill du bundle. Tier 2 — analyses fines de performance et rentabilité.
+Cinquième skill du bundle. Tier 2, analyses fines de performance et rentabilité.
 
-Sujet n°4 dans le corpus Phase 0.1 (47 occurrences "KPI dashboards" + 41 "rentabilité par produit/client") — c'est un **must-have PME+**.
+Sujet n°4 dans le corpus Phase 0.1 (47 occurrences "KPI dashboards" + 41 "rentabilité par produit/client"), c'est un **must-have PME+**.
 
 ## Prérequis
 
@@ -46,7 +45,7 @@ Source : [`data/kpi-catalog.json`](../data/kpi-catalog.json).
 - Rentabilité (Marge brute, VA, EBE, EBITDA, EBIT, RN, ROCE, ROE)
 - Structure financière (FR, Ratio autonomie, Endettement, CAF)
 - Trésorerie / BFR (DSO, DPO, DIO, CCC)
-- Performance opérationnelle (Cash burn, Runway — mode startup)
+- Performance opérationnelle (Cash burn, Runway, mode startup)
 - RH / Capital humain (Coût personnel/CA, CA/salarié, VA/salarié)
 - Investissement CAPEX (Intensité capitalistique, Taux investissement, Vétusté)
 
@@ -94,7 +93,7 @@ Référence : [references/analyse-marges.md](references/analyse-marges.md).
 
 Référence : [references/variance-analysis.md](references/variance-analysis.md).
 
-Script : `scripts/variance_analyzer.py` — décompose chaque variance en effet volume / prix / mix / timing.
+Script : `scripts/variance_analyzer.py`, décompose chaque variance en effet volume / prix / mix / timing.
 
 ### 6. Pricing optimization
 

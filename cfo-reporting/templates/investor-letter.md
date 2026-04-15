@@ -1,4 +1,4 @@
-# Lettre Q{{TRIMESTRE}} {{ANNEE}} — {{COMPANY_NAME}}
+# Lettre Q{{TRIMESTRE}} {{ANNEE}}, {{COMPANY_NAME}}
 
 Chers amis et investisseurs,
 
@@ -9,13 +9,13 @@ Q{{TRIMESTRE}} {{ANNEE}} a été {{ADJECTIF}}. Voici les 4 chiffres clés :
 - **Cash** : {{CASH}} (runway {{RUNWAY}} mois)
 - **Effectif** : {{HEADCOUNT}} ({{HEADCOUNT_CHANGE}})
 
-## 🟢 3 moments forts du trimestre
+## 3 moments forts du trimestre
 
-1. **{{HIGHLIGHT_1_TITLE}}** — {{HIGHLIGHT_1_DETAIL}}
-2. **{{HIGHLIGHT_2_TITLE}}** — {{HIGHLIGHT_2_DETAIL}}
-3. **{{HIGHLIGHT_3_TITLE}}** — {{HIGHLIGHT_3_DETAIL}}
+1. 🟢 **{{HIGHLIGHT_1_TITLE}}**, {{HIGHLIGHT_1_DETAIL}}
+2. 🟢 **{{HIGHLIGHT_2_TITLE}}**, {{HIGHLIGHT_2_DETAIL}}
+3. 🟢 **{{HIGHLIGHT_3_TITLE}}**, {{HIGHLIGHT_3_DETAIL}}
 
-## 📊 Métriques détaillées
+## Métriques détaillées
 
 | Métrique | Q-3 | Q-2 | Q-1 | Q{{TRIMESTRE}} |
 |----------|-----|-----|-----|----------------|
@@ -29,13 +29,13 @@ Q{{TRIMESTRE}} {{ANNEE}} a été {{ADJECTIF}}. Voici les 4 chiffres clés :
 Commentaires sur les trends principaux :
 {{COMMENTS_ON_TRENDS}}
 
-## 🔍 Focus du trimestre : {{FOCUS_TITLE}}
+## Focus du trimestre : {{FOCUS_TITLE}}
 
 {{FOCUS_CONTENT}}
 
 _(1 page creusée sur un sujet : nouveau produit, nouveau marché, défi significatif, pivot. Être transparent sur ce qui ne marche pas. Les investisseurs détectent le sugarcoating rapidement.)_
 
-## 🙋 Asks
+## Asks
 
 Voici ce sur quoi vous pouvez nous aider ce trimestre :
 

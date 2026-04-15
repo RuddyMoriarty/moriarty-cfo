@@ -1,4 +1,4 @@
-# Plan d'action — Tension trésorerie
+# Plan d'action, Tension trésorerie
 
 **Société** : {{COMPANY_NAME}} (SIREN {{SIREN}})
 **Date diagnostic** : {{DATE}}
@@ -17,19 +17,19 @@
 
 Cause principale identifiée : {{CAUSE_PRINCIPALE}}
 
-## Actions priorité 1 — 48h (stopper les sorties)
+## Actions priorité 1, 48h (stopper les sorties)
 
-- [ ] Gel des CAPEX non critiques — **{{MONTANT_CAPEX_GELE}} € économisés**
-- [ ] Stop des campagnes marketing en cours — **{{MONTANT_MARKETING}} €**
-- [ ] Audit des abonnements SaaS → annuler les non-utilisés — **{{MONTANT_SAAS}} €**
+- [ ] Gel des CAPEX non critiques, **{{MONTANT_CAPEX_GELE}} € économisés**
+- [ ] Stop des campagnes marketing en cours, **{{MONTANT_MARKETING}} €**
+- [ ] Audit des abonnements SaaS → annuler les non-utilisés, **{{MONTANT_SAAS}} €**
 - [ ] Stop des formations / événements externes
 - [ ] Communication interne sobre (mode économie sans panique)
 
 **Gain total P1 : {{GAIN_P1}} € (≈ {{GAIN_P1_PCT}}% du burn mensuel)**
 
-## Actions priorité 2 — 7 jours (accélérer les entrées)
+## Actions priorité 2, 7 jours (accélérer les entrées)
 
-- [ ] Relance active top 10 créances > 45 jours — **gain estimé {{GAIN_RELANCE}} €**
+- [ ] Relance active top 10 créances > 45 jours, **gain estimé {{GAIN_RELANCE}} €**
 - [ ] Appels directs DAF clients clés (pas juste email)
 - [ ] Mise en demeure formelle si > 60 jours (pénalités LME)
 - [ ] Facturation anticipée des prestations réalisées mais non facturées
@@ -37,7 +37,7 @@ Cause principale identifiée : {{CAUSE_PRINCIPALE}}
 
 **Gain total P2 : {{GAIN_P2}} € ({{JOURS_DSO_RECUPERES}} jours de DSO libérés)**
 
-## Actions priorité 3 — 1-2 semaines (négocier les échéances)
+## Actions priorité 3, 1-2 semaines (négocier les échéances)
 
 - [ ] URSSAF : demande de délai de paiement (urssaf.fr, formulaire dédié)
 - [ ] DGFiP : délai de paiement fiscal (formulaire 3302-SD)
@@ -47,9 +47,9 @@ Cause principale identifiée : {{CAUSE_PRINCIPALE}}
 
 **Gain total P3 : {{GAIN_P3}} € (trésorerie supplémentaire sur {{SEMAINES_GAIN}} semaines)**
 
-## Actions priorité 4 — 2-3 semaines (mobiliser les financements CT)
+## Actions priorité 4, 2-3 semaines (mobiliser les financements CT)
 
-- [ ] Augmentation découvert autorisé (+30-50%) — **contact : {{BANQUIER}}**
+- [ ] Augmentation découvert autorisé (+30-50%), **contact : {{BANQUIER}}**
 - [ ] Ouverture ligne Dailly si pas déjà en place
 - [ ] Mise en place affacturage (factor)
 - [ ] Reverse factoring si société de taille suffisante
@@ -57,7 +57,7 @@ Cause principale identifiée : {{CAUSE_PRINCIPALE}}
 
 **Contact factor recommandé** : {{CONTACT_FACTOR}}
 
-## Actions priorité 5 — Immédiate (dialogue transparent banque)
+## Actions priorité 5, Immédiate (dialogue transparent banque)
 
 - [ ] Informer banquier **avant** le premier incident
 - [ ] Présenter ce plan d'action (montre maîtrise)
@@ -70,11 +70,11 @@ Cause principale identifiée : {{CAUSE_PRINCIPALE}}
 
 | Priorité | Gain estimé (€) | Délai | Status |
 |----------|----------------|-------|--------|
-| P1 — Gel sorties | {{GAIN_P1}} | 48h | ☐ |
-| P2 — Accélérer entrées | {{GAIN_P2}} | 7j | ☐ |
-| P3 — Moratoires | {{GAIN_P3}} | 2 sem | ☐ |
-| P4 — Financements CT | {{GAIN_P4}} | 3 sem | ☐ |
-| P5 — Dialogue banque | — | immédiat | ☐ |
+| P1, Gel sorties | {{GAIN_P1}} | 48h | ☐ |
+| P2, Accélérer entrées | {{GAIN_P2}} | 7j | ☐ |
+| P3, Moratoires | {{GAIN_P3}} | 2 sem | ☐ |
+| P4, Financements CT | {{GAIN_P4}} | 3 sem | ☐ |
+| P5, Dialogue banque |, | immédiat | ☐ |
 | **TOTAL** | **{{GAIN_TOTAL}} €** | | |
 
 **Nouveau solde projeté après plan** : {{SOLDE_PROJETE_APRES_PLAN}} €

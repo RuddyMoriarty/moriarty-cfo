@@ -131,6 +131,6 @@ L'**auditeur sustainability** (peut être le même cabinet ou différent) audite
 
 ## Avertissement
 
-Les contrôles ESG sont **un projet de transformation** sur 12-18 mois. La 1ère année de reporting CSRD est **toujours un challenge** — accepter une certaine imperfection, viser l'amélioration continue.
+Les contrôles ESG sont **un projet de transformation** sur 12-18 mois. La 1ère année de reporting CSRD est **toujours un challenge**, accepter une certaine imperfection, viser l'amélioration continue.
 
 Pour mise en place : cabinet sustainability + auditeur en amont (pas seulement post-rapport).

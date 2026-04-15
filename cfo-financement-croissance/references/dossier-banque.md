@@ -118,10 +118,10 @@ Possible. Solutions :
 
 ## Template
 
-`templates/dossier-banque.md` — squelette à compléter.
+`templates/dossier-banque.md`, squelette à compléter.
 
 ## Adaptation par audience
 
 **Mode EC** : vous accompagnez le client → préparer ensemble, faire répéter le pitch, jouer le rôle du banquier en simulation.
 
-**Mode PME (dirigeant)** : c'est votre projet. Le CFO virtuel vous aide à structurer mais vous portez le pitch. **Insister sur la transparence** — la banque préfère une vérité difficile à un mensonge confortable.
+**Mode PME (dirigeant)** : c'est votre projet. Le CFO virtuel vous aide à structurer mais vous portez le pitch. **Insister sur la transparence**, la banque préfère une vérité difficile à un mensonge confortable.

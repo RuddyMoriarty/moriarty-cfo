@@ -1,4 +1,4 @@
-# Checklist de clôture annuelle — Exercice {ANNEE}
+# Checklist de clôture annuelle, Exercice {ANNEE}
 
 Société : **{DENOMINATION}** (SIREN {SIREN})
 Date de clôture : **{DATE_CLOTURE}**
@@ -8,7 +8,7 @@ Date de clôture : **{DATE_CLOTURE}**
 - AG d'approbation : **au plus tard {DATE_AG}**
 - Dépôt au greffe : **{DATE_GREFFE}**
 
-## Phase 1 — Arrêté des comptes et inventaire
+## Phase 1, Arrêté des comptes et inventaire
 
 - [ ] **Étape 1** : Arrêté des comptes à la date de clôture (gel du logiciel comptable)
 - [ ] **Étape 2** : Rapprochement bancaire définitif (solde relevé = grand livre)
@@ -16,7 +16,7 @@ Date de clôture : **{DATE_CLOTURE}**
   - [ ] Stocks (matières, en-cours, produits finis)
   - [ ] Immobilisations (contrôle présence + état)
 
-## Phase 2 — Écritures d'inventaire et régularisations
+## Phase 2, Écritures d'inventaire et régularisations
 
 - [ ] **Étape 4** : Écritures d'inventaire complètes
   - [ ] Amortissements annuels (linéaire / dégressif)
@@ -37,7 +37,7 @@ Date de clôture : **{DATE_CLOTURE}**
   - [ ] Taux IS (15% réduit PME / 25% normal)
   - [ ] Imputation acomptes + crédits d'impôt (CIR, CII)
 
-## Phase 3 — Consolidation (si groupe)
+## Phase 3, Consolidation (si groupe)
 
 - [ ] **Étape 7b** : Comptes consolidés (si `classification.groupe = true`)
   - [ ] Homogénéisation des méthodes
@@ -46,7 +46,7 @@ Date de clôture : **{DATE_CLOTURE}**
   - [ ] Goodwill + test de dépréciation
   - [ ] Segment reporting (IFRS 8)
 
-## Phase 4 — Livrables fiscaux
+## Phase 4, Livrables fiscaux
 
 - [ ] **Étape 8** : Écritures de répartition du résultat (après AG)
   - [ ] Dotation réserve légale
@@ -63,7 +63,7 @@ Date de clôture : **{DATE_CLOTURE}**
   - [ ] Toutes les cases remplies (2050-2058)
   - [ ] Cohérence FEC ↔ liasse (total débit = total crédit, résultat identique)
 
-## Phase 5 — Audit et transmission
+## Phase 5, Audit et transmission
 
 - [ ] **Étape 12** : Coordination CAC (si obligatoire)
   - [ ] Dossier de travail constitué (cf. `references/coordination-cac.md`)

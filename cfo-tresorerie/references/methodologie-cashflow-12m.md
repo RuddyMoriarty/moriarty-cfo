@@ -53,7 +53,7 @@ SOLDE FINAL
 
 ## Étapes de construction
 
-### Étape 1 — Scénario de base
+### Étape 1, Scénario de base
 
 Hypothèses centrales :
 - Croissance CA : aligner sur le budget annuel validé
@@ -61,7 +61,7 @@ Hypothèses centrales :
 - Conditions de paiement : conditions actuelles maintenues
 - Embauches : uniquement celles déjà validées
 
-### Étape 2 — Scénario optimiste (+X%)
+### Étape 2, Scénario optimiste (+X%)
 
 Hypothèses upside :
 - Croissance CA +15% vs base (nouveau contrat majeur, nouveau produit réussi)
@@ -69,7 +69,7 @@ Hypothèses upside :
 - Accélération encaissements (DSO -10j)
 - Subventions obtenues en avance
 
-### Étape 3 — Scénario pessimiste (-X%)
+### Étape 3, Scénario pessimiste (-X%)
 
 Hypothèses downside :
 - Croissance CA -10% (perte d'un client clé, retard produit)
@@ -78,7 +78,7 @@ Hypothèses downside :
 - CAPEX maintenu (fixe)
 - Aucune subvention ni aide reçue
 
-### Étape 4 — Probabilité pondérée
+### Étape 4, Probabilité pondérée
 
 Ne pas utiliser la moyenne simple. Appliquer des **probabilités** :
 - Pessimiste : 20-30% (plus en contexte incertain)

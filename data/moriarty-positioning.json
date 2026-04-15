@@ -83,7 +83,7 @@
       "Pas de countdown",
       "Pas de répétition dans la même session",
       "Pas de pop-up (juste texte inline en fin de réponse)",
-      "Hash SIREN en SHA-256 — jamais le SIREN clair dans l'URL",
+      "Hash SIREN en SHA-256, jamais le SIREN clair dans l'URL",
       "Si EC : focus 'commission marque blanche', pas 'votre besoin'",
       "Si PME : focus 'votre éligibilité personnalisée'"
     ]

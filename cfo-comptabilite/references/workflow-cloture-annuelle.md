@@ -2,7 +2,7 @@
 
 Guide complet de la clôture annuelle pour une société française à l'IS. Calqué sur la checklist de `paperasse/comptable` + enrichi pour le scope CFO (pilotage, board pack, coordination CAC).
 
-## Étape 1 — Arrêté des comptes
+## Étape 1, Arrêté des comptes
 
 **Date** : jour de clôture (ex. 31/12).
 
@@ -13,13 +13,13 @@ Guide complet de la clôture annuelle pour une société française à l'IS. Cal
 
 **Output** : balance brute à la date de clôture, avant écritures d'inventaire.
 
-## Étape 2 — Rapprochement bancaire définitif
+## Étape 2, Rapprochement bancaire définitif
 
 - Pour chaque compte 512, rapprocher ligne à ligne le relevé bancaire avec le grand livre
 - Toute différence → écriture de régularisation (chèques à l'encaissement, virements en attente, frais bancaires oubliés)
 - Obtenir le lettrage final : **solde bancaire = solde comptable** à la date de clôture
 
-## Étape 3 — Inventaire physique
+## Étape 3, Inventaire physique
 
 **Obligatoire (L. 123-12 C. com.)** au moins une fois par an :
 - Inventaire des stocks (matières, en-cours, produits finis)
@@ -30,7 +30,7 @@ Guide complet de la clôture annuelle pour une société française à l'IS. Cal
 - PEPS (Premier Entré Premier Sorti) : autorisé
 - LIFO : interdit en France (autorisé en fiscalité US)
 
-## Étape 4 — Écritures d'inventaire complètes
+## Étape 4, Écritures d'inventaire complètes
 
 **Amortissements annuels** :
 - Linéaire ou dégressif (voir `paperasse/comptable > references/amortissements.md`)
@@ -47,7 +47,7 @@ Guide complet de la clôture annuelle pour une société française à l'IS. Cal
 - Dépréciation clients douteux (> 6 mois impayé = indice fort)
 - Dépréciation stocks obsolètes
 
-## Étape 5 — Écritures de cut-off annuel
+## Étape 5, Écritures de cut-off annuel
 
 Voir [cut-off-ecritures.md](cut-off-ecritures.md) pour le détail.
 
@@ -56,13 +56,13 @@ Voir [cut-off-ecritures.md](cut-off-ecritures.md) pour le détail.
 - **PCA** (Produits Constatés d'Avance) : produits encaissés mais non acquis à la date de clôture
 - **CCA** (Charges Constatées d'Avance) : charges payées mais non consommées
 
-## Étape 6 — Régularisations fiscales
+## Étape 6, Régularisations fiscales
 
 - Écarts de conversion sur devises (écart de change latent au 31/12)
 - Régularisation TVA (rapprochement CA3 de décembre avec compte 445)
 - Calcul et écriture des taxes assimilées (CFE, CVAE pour ETI/GE, IFER, TASCOM)
 
-## Étape 7 — Calcul IS définitif
+## Étape 7, Calcul IS définitif
 
 Renvoi à `cfo-fiscalite` ou `paperasse/controleur-fiscal`.
 
@@ -71,7 +71,7 @@ Points clés :
 - Résultat fiscal → application du taux IS (15% taux réduit PME sur 42 500€, 25% au-delà)
 - Acomptes déjà versés → solde à payer (ou crédit reportable)
 
-## Étape 8 — Écritures de répartition du résultat
+## Étape 8, Écritures de répartition du résultat
 
 Effectuée **après approbation par l'AG** (pas à la clôture elle-même) :
 - Dotation à la réserve légale (5% jusqu'à 10% du capital)
@@ -79,14 +79,14 @@ Effectuée **après approbation par l'AG** (pas à la clôture elle-même) :
 - Distribution de dividendes (si décidée)
 - Report à nouveau
 
-## Étape 9 — Balance définitive
+## Étape 9, Balance définitive
 
 Balance finale **après toutes écritures d'inventaire et de répartition** :
 - Débit = Crédit (équilibre obligatoire)
 - Pas de solde résiduel sur les comptes transitoires (ex. 471)
 - Cohérence des comptes à zéro après répartition (ex. 120 Résultat de l'exercice → soldé)
 
-## Étape 10 — Génération FEC
+## Étape 10, Génération FEC
 
 Voir [liasse-fec.md](liasse-fec.md).
 
@@ -95,7 +95,7 @@ Voir [liasse-fec.md](liasse-fec.md).
 - Pénalité : 5 000 € si non conforme
 - Script : `scripts/prepare_fec_export.py`
 
-## Étape 11 — Préparation liasse fiscale
+## Étape 11, Préparation liasse fiscale
 
 **Quelle liasse ?**
 - **2033** : régime réel simplifié (petites entreprises à l'IS ou à l'IR BIC)
@@ -111,7 +111,7 @@ Cases principales à remplir :
 
 Renvoi : `paperasse/controleur-fiscal/references/textes-fiscaux.md` pour le détail.
 
-## Étape 12 — Coordination CAC (si applicable)
+## Étape 12, Coordination CAC (si applicable)
 
 Voir [coordination-cac.md](coordination-cac.md).
 

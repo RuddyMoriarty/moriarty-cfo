@@ -5,12 +5,12 @@ CSRD impose l'**intégration** du rapport sustainability au **rapport de gestion
 ## Cadre légal
 
 - **L. 225-102 C. com.** : rapport de gestion (toutes sociétés)
-- **L. 225-102-1 C. com.** : DPEF (Déclaration de Performance Extra-Financière) — remplacée par CSRD pour les in-scope
+- **L. 225-102-1 C. com.** : DPEF (Déclaration de Performance Extra-Financière), remplacée par CSRD pour les in-scope
 - **CSRD + ESRS** : sustainability statement
 
 ## Structure d'un rapport intégré
 
-### Partie 1 — Présentation et stratégie
+### Partie 1, Présentation et stratégie
 
 1. **Mot du Président / DG**
    - Highlights de l'année
@@ -27,7 +27,7 @@ CSRD impose l'**intégration** du rapport sustainability au **rapport de gestion
    - Plan de transition (climat, social)
    - Engagements long terme
 
-### Partie 2 — Activité et performance
+### Partie 2, Activité et performance
 
 4. **Activité de l'exercice**
    - Faits marquants
@@ -43,13 +43,13 @@ CSRD impose l'**intégration** du rapport sustainability au **rapport de gestion
    - Évolution YoY
    - Atteinte des targets
 
-### Partie 3 — Sustainability statement (CSRD ESRS)
+### Partie 3, Sustainability statement (CSRD ESRS)
 
-7. **ESRS 1 — General Requirements**
+7. **ESRS 1, General Requirements**
    - Périmètre
    - Méthodologie
 
-8. **ESRS 2 — General Disclosures**
+8. **ESRS 2, General Disclosures**
    - Stratégie sustainability
    - Gouvernance ESG
    - Gestion des risques ESG
@@ -63,14 +63,14 @@ CSRD impose l'**intégration** du rapport sustainability au **rapport de gestion
     - % CA aligné taxonomie
     - % CAPEX et OPEX alignés
 
-### Partie 4 — Gouvernance
+### Partie 4, Gouvernance
 
 11. **Composition du board**
 12. **Rémunération mandataires sociaux**
 13. **Conventions réglementées**
 14. **Risques et contrôle interne**
 
-### Partie 5 — Annexes
+### Partie 5, Annexes
 
 15. **États financiers consolidés** (si groupe) ou statutaires
 16. **Annexe complète**
@@ -79,7 +79,7 @@ CSRD impose l'**intégration** du rapport sustainability au **rapport de gestion
 ## Format
 
 - **Papier ou PDF** : standard
-- **xHTML (ESEF — European Single Electronic Format)** : à terme obligatoire pour digitalisation et traitement automatisé
+- **xHTML (ESEF, European Single Electronic Format)** : à terme obligatoire pour digitalisation et traitement automatisé
 
 ## Longueur typique
 

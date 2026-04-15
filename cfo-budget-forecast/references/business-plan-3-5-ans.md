@@ -90,29 +90,29 @@ Jalons à 12m / 24m / 36m :
 
 ## Erreurs fréquentes à éviter
 
-### ❌ Hockey stick invraisemblable
+### Hockey stick invraisemblable
 
 CA × 3 chaque année pendant 5 ans, sans justification tangible. Détecté en 30 secondes par un VC.
 
-### ❌ Coûts trop optimistes
+### Coûts trop optimistes
 
 Effectif qui ne croît pas alors que le CA triple → "scalabilité parfaite" non réaliste.
 
-### ❌ Unit economics magiques
+### Unit economics magiques
 
 CAC qui baisse de 50% sans changer le canal d'acquisition. LTV qui triple sans amélioration produit.
 
-### ❌ Pas de concurrent
+### Pas de concurrent
 
 Market research qui dit "we have no competitor". Les investisseurs savent que c'est faux.
 
-### ❌ Pas de plan B
+### Pas de plan B
 
 Scenario unique très optimiste. Pas de downside case.
 
 ## Template markdown
 
-`templates/business-plan-3-5-ans.md` — structure complète avec placeholders.
+`templates/business-plan-3-5-ans.md`, structure complète avec placeholders.
 
 ## Adaptation par audience
 

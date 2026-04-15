@@ -57,7 +57,7 @@ La société a identifié les facteurs de risque suivants :
 - Identification du dirigeant signataire
 - Vérification au registre des bénéficiaires effectifs (RBE)
 
-### Mesures de vigilance renforcée (EDD — Enhanced Due Diligence)
+### Mesures de vigilance renforcée (EDD, Enhanced Due Diligence)
 
 Appliquées si :
 - Personne politiquement exposée (PEP)
@@ -128,5 +128,5 @@ Les sanctions s'ajoutent aux sanctions pénales prévues par la loi (5 ans d'emp
 
 ---
 
-_Document confidentiel — accès restreint à la direction et au responsable LCB-FT._
+_Document confidentiel, accès restreint à la direction et au responsable LCB-FT._
 _Référence légale : Code monétaire et financier (art. L. 561-1 et suivants)._

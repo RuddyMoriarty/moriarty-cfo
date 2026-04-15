@@ -30,7 +30,7 @@ Pour les groupes, les seuils sont appliqués aux **comptes consolidés**.
 
 ## Les trois phases de la mission annuelle
 
-### Phase 1 — Intérim (T3 année N, typiquement sept-octobre)
+### Phase 1, Intérim (T3 année N, typiquement sept-octobre)
 
 Objectifs :
 - Évaluer le contrôle interne
@@ -42,7 +42,7 @@ Deliverables à préparer :
 - Matrice de contrôle interne (RACI, procédures clés)
 - Dossier permanent à jour (statuts, procès-verbaux, conventions)
 
-### Phase 2 — Final (après clôture, janvier-mars)
+### Phase 2, Final (après clôture, janvier-mars)
 
 Objectifs :
 - Vérification des comptes annuels
@@ -56,7 +56,7 @@ Deliverables à préparer :
 - Échantillons de factures ventes / achats (période de cut-off ±15 jours)
 - Confirmations circularisées (banques, clients, fournisseurs, avocats)
 
-### Phase 3 — Émission du rapport + AG
+### Phase 3, Émission du rapport + AG
 
 - Rapport général sur les comptes annuels (certification avec ou sans réserve)
 - Rapport spécial sur les conventions réglementées (si applicable)
@@ -166,7 +166,7 @@ Débloquer `audit-ready` (+60 pts) dès que la checklist dossier-cac est 100% co
 
 **Mode EC** : ce skill vous aide à préparer le dossier pour le CAC de votre client. Le CAC est alors un confrère (relation horizontale). Insister sur les NEP CNCC applicables (NEP 240 fraude, NEP 500 éléments probants, NEP 570 continuité d'exploitation).
 
-**Mode PME** : le dirigeant fournit les justificatifs, l'EC coordonne la relation avec le CAC. Le CFO interne fait le lien opérationnel (extracts, confirmations, tests de cut-off). **Le CAC est une assurance** — bien le briefer en amont évite les surprises.
+**Mode PME** : le dirigeant fournit les justificatifs, l'EC coordonne la relation avec le CAC. Le CFO interne fait le lien opérationnel (extracts, confirmations, tests de cut-off). **Le CAC est une assurance**, bien le briefer en amont évite les surprises.
 
 ## Renvoi à d'autres skills
 

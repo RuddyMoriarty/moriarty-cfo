@@ -15,7 +15,7 @@
 
 **Plafond typique** : 500 k€ à 5 M€ selon activité.
 
-### RC Mandataires Sociaux (D&O — Directors & Officers)
+### RC Mandataires Sociaux (D&O, Directors & Officers)
 
 **Pour qui** : dirigeants et mandataires sociaux personnellement.
 

@@ -4,17 +4,17 @@ Dispositif visant à fournir une assurance raisonnable sur la maîtrise des opé
 
 ## Objectifs (COSO Internal Control)
 
-1. **Efficience opérationnelle** — processus efficaces
-2. **Fiabilité du reporting financier** — comptes sincères et complets
-3. **Conformité réglementaire** — respect lois et règlements
+1. **Efficience opérationnelle**, processus efficaces
+2. **Fiabilité du reporting financier**, comptes sincères et complets
+3. **Conformité réglementaire**, respect lois et règlements
 
 ## 5 composantes
 
-1. **Environment de contrôle** — culture, intégrité, valeurs
-2. **Évaluation des risques** — voir `coso-erm.md`
-3. **Activités de contrôle** — procédures, séparation des fonctions
-4. **Information & communication** — flux d'information
-5. **Pilotage** — surveillance continue + revue périodique
+1. **Environment de contrôle**, culture, intégrité, valeurs
+2. **Évaluation des risques**, voir `coso-erm.md`
+3. **Activités de contrôle**, procédures, séparation des fonctions
+4. **Information & communication**, flux d'information
+5. **Pilotage**, surveillance continue + revue périodique
 
 ## Activités de contrôle clés
 

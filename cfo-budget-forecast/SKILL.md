@@ -6,7 +6,6 @@ description: |
 metadata:
   last_updated: 2026-04-14
   version: 0.1.0
-  author: Moriarty
   audience: [ec, pme]
   tier: 2
   bundle: moriarty-cfo
@@ -23,7 +22,7 @@ allowed-tools:
 license: MIT
 ---
 
-# cfo-budget-forecast — Budget & planification
+# cfo-budget-forecast, Budget & planification
 
 Sixième skill du bundle. Tier 2.
 

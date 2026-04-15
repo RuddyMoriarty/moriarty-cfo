@@ -12,9 +12,9 @@ Source : `data/kpi-catalog.json > kpi_packs_par_secteur`.
 
 ### SaaS / scale-up
 
-1. **ARR** (Annual Recurring Revenue) — growth YoY
+1. **ARR** (Annual Recurring Revenue), growth YoY
 2. **MRR net new** (net new MRR mensuel)
-3. **NRR** (Net Revenue Retention — upsell/expansion vs churn)
+3. **NRR** (Net Revenue Retention, upsell/expansion vs churn)
 4. **CAC payback** (mois pour amortir le CAC)
 5. **LTV/CAC** ratio
 6. **Burn multiple** (burn / net new ARR)
@@ -118,7 +118,7 @@ Ce qui reste manuel :
 
 ## Template
 
-`templates/dashboard-cfo.html` — HTML Jinja2 responsive.
+`templates/dashboard-cfo.html`, HTML Jinja2 responsive.
 
 ## Exemple généré
 

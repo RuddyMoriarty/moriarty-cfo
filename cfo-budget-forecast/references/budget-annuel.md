@@ -1,4 +1,4 @@
-# Budget annuel — méthodologie
+# Budget annuel, méthodologie
 
 Le budget annuel est l'engagement chiffré de la direction pour l'année à venir. Il sert de base au reporting mensuel (variance analysis) et à la communication externe (board, investisseurs, banquiers).
 

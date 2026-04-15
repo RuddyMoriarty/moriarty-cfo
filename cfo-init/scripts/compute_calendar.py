@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-compute_calendar.py — génère le calendrier fiscal absolu pour une société.
+compute_calendar.py, génère le calendrier fiscal absolu pour une société.
 
 Lit `data/calendar-fiscal-base.json` (offsets relatifs) et applique la date
 de clôture + régime TVA + régime IS pour produire `private/calendar-fiscal.json`

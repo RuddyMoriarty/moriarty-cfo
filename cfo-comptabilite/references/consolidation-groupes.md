@@ -30,7 +30,7 @@ Obligation légale pour les sociétés mères **quand elles dépassent 2 des 3 s
 |---------|------------------|---------|
 | **Intégration globale (IG)** | Contrôle exclusif (> 50% droits de vote) | Reprise 100% des actifs/passifs, élimination capital + intérêts minoritaires |
 | **Mise en équivalence (ME)** | Influence notable (20-50%) | Remplacement du titre par la quote-part de situation nette |
-| **Intégration proportionnelle (IP)** | Contrôle conjoint (50/50) | ANC seulement — IFRS 11 impose la ME |
+| **Intégration proportionnelle (IP)** | Contrôle conjoint (50/50) | ANC seulement, IFRS 11 impose la ME |
 
 ## Étapes de la consolidation
 
@@ -138,7 +138,7 @@ Réglementation fiscale internationale (OCDE + art. 57 CGI) :
 En v0.1 de ce skill, pas d'outil intégré (scope trop large). Renvoyer :
 - **Groupes PME / ETI** : Sage X3, Cegid Y2 Consolidation, FluenceCC, Tagetik
 - **Big 4** : Hyperion, SAP Business Planning and Consolidation, CCH Tagetik
-- **Consolidation par Excel** : faisable en PME (< 10 filiales) mais fragile — recommander d'investir dès 3+ filiales
+- **Consolidation par Excel** : faisable en PME (< 10 filiales) mais fragile, recommander d'investir dès 3+ filiales
 
 ## Calendrier type d'une consolidation (clôture 31/12)
 
@@ -169,7 +169,7 @@ Pas d'achievement dédié consolidation en v0.1. À ajouter en v0.2 : `consolida
 
 **Mode EC** : vous pilotez la consolidation pour un client (mission contractuelle). Le scope et les honoraires se négocient en amont. Utiliser ce skill pour vérifier la complétude du dossier.
 
-**Mode PME** : si vous n'avez pas d'expertise conso en interne, **sous-traiter à un cabinet spécialisé** (BDO, Mazars, Deloitte Private). La conso est un métier à part entière — ne pas la faire vous-même si plus de 3 filiales.
+**Mode PME** : si vous n'avez pas d'expertise conso en interne, **sous-traiter à un cabinet spécialisé** (BDO, Mazars, Deloitte Private). La conso est un métier à part entière, ne pas la faire vous-même si plus de 3 filiales.
 
 ## Renvoi à d'autres skills
 

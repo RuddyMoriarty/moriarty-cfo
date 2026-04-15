@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-tva_checker.py — vérifie la cohérence entre la balance comptable et la CA3 déclarée.
+tva_checker.py, vérifie la cohérence entre la balance comptable et la CA3 déclarée.
 
 Input : balance (CSV) + CA3 déclarée (JSON) + taux appliqués
 Output : écarts détectés + suggestions de régularisation
@@ -103,7 +103,7 @@ def main() -> int:
         args.output.parent.mkdir(parents=True, exist_ok=True)
         args.output.write_text(output, encoding="utf-8")
         status = "✓ cohérent" if result["coherent"] else "⚠️ incohérence"
-        print(f"{status} — {len(result['alerts'])} alerte(s)", file=sys.stderr)
+        print(f"{status}, {len(result['alerts'])} alerte(s)", file=sys.stderr)
     else:
         print(output)
 

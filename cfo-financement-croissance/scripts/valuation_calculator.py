@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-valuation_calculator.py — calcule la valorisation par DCF + multiples.
+valuation_calculator.py, calcule la valorisation par DCF + multiples.
 
 Input : forecast cash flows + multiples sectoriels + WACC
 Output : fourchette de valorisation (DCF + multiples EBITDA + multiples Revenue)

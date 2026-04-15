@@ -1,4 +1,4 @@
-# Fiche CAPEX — {PROJET}
+# Fiche CAPEX, {PROJET}
 
 **Société** : {COMPANY_NAME}
 **Date proposition** : {DATE}
@@ -47,8 +47,8 @@
 
 ## 7. Décision
 
-☐ **GO** — conditions : {CONDITIONS}
-☐ **NO-GO** — raisons : {RAISONS}
+☐ **GO**, conditions : {CONDITIONS}
+☐ **NO-GO**, raisons : {RAISONS}
 ☐ **À revoir** après : {ELEMENTS_A_REVOIR}
 
 **Signature** : {SIGNATAIRE}

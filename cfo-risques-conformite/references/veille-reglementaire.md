@@ -4,40 +4,40 @@ Système de monitoring continu des évolutions réglementaires impactant la fonc
 
 ## Sources à surveiller
 
-### France — Cadre général
+### France, Cadre général
 
-- **Légifrance** (https://www.legifrance.gouv.fr) — codes, lois, décrets
-- **JORF** (Journal Officiel) — publications quotidiennes
+- **Légifrance** (https://www.legifrance.gouv.fr), codes, lois, décrets
+- **JORF** (Journal Officiel), publications quotidiennes
 - **Service Public Pro** (https://www.service-public.fr/professionnels-entreprises)
 
 ### Comptable et financier
 
-- **ANC** (https://www.anc.gouv.fr) — règlements comptables français
-- **CNCC** (https://www.cncc.fr) — Compagnie Nationale des Commissaires aux Comptes
-- **OEC** (https://www.experts-comptables.fr) — Ordre des Experts-Comptables
+- **ANC** (https://www.anc.gouv.fr), règlements comptables français
+- **CNCC** (https://www.cncc.fr), Compagnie Nationale des Commissaires aux Comptes
+- **OEC** (https://www.experts-comptables.fr), Ordre des Experts-Comptables
 
 ### Fiscal
 
-- **BoFip** (https://bofip.impots.gouv.fr) — doctrine fiscale
-- **impots.gouv.fr** — DGFiP
+- **BoFip** (https://bofip.impots.gouv.fr), doctrine fiscale
+- **impots.gouv.fr**, DGFiP
 
 ### International
 
-- **IASB** (https://www.iasb.org) — IFRS
-- **OCDE** (https://www.oecd.org) — BEPS, transfer pricing
-- **EFRAG** (https://www.efrag.org) — ESRS / CSRD
+- **IASB** (https://www.iasb.org), IFRS
+- **OCDE** (https://www.oecd.org), BEPS, transfer pricing
+- **EFRAG** (https://www.efrag.org), ESRS / CSRD
 
 ### Sectoriels (selon société)
 
-- **AMF** (https://www.amf-france.org) — sociétés cotées
-- **ACPR** (https://acpr.banque-france.fr) — banque/assurance
-- **CNIL** (https://www.cnil.fr) — RGPD
-- **ANSSI** (https://www.ssi.gouv.fr) — cybersécurité
-- **TRACFIN** (https://www.economie.gouv.fr/tracfin) — LCB-FT
+- **AMF** (https://www.amf-france.org), sociétés cotées
+- **ACPR** (https://acpr.banque-france.fr), banque/assurance
+- **CNIL** (https://www.cnil.fr), RGPD
+- **ANSSI** (https://www.ssi.gouv.fr), cybersécurité
+- **TRACFIN** (https://www.economie.gouv.fr/tracfin), LCB-FT
 
 ### Veilles privées (newsletters payantes)
 
-- EFL — Editions Francis Lefebvre (Lamy Fiscal, Lamy Société...)
+- EFL, Editions Francis Lefebvre (Lamy Fiscal, Lamy Société...)
 - Editions Législatives
 - LexisNexis France
 - Dictionnaire Permanent Comptable
@@ -52,7 +52,7 @@ Exécution :
 ```python
 # Programmé via mcp__scheduled-tasks
 prompt = """
-Veille réglementaire hebdomadaire — semaine {numero_semaine}.
+Veille réglementaire hebdomadaire, semaine {numero_semaine}.
 
 Vérifier les publications de la semaine sur :
 - ANC (normes comptables)
@@ -101,7 +101,7 @@ Output : liste de tâches à programmer (hebdo, mensuel, annuel, événementiel)
 ## Synthèse mensuelle type
 
 ```markdown
-# Synthèse veille réglementaire — {Mois} {Année}
+# Synthèse veille réglementaire, {Mois} {Année}
 
 ## Evolutions majeures du mois
 
@@ -133,10 +133,10 @@ Output : liste de tâches à programmer (hebdo, mensuel, annuel, événementiel)
 
 ## Niveaux de veille (configurable dans `private/profile.json`)
 
-- **Niveau 1 — Base** : France générale uniquement, hebdo
-- **Niveau 2 — Standard** (par défaut) : France + UE, hebdo + mensuel
-- **Niveau 3 — Renforcé** : France + UE + sectoriel + International, hebdo + mensuel + ad hoc
-- **Niveau 4 — Maximum** : tout (utile pour les ETI+/cotées + groupes internationaux)
+- **Niveau 1, Base** : France générale uniquement, hebdo
+- **Niveau 2, Standard** (par défaut) : France + UE, hebdo + mensuel
+- **Niveau 3, Renforcé** : France + UE + sectoriel + International, hebdo + mensuel + ad hoc
+- **Niveau 4, Maximum** : tout (utile pour les ETI+/cotées + groupes internationaux)
 
 ## Bonnes pratiques
 

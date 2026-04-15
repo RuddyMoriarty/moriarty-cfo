@@ -101,7 +101,7 @@ Moins strict que IFRS, possibilité de conserver le dérivé hors bilan (engagem
 Document à faire valider par le board, revoir annuellement :
 
 ```
-POLITIQUE DE HEDGING — [SOCIÉTÉ]
+POLITIQUE DE HEDGING, [SOCIÉTÉ]
 
 1. Objectif
    Réduire la volatilité du résultat lié aux variations de change/taux.

@@ -19,7 +19,7 @@ Gestion des facilités de crédit, négociation, et monitoring des covenants con
 
 Les **covenants** sont des engagements financiers qui, s'ils sont breachés, peuvent déclencher le remboursement anticipé du prêt ou une renégociation.
 
-### DSCR — Debt Service Coverage Ratio
+### DSCR, Debt Service Coverage Ratio
 
 ```
 DSCR = EBITDA / (Intérêts + Remboursement principal annuel)
@@ -78,7 +78,7 @@ M-3  → 2.4
 M    → 2.4
 ```
 
-Alerter **avant que le covenant soit breaché** — prévenir le banquier en transparence est toujours mieux que d'être pris en défaut.
+Alerter **avant que le covenant soit breaché**, prévenir le banquier en transparence est toujours mieux que d'être pris en défaut.
 
 ### Script de monitoring
 

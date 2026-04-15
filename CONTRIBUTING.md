@@ -61,7 +61,7 @@ cfo-<nom>/
 └── templates/               # Templates HTML/MD/JSON
 ```
 
-**Pas de README.md à l'intérieur d'un dossier de skill** (règle Anthropic — voir [Skills Guide](https://resources.anthropic.com/hubfs/The-Complete-Guide-to-Building-Skill-for-Claude.pdf)). La documentation visible des humains se concentre dans le `README.md` racine et les `references/*.md`.
+**Pas de README.md à l'intérieur d'un dossier de skill** (règle Anthropic, voir [Skills Guide](https://resources.anthropic.com/hubfs/The-Complete-Guide-to-Building-Skill-for-Claude.pdf)). La documentation visible des humains se concentre dans le `README.md` racine et les `references/*.md`.
 
 ### Frontmatter SKILL.md
 
@@ -151,4 +151,4 @@ En contribuant, vous acceptez que votre contribution soit publiée sous **licenc
 
 Merci pour votre contribution.
 
-— L'équipe Moriarty
+- L'équipe Moriarty

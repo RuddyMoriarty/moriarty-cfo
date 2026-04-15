@@ -7,7 +7,7 @@ Seuil de rentabilité (en €) = Charges fixes / Taux de marge sur coûts variab
 Seuil de rentabilité (en unités) = Charges fixes / (Prix unitaire - Coût variable unitaire)
 ```
 
-## Exemple 1 — Produit simple
+## Exemple 1, Produit simple
 
 Société vendant 1 seul produit :
 - Prix de vente unitaire : 100 €
@@ -20,14 +20,14 @@ Société vendant 1 seul produit :
 
 Interprétation : au-delà de 10 000 unités vendues, chaque unité supplémentaire rapporte 60 € à la rentabilité.
 
-## Exemple 2 — Multi-produits
+## Exemple 2, Multi-produits
 
 Société vendant plusieurs produits avec marges différentes :
 - Utiliser le **taux moyen pondéré** de marge sur coûts variables
 - Si mix stable : seuil global en € valide
 - Si mix variable : faire un seuil par produit
 
-## Exemple 3 — Services récurrents (SaaS)
+## Exemple 3, Services récurrents (SaaS)
 
 - ARR actuel : 500 k€
 - Coût variable (hébergement + support) : 20% du revenu
@@ -90,7 +90,7 @@ Ventiler dans l'analyse : composante fixe + composante variable par unité.
 ## Template de calcul
 
 ```markdown
-# Seuil de rentabilité — {PRODUIT ou ACTIVITÉ}
+# Seuil de rentabilité, {PRODUIT ou ACTIVITÉ}
 
 ## Hypothèses
 - Prix de vente unitaire : {P} €

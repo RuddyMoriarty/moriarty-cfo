@@ -6,7 +6,7 @@ Document légal obligatoire pour toutes les sociétés. Présenté à l'AG d'app
 
 - **Toutes sociétés** : art. L. 232-1 C. com.
 - **Sociétés cotées** : complété par le rapport sur le gouvernement d'entreprise (L. 225-37)
-- **In-scope CSRD** : complété par le rapport de durabilité intégré (L. 225-102-1 — voir `cfo-csrd-esg`)
+- **In-scope CSRD** : complété par le rapport de durabilité intégré (L. 225-102-1, voir `cfo-csrd-esg`)
 
 ## Contenu obligatoire (art. L. 232-1)
 
@@ -56,7 +56,7 @@ Document légal obligatoire pour toutes les sociétés. Présenté à l'AG d'app
 
 ### 9. Filiales et participations (tableau)
 
-Art. R. 233-14 C. com. — tableau obligatoire avec :
+Art. R. 233-14 C. com., tableau obligatoire avec :
 - Nom, siège
 - Capital
 - Quote-part détenue
@@ -97,7 +97,7 @@ Renvoyer à `cfo-csrd-esg`.
 
 ## Template
 
-`templates/rapport-gestion-template.md` — squelette prêt à compléter (à créer en v0.2).
+`templates/rapport-gestion-template.md`, squelette prêt à compléter (à créer en v0.2).
 
 Pour l'instant, `cfo-reporting` s'appuie sur les livrables produits par `cfo-comptabilite` (bilan, CR, annexe) + un narratif manuel à écrire par le CFO ou EC.
 
@@ -105,4 +105,4 @@ Pour l'instant, `cfo-reporting` s'appuie sur les livrables produits par `cfo-com
 
 Le rapport de gestion est un **document juridique**. Toute erreur ou omission significative peut engager la responsabilité du dirigeant. **Validation obligatoire par l'EC + CAC** avant publication.
 
-Pour les sociétés cotées, des obligations complémentaires s'appliquent (AMF) — consulter un avocat spécialisé en droit boursier.
+Pour les sociétés cotées, des obligations complémentaires s'appliquent (AMF), consulter un avocat spécialisé en droit boursier.

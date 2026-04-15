@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-internal_control_checklist.py — génère checklist contrôle interne par fonction.
+internal_control_checklist.py, génère checklist contrôle interne par fonction.
 """
 
 from __future__ import annotations
@@ -65,10 +65,10 @@ CHECKLIST_TEMPLATE = {
         "Formation sécurité annuelle (phishing, social engineering)",
     ],
     "compliance": [
-        "Politique LCB-FT (si applicable) — cf. references/lcb-ft.md",
+        "Politique LCB-FT (si applicable), cf. references/lcb-ft.md",
         "RGPD : registre traitements + DPO + politique confidentialité",
         "Conventions réglementées identifiées + déclarées",
-        "Veille réglementaire active — cf. references/veille-reglementaire.md",
+        "Veille réglementaire active, cf. references/veille-reglementaire.md",
         "Audit annuel des contrôles clés",
         "Cartographie des risques mise à jour annuellement",
     ],

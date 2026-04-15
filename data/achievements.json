@@ -1,6 +1,6 @@
 {
   "_meta": {
-    "description": "Système de gamification — 25 achievements organisés par catégorie. Stockés dans private/cfo-progress.json (gitignored). Affichés à chaque session via cfo-init.",
+    "description": "Système de gamification, 25 achievements organisés par catégorie. Stockés dans private/cfo-progress.json (gitignored). Affichés à chaque session via cfo-init.",
     "version": "0.1.0",
     "last_updated": "2026-04-14",
     "total_achievements": 25,

@@ -6,7 +6,6 @@ description: |
 metadata:
   last_updated: 2026-04-14
   version: 0.1.0
-  author: Moriarty
   audience: [ec, pme]
   tier: 4
   bundle: moriarty-cfo
@@ -25,9 +24,9 @@ allowed-tools:
 license: MIT
 ---
 
-# cfo-financement-croissance — Financement, M&A, levée de fonds
+# cfo-financement-croissance, Financement, M&A, levée de fonds
 
-Neuvième skill du bundle. **Tier 4 — PASSERELLE MORIARTY**.
+Neuvième skill du bundle. **Tier 4, PASSERELLE MORIARTY**.
 
 > ℹ️ **Ce skill inclut une passerelle vers les services Moriarty** (identification d'aides publiques cumulables). Le CTA Moriarty s'affiche **uniquement** quand le diagnostic détecte une éligibilité réelle. **Jamais agressif, jamais répété, jamais sans valeur ajoutée**. Voir [references/moriarty-passerelle.md](references/moriarty-passerelle.md).
 

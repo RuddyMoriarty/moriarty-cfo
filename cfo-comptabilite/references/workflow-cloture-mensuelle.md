@@ -14,35 +14,35 @@ Pour les TPE, J+10 est acceptable. Pour les ETI, J+3 est souvent exigé (reporti
 
 Template complet dans `templates/checklist-cloture-mensuelle.md`.
 
-### Jour 1 (J+1) — Collecte
+### Jour 1 (J+1), Collecte
 
 - [ ] Télécharger tous les relevés bancaires du mois (tous comptes, toutes banques)
 - [ ] Export logiciel de facturation (ventes émises)
 - [ ] Export logiciel de gestion (commandes, achats validés)
 - [ ] Export plateforme de paie (coûts salariaux du mois)
 
-### Jour 2 (J+2) — Catégorisation
+### Jour 2 (J+2), Catégorisation
 
 - [ ] Catégoriser les flux bancaires non rapprochés → affectation PCG
 - [ ] Vérifier les lignes d'achat sans facture reçue → provisionner en FNP
 - [ ] Vérifier les factures clients non encaissées → PCA si échéance au-delà du mois
 - [ ] Consolider les achats d'immobilisations → ouverture fiches d'immo
 
-### Jour 3 (J+3) — Écritures d'inventaire mensualisées
+### Jour 3 (J+3), Écritures d'inventaire mensualisées
 
 - [ ] Amortissements du mois (1/12 de l'amortissement annuel)
 - [ ] Provisions connues (primes, congés payés, litiges)
-- [ ] Charges constatées d'avance (CCA) — assurances, loyers, licences
-- [ ] Produits constatés d'avance (PCA) — abonnements SaaS, pré-facturation
+- [ ] Charges constatées d'avance (CCA), assurances, loyers, licences
+- [ ] Produits constatés d'avance (PCA), abonnements SaaS, pré-facturation
 
-### Jour 4 (J+4) — Contrôles
+### Jour 4 (J+4), Contrôles
 
-- [ ] Rapprochement bancaire complet — balance = grand livre
+- [ ] Rapprochement bancaire complet, balance = grand livre
 - [ ] Pointage TVA (balance TVA déductible vs TVA collectée vs comptes 445)
 - [ ] Contrôle cohérence DSN du mois précédent avec comptes 421, 431, 437
 - [ ] Vérification cut-off : date de facture ≤ dernier jour du mois ?
 
-### Jour 5 (J+5) — Finalisation
+### Jour 5 (J+5), Finalisation
 
 - [ ] Balance définitive du mois (débit = crédit, pas de solde suspect)
 - [ ] Top 5 variances vs N-1 identifiées et commentées
@@ -57,7 +57,7 @@ Template complet dans `templates/checklist-cloture-mensuelle.md`.
 ## Faits
 - Société : {denomination} (SIREN {siren})
 - Période : du {debut} au {fin}
-- Échéance J+5 : {date_j5} ({couleur} — reste {X} jours)
+- Échéance J+5 : {date_j5} ({couleur}, reste {X} jours)
 
 ## Hypothèses
 - H1 : Pas de transaction passée après {date_fin_mois} (cut-off)
@@ -74,13 +74,13 @@ Template complet dans `templates/checklist-cloture-mensuelle.md`.
 - Trésorerie nette : {XX} k€
 
 ### Top 3 variances vs budget
-1. [Variance 1 — commentaire]
-2. [Variance 2 — commentaire]
-3. [Variance 3 — commentaire]
+1. [Variance 1, commentaire]
+2. [Variance 2, commentaire]
+3. [Variance 3, commentaire]
 
 ## Risques
 
-🟠 {Risque 1 — description + mitigation}
+🟠 {Risque 1, description + mitigation}
 🟡 {Risque 2}
 
 ## Actions
@@ -109,7 +109,7 @@ doivent être cohérentes avec la balance annuelle finale.
 
 ## Adaptation par audience
 
-**Mode EC** : utiliser le vocabulaire mission OEC → "chronique du mois", "revue des cut-off" (NEP 200 — contrôle de l'exhaustivité).
+**Mode EC** : utiliser le vocabulaire mission OEC → "chronique du mois", "revue des cut-off" (NEP 200, contrôle de l'exhaustivité).
 
 **Mode PME** : insister sur les 3 KPIs flash, ne pas charger en écritures techniques. Renvoyer à l'EC pour les doutes sur les FAR/FNP.
 

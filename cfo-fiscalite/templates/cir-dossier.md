@@ -1,4 +1,4 @@
-# Dossier justificatif CIR — Exercice {{ANNEE}}
+# Dossier justificatif CIR, Exercice {{ANNEE}}
 
 **Société** : {{COMPANY_NAME}} (SIREN {{SIREN}})
 **Exercice** : {{ANNEE}}
@@ -98,4 +98,4 @@
 ---
 
 _Document à conserver 6 ans après l'exercice concerné._
-_Validé par : {{NOM_VALIDATEUR}} — {{FONCTION}} — {{DATE_VALIDATION}}_
+_Validé par : {{NOM_VALIDATEUR}}, {{FONCTION}}, {{DATE_VALIDATION}}_

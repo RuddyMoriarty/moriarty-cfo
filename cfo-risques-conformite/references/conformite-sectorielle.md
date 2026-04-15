@@ -96,7 +96,7 @@ Synthèse des principales obligations de conformité applicables aux sociétés 
 
 #### Reporting AMF
 
-- Document d'enregistrement universel (URD) — annuel
+- Document d'enregistrement universel (URD), annuel
 - Information sur le gouvernement d'entreprise
 - Rapport sur le contrôle interne et la gestion des risques
 
@@ -139,10 +139,10 @@ Synthèse des principales obligations de conformité applicables aux sociétés 
 
 ## Outils de monitoring
 
-- **CCNet** (Editions Législatives) — actualité juridique
-- **LegisIA** — alerte personnalisée par filtre
-- **NetExplorer Compliance** — outils dédiés
-- **Pollen** — outil de cartographie réglementaire
+- **CCNet** (Editions Législatives), actualité juridique
+- **LegisIA**, alerte personnalisée par filtre
+- **NetExplorer Compliance**, outils dédiés
+- **Pollen**, outil de cartographie réglementaire
 
 ## Avertissement
 

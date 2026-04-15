@@ -1,4 +1,4 @@
-# Sécurité des données — cfo-init
+# Sécurité des données, cfo-init
 
 Ce document complète `SECURITY.md` à la racine du repo avec les règles spécifiques à `cfo-init` (le skill qui collecte et écrit les premières données).
 
@@ -124,7 +124,7 @@ Si l'utilisateur veut exporter un livrable (dashboard HTML, forecast Excel, etc.
 ✓ Aucun appel externe emportant des données internes
 ✓ SIREN hashé SHA-256 si utilisé dans une URL
 ✓ Pas de log externe (pas de Sentry, pas de télémétrie)
-✓ Permissions fichier 600 (read/write propriétaire seul) — optionnel mais recommandé
+✓ Permissions fichier 600 (read/write propriétaire seul), optionnel mais recommandé
 ```
 
 ## Signaler une fuite

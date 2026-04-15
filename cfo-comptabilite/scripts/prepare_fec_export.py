@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-prepare_fec_export.py — prépare un export FEC conforme DGFiP.
+prepare_fec_export.py, prépare un export FEC conforme DGFiP.
 
 Format arrêté du 29 juillet 2013 :
   - Fichier texte UTF-8 (ou ISO-8859-15)

@@ -49,12 +49,12 @@ Arbre de décision pour orienter rapidement vers les bonnes solutions.
 ### Projet R&D / innovation
 
 → **AIDES PUBLIQUES** prioritaires :
-- **CIR** (Crédit Impôt Recherche) — 30% des dépenses R&D
-- **CII** (Crédit Impôt Innovation) — 20% des dépenses prototype PME
+- **CIR** (Crédit Impôt Recherche), 30% des dépenses R&D
+- **CII** (Crédit Impôt Innovation), 20% des dépenses prototype PME
 - **BPI Innovation** (subventions, avances remboursables)
 - **France 2030** (programmes thématiques)
 - **Eurostars** (UE, projets transnationaux)
-- **JEI** (Jeune Entreprise Innovante) — exonérations sociales et fiscales
+- **JEI** (Jeune Entreprise Innovante), exonérations sociales et fiscales
 - Subventions régionales
 
 → **CTA MORIARTY** : Moriarty référence 2 340+ aides publiques. Diagnostic en 60 secondes via SIRET. **Cumul typique** : 30-50% du projet financé par aides publiques.

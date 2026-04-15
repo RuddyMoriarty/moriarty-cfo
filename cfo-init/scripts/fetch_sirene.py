@@ -1,12 +1,12 @@
 #!/usr/bin/env python3
 """
-fetch_sirene.py — récupération INSEE / Annuaire Entreprises.
+fetch_sirene.py, récupération INSEE / Annuaire Entreprises.
 
 Fallback pour fetch_pappers.py ou source complémentaire.
 
 Priorité des sources (par défaut en mode auto) :
   1. API INSEE Sirene V3 si INSEE_CONSUMER_KEY / INSEE_CONSUMER_SECRET
-  2. API Annuaire Entreprises (recherche-entreprises.api.gouv.fr) — pas d'auth
+  2. API Annuaire Entreprises (recherche-entreprises.api.gouv.fr), pas d'auth
   3. WebFetch annuaire-entreprises.data.gouv.fr (instruction à exécuter par Claude)
 
 Usage :

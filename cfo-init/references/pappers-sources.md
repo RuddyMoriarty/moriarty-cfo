@@ -1,4 +1,4 @@
-# Sources Pappers — documentation API + WebFetch
+# Sources Pappers, documentation API + WebFetch
 
 Pappers est le principal fournisseur de données d'identification société en France. Le bundle utilise Pappers en **mode hybride** : API si une clé est fournie, sinon WebFetch (sans clé).
 
@@ -21,7 +21,7 @@ Avantages :
 
 - URL : `https://www.pappers.fr/entreprise/<DENOMINATION-SIREN>`
 - Pas d'authentification requise
-- ToS : https://www.pappers.fr/cgu — usage non commercial massif interdit, requête raisonnable OK
+- ToS : https://www.pappers.fr/cgu, usage non commercial massif interdit, requête raisonnable OK
 - Rate limit à respecter : **≤ 1 requête / seconde**
 
 Avantages :

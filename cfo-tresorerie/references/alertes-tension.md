@@ -6,7 +6,7 @@ Détection automatique + protocole d'action structuré.
 
 Le script `scripts/forecast_13w.py` alerte si :
 
-### Seuil 🔴 Urgence absolue
+### Seuil rouge, Urgence absolue
 
 - Solde projeté < 0 à n'importe quelle semaine des 13 prochaines
 - OU solde projeté < montant d'une échéance fiscale/sociale dans les 4 prochaines semaines
@@ -14,7 +14,7 @@ Le script `scripts/forecast_13w.py` alerte si :
 
 **Action immédiate** : lancer le plan d'urgence (ci-dessous)
 
-### Seuil 🟠 Plan d'action
+### Seuil orange, Plan d'action
 
 - Solde projeté < seuil minimal (par défaut = **1 mois de charges fixes**)
 - OU baisse > 40% du solde sur les 13 prochaines semaines
@@ -22,7 +22,7 @@ Le script `scripts/forecast_13w.py` alerte si :
 
 **Action sous 72h** : lancer le plan d'action (5 étapes)
 
-### Seuil 🟡 Vigilance
+### Seuil jaune, Vigilance
 
 - Solde en tendance décroissante sur 4 semaines consécutives
 - OU runway 6-12 mois (startup)
@@ -30,17 +30,17 @@ Le script `scripts/forecast_13w.py` alerte si :
 
 **Action sous 2 semaines** : audit des causes + plan préventif
 
-### Seuil 🟢 Healthy
+### Seuil vert, Healthy
 
 - Solde stable ou croissant
 - Runway > 12 mois
 - Pas d'alerte active
 
-## Plan d'action standard 5 étapes (seuil 🟠)
+## Plan d'action standard 5 étapes (seuil orange)
 
 Template `templates/plan-action-tension.md`.
 
-### Étape 1 — Stopper les sorties non essentielles (immédiat, 48h)
+### Étape 1, Stopper les sorties non essentielles (immédiat, 48h)
 
 - [ ] Gel des CAPEX non critiques
 - [ ] Stop des campagnes marketing en cours
@@ -50,7 +50,7 @@ Template `templates/plan-action-tension.md`.
 
 **Gain type** : 5-15% du burn mensuel économisé.
 
-### Étape 2 — Accélérer les entrées (1 semaine)
+### Étape 2, Accélérer les entrées (1 semaine)
 
 - [ ] Relance active du top 10 créances > 45 jours
 - [ ] Appels directs aux DAF des clients clés (pas juste email)
@@ -60,9 +60,9 @@ Template `templates/plan-action-tension.md`.
 
 **Gain type** : 15-30 jours de DSO libérés = 30-60k€ par 1M€ de CA mensuel.
 
-### Étape 3 — Négocier les échéances (1-2 semaines)
+### Étape 3, Négocier les échéances (1-2 semaines)
 
-- [ ] **URSSAF** : demande de délai de paiement (portail urssaf.fr, motivée) — souvent accordée si 1ère demande
+- [ ] **URSSAF** : demande de délai de paiement (portail urssaf.fr, motivée), souvent accordée si 1ère demande
 - [ ] **DGFIP** : délai de paiement fiscal (formulaire 3302-SD)
 - [ ] **Fournisseurs stratégiques** : moratoire 30-60 jours en toute transparence
 - [ ] **Bailleur** : report loyers ou paiement trimestriel à mensuel
@@ -72,7 +72,7 @@ Template `templates/plan-action-tension.md`.
 
 **Gain type** : 2-6 semaines de trésorerie supplémentaire.
 
-### Étape 4 — Mobiliser les financements court terme (2-3 semaines)
+### Étape 4, Mobiliser les financements court terme (2-3 semaines)
 
 - [ ] Augmentation du découvert autorisé (négocier +30-50%)
 - [ ] Ouverture d'une ligne Dailly si pas déjà en place
@@ -82,7 +82,7 @@ Template `templates/plan-action-tension.md`.
 
 **Gain type** : 20-40% du BFR financé temporairement.
 
-### Étape 5 — Dialogue transparent avec la banque (dès l'étape 1)
+### Étape 5, Dialogue transparent avec la banque (dès l'étape 1)
 
 - [ ] Informer le banquier **avant** le premier incident
 - [ ] Présenter le plan d'action en cours (démontre maîtrise)
@@ -91,7 +91,7 @@ Template `templates/plan-action-tension.md`.
 
 **Pourquoi c'est critique** : une banque qui apprend les problèmes par surprise devient immédiatement hostile. Une banque informée peut devenir partenaire de la sortie de crise.
 
-## Plan d'urgence (seuil 🔴)
+## Plan d'urgence (seuil rouge)
 
 **Situation** : le cash se tarit dans les 4-6 semaines à venir.
 
@@ -99,7 +99,7 @@ En plus des 5 étapes ci-dessus, activer :
 
 ### Actions immédiates (48h)
 
-- [ ] **Board informé** (CA, CODIR) — décision collégiale nécessaire
+- [ ] **Board informé** (CA, CODIR), décision collégiale nécessaire
 - [ ] **Revue juridique** : éviter le dépôt de bilan involontaire (délai 45j après cessation des paiements)
 - [ ] **Avocat spécialisé en restructuring** consulté
 - [ ] Audit interne des trésoreries des filiales (cash pooling intragroupe d'urgence)
@@ -127,7 +127,7 @@ Le skill `cfo-financement-croissance` prend le relais pour :
 Le skill produit un document actionable :
 
 ```markdown
-# Plan d'action trésorerie — {DATE}
+# Plan d'action trésorerie, {DATE}
 
 ## Faits
 - Solde actuel : {X} k€
@@ -140,7 +140,7 @@ Le skill produit un document actionable :
 - [Causes secondaires]
 
 ## Actions prioritaires (7 jours)
-1. [Action 1 — responsable — deadline — gain attendu k€]
+1. [Action 1, responsable, deadline, gain attendu k€]
 2. [Action 2 ...]
 3. [Action 3 ...]
 

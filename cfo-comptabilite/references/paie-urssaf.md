@@ -4,7 +4,7 @@ Activé si `private/company.json > classification.effectif_estime > 0`.
 
 Ce skill **coordonne** la comptabilité paie ; la production paie elle-même reste dans l'outil dédié (Silae, Nibelis, Tiime, ADP, etc.).
 
-## DSN — Déclaration Sociale Nominative
+## DSN, Déclaration Sociale Nominative
 
 ### Obligation
 
@@ -53,7 +53,7 @@ Dans la DSN mensuelle :
 
 ### Plafond de la Sécurité Sociale (PSS)
 
-- **2026** : 3 925 €/mois (soit 47 100 €/an) — **valeurs 2025, à vérifier**
+- **2026** : 3 925 €/mois (soit 47 100 €/an), **valeurs 2025, à vérifier**
 - Le PSS sert d'assiette pour certaines cotisations (vieillesse plafonnée, retraite ARRCO tranches)
 
 > ⚠️ **Fraîcheur** : ces taux et montants sont **à actualiser chaque année**. Vérifier sur urssaf.fr et boss.gouv.fr avant toute communication.

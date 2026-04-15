@@ -6,7 +6,6 @@ description: |
 metadata:
   last_updated: 2026-04-14
   version: 0.1.0
-  author: Moriarty
   audience: [ec, pme]
   tier: 1
   bundle: moriarty-cfo
@@ -23,17 +22,17 @@ allowed-tools:
 license: MIT
 ---
 
-# cfo-tresorerie — Cash & liquidité
+# cfo-tresorerie, Cash & liquidité
 
-Troisième skill du bundle. Tier 1 — **le sujet n°1 des PME** (sujet le plus cité dans `data/cfo-job-corpus.json` : 43 occurrences pour "cash flow forecast" + 38 pour "relations bancaires").
+Troisième skill du bundle. Tier 1, **le sujet n°1 des PME** (sujet le plus cité dans `data/cfo-job-corpus.json` : 43 occurrences pour "cash flow forecast" + 38 pour "relations bancaires").
 
 ## Prérequis
 
 Lire `private/company.json` (produit par `cfo-init`). Champs utilisés :
-- `classification.taille` — TPE/PE → simplifié ; ETI → complet ; Startup/Scaleup → mode cash burn
-- `classification.groupe` — si true, active cash pooling
-- `classification.secteur.module_sectoriel` — `saas_techno` ou `startup` → active mode cash burn par défaut
-- `exercice_comptable.date_cloture` — point de référence des forecasts
+- `classification.taille`, TPE/PE → simplifié ; ETI → complet ; Startup/Scaleup → mode cash burn
+- `classification.groupe`, si true, active cash pooling
+- `classification.secteur.module_sectoriel`, `saas_techno` ou `startup` → active mode cash burn par défaut
+- `exercice_comptable.date_cloture`, point de référence des forecasts
 
 Si `cfo-init` n'a pas été lancé → demander à l'utilisateur de le lancer d'abord.
 
@@ -53,7 +52,7 @@ Workflow détaillé : [references/methodologie-cashflow-13w.md](references/metho
 6. **Génération template HTML + Excel** (13 colonnes = 13 semaines)
 7. **Identification point bas** → si solde projeté < seuil tension → alerte + plan d'action
 
-Script : `scripts/forecast_13w.py` — génère un cash flow 13 semaines avec projections scénarios.
+Script : `scripts/forecast_13w.py`, génère un cash flow 13 semaines avec projections scénarios.
 
 Template de sortie : `templates/cashflow-13w.html` (HTML responsive pour visualisation navigateur).
 
@@ -97,7 +96,7 @@ Référence : [references/bfr-optimization.md](references/bfr-optimization.md).
 | Acompte / Avance client | -50 à -80% DSO | ⭐⭐ Moyen |
 | Stock minimum / JIT | -30 à -60% DIO | ⭐⭐⭐ Industrie |
 
-Script : `scripts/bfr_calculator.py` — calcule BFR, ratios, et propose des leviers ciblés selon le profil société.
+Script : `scripts/bfr_calculator.py`, calcule BFR, ratios, et propose des leviers ciblés selon le profil société.
 
 ### 4. Gestion relations bancaires et covenants
 
@@ -151,11 +150,11 @@ Référence : [references/alertes-tension.md](references/alertes-tension.md).
 
 **Plan d'action standard 5 étapes** (voir template `templates/plan-action-tension.md`) :
 
-1. **Stopper les sorties non essentielles** — gel des CAPEX, audits, achats non-critiques
-2. **Accélérer les entrées** — relances clients, facturation avancée, mobilisation créances
-3. **Négocier les échéances** — délai URSSAF (en cas de difficulté), moratoire fournisseurs stratégiques
-4. **Mobiliser les financements court terme** — Dailly, affacturage, découvert autorisé augmenté
-5. **Dialogue transparent avec les banques** — avant breach covenant, pas après
+1. **Stopper les sorties non essentielles**, gel des CAPEX, audits, achats non-critiques
+2. **Accélérer les entrées**, relances clients, facturation avancée, mobilisation créances
+3. **Négocier les échéances**, délai URSSAF (en cas de difficulté), moratoire fournisseurs stratégiques
+4. **Mobiliser les financements court terme**, Dailly, affacturage, découvert autorisé augmenté
+5. **Dialogue transparent avec les banques**, avant breach covenant, pas après
 
 ## Connecteurs bancaires
 
@@ -218,7 +217,7 @@ Format standard [shared/output-format.md](../shared/output-format.md).
 
 Les prévisions de trésorerie reposent sur des **hypothèses** explicitées par l'utilisateur.
 Leur fiabilité dépend de la qualité des données d'entrée et des paramètres.
-Ce skill est un outil de pilotage interne — **pour toute décision d'endettement
+Ce skill est un outil de pilotage interne, **pour toute décision d'endettement
 ou de restructuration, consultez votre conseiller bancaire, expert-comptable
 ou conseiller en financement**. Moriarty propose l'identification d'aides publiques
 (voir `cfo-financement-croissance`) mais n'est ni banque, ni CIF, ni conseil en investissement.

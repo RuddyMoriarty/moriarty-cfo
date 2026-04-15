@@ -1,4 +1,4 @@
-# CIR — Crédit Impôt Recherche
+# CIR, Crédit Impôt Recherche
 
 Aide fiscale la plus connue en France pour les activités de R&D.
 
@@ -6,7 +6,7 @@ Aide fiscale la plus connue en France pour les activités de R&D.
 
 - Article **244 quater B** du CGI
 - BoFip BOI-BIC-RICI-10-10
-- Arrêté du 1er juillet 2009 (MAR — Ministère de la Recherche)
+- Arrêté du 1er juillet 2009 (MAR, Ministère de la Recherche)
 
 ## Taux
 

@@ -6,7 +6,6 @@ description: |
 metadata:
   last_updated: 2026-04-14
   version: 0.1.0
-  author: Moriarty
   audience: [ec, pme]
   tier: 1
   bundle: moriarty-cfo
@@ -23,9 +22,9 @@ allowed-tools:
 license: MIT
 ---
 
-# cfo-reporting — Reporting & communication
+# cfo-reporting, Reporting & communication
 
-Quatrième skill du bundle. Tier 1 — production des reportings financiers selon les destinataires.
+Quatrième skill du bundle. Tier 1, production des reportings financiers selon les destinataires.
 
 ## Prérequis
 
@@ -128,7 +127,7 @@ Workflow détaillé : [references/rapport-gestion-annuel.md](references/rapport-
 - Dépenses somptuaires non déductibles
 - Activité filiales (si groupe)
 - Rapport sur le gouvernement d'entreprise (si SA cotée)
-- Rapport de durabilité CSRD (si in-scope — voir `cfo-csrd-esg`)
+- Rapport de durabilité CSRD (si in-scope, voir `cfo-csrd-esg`)
 
 ## Format de sortie
 
@@ -167,7 +166,7 @@ Format standard [shared/output-format.md](../shared/output-format.md) pour le co
 
 **Mode EC** : le reporting est un livrable client. Bien documenter les méthodes de calcul et les hypothèses.
 
-**Mode PME** : focus **actionnable** — chaque KPI doit mener à une décision. Éviter la surcharge.
+**Mode PME** : focus **actionnable**, chaque KPI doit mener à une décision. Éviter la surcharge.
 
 ## Achievements
 

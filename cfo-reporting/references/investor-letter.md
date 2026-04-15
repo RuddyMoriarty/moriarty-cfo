@@ -4,7 +4,7 @@ Document de 2-4 pages envoyé chaque trimestre aux investisseurs (VCs, BA, famil
 
 ## Structure 3 pages
 
-### Page 1 — Highlights Q{X}
+### Page 1, Highlights Q{X}
 
 Ouverture directe, sans préambule inutile.
 
@@ -25,7 +25,7 @@ de transition]. Voici les 4 chiffres clés :
 3. [Highlight 3 avec chiffre]
 ```
 
-### Page 2 — Métriques détaillées
+### Page 2, Métriques détaillées
 
 Tableau condensé des KPIs sur 4 trimestres :
 
@@ -40,7 +40,7 @@ Tableau condensé des KPIs sur 4 trimestres :
 
 Court commentaire pour chaque trend significatif.
 
-### Page 3 — Focus du trimestre + asks
+### Page 3, Focus du trimestre + asks
 
 **Focus** (1 sujet creusé 1 page) :
 - Nouveau produit / feature majeure
@@ -81,7 +81,7 @@ Court commentaire pour chaque trend significatif.
 
 ## Template
 
-`templates/investor-letter.md` — template markdown.
+`templates/investor-letter.md`, template markdown.
 
 ## Exemple d'ouverture réussie
 

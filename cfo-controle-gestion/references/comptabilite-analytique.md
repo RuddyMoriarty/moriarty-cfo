@@ -12,7 +12,7 @@ Décomposer les coûts pour éclairer les décisions de gestion.
 | Périodicité annuelle ou mensuelle | Périodicité variable (mensuel à temps réel) |
 | Référentiel : PCG | Référentiel : choix de l'entreprise |
 
-## Méthode 1 — Direct costing (coûts variables)
+## Méthode 1, Direct costing (coûts variables)
 
 **Principe** : seules les charges variables sont imputées aux produits/clients. Les charges fixes restent en charge globale.
 
@@ -26,7 +26,7 @@ Résultat = Marge contributive totale - Charges fixes
 
 **Piège** : peut conduire à sous-pricer (si on oublie de couvrir les charges fixes long terme).
 
-## Méthode 2 — Full costing (coûts complets)
+## Méthode 2, Full costing (coûts complets)
 
 **Principe** : toutes les charges (variables + fixes) sont imputées aux produits/clients via des clés de répartition.
 
@@ -46,7 +46,7 @@ Marge = Prix de vente - Coût complet
 
 **Piège** : les clés arbitraires peuvent masquer des coûts réels. Une activité peut apparaître non rentable à cause d'une clé mal choisie.
 
-## Méthode 3 — ABC (Activity-Based Costing)
+## Méthode 3, ABC (Activity-Based Costing)
 
 **Principe** : au lieu de clés globales, identifier les **activités** consommées par chaque produit/client et les **drivers** (inducteurs de coûts) spécifiques.
 

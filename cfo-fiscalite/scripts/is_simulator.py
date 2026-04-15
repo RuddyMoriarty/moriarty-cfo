@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-is_simulator.py — calcule l'IS prévisionnel depuis résultat comptable + réintégrations.
+is_simulator.py, calcule l'IS prévisionnel depuis résultat comptable + réintégrations.
 """
 
 from __future__ import annotations

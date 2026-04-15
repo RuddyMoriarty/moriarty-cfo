@@ -1,4 +1,4 @@
-# Sustainability Statement — {{COMPANY_NAME}}
+# Sustainability Statement, {{COMPANY_NAME}}
 
 **Exercice** : {{ANNEE}}
 **Périmètre** : {{PERIMETRE}}
@@ -7,7 +7,7 @@
 
 ---
 
-## ESRS 1 — General Requirements
+## ESRS 1, General Requirements
 
 ### Périmètre
 
@@ -26,7 +26,7 @@
 
 ---
 
-## ESRS 2 — General Disclosures
+## ESRS 2, General Disclosures
 
 ### Stratégie sustainability (BP-1 à BP-6)
 
@@ -60,9 +60,9 @@
 
 ---
 
-## E1 — Climate Change
+## E1, Climate Change
 
-(Présomption de matérialité — toujours reporté pour in-scope)
+(Présomption de matérialité, toujours reporté pour in-scope)
 
 ### Plan de transition
 
@@ -111,31 +111,31 @@ Trajectoire : alignement {{ALIGNEMENT}} (1.5°C / 2°C / SBTi).
 
 ---
 
-## E2 — Pollution (si matériel)
+## E2, Pollution (si matériel)
 
 {{E2_CONTENU}}
 
 ---
 
-## E3 — Water and Marine Resources (si matériel)
+## E3, Water and Marine Resources (si matériel)
 
 {{E3_CONTENU}}
 
 ---
 
-## E4 — Biodiversity (si matériel)
+## E4, Biodiversity (si matériel)
 
 {{E4_CONTENU}}
 
 ---
 
-## E5 — Resource Use and Circular Economy (si matériel)
+## E5, Resource Use and Circular Economy (si matériel)
 
 {{E5_CONTENU}}
 
 ---
 
-## S1 — Own Workforce
+## S1, Own Workforce
 
 (Quasi systématiquement matériel)
 
@@ -174,25 +174,25 @@ Trajectoire : alignement {{ALIGNEMENT}} (1.5°C / 2°C / SBTi).
 
 ---
 
-## S2 — Workers in Value Chain (si matériel)
+## S2, Workers in Value Chain (si matériel)
 
 {{S2_CONTENU}}
 
 ---
 
-## S3 — Affected Communities (si matériel)
+## S3, Affected Communities (si matériel)
 
 {{S3_CONTENU}}
 
 ---
 
-## S4 — Consumers (si matériel)
+## S4, Consumers (si matériel)
 
 {{S4_CONTENU}}
 
 ---
 
-## G1 — Business Conduct
+## G1, Business Conduct
 
 (Quasi systématiquement matériel)
 

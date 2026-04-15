@@ -1,4 +1,4 @@
-# Adaptation tonale par audience — moriarty-cfo
+# Adaptation tonale par audience, moriarty-cfo
 
 Le bundle s'adresse à **deux audiences** auto-détectées par `cfo-init` au démarrage de session. Toutes les sorties s'adaptent en conséquence.
 
@@ -78,7 +78,7 @@ Tous les autres skills lisent `private/profile.json` au démarrage et adaptent l
 
 ### Exemples de phrases PME
 
-✅ "Votre BFR est en hausse de 12 jours sur 6 mois — ça veut dire que 24k€ de cash sont bloqués dans le cycle. Trois leviers concrets : relancer les 5 plus gros impayés, négocier 15j de plus avec votre top 3 fournisseurs, ou un mix. Recommandation : commencer par les relances (effet en 30 jours)."
+✅ "Votre BFR est en hausse de 12 jours sur 6 mois, ça veut dire que 24k€ de cash sont bloqués dans le cycle. Trois leviers concrets : relancer les 5 plus gros impayés, négocier 15j de plus avec votre top 3 fournisseurs, ou un mix. Recommandation : commencer par les relances (effet en 30 jours)."
 
 ✅ "Le CIR (Crédit d'Impôt Recherche) c'est 30% du budget R&D éligible. Sur votre projet 200k€, vous récupéreriez 60k€ d'impôt en moins. Votre EC peut monter le dossier."
 

@@ -1,4 +1,4 @@
-# Plan de transition climat — {{COMPANY_NAME}}
+# Plan de transition climat, {{COMPANY_NAME}}
 
 **Document** : Plan de transition aligné Accords de Paris
 **Référentiel** : ESRS E1-1
@@ -53,7 +53,7 @@ Engagement validé par le **Conseil d'Administration** le {{DATE_VALIDATION}}.
 | 2040 | {{T_2040}} | {{R_2040}}% | {{A_2040}} |
 | 2050 | 0 (Net Zero) | -100% | ✓ |
 
-Trajectoire validée par : **SBTi** (Science Based Targets initiative) — statut : {{SBTI_STATUT}}.
+Trajectoire validée par : **SBTi** (Science Based Targets initiative), statut : {{SBTI_STATUT}}.
 
 ---
 
@@ -117,7 +117,7 @@ Trajectoire validée par : **SBTi** (Science Based Targets initiative) — statu
 - **France 2030 (décarbonation industrielle)** : {{F2030}}%
 - **Aides régionales** : {{REGIONAL}}%
 
-→ **Aides publiques cumulables** identifiées par diagnostic — voir cfo-financement-croissance pour CTA Moriarty.
+→ **Aides publiques cumulables** identifiées par diagnostic, voir cfo-financement-croissance pour CTA Moriarty.
 
 ---
 

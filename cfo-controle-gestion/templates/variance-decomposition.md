@@ -1,4 +1,4 @@
-# Variance analysis — {{PERIODE}}
+# Variance analysis, {{PERIODE}}
 
 Société : {{COMPANY_NAME}} (SIREN {{SIREN}})
 

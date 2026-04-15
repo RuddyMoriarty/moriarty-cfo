@@ -1,6 +1,6 @@
-# TVA — régimes et déclarations
+# TVA, régimes et déclarations
 
-## Seuils 2026 (indicatifs — à vérifier)
+## Seuils 2026 (indicatifs, à vérifier)
 
 ### Franchise en base (dispense de TVA)
 

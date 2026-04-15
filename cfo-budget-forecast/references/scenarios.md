@@ -61,7 +61,7 @@ Tableau synthétique 3 colonnes :
 CA 12M                 1 500      1 250     1 000        1 250
 EBITDA 12M             200        100       -50          85
 Cash fin 12M           500        300       -150         275
-Runway (startup)       > 18 mois  14 mois   8 mois       —
+Runway (startup)       > 18 mois  14 mois   8 mois       -
 ```
 
 ## Utiliser pour décider

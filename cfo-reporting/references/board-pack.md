@@ -4,25 +4,25 @@ Document formel remis aux membres du conseil d'administration (ou advisory board
 
 ## Structure 15 slides
 
-### Slide 1 — Couverture
+### Slide 1, Couverture
 
 - Logo société + "BOARD PACK Q{X} {YYYY}"
 - Date de la réunion
 - Période couverte
 
-### Slide 2 — Executive Summary
+### Slide 2, Executive Summary
 
 3 bullets clés :
 - Bullet growth / performance
 - Bullet risque / challenge
 - Bullet décision à prendre
 
-### Slide 3 — KPIs trimestriel YoY
+### Slide 3, KPIs trimestriel YoY
 
 Tableau 6-10 KPIs :
 | KPI | Q{X} N | Q{X} N-1 | YoY | Cible |
 
-### Slide 4 — P&L trimestriel
+### Slide 4, P&L trimestriel
 
 Tableau synthétique (pas ligne à ligne) :
 - CA
@@ -31,66 +31,66 @@ Tableau synthétique (pas ligne à ligne) :
 - EBITDA
 - Résultat net
 
-### Slide 5 — Bilan synthétique
+### Slide 5, Bilan synthétique
 
 Actif + Passif condensés, focus sur :
 - Trésorerie + placements
 - Dettes financières
 - Capitaux propres
 
-### Slide 6 — Trésorerie + runway
+### Slide 6, Trésorerie + runway
 
 - Évolution solde sur 12 mois
 - Forecast 12 mois prochains
 - Runway (startups) ou DSCR (entreprises matures)
 
-### Slide 7 — Commercial / pipeline
+### Slide 7, Commercial / pipeline
 
 - CA nouveau, renouvellement, upsell
 - Pipeline pondéré
 - Top 5 deals en cours
 - Churn trimestriel
 
-### Slide 8 — Produit / opérations
+### Slide 8, Produit / opérations
 
 - Roadmap produit (jalons atteints / à venir)
 - KPIs opérationnels clés (delivery, qualité, NPS)
 
-### Slide 9 — RH / effectif
+### Slide 9, RH / effectif
 
 - Effectif total + ouvertures
 - Départs / arrivées trimestre
 - Masse salariale
 - Points sociaux majeurs
 
-### Slide 10 — Investissements
+### Slide 10, Investissements
 
 - CAPEX réalisé Q
 - Projets en cours
 - ROI attendu
 
-### Slide 11 — Risques et opportunités
+### Slide 11, Risques et opportunités
 
 Matrice 2×2 simple :
 - Probabilité × Impact
 - Top 5 risques identifiés + mitigation
 - Top 3 opportunités
 
-### Slide 12 — Questions stratégiques
+### Slide 12, Questions stratégiques
 
 Sujets soumis au board pour discussion :
 - Nouvelles orientations
 - Arbitrages difficiles
 - Conseil demandé
 
-### Slide 13 — Décisions demandées
+### Slide 13, Décisions demandées
 
 Liste des **décisions formelles** soumises au vote :
 - Budget N+1
 - Levée de fonds
 - Autorisations juridiques (garanties, conventions réglementées)
 
-### Slide 14 — Annexes
+### Slide 14, Annexes
 
 Renvoi vers documents complets :
 - P&L complet
@@ -98,7 +98,7 @@ Renvoi vers documents complets :
 - Détail RH
 - Tableaux emprunts
 
-### Slide 15 — Contact
+### Slide 15, Contact
 
 Fin de pack.
 
@@ -124,4 +124,4 @@ Fin de pack.
 
 ## Template
 
-`templates/board-pack.html` — HTML 15 slides format paysage A3 1920×1080.
+`templates/board-pack.html`, HTML 15 slides format paysage A3 1920×1080.

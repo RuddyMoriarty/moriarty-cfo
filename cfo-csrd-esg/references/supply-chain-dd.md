@@ -1,10 +1,10 @@
-# Supply chain due diligence — devoir de vigilance + ESRS S2
+# Supply chain due diligence, devoir de vigilance + ESRS S2
 
 Évaluer et gérer les risques sociaux et environnementaux dans la chaîne de valeur.
 
 ## Cadre réglementaire
 
-### France — Loi devoir de vigilance (2017)
+### France, Loi devoir de vigilance (2017)
 
 Loi n° 2017-399 du 27 mars 2017.
 
@@ -21,7 +21,7 @@ Loi n° 2017-399 du 27 mars 2017.
 
 **Sanctions** : injonction sous astreinte, action en responsabilité civile.
 
-### UE — CSDDD (Corporate Sustainability Due Diligence Directive)
+### UE, CSDDD (Corporate Sustainability Due Diligence Directive)
 
 Directive UE 2024/1760 du 13 juin 2024. Transposition à l'horizon 2027.
 
@@ -31,7 +31,7 @@ Directive UE 2024/1760 du 13 juin 2024. Transposition à l'horizon 2027.
 
 Plus large que la loi française (seuils plus bas, applicable étape par étape).
 
-### CSRD — ESRS S2 (Workers in the Value Chain)
+### CSRD, ESRS S2 (Workers in the Value Chain)
 
 Si matériel, doivent être reportées :
 - Pratiques sourcing (politique fournisseurs)
@@ -65,7 +65,7 @@ Si matériel, doivent être reportées :
 
 ## Méthodologie due diligence
 
-### Étape 1 — Cartographie de la chaîne
+### Étape 1, Cartographie de la chaîne
 
 Identifier :
 - Tier 1 : fournisseurs directs
@@ -74,14 +74,14 @@ Identifier :
 
 Pour chaque tier : pays, secteur, volume d'achat, dépendance.
 
-### Étape 2 — Évaluation des risques
+### Étape 2, Évaluation des risques
 
 Croisement :
 - **Risque pays** (indices ITUC droits humains, Transparency International corruption)
 - **Risque secteur** (SMETA, SA8000, EcoVadis)
 - **Risque entreprise** (taille, certifications, historique)
 
-### Étape 3 — Audits fournisseurs
+### Étape 3, Audits fournisseurs
 
 Niveaux :
 - **Auto-déclaration** : questionnaire envoyé au fournisseur (OK pour fournisseurs faible risque)
@@ -90,7 +90,7 @@ Niveaux :
 
 Cabinets d'audit : SGS, Bureau Veritas, Intertek, EcoVadis (rating).
 
-### Étape 4 — Plans d'action correctif
+### Étape 4, Plans d'action correctif
 
 Si non-conformités identifiées :
 - Plan d'action négocié avec fournisseur
@@ -98,7 +98,7 @@ Si non-conformités identifiées :
 - Suivi
 - Si pas de remédiation : exclusion du panel
 
-### Étape 5 — Mécanisme d'alerte (whistleblower)
+### Étape 5, Mécanisme d'alerte (whistleblower)
 
 Permet aux employés des fournisseurs (ou de la société elle-même) de signaler :
 - Violations droits humains
@@ -107,7 +107,7 @@ Permet aux employés des fournisseurs (ou de la société elle-même) de signale
 
 Outil : SpeakUp, Resolver, Convercent...
 
-### Étape 6 — Reporting et amélioration continue
+### Étape 6, Reporting et amélioration continue
 
 - Rapport annuel public (loi devoir de vigilance pour les > 5 000 sal)
 - Inclus dans la sustainability statement (CSRD ESRS S2)

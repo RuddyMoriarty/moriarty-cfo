@@ -12,7 +12,7 @@ Sans variance analysis, on ne sait pas **pourquoi** on performe ou contre-perfor
 
 ## Méthodologie standard
 
-### Étape 1 — Segmentation
+### Étape 1, Segmentation
 
 Au minimum :
 - Par poste (CA, achats, salaires, charges externes…)
@@ -22,13 +22,13 @@ Pour les PME+ :
 - Par segment (produit / client / canal)
 - Par centre de coût / responsabilité
 
-### Étape 2 — Calcul des variances
+### Étape 2, Calcul des variances
 
 Pour chaque poste :
 - Variance € = Réel - Budget
 - Variance % = Variance € / Budget
 
-### Étape 3 — Seuils de matérialité
+### Étape 3, Seuils de matérialité
 
 Ne commenter QUE les variances **significatives** :
 - > 5 000 € ET
@@ -36,17 +36,17 @@ Ne commenter QUE les variances **significatives** :
 
 Sinon on se noie dans le bruit.
 
-### Étape 4 — Investigation
+### Étape 4, Investigation
 
 Pour chaque variance significative, identifier la cause :
 
-1. **Effet volume** — ventes ou quantités différentes du prévu
-2. **Effet prix** — tarifs ou coûts unitaires différents
-3. **Effet mix** — répartition différente (produits, clients)
-4. **Effet timing** — avance / retard (la variance se reverse)
-5. **Effet de périmètre** — nouveau produit, nouveau client, acquisition
+1. **Effet volume**, ventes ou quantités différentes du prévu
+2. **Effet prix**, tarifs ou coûts unitaires différents
+3. **Effet mix**, répartition différente (produits, clients)
+4. **Effet timing**, avance / retard (la variance se reverse)
+5. **Effet de périmètre**, nouveau produit, nouveau client, acquisition
 
-### Étape 5 — Actions correctives
+### Étape 5, Actions correctives
 
 Pour chaque variance défavorable non résolue :
 - **Action immédiate** possible ?
@@ -61,9 +61,9 @@ Pour chaque variance défavorable non résolue :
 **Cause principale** : [Effet volume / prix / mix / timing / périmètre]
 
 **Décomposition** :
-- Effet volume : {EUR} € — [explication]
-- Effet prix : {EUR} € — [explication]
-- Effet mix : {EUR} € — [explication]
+- Effet volume : {EUR} €, [explication]
+- Effet prix : {EUR} €, [explication]
+- Effet mix : {EUR} €, [explication]
 
 **Impact cumulé YTD** : {EUR} €
 
@@ -103,7 +103,7 @@ Le script `scripts/variance_analyzer.py` de `cfo-controle-gestion` prépare le t
 **Poste** : Salaires et charges sociales
 **Budget** : 80 000 €
 **Réel** : 95 000 €
-**Variance** : +15 000 € (+19%) — DÉFAVORABLE
+**Variance** : +15 000 € (+19%), DÉFAVORABLE
 
 **Décomposition** :
 - Effet volume : +10 000 € (1 recrutement non budgété démarré en M-2)

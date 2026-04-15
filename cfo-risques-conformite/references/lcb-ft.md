@@ -6,8 +6,8 @@ Lutte contre le **B**lanchiment de capitaux et le **F**inancement du **T**errori
 
 - **Code monétaire et financier** (art. L. 561-1 et suivants)
 - **5e Directive UE LCB-FT** (transposition 2020)
-- **GAFI** (Groupe d'Action Financière) — recommandations internationales
-- **TRACFIN** (Service de traitement du renseignement et action contre les circuits financiers clandestins) — autorité française
+- **GAFI** (Groupe d'Action Financière), recommandations internationales
+- **TRACFIN** (Service de traitement du renseignement et action contre les circuits financiers clandestins), autorité française
 - **ACPR** pour les institutions financières
 
 ## Entités assujetties
@@ -110,7 +110,7 @@ Sections :
 ### Banques / Paiement
 
 - Procédures KYC renforcées (CDD, EDD)
-- Filtrage transactions en temps réel (sanctions, PEP — Politically Exposed Persons)
+- Filtrage transactions en temps réel (sanctions, PEP, Politically Exposed Persons)
 - Reporting FATCA / CRS
 
 ### Crypto / DASP

@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-compute_kpis.py — calcule les KPIs depuis la balance comptable + données opérationnelles.
+compute_kpis.py, calcule les KPIs depuis la balance comptable + données opérationnelles.
 
 Charge le KPI pack sectoriel depuis data/kpi-catalog.json.
 

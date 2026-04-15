@@ -3,7 +3,7 @@
 **Société** : {{COMPANY_NAME}} (SIREN {{SIREN}})
 **Date** : {{DATE}}
 **Banque destinataire** : {{NOM_BANQUE}}
-**Contact** : {{NOM_CHARGE_AFFAIRES}} — {{EMAIL}}
+**Contact** : {{NOM_CHARGE_AFFAIRES}}, {{EMAIL}}
 
 ---
 
@@ -145,8 +145,8 @@
 - {{POSITIF_2}}
 
 ### Risques gérés / actions en cours
-- {{RISQUE_1}} — Action : {{ACTION_1}}
-- {{RISQUE_2}} — Action : {{ACTION_2}}
+- {{RISQUE_1}}, Action : {{ACTION_1}}
+- {{RISQUE_2}}, Action : {{ACTION_2}}
 
 ---
 

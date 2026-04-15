@@ -17,10 +17,10 @@ Format tableau avec 4 colonnes : Réel M, Budget M, Variance €/%, Réel N-1
 | Poste | Réel mars 2026 | Budget mars | Δ | Réel mars 2025 | YoY |
 |-------|----------------|-------------|---|----------------|-----|
 | CA HT | 1 250 k€ | 1 200 k€ | +50 (+4%) | 1 000 k€ | +25% |
-| Achats & charges variables | -420 | -400 | -20 | -350 | — |
+| Achats & charges variables | -420 | -400 | -20 | -350 |, |
 | **Marge sur coûts variables** | **830** | **800** | **+30** | **650** | **+28%** |
-| Salaires & charges | -650 | -580 | -70 | -500 | — |
-| Autres charges fixes | -150 | -140 | -10 | -130 | — |
+| Salaires & charges | -650 | -580 | -70 | -500 |, |
+| Autres charges fixes | -150 | -140 | -10 | -130 |, |
 | **EBITDA** | **30** | **80** | **-50** | **20** | **+50%** |
 
 ### 3. Analyse des variances (2-3 pages)
@@ -43,7 +43,7 @@ Selon `private/company.json > secteur.module_sectoriel` :
 ### 5. Bilan + trésorerie (1-2 pages)
 
 - Bilan synthétique (postes > 5% du total)
-- BFR + ratios (DSO/DPO/DIO) — renvoyer à cfo-tresorerie
+- BFR + ratios (DSO/DPO/DIO), renvoyer à cfo-tresorerie
 - Cash flow simplifié + alerte si tension
 
 ### 6. Commentaire de gestion (1-2 paragraphes)
@@ -70,11 +70,11 @@ Partiel :
 
 ## Template
 
-`templates/reporting-mensuel.html` — structure responsive imprimable A4 portrait ou paysage.
+`templates/reporting-mensuel.html`, structure responsive imprimable A4 portrait ou paysage.
 
 ## Distribution
 
 - **Dirigeant / CEO** : version complète
 - **CODIR** : version complète + annexes opérationnelles
-- **Board** : version condensée (4-6 pages) — à adapter du trimestriel
+- **Board** : version condensée (4-6 pages), à adapter du trimestriel
 - **Banque** (sur demande) : P&L + bilan + commentaire, sans annexes opérationnelles

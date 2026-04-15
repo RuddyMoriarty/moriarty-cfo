@@ -1,6 +1,6 @@
 {
   "_meta": {
-    "description": "Codes NAF (Nomenclature d'Activités Française) — sections de référence + mapping vers les modules sectoriels des skills. Source : INSEE NAF Rev 2.",
+    "description": "Codes NAF (Nomenclature d'Activités Française), sections de référence + mapping vers les modules sectoriels des skills. Source : INSEE NAF Rev 2.",
     "version": "0.1.0",
     "last_updated": "2026-04-14",
     "source": "https://www.insee.fr/fr/information/2406147"

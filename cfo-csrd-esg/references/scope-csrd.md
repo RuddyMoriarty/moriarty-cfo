@@ -1,4 +1,4 @@
-# Scope CSRD — déterminer si votre société est in-scope
+# Scope CSRD, déterminer si votre société est in-scope
 
 ## Cadre légal
 
@@ -8,7 +8,7 @@
 
 ## Les 4 vagues
 
-### Wave 1 — Grandes entités cotées et PIE
+### Wave 1, Grandes entités cotées et PIE
 
 **Premier exercice reporté** : 2024
 **Premier rapport publié** : 2025
@@ -20,7 +20,7 @@
 
 → Statut acquis depuis 2025. Si vous êtes Wave 1 et n'avez pas encore reporté, **urgence absolue**.
 
-### Wave 2 — Grandes entités non cotées + mid-caps
+### Wave 2, Grandes entités non cotées + mid-caps
 
 **Premier exercice reporté** : 2028 (initialement 2026, reporté par Stop-the-Clock 2025/794)
 **Premier rapport publié** : 2029
@@ -31,7 +31,7 @@
 
 → Vous avez encore 2-3 ans pour préparer. **Recommandation : démarrer dès 2026** (collecte données, gouvernance, premières publications volontaires).
 
-### Wave 3 — PME cotées
+### Wave 3, PME cotées
 
 **Premier exercice reporté** : 2028
 **Premier rapport publié** : 2029
@@ -41,9 +41,9 @@
 - 10-250 employés
 - ≥ 2 sur 3 : CA 900k€, bilan 450k€
 
-Le rapport est **simplifié** (ESRS-LSME — Listed SMEs).
+Le rapport est **simplifié** (ESRS-LSME, Listed SMEs).
 
-### Wave 4 — Groupes hors UE
+### Wave 4, Groupes hors UE
 
 **Premier exercice reporté** : 2028
 **Premier rapport publié** : 2029

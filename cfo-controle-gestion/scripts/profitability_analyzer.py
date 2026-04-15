@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-profitability_analyzer.py — identifie top/bottom produits ou clients par rentabilité.
+profitability_analyzer.py, identifie top/bottom produits ou clients par rentabilité.
 
 Input : CSV ventes détaillées (colonnes: client, produit, date, ca, cout_direct)
 Output : top/bottom N + analyse Pareto

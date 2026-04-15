@@ -20,7 +20,7 @@ Activé si `classification.groupe = true`.
 - Pas de convention intragroupe complexe
 - **Moins de montage** mais moins efficace
 
-### Physical pooling (ZBA — Zero Balance Account)
+### Physical pooling (ZBA, Zero Balance Account)
 
 - **Transferts automatiques quotidiens** vers un compte central (compte pivot)
 - Chaque filiale est **ramenée à zéro** en fin de journée
@@ -43,7 +43,7 @@ Variante : les filiales gardent un seuil minimal (ex. 10k€) pour leurs besoins
 5. **Durée** : renouvelable annuellement
 6. **Dénonciation** : clause de sortie
 
-### Taux d'intérêt — respect du prix de transfert
+### Taux d'intérêt, respect du prix de transfert
 
 Article 57 CGI : les taux pratiqués doivent être **au prix de pleine concurrence**.
 
@@ -59,32 +59,32 @@ Article 57 CGI : les taux pratiqués doivent être **au prix de pleine concurren
 
 ## Mise en œuvre pratique
 
-### Étape 1 — Cartographier les besoins
+### Étape 1, Cartographier les besoins
 
 - Liste des filiales adhérentes (périmètre)
 - Soldes bancaires actuels par filiale
 - Besoins saisonniers par filiale (pic / creux)
 - Banques impliquées (multi-banques possible)
 
-### Étape 2 — Choisir la structure
+### Étape 2, Choisir la structure
 
 - Notional ou physical ?
 - Compte pivot : banque existante ou dédiée ?
 - Fréquence des sweeps (quotidien, hebdomadaire)
 
-### Étape 3 — Négocier avec la banque
+### Étape 3, Négocier avec la banque
 
 - Frais de mise en place (souvent 5-15 k€ pour les groupes moyens)
 - Frais récurrents (abonnement mensuel)
 - Taux d'intérêt sur le solde cumulé
 
-### Étape 4 — Rédiger et signer les conventions
+### Étape 4, Rédiger et signer les conventions
 
 - Convention entre la société pivot et chaque filiale
 - Validation juridique (notaire/avocat si international)
 - Inscription au registre des conventions réglementées si parties liées
 
-### Étape 5 — Déployer et suivre
+### Étape 5, Déployer et suivre
 
 - Outil de reporting groupe trésorerie (ex. Kyriba, Agicap pour petits groupes)
 - Revue trimestrielle des soldes et des flux

@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-bfr_calculator.py — calcule BFR, DSO, DPO, DIO, CCC + propose leviers.
+bfr_calculator.py, calcule BFR, DSO, DPO, DIO, CCC + propose leviers.
 
 Input : balance + CA + achats
 Output : ratios + benchmarks + leviers ciblés selon profil société.

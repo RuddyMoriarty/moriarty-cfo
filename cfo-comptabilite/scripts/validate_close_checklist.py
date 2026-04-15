@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-validate_close_checklist.py — valide qu'une clôture (mensuelle ou annuelle)
+validate_close_checklist.py, valide qu'une clôture (mensuelle ou annuelle)
 est cohérente avant finalisation.
 
 Tests effectués :

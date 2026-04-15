@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-variance_analyzer.py — décompose les variances budget vs réel en effet volume/prix/mix.
+variance_analyzer.py, décompose les variances budget vs réel en effet volume/prix/mix.
 
 Input : CSV avec colonnes segment,volume_budget,prix_budget,volume_reel,prix_reel
 Output : décomposition effet volume / prix / mix par segment

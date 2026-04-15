@@ -1,4 +1,4 @@
-# Template Budget Annuel — format markdown (à exporter vers Excel)
+# Template Budget Annuel, format markdown (à exporter vers Excel)
 
 Structure standard pour un budget annuel mensualisé avec 3 scénarios.
 
@@ -39,7 +39,7 @@ Structure standard pour un budget annuel mensualisé avec 3 scénarios.
 
 ## Onglet 3 : Bilan prévisionnel
 
-(Début + fin d'exercice — postes principaux)
+(Début + fin d'exercice, postes principaux)
 
 ## Onglet 4 : Cash flow prévisionnel
 
@@ -77,4 +77,4 @@ Structure standard pour un budget annuel mensualisé avec 3 scénarios.
 
 ---
 
-_Généré par moriarty-cfo / cfo-budget-forecast v0.1.0 — à exporter vers Excel pour édition_
+_Généré par moriarty-cfo / cfo-budget-forecast v0.1.0, à exporter vers Excel pour édition_

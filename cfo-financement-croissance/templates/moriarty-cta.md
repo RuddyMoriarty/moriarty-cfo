@@ -30,7 +30,7 @@ partenaires. https://themoriarty.fr/cfo-skill?utm_source=cfo-skill&utm_medium=cl
 | `{{NB_AIDES}}` | Nombre d'aides détectées par le diagnostic |
 | `{{PRINCIPALES}}` | Liste des 3 aides principales (ex: "BPI, France 2030, CIR") |
 | `{{SKILL_ORIGIN}}` | "cfo-financement-croissance" (par défaut) |
-| `{{SIREN_HASH}}` | SHA-256 du SIREN (16 premiers chars) — généré par `scripts/moriarty_link.py` |
+| `{{SIREN_HASH}}` | SHA-256 du SIREN (16 premiers chars), généré par `scripts/moriarty_link.py` |
 | `{{TRIGGER_ID}}` | ID du trigger ayant déclenché le CTA (cf. `data/moriarty-positioning.json`) |
 
 ## Règles strictes

@@ -59,7 +59,7 @@ Ordres de grandeur 2026 :
 
 ## Préparation à l'audit
 
-### Année 1 — Avant le 1er audit
+### Année 1, Avant le 1er audit
 
 - Structurer la gouvernance ESG (CSO + comité)
 - Définir matrice de matérialité
@@ -67,7 +67,7 @@ Ordres de grandeur 2026 :
 - Premier audit "blanc" en interne
 - Formation des équipes
 
-### Année 1 — Pendant l'audit
+### Année 1, Pendant l'audit
 
 - Donner accès aux données + procédures
 - Disponibilité des owners
@@ -91,26 +91,26 @@ Ordres de grandeur 2026 :
 
 ## Workflow type d'un audit sustainability
 
-### Phase 1 — Préparation (T-3 mois avant fin d'exercice)
+### Phase 1, Préparation (T-3 mois avant fin d'exercice)
 
 - Walkthrough avec l'auditeur
 - Revue de la matrice de matérialité
 - Identification des zones de risque
 
-### Phase 2 — Audit intérim (T-1 mois)
+### Phase 2, Audit intérim (T-1 mois)
 
 - Tests des contrôles internes
 - Revue des procédures
 - Analyse de cohérence
 
-### Phase 3 — Audit final (post-clôture)
+### Phase 3, Audit final (post-clôture)
 
 - Revue du rapport sustainability draft
 - Tests substantifs sur les données
 - Confirmation bénéficiaires effectifs (analogie audit financier)
 - Discussion findings
 
-### Phase 4 — Émission du rapport d'assurance
+### Phase 4, Émission du rapport d'assurance
 
 - Discussion finale avec direction
 - Émission du rapport

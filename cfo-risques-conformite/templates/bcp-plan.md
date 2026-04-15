@@ -169,5 +169,5 @@ Procédure :
 
 ---
 
-_Document confidentiel — accès restreint à la cellule de crise + responsables identifiés._
+_Document confidentiel, accès restreint à la cellule de crise + responsables identifiés._
 _Référence : ISO 22301 (Business Continuity Management Systems)._

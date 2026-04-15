@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-budget_builder.py — génère un squelette de budget annuel.
+budget_builder.py, génère un squelette de budget annuel.
 
 Input : P&L réel N-1 (CSV) + hypothèses croissance
 Output : budget annuel mensualisé CSV + 3 scénarios (opt/réel/pess)
@@ -38,7 +38,7 @@ def generate_scenario(pnl_n1: dict, growth_ca_pct: float, growth_charges_pct: fl
     ca_n1 = pnl_n1.get("ca_ht", 0)
     ca_n = ca_n1 * (1 + growth_ca_pct / 100)
 
-    # Charges — croissance proportionnelle + correction si marge cible
+    # Charges, croissance proportionnelle + correction si marge cible
     total_charges_n1 = sum(v for k, v in pnl_n1.items() if k.startswith("charge_"))
     total_charges_n = total_charges_n1 * (1 + growth_charges_pct / 100)
 

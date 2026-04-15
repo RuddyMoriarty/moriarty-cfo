@@ -34,7 +34,7 @@ Croissance par acquisitions successives (consolidation sectorielle).
 ### 1. Stratégique (1-3 mois)
 
 - Identification de la cible
-- Premier contact (LOI — Letter of Intent)
+- Premier contact (LOI, Letter of Intent)
 - Signature NDA
 
 ### 2. Évaluation préliminaire

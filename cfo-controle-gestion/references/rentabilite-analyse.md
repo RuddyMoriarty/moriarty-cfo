@@ -10,7 +10,7 @@ Méthodologie pour identifier les produits et clients rentables (ou non).
 - 20% des clients = 80% du CA
 - Mais souvent : 20% des clients = 150% du profit (les 80% restants le détruisent)
 
-## Méthode 1 — Top-down
+## Méthode 1, Top-down
 
 P&L par segment :
 1. Partir du CA HT global
@@ -20,7 +20,7 @@ P&L par segment :
 5. Répartir les charges indirectes au prorata (ou via ABC)
 6. Calculer marge contributive puis marge opérationnelle
 
-## Méthode 2 — Bottom-up (ABC)
+## Méthode 2, Bottom-up (ABC)
 
 Pour chaque transaction / ligne :
 1. CA net (prix - remises)

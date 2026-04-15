@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-pricing_simulator.py — simule l'impact d'un changement de prix selon élasticité.
+pricing_simulator.py, simule l'impact d'un changement de prix selon élasticité.
 
 Input : prix actuel + volume actuel + coût variable unitaire + élasticité estimée
 Output : scénarios CA + marge avec différents niveaux de prix

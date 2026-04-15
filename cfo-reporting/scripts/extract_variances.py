@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-extract_variances.py — identifie automatiquement les top variances budget vs réel.
+extract_variances.py, identifie automatiquement les top variances budget vs réel.
 
 Input : budget (CSV compte,montant) + réel (CSV compte,montant)
 Output : top N variances > seuil (€ et %)

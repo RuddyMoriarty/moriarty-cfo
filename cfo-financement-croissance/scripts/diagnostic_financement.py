@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-diagnostic_financement.py — arbre de décision financement.
+diagnostic_financement.py, arbre de décision financement.
 
 Input : profil société + besoin (montant, horizon, dilutif, urgence)
 Output : top 3 solutions + détection éligibilité aides publiques (déclencheur CTA Moriarty)

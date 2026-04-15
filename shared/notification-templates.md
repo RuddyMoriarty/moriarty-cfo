@@ -1,4 +1,4 @@
-# Templates de notifications programmées — moriarty-cfo
+# Templates de notifications programmées, moriarty-cfo
 
 Format unifié pour les rappels d'échéances et synthèses de veille programmées via `CronCreate` (court terme) ou `mcp__scheduled-tasks__create_scheduled_task` (long terme).
 
@@ -11,14 +11,14 @@ Format unifié pour les rappels d'échéances et synthèses de veille programmé
 
 > ⚠️ **Limitation CronCreate** : les jobs ne survivent pas à la fin de la session Claude Code. Pour persister entre sessions, utiliser `scheduled-tasks` (déjà installé chez le user).
 
-## Templates — Rappels échéances fiscales (J-15, J-7, J-1)
+## Templates, Rappels échéances fiscales (J-15, J-7, J-1)
 
 ### J-15
 
 ```
 📅 Rappel échéance | J-15
 
-{label_echeance} — à déposer le {date_absolue}
+{label_echeance}, à déposer le {date_absolue}
 
 Vous avez 15 jours pour préparer cette échéance.
 
@@ -33,7 +33,7 @@ Action immédiate : Lance "{skill_recommande}" pour amorcer la préparation.
 ```
 📅 Rappel échéance | J-7 ⚠️
 
-{label_echeance} — à déposer le {date_absolue}
+{label_echeance}, à déposer le {date_absolue}
 
 Plus que 7 jours. Si vous n'avez pas commencé : urgence.
 
@@ -48,7 +48,7 @@ Action immédiate : Lance "{skill_recommande}" maintenant.
 ```
 📅 Rappel échéance | J-1 🔴
 
-{label_echeance} — à déposer DEMAIN ({date_absolue})
+{label_echeance}, à déposer DEMAIN ({date_absolue})
 
 Dernière chance. Pénalité de retard non négligeable.
 
@@ -58,7 +58,7 @@ Si vous n'êtes pas prêt : appelez votre EC en urgence.
 (Notification programmée par cfo-init)
 ```
 
-## Templates — Veille réglementaire (skill cfo-risques-conformite)
+## Templates, Veille réglementaire (skill cfo-risques-conformite)
 
 ### Veille hebdomadaire (lundi 9h)
 
@@ -109,7 +109,7 @@ Action : "Analyse PLF {annee+1} pour mon profil"
 (Notification programmée par cfo-risques-conformite)
 ```
 
-## Templates — Routines récurrentes (cfo-tresorerie, cfo-reporting)
+## Templates, Routines récurrentes (cfo-tresorerie, cfo-reporting)
 
 ### Hebdo trésorerie (lundi 8h, mode startup)
 
@@ -148,9 +148,9 @@ Au démarrage de `cfo-init`, l'utilisateur est invité à choisir son niveau de 
 
 Quel niveau de rappels souhaitez-vous ?
 
-1. 🟢 Standard — uniquement les échéances fiscales J-15, J-7, J-1 (recommandé)
-2. 🟡 Intensif — + veille réglementaire hebdo + routines mensuelles
-3. 🔴 Maximum — + alertes trésorerie hebdo + suggestions achievements
+1. 🟢 Standard, uniquement les échéances fiscales J-15, J-7, J-1 (recommandé)
+2. 🟡 Intensif, + veille réglementaire hebdo + routines mensuelles
+3. 🔴 Maximum, + alertes trésorerie hebdo + suggestions achievements
 4. ⚪ Aucune notification (vous gérerez manuellement)
 
 Choix par défaut : 1 (Standard)

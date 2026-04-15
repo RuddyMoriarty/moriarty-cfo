@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-generate_closing_journal.py — génère un squelette de journal des écritures
+generate_closing_journal.py, génère un squelette de journal des écritures
 de clôture (mensualisées ou annuelles).
 
 Produit les écritures AUTOMATISABLES :
@@ -144,15 +144,15 @@ def ecritures_pca(contrats_saas: list[dict], date_cloture: date) -> list[dict]:
 def liste_items_manuels(immos_count: int, balance_clients_count: int) -> list[str]:
     """Liste les écritures qui nécessitent un jugement humain."""
     items = [
-        "FAR/FNP — Lister les fournisseurs ayant livré sans facture reçue (rapprocher BL et factures reçues)",
-        "Provisions pour litiges — Revoir avec l'avocat les contentieux en cours, chiffrer les risques probables",
-        "Dépréciation clients douteux — Revoir la balance clients, identifier les créances > 6 mois impayées et provisionner",
-        "Dépréciation stocks obsolètes — Inventaire physique : lister les références non vendues depuis 12+ mois",
+        "FAR/FNP, Lister les fournisseurs ayant livré sans facture reçue (rapprocher BL et factures reçues)",
+        "Provisions pour litiges, Revoir avec l'avocat les contentieux en cours, chiffrer les risques probables",
+        "Dépréciation clients douteux, Revoir la balance clients, identifier les créances > 6 mois impayées et provisionner",
+        "Dépréciation stocks obsolètes, Inventaire physique : lister les références non vendues depuis 12+ mois",
     ]
     if immos_count > 0:
-        items.append(f"Test de dépréciation immobilisations — Revoir les {immos_count} immo(s) pour indices de perte de valeur (IAS 36 si IFRS)")
+        items.append(f"Test de dépréciation immobilisations, Revoir les {immos_count} immo(s) pour indices de perte de valeur (IAS 36 si IFRS)")
     if balance_clients_count > 100:
-        items.append("Revue d'ancienneté créances clients — Aging report détaillé obligatoire au-delà de 100 clients")
+        items.append("Revue d'ancienneté créances clients, Aging report détaillé obligatoire au-delà de 100 clients")
     return items
 
 

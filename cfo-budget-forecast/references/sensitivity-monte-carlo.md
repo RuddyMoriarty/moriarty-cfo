@@ -86,5 +86,5 @@ Pour v0.1, sensibilité ±10% manuelle suffit pour la plupart des décisions PME
 ## Limites
 
 - **Garbage in, garbage out** : si les distributions d'entrée sont arbitraires, les résultats aussi
-- **Corrélations ignorées** par défaut (si CA baisse, les coûts variables baissent aussi — corrélation à modéliser)
+- **Corrélations ignorées** par défaut (si CA baisse, les coûts variables baissent aussi, corrélation à modéliser)
 - **Fausse précision** : Monte Carlo donne des décimales, mais l'incertitude vient des distributions elles-mêmes

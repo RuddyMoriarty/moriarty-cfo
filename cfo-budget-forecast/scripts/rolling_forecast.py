@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-rolling_forecast.py — met à jour la projection annuelle avec le réel YTD.
+rolling_forecast.py, met à jour la projection annuelle avec le réel YTD.
 
 Input : budget annuel (JSON depuis budget_builder.py) + réel YTD (CSV)
 Output : rolling forecast avec atterrissage annuel révisé

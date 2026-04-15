@@ -1,4 +1,4 @@
-# Politique de sécurité — moriarty-cfo
+# Politique de sécurité, moriarty-cfo
 
 > 🔒 **Vos données financières restent locales. Aucune ne quitte votre machine.**
 
@@ -33,11 +33,11 @@ Tout ce qui touche à votre activité réelle reste dans `private/` :
 - Dossiers de financement, valorisations
 
 Le dossier `private/` est :
-1. **Gitignored** (voir `.gitignore`) — impossible de le commiter par erreur
-2. **Hors-champ** des appels externes — aucun outil du bundle n'envoie son contenu en ligne
+1. **Gitignored** (voir `.gitignore`), impossible de le commiter par erreur
+2. **Hors-champ** des appels externes, aucun outil du bundle n'envoie son contenu en ligne
 3. **Effaçable** d'un seul coup via `bash scripts/purge.sh` (à venir)
 
-## Mode hybride API/Web — votre choix
+## Mode hybride API/Web, votre choix
 
 Par défaut, `cfo-init` utilise `WebFetch` (sans clé API) pour Pappers et l'Annuaire Entreprises. Vous pouvez **opter pour les API officielles** en fournissant des clés dans `.env` (gitignored) :
 
@@ -105,4 +105,4 @@ Pour toute décision engageant la société (clôture, déclaration fiscale, aud
 
 ---
 
-*Dernière mise à jour : 2026-04-14 — moriarty-cfo v0.1.0*
+*Dernière mise à jour : 2026-04-14, moriarty-cfo v0.1.0*

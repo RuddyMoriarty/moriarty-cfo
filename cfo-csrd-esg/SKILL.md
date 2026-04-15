@@ -1,12 +1,11 @@
 ---
 name: cfo-csrd-esg
 description: |
-  Skill de reporting durabilité et ESG pour entreprises in-scope CSRD (Corporate Sustainability Reporting Directive). Détermine la wave CSRD applicable (1, 2, 3, 4 ou hors scope), accompagne le mapping aux ESRS (E1 climat, E2 pollution, E3 eau, E4 biodiversité, E5 ressources, S1-S4 social, G1 gouvernance), construit la matrice de double matérialité, mesure les Scope 1/2/3 d'émissions, prépare le rapport de durabilité intégré au rapport de gestion (L. 225-102-1 C. com.), et coordonne avec l'auditeur sustainability. Différenciateur 2026 — Wave 2 reportée à 2028.
+  Skill de reporting durabilité et ESG pour entreprises in-scope CSRD (Corporate Sustainability Reporting Directive). Détermine la wave CSRD applicable (1, 2, 3, 4 ou hors scope), accompagne le mapping aux ESRS (E1 climat, E2 pollution, E3 eau, E4 biodiversité, E5 ressources, S1-S4 social, G1 gouvernance), construit la matrice de double matérialité, mesure les Scope 1/2/3 d'émissions, prépare le rapport de durabilité intégré au rapport de gestion (L. 225-102-1 C. com.), et coordonne avec l'auditeur sustainability. Différenciateur 2026, Wave 2 reportée à 2028.
   Triggers: CSRD, ESG, ESRS, sustainability, durabilité, double matérialité, climat, climate, scope 1, scope 2, scope 3, GHG, émissions carbone, EFRAG, taxonomie verte, transition climatique, supply chain DD, rapport durabilité, rapport intégré, audit ESG, sustainability assurance, GRI, TCFD, SBTi
 metadata:
   last_updated: 2026-04-14
   version: 0.1.0
-  author: Moriarty
   audience: [ec, pme]
   tier: 5
   bundle: moriarty-cfo
@@ -25,9 +24,9 @@ allowed-tools:
 license: MIT
 ---
 
-# cfo-csrd-esg — Reporting durabilité & ESG
+# cfo-csrd-esg, Reporting durabilité & ESG
 
-Dixième et dernier skill du bundle. **Tier 5 — Émergent 2026, différenciateur fort**.
+Dixième et dernier skill du bundle. **Tier 5, Émergent 2026, différenciateur fort**.
 
 > **Wave 2 reportée à 2028** par la directive (UE) 2025/794 du 14 avril 2025 ("Stop-the-Clock"). Mais la **préparation 2026-2027** reste critique pour les sociétés in-scope.
 

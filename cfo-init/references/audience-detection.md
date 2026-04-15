@@ -1,4 +1,4 @@
-# Détection d'audience — EC vs PME
+# Détection d'audience, EC vs PME
 
 Cette référence détaille la détection du type d'audience au démarrage de session et ses conséquences sur le comportement des 10 skills du bundle.
 

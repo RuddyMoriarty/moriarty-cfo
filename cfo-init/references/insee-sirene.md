@@ -1,4 +1,4 @@
-# INSEE Sirene V3 — API officielle
+# INSEE Sirene V3, API officielle
 
 Source officielle et authoritative pour l'identification des entreprises françaises. Utilisée en **fallback** quand Pappers n'est pas disponible, ou en complément pour valider les données.
 

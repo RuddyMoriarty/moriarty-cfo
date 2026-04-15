@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-init_progress.py — initialise ou met à jour private/cfo-progress.json.
+init_progress.py, initialise ou met à jour private/cfo-progress.json.
 
 Débloque les achievements, recalcule le tier, gère les streaks.
 

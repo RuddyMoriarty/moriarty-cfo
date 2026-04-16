@@ -1,0 +1,56 @@
+{
+  "_meta": {
+    "description": "Liste des pieces attendues par type de mission EC. Utilise par check_dossier.py pour detecter les dossiers incomplets.",
+    "_version": "0.1.5"
+  },
+  "pieces_par_mission": {
+    "presentation": [
+      {"id": "balance_generale", "label": "Balance generale de l'exercice", "obligatoire": true},
+      {"id": "grand_livre", "label": "Grand livre detaille", "obligatoire": true},
+      {"id": "journal_banque", "label": "Journal de banque avec rapprochements", "obligatoire": true},
+      {"id": "releves_bancaires", "label": "Releves bancaires 12 mois", "obligatoire": true},
+      {"id": "factures_achats", "label": "Factures achats et notes de frais", "obligatoire": true},
+      {"id": "factures_ventes", "label": "Factures ventes et avoirs", "obligatoire": true},
+      {"id": "contrats_location", "label": "Baux commerciaux et contrats de location", "obligatoire": false},
+      {"id": "tableau_immobilisations", "label": "Tableau des immobilisations et amortissements", "obligatoire": true},
+      {"id": "inventaire_stocks", "label": "Inventaire physique des stocks", "obligatoire": false},
+      {"id": "declarations_tva", "label": "Copies des 12 declarations TVA de l'exercice", "obligatoire": true}
+    ],
+    "examen_limite": [
+      {"id": "balance_generale", "label": "Balance generale", "obligatoire": true},
+      {"id": "grand_livre", "label": "Grand livre", "obligatoire": true},
+      {"id": "rapprochements_bancaires", "label": "Rapprochements bancaires mensuels", "obligatoire": true},
+      {"id": "releves_bancaires", "label": "Releves bancaires complets", "obligatoire": true},
+      {"id": "controle_caisse", "label": "Controle des caisses et especes", "obligatoire": true},
+      {"id": "factures_achats", "label": "Factures achats echantillon", "obligatoire": true},
+      {"id": "factures_ventes", "label": "Factures ventes echantillon", "obligatoire": true},
+      {"id": "declarations_tva", "label": "Declarations TVA", "obligatoire": true},
+      {"id": "contrats_financement", "label": "Contrats de financement et emprunts", "obligatoire": true},
+      {"id": "proces_verbaux_ag", "label": "Proces-verbaux AG et CA", "obligatoire": false}
+    ],
+    "audit_legal_cac": [
+      {"id": "balance_generale", "label": "Balance generale signee", "obligatoire": true},
+      {"id": "grand_livre", "label": "Grand livre complet", "obligatoire": true},
+      {"id": "fec", "label": "FEC (Fichier des Ecritures Comptables)", "obligatoire": true},
+      {"id": "rapprochements_bancaires", "label": "Rapprochements bancaires valides", "obligatoire": true},
+      {"id": "releves_bancaires", "label": "Releves bancaires complets", "obligatoire": true},
+      {"id": "circularisations", "label": "Reponses circularisations (banques, clients, fournisseurs)", "obligatoire": true},
+      {"id": "lettre_affirmation", "label": "Lettre d'affirmation signee", "obligatoire": true},
+      {"id": "pv_inventaire_stocks", "label": "PV inventaire physique stocks", "obligatoire": true},
+      {"id": "contrats_baux", "label": "Contrats et baux en cours", "obligatoire": true},
+      {"id": "rapports_assurance", "label": "Rapports d'assurance et polices", "obligatoire": true},
+      {"id": "declarations_fiscales", "label": "Toutes declarations fiscales de l'exercice", "obligatoire": true},
+      {"id": "proces_verbaux_ag", "label": "PV AG et conseils", "obligatoire": true}
+    ],
+    "social_paie": [
+      {"id": "bulletins_paie", "label": "Bulletins de paie de l'exercice", "obligatoire": true},
+      {"id": "dsn_mensuelles", "label": "DSN mensuelles (12 mois)", "obligatoire": true},
+      {"id": "journaux_paie", "label": "Journaux de paie mensuels", "obligatoire": true},
+      {"id": "contrats_travail", "label": "Contrats de travail et avenants", "obligatoire": true},
+      {"id": "registre_personnel", "label": "Registre unique du personnel", "obligatoire": true},
+      {"id": "attestations_urssaf", "label": "Attestations URSSAF a jour", "obligatoire": true},
+      {"id": "declaration_agefiph", "label": "Declaration AGEFIPH (si effectif >= 20)", "obligatoire": false},
+      {"id": "index_egalite", "label": "Index egalite femmes-hommes (si effectif >= 50)", "obligatoire": false}
+    ]
+  }
+}

@@ -4,6 +4,48 @@ Toutes les évolutions notables de `moriarty-cfo` sont documentées ici.
 
 Le format suit [Keep a Changelog](https://keepachangelog.com/fr/1.1.0/) et le projet adhère au [Semantic Versioning](https://semver.org/lang/fr/).
 
+## [0.1.8], 2026-04-16
+
+Tests fonctionnels reels sur les 9 skills hors cfo-init. Chaque skill passe maintenant de 1 test smoke (compile + help) a 3 tests (smoke + 2 scripts exerces avec fixtures et assertions sur outputs structures). Cible initiale "3 tests reels par skill" atteinte.
+
+### Added
+
+- `evals/_helpers/fct_skill_scripts.py` : helper unique parametrable (`--skill X --script Y`) qui contient 18 fonctions de test, une par (skill, script). Chaque fonction :
+  - Construit une fixture minimale (args CLI pour la plupart, fichier CSV/JSON si necessaire via tempfile)
+  - Execute le script avec `subprocess.run`
+  - Parse la sortie (stdout ou `--output`) et assert sur la structure JSON (cles presentes, types, valeurs limites)
+  - Retourne `(True, detail)` ou `(False, erreur)` avec message explicite
+- 18 tests fonctionnels enregistres, 2 par skill :
+  - **cfo-comptabilite** : generate_closing_journal (mode mensuel, ecritures_automatiques), validate_close_checklist (balance_equilibre)
+  - **cfo-tresorerie** : bfr_calculator (DSO/DPO/DIO + benchmark), forecast_12m (12 mois x 3 scenarios)
+  - **cfo-reporting** : extract_variances (budget vs reel), compute_kpis (P&L + ratios depuis balance)
+  - **cfo-controle-gestion** : pricing_simulator (3 scenarios + best), variance_analyzer (volume/prix/mix)
+  - **cfo-budget-forecast** : capex_analyzer (NPV/IRR/payback), budget_builder (3 scenarios ponderes)
+  - **cfo-fiscalite** : cir_estimator (30 % assiette R&D), is_simulator (IS brut + acomptes + solde)
+  - **cfo-risques-conformite** : internal_control_checklist (achats/ventes/tresorerie), veille_scheduler (taches cron)
+  - **cfo-financement-croissance** : diagnostic_financement (top 3 + aides eligibles), moriarty_link (URL + hash SIREN 16 chars)
+  - **cfo-csrd-esg** : csrd_scope_calculator (wave 1-4 ou hors_scope), scope_emissions_estimator (tCO2e scope 1+2+3)
+
+### Metriques
+
+- 40 tests fonctionnels (etait 22), +82 %
+- 316/316 tests globaux (100 %)
+- Couverture : 10/10 skills avec 3 tests chacun (1 smoke + 2 fct reels)
+- 0 lint warning
+
+### Architecture test
+
+Les 18 fonctions suivent le meme pattern :
+```python
+def test_<skill>_<script>(tmp: Path) -> tuple[bool, str]:
+    # Construire fixture dans tmp
+    rc, stdout, stderr = run_script(skill, script, args, tmp)
+    if rc != 0: return False, f"exit {rc}"
+    data = parse_output(stdout, tmp / "out.json")
+    if <assertion>: return True, detail
+    return False, "raison"
+```
+
 ## [0.1.7], 2026-04-16
 
 Couverture fonctionnelle des 10 skills. Avant cette version, 13/13 tests fonctionnels ciblaient cfo-init et 9 skills etaient listes dans `_skills_pending_implementation` sans aucun test. Cette version comble le gap avec un smoke test par skill.

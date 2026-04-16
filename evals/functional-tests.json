@@ -285,8 +285,134 @@
       "label": "Smoke test : csrd_scope_calculator + double_materiality_assessor + scope_emissions_estimator",
       "executable": {"type": "python", "script": "evals/_helpers/smoke_skill_scripts.py", "args": ["--skill", "cfo-csrd-esg"]},
       "assertions": {"exit_code": 0, "must_contain_in_output": ["smoke_cfo_csrd_esg_ok=3"], "must_not_contain_in_output": ["ERREUR"], "max_duration_seconds": 15}
+    },
+    {
+      "id": "cfo-comptabilite-fct-closing",
+      "skill": "cfo-comptabilite",
+      "label": "Fct : generate_closing_journal mode mensuel genere un JSON valide",
+      "executable": {"type": "python", "script": "evals/_helpers/fct_skill_scripts.py", "args": ["--skill", "cfo-comptabilite", "--script", "generate_closing_journal"]},
+      "assertions": {"exit_code": 0, "must_contain_in_output": ["fct_cfo_comptabilite_generate_closing_journal_ok=1"], "must_not_contain_in_output": ["ERREUR"], "max_duration_seconds": 15}
+    },
+    {
+      "id": "cfo-comptabilite-fct-checklist",
+      "skill": "cfo-comptabilite",
+      "label": "Fct : validate_close_checklist detecte balance_equilibre sur fixture",
+      "executable": {"type": "python", "script": "evals/_helpers/fct_skill_scripts.py", "args": ["--skill", "cfo-comptabilite", "--script", "validate_close_checklist"]},
+      "assertions": {"exit_code": 0, "must_contain_in_output": ["fct_cfo_comptabilite_validate_close_checklist_ok=1"], "must_not_contain_in_output": ["ERREUR"], "max_duration_seconds": 15}
+    },
+    {
+      "id": "cfo-tresorerie-fct-bfr",
+      "skill": "cfo-tresorerie",
+      "label": "Fct : bfr_calculator produit ratios DSO/DPO/DIO + benchmark",
+      "executable": {"type": "python", "script": "evals/_helpers/fct_skill_scripts.py", "args": ["--skill", "cfo-tresorerie", "--script", "bfr_calculator"]},
+      "assertions": {"exit_code": 0, "must_contain_in_output": ["fct_cfo_tresorerie_bfr_calculator_ok=1"], "must_not_contain_in_output": ["ERREUR"], "max_duration_seconds": 15}
+    },
+    {
+      "id": "cfo-tresorerie-fct-forecast12m",
+      "skill": "cfo-tresorerie",
+      "label": "Fct : forecast_12m produit 12 mois x 3 scenarios + summary",
+      "executable": {"type": "python", "script": "evals/_helpers/fct_skill_scripts.py", "args": ["--skill", "cfo-tresorerie", "--script", "forecast_12m"]},
+      "assertions": {"exit_code": 0, "must_contain_in_output": ["fct_cfo_tresorerie_forecast_12m_ok=1"], "must_not_contain_in_output": ["ERREUR"], "max_duration_seconds": 15}
+    },
+    {
+      "id": "cfo-reporting-fct-variances",
+      "skill": "cfo-reporting",
+      "label": "Fct : extract_variances compare budget vs reel a partir de 2 CSV",
+      "executable": {"type": "python", "script": "evals/_helpers/fct_skill_scripts.py", "args": ["--skill", "cfo-reporting", "--script", "extract_variances"]},
+      "assertions": {"exit_code": 0, "must_contain_in_output": ["fct_cfo_reporting_extract_variances_ok=1"], "must_not_contain_in_output": ["ERREUR"], "max_duration_seconds": 15}
+    },
+    {
+      "id": "cfo-reporting-fct-kpis",
+      "skill": "cfo-reporting",
+      "label": "Fct : compute_kpis calcule P&L + ratios depuis balance CSV",
+      "executable": {"type": "python", "script": "evals/_helpers/fct_skill_scripts.py", "args": ["--skill", "cfo-reporting", "--script", "compute_kpis"]},
+      "assertions": {"exit_code": 0, "must_contain_in_output": ["fct_cfo_reporting_compute_kpis_ok=1"], "must_not_contain_in_output": ["ERREUR"], "max_duration_seconds": 15}
+    },
+    {
+      "id": "cfo-controle-gestion-fct-pricing",
+      "skill": "cfo-controle-gestion",
+      "label": "Fct : pricing_simulator evalue 3 scenarios et selectionne le best",
+      "executable": {"type": "python", "script": "evals/_helpers/fct_skill_scripts.py", "args": ["--skill", "cfo-controle-gestion", "--script", "pricing_simulator"]},
+      "assertions": {"exit_code": 0, "must_contain_in_output": ["fct_cfo_controle_gestion_pricing_simulator_ok=1"], "must_not_contain_in_output": ["ERREUR"], "max_duration_seconds": 15}
+    },
+    {
+      "id": "cfo-controle-gestion-fct-variance",
+      "skill": "cfo-controle-gestion",
+      "label": "Fct : variance_analyzer decompose ecart volume/prix/mix par segment",
+      "executable": {"type": "python", "script": "evals/_helpers/fct_skill_scripts.py", "args": ["--skill", "cfo-controle-gestion", "--script", "variance_analyzer"]},
+      "assertions": {"exit_code": 0, "must_contain_in_output": ["fct_cfo_controle_gestion_variance_analyzer_ok=1"], "must_not_contain_in_output": ["ERREUR"], "max_duration_seconds": 15}
+    },
+    {
+      "id": "cfo-budget-forecast-fct-capex",
+      "skill": "cfo-budget-forecast",
+      "label": "Fct : capex_analyzer calcule NPV / IRR / payback sur 5 ans",
+      "executable": {"type": "python", "script": "evals/_helpers/fct_skill_scripts.py", "args": ["--skill", "cfo-budget-forecast", "--script", "capex_analyzer"]},
+      "assertions": {"exit_code": 0, "must_contain_in_output": ["fct_cfo_budget_forecast_capex_analyzer_ok=1"], "must_not_contain_in_output": ["ERREUR"], "max_duration_seconds": 15}
+    },
+    {
+      "id": "cfo-budget-forecast-fct-budget",
+      "skill": "cfo-budget-forecast",
+      "label": "Fct : budget_builder produit 3 scenarios ponderes a partir du P&L N-1",
+      "executable": {"type": "python", "script": "evals/_helpers/fct_skill_scripts.py", "args": ["--skill", "cfo-budget-forecast", "--script", "budget_builder"]},
+      "assertions": {"exit_code": 0, "must_contain_in_output": ["fct_cfo_budget_forecast_budget_builder_ok=1"], "must_not_contain_in_output": ["ERREUR"], "max_duration_seconds": 15}
+    },
+    {
+      "id": "cfo-fiscalite-fct-cir",
+      "skill": "cfo-fiscalite",
+      "label": "Fct : cir_estimator estime le CIR depuis depenses R&D",
+      "executable": {"type": "python", "script": "evals/_helpers/fct_skill_scripts.py", "args": ["--skill", "cfo-fiscalite", "--script", "cir_estimator"]},
+      "assertions": {"exit_code": 0, "must_contain_in_output": ["fct_cfo_fiscalite_cir_estimator_ok=1"], "must_not_contain_in_output": ["ERREUR"], "max_duration_seconds": 15}
+    },
+    {
+      "id": "cfo-fiscalite-fct-is",
+      "skill": "cfo-fiscalite",
+      "label": "Fct : is_simulator calcule IS brut + acomptes + solde",
+      "executable": {"type": "python", "script": "evals/_helpers/fct_skill_scripts.py", "args": ["--skill", "cfo-fiscalite", "--script", "is_simulator"]},
+      "assertions": {"exit_code": 0, "must_contain_in_output": ["fct_cfo_fiscalite_is_simulator_ok=1"], "must_not_contain_in_output": ["ERREUR"], "max_duration_seconds": 15}
+    },
+    {
+      "id": "cfo-risques-fct-controle-interne",
+      "skill": "cfo-risques-conformite",
+      "label": "Fct : internal_control_checklist genere checklist achats/ventes/tresorerie",
+      "executable": {"type": "python", "script": "evals/_helpers/fct_skill_scripts.py", "args": ["--skill", "cfo-risques-conformite", "--script", "internal_control_checklist"]},
+      "assertions": {"exit_code": 0, "must_contain_in_output": ["fct_cfo_risques_conformite_internal_control_checklist_ok=1"], "must_not_contain_in_output": ["ERREUR"], "max_duration_seconds": 15}
+    },
+    {
+      "id": "cfo-risques-fct-veille",
+      "skill": "cfo-risques-conformite",
+      "label": "Fct : veille_scheduler programme des taches cron depuis SIREN",
+      "executable": {"type": "python", "script": "evals/_helpers/fct_skill_scripts.py", "args": ["--skill", "cfo-risques-conformite", "--script", "veille_scheduler"]},
+      "assertions": {"exit_code": 0, "must_contain_in_output": ["fct_cfo_risques_conformite_veille_scheduler_ok=1"], "must_not_contain_in_output": ["ERREUR"], "max_duration_seconds": 15}
+    },
+    {
+      "id": "cfo-financement-fct-diag",
+      "skill": "cfo-financement-croissance",
+      "label": "Fct : diagnostic_financement selectionne top 3 solutions + aides eligibles",
+      "executable": {"type": "python", "script": "evals/_helpers/fct_skill_scripts.py", "args": ["--skill", "cfo-financement-croissance", "--script", "diagnostic_financement"]},
+      "assertions": {"exit_code": 0, "must_contain_in_output": ["fct_cfo_financement_croissance_diagnostic_financement_ok=1"], "must_not_contain_in_output": ["ERREUR"], "max_duration_seconds": 15}
+    },
+    {
+      "id": "cfo-financement-fct-moriarty",
+      "skill": "cfo-financement-croissance",
+      "label": "Fct : moriarty_link produit URL themoriarty.fr + hash SIREN 16 chars",
+      "executable": {"type": "python", "script": "evals/_helpers/fct_skill_scripts.py", "args": ["--skill", "cfo-financement-croissance", "--script", "moriarty_link"]},
+      "assertions": {"exit_code": 0, "must_contain_in_output": ["fct_cfo_financement_croissance_moriarty_link_ok=1"], "must_not_contain_in_output": ["ERREUR"], "max_duration_seconds": 15}
+    },
+    {
+      "id": "cfo-csrd-fct-scope",
+      "skill": "cfo-csrd-esg",
+      "label": "Fct : csrd_scope_calculator determine la wave CSRD (wave_1/2/3/4/hors_scope)",
+      "executable": {"type": "python", "script": "evals/_helpers/fct_skill_scripts.py", "args": ["--skill", "cfo-csrd-esg", "--script", "csrd_scope_calculator"]},
+      "assertions": {"exit_code": 0, "must_contain_in_output": ["fct_cfo_csrd_esg_csrd_scope_calculator_ok=1"], "must_not_contain_in_output": ["ERREUR"], "max_duration_seconds": 15}
+    },
+    {
+      "id": "cfo-csrd-fct-emissions",
+      "skill": "cfo-csrd-esg",
+      "label": "Fct : scope_emissions_estimator calcule tCO2e scope 1+2+3",
+      "executable": {"type": "python", "script": "evals/_helpers/fct_skill_scripts.py", "args": ["--skill", "cfo-csrd-esg", "--script", "scope_emissions_estimator"]},
+      "assertions": {"exit_code": 0, "must_contain_in_output": ["fct_cfo_csrd_esg_scope_emissions_estimator_ok=1"], "must_not_contain_in_output": ["ERREUR"], "max_duration_seconds": 15}
     }
   ],
 
-  "_note": "Tous les 10 skills ont au minimum un smoke test (compilation + --help). Cible prochaine (v0.2) : 3 tests fonctionnels reels par skill avec fixtures et assertions sur outputs."
+  "_note": "10 skills avec 3 tests chacun (smoke + 2 fct reels). Cible prochaine (v0.2) : couvrir le 3e script de chaque skill + ajouter scenarios d'erreur (fixtures invalides, args manquants)."
 }

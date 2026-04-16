@@ -108,10 +108,13 @@ Exécuter :
 ```bash
 python3 scripts/compute_calendar.py \
   --closing-date <YYYY-MM-DD> \
-  --tva-regime <mensuel|trimestriel|simplifie|franchise> \
+  --tva-regime <franchise|reel_simplifie|reel_normal_mensuelle|reel_normal_trimestrielle> \
   --is-regime <is|ir> \
-  --effectif <N>
+  --effectif <N> \
+  --output private/calendar-fiscal.json
 ```
+
+Ajouter `--csrd-wave <wave_1|wave_2|hors_scope>` si l'entite est in-scope CSRD.
 
 Output : `private/calendar-fiscal.json` avec les **18 prochains mois d'échéances** (dates absolues) dérivées de `data/calendar-fiscal-base.json`.
 
@@ -240,7 +243,7 @@ L'utilisateur peut invoquer ce skill pour des actions ciblées.
 |---------------------|--------|
 | "Affiche ma progression" | Lit `private/cfo-progress.json` et affiche la synthèse |
 | "Quelles sont mes échéances" | Lit `private/calendar-fiscal.json` et filtre les 30 prochains jours |
-| "Reset complet" | Demande confirmation puis `rm -rf private/` (reset destructif) |
+| "Reset complet" | Demande confirmation, puis `python3 scripts/routines/purge_routines.py --all-sirens --force` (purge les scheduled-tasks), puis `rm -rf private/` (reset destructif) |
 | "Change d'audience" | Modifie `private/profile.json > audience_type` |
 | "Ajouter un client au portfolio" (mode EC) | Nouvelle fiche `private/companies/<siren>/company.json` |
 

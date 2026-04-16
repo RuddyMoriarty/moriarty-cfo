@@ -160,14 +160,23 @@ def compute_next_fire(trigger: dict, company: dict, siren: str, now: dt.datetime
     ttype = trigger.get("type")
 
     if ttype == "date_derived":
-        closing_str = company.get("classification", {}).get("date_cloture")
+        # Cherche date_cloture dans exercice_comptable (YYYY-MM-DD)
+        # puis fallback sur classification.date_cloture (MM-DD)
+        closing_str = (
+            company.get("exercice_comptable", {}).get("date_cloture")
+            or company.get("classification", {}).get("date_cloture")
+        )
         if not closing_str:
             return None
-        # date_cloture au format MM-DD (sans année)
         parts = closing_str.split("-")
-        if len(parts) != 2:
+        if len(parts) == 3:
+            # Format YYYY-MM-DD : on extrait mois et jour
+            month, day = int(parts[1]), int(parts[2])
+        elif len(parts) == 2:
+            # Format MM-DD legacy
+            month, day = int(parts[0]), int(parts[1])
+        else:
             return None
-        month, day = int(parts[0]), int(parts[1])
         # Prochaine date de clôture (année courante ou suivante)
         year = now.year
         closing_date = dt.datetime(year, month, day, 0, 0, 0)

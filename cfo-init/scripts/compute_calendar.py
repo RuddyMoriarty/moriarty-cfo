@@ -34,18 +34,48 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[2]
 BASE_CALENDAR = ROOT / "data" / "calendar-fiscal-base.json"
 
-# Jours fériés France 2026-2028 (statiques, à compléter pour production)
-JOURS_FERIES = {
-    date(2026, 1, 1), date(2026, 4, 6), date(2026, 5, 1), date(2026, 5, 8),
-    date(2026, 5, 14), date(2026, 5, 25), date(2026, 7, 14), date(2026, 8, 15),
-    date(2026, 11, 1), date(2026, 11, 11), date(2026, 12, 25),
-    date(2027, 1, 1), date(2027, 3, 29), date(2027, 5, 1), date(2027, 5, 6),
-    date(2027, 5, 8), date(2027, 5, 17), date(2027, 7, 14), date(2027, 8, 15),
-    date(2027, 11, 1), date(2027, 11, 11), date(2027, 12, 25),
-    date(2028, 1, 1), date(2028, 4, 17), date(2028, 5, 1), date(2028, 5, 8),
-    date(2028, 5, 25), date(2028, 6, 5), date(2028, 7, 14), date(2028, 8, 15),
-    date(2028, 11, 1), date(2028, 11, 11), date(2028, 12, 25),
-}
+def _easter(year: int) -> date:
+    """Algorithme de Butcher/Meeus pour le dimanche de Paques."""
+    a = year % 19
+    b, c = divmod(year, 100)
+    d, e = divmod(b, 4)
+    f = (b + 8) // 25
+    g = (b - f + 1) // 3
+    h = (19 * a + b - d - g + 15) % 30
+    i, k = divmod(c, 4)
+    l_ = (32 + 2 * e + 2 * i - h - k) % 7
+    m = (a + 11 * h + 22 * l_) // 451
+    month, day = divmod(h + l_ - 7 * m + 114, 31)
+    return date(year, month, day + 1)
+
+
+def jours_feries_france(year: int) -> set[date]:
+    """Calcule dynamiquement les 11 jours feries France pour toute annee."""
+    e = _easter(year)
+    return {
+        date(year, 1, 1),      # Jour de l'An
+        e + timedelta(days=1),  # Lundi de Paques
+        date(year, 5, 1),      # Fete du Travail
+        date(year, 5, 8),      # Victoire 1945
+        e + timedelta(days=39), # Ascension
+        e + timedelta(days=50), # Lundi de Pentecote
+        date(year, 7, 14),     # Fete nationale
+        date(year, 8, 15),     # Assomption
+        date(year, 11, 1),     # Toussaint
+        date(year, 11, 11),    # Armistice
+        date(year, 12, 25),    # Noel
+    }
+
+
+def _build_feries_cache(start_year: int, end_year: int) -> set[date]:
+    result: set[date] = set()
+    for y in range(start_year, end_year + 1):
+        result |= jours_feries_france(y)
+    return result
+
+
+# Cache couvrant les annees courantes (etendu dynamiquement si besoin)
+JOURS_FERIES = _build_feries_cache(2024, 2035)
 
 
 # ─────────────────────────────────────────────────────────────────────

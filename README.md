@@ -62,32 +62,36 @@ Le périmètre couvre les 9 domaines fonctionnels canoniques d'un CFO français 
 
 ---
 
-## Installation
+## Installation rapide
 
-Trois options selon votre setup.
+```bash
+# Une seule commande :
+curl -fsSL https://raw.githubusercontent.com/RuddyMoriarty/moriarty-cfo/main/install.sh | bash
+```
 
-### Option 1, Claude Code (le plus simple)
+Le script verifie Python >= 3.10, clone le repo, cree le symlink vers `~/.claude/skills/`, et lance les evals pour valider l'installation.
+
+Puis dans Claude Code :
+
+```
+> Lance cfo-init pour ma societe SIREN 552120222
+```
+
+### Installation manuelle
 
 ```bash
 git clone https://github.com/RuddyMoriarty/moriarty-cfo.git
 ln -s "$(pwd)/moriarty-cfo" ~/.claude/skills/moriarty-cfo
+python3 moriarty-cfo/evals/run_evals.py --quick   # verification
 ```
 
-Puis dans n'importe quel dossier :
-```
-> Lance cfo-init pour ma société (SIREN 552120222 par exemple)
-```
+### Claude.ai (plateforme web)
 
-Claude détecte le bundle automatiquement et propose les skills appropriés selon ce que vous lui demandez.
-
-### Option 2, Claude.ai (plateforme web)
-
-1. Téléchargez le repo en ZIP : `Releases > moriarty-cfo-v0.1.x.zip`
+1. Telechargez le repo en ZIP depuis les Releases
 2. Pour chaque skill (`cfo-init/`, `cfo-comptabilite/`, etc.), zippez son dossier
-3. Dans Claude.ai → Settings → Capabilities → Skills, uploadez chaque skill
-4. Activez les skills dont vous avez besoin
+3. Dans Claude.ai, Settings, Capabilities, Skills : uploadez chaque skill
 
-### Option 3, API (Claude Agent SDK)
+### API (Claude Agent SDK)
 
 ```python
 from anthropic import Anthropic
@@ -104,19 +108,32 @@ response = client.messages.create(
 )
 ```
 
-Voir le [Claude Skills Guide](https://resources.anthropic.com/hubfs/The-Complete-Guide-to-Building-Skill-for-Claude.pdf) pour le détail API.
-
 ---
 
-## Prérequis
+## Pre-requis
 
-- Claude Code 2025.10+, ou Claude.ai (Pro/Team/Enterprise), ou API Claude avec Code Execution Tool beta
-- Optionnel : clé API Pappers, sinon le bundle utilise WebFetch par défaut
-- Optionnel : clé API INSEE Sirene V3 (gratuite), sinon WebFetch sur `annuaire-entreprises.data.gouv.fr`
-- Optionnel : connecteur Qonto MCP pour le skill `cfo-tresorerie`
-- Optionnel, skills compagnons :
-  - [`paperasse/comptable`](https://github.com/romainsimon/paperasse) pour le détail PCG et les écritures comptables
-  - [`paperasse/controleur-fiscal`](https://github.com/romainsimon/paperasse) pour le détail liasse fiscale
+| Requis | Detail |
+|--------|--------|
+| Python | >= 3.9 (scripts du bundle, stdlib uniquement) |
+| Claude | Claude Code 2025.10+, ou Claude.ai Pro/Team/Enterprise, ou API |
+| PyYAML | `pip install pyyaml` (pour les evals uniquement) |
+
+Optionnel :
+
+| Outil | Ce que ca apporte |
+|-------|-------------------|
+| Cle API Pappers | Enrichissement automatique des donnees societe (denomination, effectif, CA, NAF). Sans cle, fallback sur WebFetch |
+| Cle API INSEE Sirene V3 | Gratuite, fallback SIREN sur `annuaire-entreprises.data.gouv.fr` |
+| Connecteur Qonto MCP | Recuperation automatique des soldes et transactions bancaires dans `cfo-tresorerie` |
+| [`paperasse/comptable`](https://github.com/romainsimon/paperasse) | Detail PCG et ecritures comptables |
+| [`paperasse/controleur-fiscal`](https://github.com/romainsimon/paperasse) | Detail liasse fiscale |
+
+Les cles API se configurent dans un fichier `.env` a la racine du repo :
+
+```bash
+cp .env.example .env
+# Editez .env avec vos cles
+```
 
 ---
 
@@ -197,16 +214,16 @@ Le bundle expose son propre système d'évaluation programmatique dans `evals/ru
 | Triggering | Disambiguation cross-skills : pour chaque phrase test, le skill attendu doit être celui dont les triggers matchent le mieux parmi les 10, avec marge de confiance | Statique, scoring par skill | < 5 s |
 | Functional | Exécution réelle des scripts du skill avec des fixtures, vérification des outputs (fichiers créés, JSON valide, contenu attendu) | Exécution Python | 30-60 s par skill |
 
-### Résultats v0.1.3
+### Resultats courants
 
-| Niveau | Tests | Pass rate | Détail |
+| Niveau | Tests | Pass rate | Detail |
 |--------|-------|-----------|--------|
 | Structure | 160 | 100,0 % | 16 checks par skill, 10 skills |
-| Triggering | 110 | 97,3 % en mode full | Disambiguation cross-skills (100 tests) + anti-triggers (10 tests). 3 fails résiduels de type "top-1 correct mais marge insuffisante", documentés dans le [rapport d'évals du CHANGELOG v0.1.3](CHANGELOG.md) |
-| Functional | 6 | 100,0 % | Tests d'exécution Python avec fixtures (catalogue valide, scripts compilent, dry-run sur entité SaaS) |
-| **Global** | **276** | **98,9 %** | 273/276 |
+| Triggering | 111 | 100,0 % | Disambiguation cross-skills (101 tests) + anti-triggers (10 tests) |
+| Functional | 9 | 100,0 % | Execution reelle Python avec fixtures (catalogue, calendrier fiscal, date_cloture, jours feries, routines) |
+| **Global** | **280** | **100,0 %** | 280/280 |
 
-Historique des pass rates : v0.1.1 98,6 % (fictif, keyword-matching tautologique) → v0.1.2 88,0 % (vraies mesures) → v0.1.3 **98,9 %** (refonte Triggers + fix tokenizer).
+Historique : v0.1.1 98,6 % (fictif) / v0.1.2 88,0 % (vraies mesures) / v0.1.3 98,9 % (refonte Triggers) / **courant 100,0 %** (STOPWORDS + tests fonctionnels).
 
 Reproduire :
 
@@ -230,7 +247,7 @@ Tout ce qui concerne votre activité (chiffres, contrats, comptes bancaires, don
 
 - Politique complète dans [SECURITY.md](SECURITY.md)
 - Aucune télémétrie, aucune analytics, aucun heartbeat
-- Reset complet : `rm -rf private/`
+- Reset complet : purgez d'abord les routines programmees (`python3 cfo-init/scripts/routines/purge_routines.py --all-sirens --force`), puis `rm -rf private/`
 - Si la passerelle Moriarty est activée et qu'un utilisateur clique sur le CTA : SIREN hashé en SHA-256 dans l'URL (jamais en clair)
 
 ---

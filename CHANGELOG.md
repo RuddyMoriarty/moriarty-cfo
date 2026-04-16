@@ -4,6 +4,30 @@ Toutes les évolutions notables de `moriarty-cfo` sont documentées ici.
 
 Le format suit [Keep a Changelog](https://keepachangelog.com/fr/1.1.0/) et le projet adhère au [Semantic Versioning](https://semver.org/lang/fr/).
 
+## [0.1.7], 2026-04-16
+
+Couverture fonctionnelle des 10 skills. Avant cette version, 13/13 tests fonctionnels ciblaient cfo-init et 9 skills etaient listes dans `_skills_pending_implementation` sans aucun test. Cette version comble le gap avec un smoke test par skill.
+
+### Added
+
+- `evals/_helpers/smoke_skill_scripts.py` : helper generique qui verifie (1) py_compile de chaque script du skill, (2) que chaque script repond a `--help` avec exit 0 et une sortie argparse valide. Appelable avec `--skill cfo-X`.
+- 9 tests fonctionnels (un par skill autre que cfo-init) : cfo-comptabilite, cfo-tresorerie, cfo-reporting, cfo-controle-gestion, cfo-budget-forecast, cfo-fiscalite, cfo-risques-conformite, cfo-financement-croissance, cfo-csrd-esg.
+
+### Fixed
+
+- `cfo-tresorerie/scripts/forecast_12m.py` : 2 help strings avec `%` brut cassaient `--help` via argparse (ValueError format string). Echappes en `%%`.
+- `cfo-budget-forecast/scripts/budget_builder.py` : idem, 3 help strings avec `%` brut. Reformules en "Pourcentage" pour eviter les pieges.
+
+### Changed
+
+- `evals/functional-tests.json` : `_skills_pending_implementation` retire (tous les 10 skills couverts). `_note` mis a jour vers la cible v0.2 (3 tests reels par skill avec fixtures et assertions sur outputs).
+
+### Metriques
+
+- 22 tests fonctionnels (etait 13), +69 %
+- 298/298 tests (100 %), 0 lint warning
+- Couverture : 10/10 skills avec au moins un smoke test (etait 1/10)
+
 ## [0.1.6], 2026-04-16
 
 Symetrie des points d'entree CLI pour la detection d'audience. Avant cette version, seul le mode EC disposait d'un script dedie (`init_cabinet.py`) ; le mode PME reposait sur un flux conversationnel ou Claude devait ecrire `profile.json` manuellement via Write. Cette version comble l'asymetrie en livrant `init_pme.py` symetrique.

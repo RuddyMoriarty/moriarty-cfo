@@ -69,9 +69,9 @@ def generate_scenario(pnl_n1: dict, growth_ca_pct: float, growth_charges_pct: fl
 def main() -> int:
     parser = argparse.ArgumentParser(description="Génère budget annuel 3 scénarios")
     parser.add_argument("--pnl-n1", type=Path, required=True, help="CSV : poste,montant_annuel")
-    parser.add_argument("--growth-ca", type=float, default=10.0, help="% croissance CA réaliste")
-    parser.add_argument("--growth-charges", type=float, default=8.0, help="% croissance charges")
-    parser.add_argument("--marge-cible", type=float, default=None, help="% marge EBITDA cible (facultatif)")
+    parser.add_argument("--growth-ca", type=float, default=10.0, help="Pourcentage de croissance CA realiste")
+    parser.add_argument("--growth-charges", type=float, default=8.0, help="Pourcentage de croissance charges")
+    parser.add_argument("--marge-cible", type=float, default=None, help="Pourcentage marge EBITDA cible (facultatif)")
     parser.add_argument("--output", type=Path, default=None)
     args = parser.parse_args()
 

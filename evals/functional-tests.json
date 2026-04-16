@@ -222,20 +222,71 @@
         "must_not_contain_in_output": ["ERREUR", "traceback"],
         "max_duration_seconds": 10
       }
+    },
+    {
+      "id": "cfo-comptabilite-smoke",
+      "skill": "cfo-comptabilite",
+      "label": "Smoke test : les 3 scripts compilent et repondent a --help",
+      "executable": {"type": "python", "script": "evals/_helpers/smoke_skill_scripts.py", "args": ["--skill", "cfo-comptabilite"]},
+      "assertions": {"exit_code": 0, "must_contain_in_output": ["smoke_cfo_comptabilite_ok=3"], "must_not_contain_in_output": ["ERREUR"], "max_duration_seconds": 15}
+    },
+    {
+      "id": "cfo-tresorerie-smoke",
+      "skill": "cfo-tresorerie",
+      "label": "Smoke test : bfr_calculator + forecast_12m + forecast_13w",
+      "executable": {"type": "python", "script": "evals/_helpers/smoke_skill_scripts.py", "args": ["--skill", "cfo-tresorerie"]},
+      "assertions": {"exit_code": 0, "must_contain_in_output": ["smoke_cfo_tresorerie_ok=3"], "must_not_contain_in_output": ["ERREUR"], "max_duration_seconds": 15}
+    },
+    {
+      "id": "cfo-reporting-smoke",
+      "skill": "cfo-reporting",
+      "label": "Smoke test : compute_kpis + extract_variances + generate_dashboard",
+      "executable": {"type": "python", "script": "evals/_helpers/smoke_skill_scripts.py", "args": ["--skill", "cfo-reporting"]},
+      "assertions": {"exit_code": 0, "must_contain_in_output": ["smoke_cfo_reporting_ok=3"], "must_not_contain_in_output": ["ERREUR"], "max_duration_seconds": 15}
+    },
+    {
+      "id": "cfo-controle-gestion-smoke",
+      "skill": "cfo-controle-gestion",
+      "label": "Smoke test : pricing_simulator + profitability_analyzer + variance_analyzer",
+      "executable": {"type": "python", "script": "evals/_helpers/smoke_skill_scripts.py", "args": ["--skill", "cfo-controle-gestion"]},
+      "assertions": {"exit_code": 0, "must_contain_in_output": ["smoke_cfo_controle_gestion_ok=3"], "must_not_contain_in_output": ["ERREUR"], "max_duration_seconds": 15}
+    },
+    {
+      "id": "cfo-budget-forecast-smoke",
+      "skill": "cfo-budget-forecast",
+      "label": "Smoke test : budget_builder + capex_analyzer + rolling_forecast",
+      "executable": {"type": "python", "script": "evals/_helpers/smoke_skill_scripts.py", "args": ["--skill", "cfo-budget-forecast"]},
+      "assertions": {"exit_code": 0, "must_contain_in_output": ["smoke_cfo_budget_forecast_ok=3"], "must_not_contain_in_output": ["ERREUR"], "max_duration_seconds": 15}
+    },
+    {
+      "id": "cfo-fiscalite-smoke",
+      "skill": "cfo-fiscalite",
+      "label": "Smoke test : cir_estimator + is_simulator + tva_checker",
+      "executable": {"type": "python", "script": "evals/_helpers/smoke_skill_scripts.py", "args": ["--skill", "cfo-fiscalite"]},
+      "assertions": {"exit_code": 0, "must_contain_in_output": ["smoke_cfo_fiscalite_ok=3"], "must_not_contain_in_output": ["ERREUR"], "max_duration_seconds": 15}
+    },
+    {
+      "id": "cfo-risques-conformite-smoke",
+      "skill": "cfo-risques-conformite",
+      "label": "Smoke test : internal_control_checklist + risk_mapping_generator + veille_scheduler",
+      "executable": {"type": "python", "script": "evals/_helpers/smoke_skill_scripts.py", "args": ["--skill", "cfo-risques-conformite"]},
+      "assertions": {"exit_code": 0, "must_contain_in_output": ["smoke_cfo_risques_conformite_ok=3"], "must_not_contain_in_output": ["ERREUR"], "max_duration_seconds": 15}
+    },
+    {
+      "id": "cfo-financement-croissance-smoke",
+      "skill": "cfo-financement-croissance",
+      "label": "Smoke test : diagnostic_financement + moriarty_link + valuation_calculator",
+      "executable": {"type": "python", "script": "evals/_helpers/smoke_skill_scripts.py", "args": ["--skill", "cfo-financement-croissance"]},
+      "assertions": {"exit_code": 0, "must_contain_in_output": ["smoke_cfo_financement_croissance_ok=3"], "must_not_contain_in_output": ["ERREUR"], "max_duration_seconds": 15}
+    },
+    {
+      "id": "cfo-csrd-esg-smoke",
+      "skill": "cfo-csrd-esg",
+      "label": "Smoke test : csrd_scope_calculator + double_materiality_assessor + scope_emissions_estimator",
+      "executable": {"type": "python", "script": "evals/_helpers/smoke_skill_scripts.py", "args": ["--skill", "cfo-csrd-esg"]},
+      "assertions": {"exit_code": 0, "must_contain_in_output": ["smoke_cfo_csrd_esg_ok=3"], "must_not_contain_in_output": ["ERREUR"], "max_duration_seconds": 15}
     }
   ],
 
-  "_skills_pending_implementation": [
-    "cfo-comptabilite",
-    "cfo-tresorerie",
-    "cfo-reporting",
-    "cfo-controle-gestion",
-    "cfo-budget-forecast",
-    "cfo-fiscalite",
-    "cfo-risques-conformite",
-    "cfo-financement-croissance",
-    "cfo-csrd-esg"
-  ],
-
-  "_note": "Les tests fonctionnels pour les 9 skills restants seront ajoutés au fur et à mesure de leur implémentation. Cible : minimum 3 tests fonctionnels par skill = 30 tests min en v0.1.0."
+  "_note": "Tous les 10 skills ont au minimum un smoke test (compilation + --help). Cible prochaine (v0.2) : 3 tests fonctionnels reels par skill avec fixtures et assertions sur outputs."
 }

@@ -10,7 +10,6 @@ import json
 import sys
 from pathlib import Path
 
-
 CHECKLIST_TEMPLATE = {
     "achats": [
         "Procédure d'achat formalisée (du besoin à la facture)",

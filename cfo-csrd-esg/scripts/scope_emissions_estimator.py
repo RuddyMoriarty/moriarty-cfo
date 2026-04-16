@@ -15,7 +15,6 @@ import json
 import sys
 from pathlib import Path
 
-
 # Facteurs d'émission (Base Carbone ADEME, valeurs indicatives 2024)
 # Toujours vérifier sur https://base-carbone.ademe.fr pour valeurs à jour
 FACTEURS = {

@@ -13,7 +13,6 @@ import json
 import sys
 from pathlib import Path
 
-
 SOLUTIONS = {
     "decouvert": {"horizon": "ct", "max_montant": 500_000, "cout_pct": 7, "delai_jours": 7, "dilutif": False},
     "dailly": {"horizon": "ct", "max_montant": 2_000_000, "cout_pct": 5, "delai_jours": 14, "dilutif": False},

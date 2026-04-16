@@ -18,7 +18,6 @@ import hashlib
 import json
 import sys
 
-
 MORIARTY_BASE_URL = "https://themoriarty.fr/cfo-skill"
 
 

@@ -28,9 +28,7 @@ import argparse
 import csv
 import re
 import sys
-from datetime import date
 from pathlib import Path
-
 
 FEC_COLUMNS = [
     "JournalCode", "JournalLib", "EcritureNum", "EcritureDate",
@@ -172,7 +170,7 @@ def main() -> int:
 
     print(f"✓ FEC généré : {output}", file=sys.stderr)
     print(f"✓ {len(rows)} lignes · délim '{args.delim}' · UTF-8", file=sys.stderr)
-    print(f"✓ Conservation obligatoire : 6 ans (art. L. 102 B LPF)", file=sys.stderr)
+    print("✓ Conservation obligatoire : 6 ans (art. L. 102 B LPF)", file=sys.stderr)
     return 0
 
 

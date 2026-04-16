@@ -264,11 +264,11 @@ def run_routine(siren: str, routine_id: str, period: str | None) -> int:
 
     print(f"OK: artefact ecrit a {out_path_str}")
     print(f"Skills a invoquer maintenant : {', '.join(skills)}")
-    print(f"Ces skills doivent :")
-    print(f"  1. Lire l'artefact ecrit")
-    print(f"  2. Collecter les donnees business necessaires (balance, CRM, bilans)")
-    print(f"  3. Remplir les placeholders business restants ({{ca_mois}}, {{ebe_pct}}, etc.)")
-    print(f"  4. Ecraser le fichier avec la version finale")
+    print("Ces skills doivent :")
+    print("  1. Lire l'artefact ecrit")
+    print("  2. Collecter les donnees business necessaires (balance, CRM, bilans)")
+    print("  3. Remplir les placeholders business restants ({ca_mois}, {ebe_pct}, etc.)")
+    print("  4. Ecraser le fichier avec la version finale")
     return 0
 
 

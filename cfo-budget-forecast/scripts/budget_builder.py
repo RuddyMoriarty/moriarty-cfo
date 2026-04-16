@@ -14,7 +14,6 @@ import json
 import sys
 from pathlib import Path
 
-
 MONTHS = ["Jan", "Fév", "Mar", "Avr", "Mai", "Jun", "Jul", "Aoû", "Sep", "Oct", "Nov", "Déc"]
 
 

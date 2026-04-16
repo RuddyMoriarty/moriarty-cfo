@@ -13,7 +13,6 @@ import json
 import sys
 from pathlib import Path
 
-
 BENCHMARKS_SECTORIELS = {
     "services_btob": {"dso": (45, 65), "dpo": (30, 50), "dio": (0, 15)},
     "industrie": {"dso": (60, 90), "dpo": (45, 65), "dio": (60, 120)},

@@ -101,15 +101,15 @@ Tout ce qui concerne la société de l'utilisateur (CA, effectif, marges, contra
 
 Quand l'utilisateur demande une tâche CFO/DAF, invoquer en priorité le skill `moriarty-cfo/cfo-init` pour initialiser la session, puis laisser Claude router vers le skill approprié selon la demande.
 
-Table de correspondance intents → skills :
+Table de correspondance intents vers skills :
 
-- onboarding, SIREN, calendrier fiscal → `cfo-init`
-- clôture, FEC, paie, consolidation → `cfo-comptabilite`
-- trésorerie, cash, BFR, runway → `cfo-tresorerie`
-- reporting, board pack, dashboard → `cfo-reporting`
-- KPI, rentabilité, marges, variance → `cfo-controle-gestion`
-- budget, forecast, scénarios, CAPEX → `cfo-budget-forecast`
-- IS, TVA, CIR, transfer pricing → `cfo-fiscalite`
-- COSO, CAC, LCB-FT, assurances → `cfo-risques-conformite`
-- financement, levée, M&A, IPO → `cfo-financement-croissance`
-- CSRD, ESRS, climat, durabilité → `cfo-csrd-esg`
+- onboarding, SIREN, SIRET, Pappers, calendrier fiscal, echeances, classification taille, profil societe, achievements, reset → `cfo-init`
+- cloture mensuelle/annuelle, FEC, export FEC, ecritures, cut-off, provisions, amortissements, paie, DSN, URSSAF, consolidation, IFRS, intercos, PCG, bilan, grand livre → `cfo-comptabilite`
+- tresorerie, cash flow, BFR, DSO/DPO/DIO, covenants, burn/runway, Qonto, cash pooling, hedging, tension tresorerie → `cfo-tresorerie`
+- reporting mensuel/trimestriel/annuel, board pack, dashboard CFO, lettre investisseurs, rapport AG, variances vs budget, flash mensuel → `cfo-reporting`
+- KPI sectoriels, rentabilite, marges, comptabilite analytique, pricing, ABC, variance analysis, break-even, ROCE/ROE, benchmark → `cfo-controle-gestion`
+- budget annuel, rolling forecast, plan strategique, scenarios, atterrissage/landing, CAPEX, ROI/IRR/NPV, sensitivity, business plan, reforecast → `cfo-budget-forecast`
+- IS, TVA, CIR, CII, liasse fiscale, transfer pricing, DEB/DES, deductibilite, ruling DGFiP, veille loi de finance → `cfo-fiscalite`
+- COSO, cartographie risques, preparation audit CAC, LCB-FT/TRACFIN, controle interne, BCP, findings, RGPD, assurances, veille reglementaire → `cfo-risques-conformite`
+- financement, dossier banque, levee de fonds, valorisation DCF, due diligence financiere, M&A, cap table, BSPCE, aides publiques BPI, restructuring, IPO → `cfo-financement-croissance`
+- CSRD, ESRS, double materialite, climat 1.5 degC, emissions scope, taxonomie verte, supply chain ESG, rapport durabilite, SBTi, Net-Zero → `cfo-csrd-esg`

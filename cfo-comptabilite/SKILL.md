@@ -2,7 +2,7 @@
 name: cfo-comptabilite
 description: |
   Skill de production comptable. Clôture mensuelle J+5, clôture annuelle (FEC, états financiers, rapport de gestion), écritures de cut-off et de rattachement, provisions, amortissements, dépréciations, sub-module paie (DSN, URSSAF) et sub-module consolidation de groupes (IFRS, éliminations intercos, segment reporting). Renvoie à paperasse/comptable pour le détail PCG et à cfo-fiscalite pour la liasse fiscale et les problématiques fiscales.
-  Triggers: comptabilité, clôture J+5, clôture annuelle, FEC fichier écritures, écriture comptable, journal comptable, provision, amortissement, dépréciation, cut-off, écritures rattachement, coordination CAC, commissaire aux comptes, NEP CNCC, paie, DSN, URSSAF, cotisations sociales, consolidation, IFRS, intercos, goodwill, segment reporting, closing accounting, French GAAP, PCG, balance comptable, compte résultat, bilan
+  Triggers: comptabilité, clôture J+5, clôture annuelle, FEC fichier écritures comptables, export FEC, générer FEC, écriture comptable, journal comptable, provision, amortissement, dépréciation, cut-off, écritures rattachement, coordination CAC, commissaire aux comptes, NEP CNCC, paie, DSN, URSSAF, cotisations sociales, consolidation, IFRS, intercos, goodwill, segment reporting, closing accounting, French GAAP, PCG, balance comptable, compte résultat, bilan, grand livre
 metadata:
   last_updated: 2026-04-14
   version: 0.1.0

@@ -3,7 +3,7 @@
     "description": "Tests de déclenchement par skill. Pour chaque phrase, on attend que le skill `expected_skill` soit le PREMIER déclenché par Claude (ou aucun pour les anti-triggers). Format inspiré paperasse/evals.",
     "version": "0.1.3",
     "last_updated": "2026-04-15",
-    "total_tests": 110
+    "total_tests": 111
   },
   "tests": [
     {
@@ -302,9 +302,14 @@
       "category": "bp_levee"
     },
     {
-      "phrase": "Identification goulots d'étranglement trésorerie",
+      "phrase": "Identification goulots d'étranglement budgétaire",
       "expected_skill": "cfo-budget-forecast",
       "category": "bottlenecks"
+    },
+    {
+      "phrase": "Identification goulots d'étranglement trésorerie",
+      "expected_skill": "cfo-tresorerie",
+      "category": "bottlenecks_cash"
     },
     {
       "phrase": "Estime mon CIR pour exercice 2026",

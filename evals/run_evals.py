@@ -224,20 +224,23 @@ def check_structure(config: dict[str, Any], skill_filter: str | None = None) -> 
 
 # Mots vides FR + EN à exclure du scoring (alphabet de base + accents)
 STOPWORDS = {
+    # Mots-outils francais
     "alors", "aussi", "avec", "avoir", "ceci", "cela", "cette", "comme",
     "dans", "donc", "elle", "encore", "etre", "être", "faire", "leur",
     "mais", "mieux", "même", "nous", "pour", "quel", "quelle", "quels",
     "quelles", "sans", "selon", "sont", "tout", "tous", "toute", "toutes",
-    "très", "vous", "votre", "vos", "lance", "fait", "faire", "donne",
+    "très", "vous", "votre", "lance", "fait", "donne",
     "génère", "genere", "génerer", "produire",
-    "with", "from", "this", "that", "have", "what", "your", "have",
-    # Termes génériques qui apparaissent dans toutes les descriptions
-    # et ne discriminent pas entre skills du bundle.
+    # Mots-outils anglais
+    "with", "from", "this", "that", "have", "what", "your",
+    # Termes generiques presents dans toutes les descriptions
     "société", "societe", "entreprise", "entreprises", "pme/tpe", "skill",
     "française", "francaise", "françaises", "francaises", "cabinets", "cabinet",
     "skills", "bundle", "compte", "utiliser", "utilisez", "question", "questions",
-    "toute", "détail", "detail", "produit", "produite", "toutes", "selon",
+    "détail", "detail", "produit", "produite",
     "niveau", "type", "types", "module", "modules", "gestion",
+    # Token partage entre 3+ skills sans valeur discriminante
+    "exercice",
 }
 
 # Acronymes métier CFO à 2-3 lettres qu'on veut conserver même sous le seuil 4 chars
@@ -376,7 +379,7 @@ def check_triggering(config: dict[str, Any], quick: bool = False) -> list[TestRe
                 test_id=f"trig:{category}:{expected}",
                 test_label=f"[{expected}] {phrase[:60]}",
                 passed=False,
-                reason=f"Aucun mot-clé de la phrase trouvé dans aucun skill (revoir Triggers:)",
+                reason="Aucun mot-cle de la phrase trouve dans aucun skill (revoir Triggers:)",
             ))
             continue
 

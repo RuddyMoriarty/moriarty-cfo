@@ -44,7 +44,7 @@ def aggregate_by(ventes: list[dict], key: str) -> dict:
         agg[k]["cout"] += v["cout_direct"]
         agg[k]["nb_transactions"] += 1
 
-    for k, data in agg.items():
+    for _k, data in agg.items():
         data["marge"] = round(data["ca"] - data["cout"], 2)
         data["marge_pct"] = round((data["marge"] / data["ca"] * 100), 1) if data["ca"] > 0 else 0
         data["ca"] = round(data["ca"], 2)

@@ -10,7 +10,6 @@ from __future__ import annotations
 
 import argparse
 import calendar
-import csv
 import json
 import sys
 from datetime import date
@@ -55,7 +54,7 @@ def generate_scenario(
     growth_monthly = (1 + growth_rate_annual) ** (1/12) - 1
     ca = ca_mensuel_base
 
-    for i, m in enumerate(months):
+    for _i, m in enumerate(months):
         ca_mois = ca
         ca *= (1 + growth_monthly)  # croissance mensuelle composée
 

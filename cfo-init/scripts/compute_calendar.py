@@ -31,7 +31,6 @@ import sys
 from datetime import date, datetime, timedelta
 from pathlib import Path
 
-
 ROOT = Path(__file__).resolve().parents[2]
 BASE_CALENDAR = ROOT / "data" / "calendar-fiscal-base.json"
 
@@ -113,7 +112,7 @@ def is_applicable(category_meta: dict, context: dict) -> bool:
         return True
 
     # Conditions simples reconnues
-    if "regime_fiscal == 'is'" in cond and context.get("is_regime") != True:
+    if "regime_fiscal == 'is'" in cond and not context.get("is_regime"):
         return False
     if "regime_tva == 'reel_normal'" in cond and "reel_normal" not in context.get("regime_tva", ""):
         return False

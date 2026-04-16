@@ -2,7 +2,7 @@
 name: cfo-tresorerie
 description: |
   Skill de trésorerie et gestion de liquidités. Prévisions 13 semaines glissantes et 12 mois, diagnostic BFR (DSO/DPO/DIO et leviers), covenants bancaires (DSCR, leverage, ICR), alerte tension avec plan d'action, mode cash burn et runway pour startups et scale-ups. Récupère solde et transactions Qonto, catégorise les flux. Sub-modules cash pooling groupe et hedging change FX.
-  Triggers: trésorerie, cash flow, cashflow, prévision trésorerie 13 semaines glissantes, forecast 12 mois, diagnostic BFR, besoin fonds roulement, DSO DPO DIO, cash conversion cycle, working capital, banque bancaire facilités crédit, covenant DSCR leverage ICR, cash burn runway startup scale-up, cash pooling intra-groupe, hedging couverture change FX, tension trésorerie plan action, récupérer solde Qonto transactions, catégoriser flux bancaires, goulots trésorerie
+  Triggers: trésorerie, cash flow, cashflow, prévision trésorerie 13 semaines glissantes, forecast 12 mois, diagnostic BFR, besoin fonds roulement, DSO DPO DIO, cash conversion cycle, working capital, banque bancaire facilités crédit, covenant DSCR leverage ICR, cash burn runway startup scale-up, cash pooling intra-groupe, hedging couverture change FX, tension trésorerie plan action, récupérer solde Qonto transactions, catégoriser flux bancaires, goulots étranglement trésorerie
 metadata:
   last_updated: 2026-04-14
   version: 0.1.0

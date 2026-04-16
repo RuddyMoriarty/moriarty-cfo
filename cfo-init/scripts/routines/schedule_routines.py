@@ -111,7 +111,7 @@ Description : {routine.get('description', '')}
     prompt += f"  {len(chain) + 1}. Produis l'artefact de type {artefact['type']} au chemin {artefact['path_pattern']}.\n"
     prompt += f"  {len(chain) + 2}. Mets à jour private/companies/{siren}/routines.json (last_run, state=done).\n"
     prompt += f"  {len(chain) + 3}. Planifie la prochaine occurrence via schedule_routines.py --siren {siren} --refresh.\n"
-    prompt += f"\n(Routine programmée par cfo-init, catalogue v0.1.2)"
+    prompt += "\n(Routine programmée par cfo-init, catalogue v0.1.2)"
     return prompt
 
 

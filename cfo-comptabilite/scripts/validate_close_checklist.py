@@ -29,7 +29,6 @@ import re
 import sys
 from pathlib import Path
 
-
 TOL = 0.01  # tolérance d'équilibre en €
 
 

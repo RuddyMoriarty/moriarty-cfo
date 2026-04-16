@@ -2,7 +2,7 @@
 name: cfo-init
 description: |
   Initialise une session de CFO virtuel pour dirigeant ou collaborateur de cabinet d'expertise comptable. Détecte l'audience (cabinet vs dirigeant), identifie l'entité via Pappers/SIREN/INSEE, classifie sa taille (TPE/PE/ME/ETI) et sa wave CSRD, calcule le calendrier fiscal depuis la date de clôture, programme les routines de production et les notifications des prochaines échéances, et active le système d'achievements. À utiliser au démarrage de toute conversation CFO/DAF ou comme étape préalable avant les autres skills du bundle.
-  Triggers: directeur financier, expert-comptable, nouvelle entité, SIREN, SIRET, Pappers, INSEE, calendrier fiscal, onboarding cabinet, démarrage mission, kickoff, début mission, classification taille, mes prochaines échéances fiscales, quelles sont mes échéances, échéances à venir, profil entité, setup initial profil société, new company, accounting firm, lance cfo-init, reset complet profil, initialise profil
+  Triggers: directeur financier, expert-comptable, nouvelle entité, SIREN, Pappers, calendrier fiscal, onboarding cabinet, kickoff mission, classification taille, échéances fiscales, profil entité, accounting firm, lance cfo-init, reset profil, portfolio multi-clients, portefeuille cabinet, ajouter client cabinet, dashboard portfolio cabinet, mission presentation examen audit, referent collaborateur, routines portefeuille
 metadata:
   last_updated: 2026-04-14
   version: 0.1.0
@@ -245,7 +245,19 @@ L'utilisateur peut invoquer ce skill pour des actions ciblées.
 | "Quelles sont mes échéances" | Lit `private/calendar-fiscal.json` et filtre les 30 prochains jours |
 | "Reset complet" | Demande confirmation, puis `python3 scripts/routines/purge_routines.py --all-sirens --force` (purge les scheduled-tasks), puis `rm -rf private/` (reset destructif) |
 | "Change d'audience" | Modifie `private/profile.json > audience_type` |
-| "Ajouter un client au portfolio" (mode EC) | Nouvelle fiche `private/companies/<siren>/company.json` |
+
+### Portfolio EC (v0.1.4, mode cabinet)
+
+| Commande utilisateur | Script invoqué |
+|---------------------|----------------|
+| "Initialise mon cabinet" | `scripts/portfolio/init_cabinet.py --siren X --denomination Y` |
+| "Ajoute le client SIREN X" | `scripts/portfolio/add_client.py --siren X --denomination Y --taille pe --cloture ...` |
+| "Liste mes clients" | `scripts/portfolio/list_clients.py [--detailed] [--status actif]` |
+| "Archive le client SIREN X" | `scripts/portfolio/remove_client.py --siren X --archive` |
+| "Programme les routines de tout le portfolio" | `scripts/portfolio/schedule_all.py [--dry-run]` |
+| "Dashboard portfolio" | `scripts/portfolio/portfolio_dashboard.py --output private/portfolio-dashboard.html [--pdf]` |
+
+Details : [references/portfolio-ec.md](references/portfolio-ec.md).
 
 ### Routines et notifications par entité
 

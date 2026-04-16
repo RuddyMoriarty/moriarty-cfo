@@ -4,6 +4,49 @@ Toutes les évolutions notables de `moriarty-cfo` sont documentées ici.
 
 Le format suit [Keep a Changelog](https://keepachangelog.com/fr/1.1.0/) et le projet adhère au [Semantic Versioning](https://semver.org/lang/fr/).
 
+## [0.1.4], 2026-04-16
+
+Mode EC Portfolio pour les cabinets d'expertise comptable : multi-clients, scheduling batch, dashboard agrege.
+
+### Added, 6 scripts portfolio (`cfo-init/scripts/portfolio/`)
+
+- `init_cabinet.py` : initialise le cabinet (cree `cabinet.json`, `profile.json` avec `audience_type=ec_collaborateur`, `companies/index.json` vide). Idempotent avec `--force`.
+- `add_client.py` : ajoute un client au portfolio (cree `company.json` minimal, enregistre dans l'index, synchronise `cabinet.json > portfolio_clients.siren_list`). Idempotent (met a jour si SIREN deja present).
+- `list_clients.py` : liste les clients en mode compact ou `--detailed`. Filtrage par `--status actif|archive|all`.
+- `remove_client.py` : `--archive` (status=archive, conserve les fichiers) ou `--delete --force` (supprime definitivement).
+- `schedule_all.py` : itere sur les clients actifs, appelle `compute_entity_routines.py` + `schedule_routines.py` pour chacun. Support `--dry-run`. Met a jour `routines_active=true` dans l'index.
+- `portfolio_dashboard.py` : genere un HTML A4 landscape avec 4 stats (actifs, archives, routines, alertes 7j), resume de la semaine, alertes echeances par couleur (rouge < 7j, orange 7-14j, jaune 15-30j), tableau complet des clients. Option `--pdf` via Chrome headless.
+
+### Added, template HTML
+
+- `cfo-init/templates/portfolio-dashboard.html` : A4 landscape, charte Moriarty (bleu `#002E72`, orange `#E14F0A`), placeholders `{{CABINET_NOM}}`, `{{ALERTES_ROWS}}`, `{{CLIENTS_ROWS}}`, `{{RESUME_TEXT}}`, badges `actif`/`archive`.
+
+### Added, reference
+
+- `cfo-init/references/portfolio-ec.md` : workflow complet (init, add, list, schedule, dashboard, archive), schema `index.json`, valeurs autorisees (taille, status, mission_type), strategie de scheduling, limites v0.1.4.
+
+### Added, tests
+
+- Test E2E `cfo-init-e2e-portfolio` : init cabinet + add 3 clients + list + schedule_all --dry-run + dashboard + archive (6 etapes verifiees).
+- 5 nouveaux triggering tests : portfolio_init, portfolio_add, portfolio_dashboard, portfolio_list, portfolio_schedule.
+- 116 triggering tests au total (etait 111).
+
+### Changed, SKILL.md cfo-init
+
+- Section "Portfolio EC (v0.1.4, mode cabinet)" ajoutee aux commandes secondaires.
+- Triggers frontmatter : ajout de "portfolio multi-clients, portefeuille cabinet, dashboard portfolio cabinet, mission presentation examen audit, routines portefeuille".
+
+### Changed, CLAUDE.md
+
+- Table de routage : `cfo-init` couvre maintenant explicitement "portfolio cabinet EC, ajouter/lister/archiver client, dashboard portfolio, mission presentation/examen/audit".
+
+### Reporte a v0.1.5
+
+- Relances clients dossier incomplet (detection + mail template)
+- Lettres de mission (generation + versioning)
+- Pilotage encaissements (aging factures par mission)
+- Suivi forfaits vs realise (heures bookees vs consommees)
+
 ## [0.1.3], 2026-04-15
 
 Refonte du système d'évaluation et des Triggers des skills. Pass rate global passé de 88,0 % (v0.1.2) à **98,9 %** (v0.1.3). Le travail corrige trois causes racines identifiées dans le rapport d'évals : tokenizer qui filtrait les acronymes ≤3 lettres, stopwords incomplets qui laissaient passer du bruit générique, et frontmatters avec chevauchements trop importants entre skills proches.

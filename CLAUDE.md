@@ -103,7 +103,7 @@ Quand l'utilisateur demande une tâche CFO/DAF, invoquer en priorité le skill `
 
 Table de correspondance intents vers skills :
 
-- onboarding, SIREN, SIRET, Pappers, calendrier fiscal, echeances, classification taille, profil societe, achievements, reset → `cfo-init`
+- onboarding, SIREN, SIRET, Pappers, calendrier fiscal, echeances, classification taille, profil societe, achievements, reset, portfolio cabinet EC, ajouter/lister/archiver client, dashboard portfolio, mission presentation/examen/audit → `cfo-init`
 - cloture mensuelle/annuelle, FEC, export FEC, ecritures, cut-off, provisions, amortissements, paie, DSN, URSSAF, consolidation, IFRS, intercos, PCG, bilan, grand livre → `cfo-comptabilite`
 - tresorerie, cash flow, BFR, DSO/DPO/DIO, covenants, burn/runway, Qonto, cash pooling, hedging, tension tresorerie → `cfo-tresorerie`
 - reporting mensuel/trimestriel/annuel, board pack, dashboard CFO, lettre investisseurs, rapport AG, variances vs budget, flash mensuel → `cfo-reporting`

@@ -3,7 +3,7 @@
     "description": "Tests de déclenchement par skill. Pour chaque phrase, on attend que le skill `expected_skill` soit le PREMIER déclenché par Claude (ou aucun pour les anti-triggers). Format inspiré paperasse/evals.",
     "version": "0.1.3",
     "last_updated": "2026-04-15",
-    "total_tests": 111
+    "total_tests": 116
   },
   "tests": [
     {
@@ -55,6 +55,31 @@
       "phrase": "Reset complet du profil société",
       "expected_skill": "cfo-init",
       "category": "reset"
+    },
+    {
+      "phrase": "Initialise le portfolio de mon cabinet expert-comptable",
+      "expected_skill": "cfo-init",
+      "category": "portfolio_init"
+    },
+    {
+      "phrase": "Ajoute un nouveau client PME au portfolio du cabinet",
+      "expected_skill": "cfo-init",
+      "category": "portfolio_add"
+    },
+    {
+      "phrase": "Dashboard portfolio cabinet avec échéances de la semaine",
+      "expected_skill": "cfo-init",
+      "category": "portfolio_dashboard"
+    },
+    {
+      "phrase": "Liste le portefeuille cabinet et archive les anciens",
+      "expected_skill": "cfo-init",
+      "category": "portfolio_list"
+    },
+    {
+      "phrase": "Programme les routines pour tout le portefeuille du cabinet",
+      "expected_skill": "cfo-init",
+      "category": "portfolio_schedule"
     },
     {
       "phrase": "Fais la clôture mensuelle de mars",

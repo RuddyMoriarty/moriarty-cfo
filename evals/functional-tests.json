@@ -119,6 +119,21 @@
       }
     },
     {
+      "id": "cfo-init-e2e-portfolio",
+      "skill": "cfo-init",
+      "label": "E2E portfolio EC : init cabinet + 3 clients + list + schedule_all + dashboard + archive",
+      "executable": {
+        "type": "python",
+        "script": "evals/_helpers/e2e_portfolio.py"
+      },
+      "assertions": {
+        "exit_code": 0,
+        "must_contain_in_output": ["e2e_portfolio_ok=6", "steps=init,add,list,schedule_dry,dashboard,archive"],
+        "must_not_contain_in_output": ["ERREUR", "traceback", "Traceback", "FAIL"],
+        "max_duration_seconds": 30
+      }
+    },
+    {
       "id": "cfo-init-e2e-onboarding",
       "skill": "cfo-init",
       "label": "E2E onboarding complet : calendrier + routines + scheduling + achievements",

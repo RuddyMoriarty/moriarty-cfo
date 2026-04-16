@@ -4,6 +4,42 @@ Toutes les évolutions notables de `moriarty-cfo` sont documentées ici.
 
 Le format suit [Keep a Changelog](https://keepachangelog.com/fr/1.1.0/) et le projet adhère au [Semantic Versioning](https://semver.org/lang/fr/).
 
+## [0.1.5], 2026-04-16
+
+Completion du mode EC Portfolio : relances, lettres de mission, pilotage encaissements, suivi forfaits vs reel. Les 4 sous-modules reportes de v0.1.4 sont livres.
+
+### Added, module relances (`cfo-init/scripts/portfolio/check_dossier.py` + `draft_relance.py`)
+
+- `data/pieces-dossier.json` : catalogue de 48 pieces attendues par `mission_type` (presentation 10 pieces, examen_limite 10, audit_legal_cac 12, social_paie 8). Chaque piece a un flag `obligatoire`.
+- `check_dossier.py` : compare les pieces declarees dans `private/companies/<siren>/pieces.json` avec le catalog pour la mission du client. Statut COMPLET / INCOMPLET, liste des manquantes. Sortie --json, --strict pour exit 2 si incomplet.
+- `draft_relance.py` : genere un mail de relance (`relance-premiere.md` courtois ou `relance-urgente.md` avec echeance legale et risque penalite). Log de l'envoi dans `private/companies/<siren>/relances.json`.
+
+### Added, module lettres de mission
+
+- 3 templates alignes sur les normes professionnelles :
+  - `lettre-mission-presentation.md` : NP 2300, 8 articles, mapping automatique forme juridique vers formulaire liasse (SAS/SA/SARL vers 2065, EURL/EI vers 2031)
+  - `lettre-mission-examen-limite.md` : NP 2400 avec procedures analytiques et lettre d'affirmation
+  - `lettre-mission-social-paie.md` : mission paie avec tarification mixte (forfait + prix par bulletin au-dela d'un seuil) et clauses RGPD sous-traitant art. 28
+- `generate_lettre_mission.py` : versioning automatique v1, v2, v3... dans `private/companies/<siren>/lettres-mission/`. Metadata trackee (honoraires, exercice, signed flag).
+
+### Added, pilotage encaissements
+
+- `encaissements_aging.py` : aging des factures cabinet calibre sur la LME (art. L. 441-10 C. com., delai legal 60 jours). 4 buckets : a jour < 30j, echu 30-60j (tolerance LME), echu 60-90j (hors LME, relance ferme), > 90j (provision). Mode global ou --siren, --detailed liste les factures individuelles, --json pour integration dashboard. Alertes automatiques sur les buckets 60-90j et > 90j.
+
+### Added, suivi forfaits vs reel
+
+- `forfait_tracker.py` : compare heures forfait (fichier `forfait.json`) vs heures consommees (fichier `temps-passes.json`) par mission. 4 statuts : ok < 70 %, vigilance 70-90 %, limite_atteinte 90-100 %, depassement > 100 %. Calcul du cout theorique du depassement via le TJM reference (base 7h). Identifie les clients sans `forfait.json` configure.
+
+### Added, tests
+
+- Test E2E `cfo-init-e2e-portfolio-v015` : init + add client + check_dossier + draft_relance + 2 lettres de mission (v1 + v2) + aging avec fixture factures + forfait tracker avec fixture temps.
+- 12 tests fonctionnels au total (etait 11).
+
+### Changed
+
+- `cfo-init/SKILL.md` : +5 commandes secondaires (check dossier, rediger relance, lettre de mission, aging, forfaits).
+- `cfo-init/references/portfolio-ec.md` : sections detaillees pour les 4 nouveaux modules, schemas de fichiers, commandes, seuils d'alerte.
+
 ## [0.1.4], 2026-04-16
 
 Mode EC Portfolio pour les cabinets d'expertise comptable : multi-clients, scheduling batch, dashboard agrege.

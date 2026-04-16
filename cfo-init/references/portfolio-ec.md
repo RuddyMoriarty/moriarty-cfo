@@ -126,17 +126,65 @@ python3 cfo-init/scripts/portfolio/remove_client.py --siren X --delete --force
 
 Le parallelisme via `multiprocessing` est envisageable pour les grands cabinets (500+ clients) mais reporte a une version ulterieure.
 
-## Limites v0.1.4
+## Modules v0.1.5 (pilotage operationnel)
 
-Livre dans cette version :
-- Portfolio multi-clients (init, add, list, remove, schedule_all)
-- Dashboard agrege HTML + PDF
+### Relances dossier incomplet
 
-Reporte a v0.1.5 :
-- Relances clients dossier incomplet (detection + mail template)
-- Lettres de mission (generation + versioning)
-- Pilotage encaissements (aging factures par mission)
-- Suivi forfaits vs realise (heures bookees vs heures consommees)
+```bash
+python3 cfo-init/scripts/portfolio/check_dossier.py --siren X
+python3 cfo-init/scripts/portfolio/draft_relance.py --siren X --type premiere --output private/companies/X/relance-v1.txt
+```
+
+Le catalogue des pieces attendues par `mission_type` vit dans `data/pieces-dossier.json` (4 missions : presentation, examen_limite, audit_legal_cac, social_paie). Les pieces recues se declarent dans `private/companies/<siren>/pieces.json` :
+
+```json
+{"pieces_recues": {"balance_generale": {"recu": true, "date": "2026-03-10"}}}
+```
+
+Deux templates de mail disponibles : `relance-premiere.md` (courtois) et `relance-urgente.md` (avec echeance legale et risque penalite). Historique dans `private/companies/<siren>/relances.json`.
+
+### Lettres de mission
+
+```bash
+python3 cfo-init/scripts/portfolio/generate_lettre_mission.py --siren X --honoraires 4500 --exercice 2026
+python3 cfo-init/scripts/portfolio/generate_lettre_mission.py --siren X --honoraires 4800 --exercice 2027 --new-version
+```
+
+3 templates alignes sur les normes professionnelles : NP 2300 (presentation), NP 2400 (examen limite), et missions sociales/paie (avec clauses RGPD sous-traitant art. 28). Versioning automatique v1, v2, v3... stocke dans `private/companies/<siren>/lettres-mission/`. Metadata trackee dans `metadata.json`.
+
+### Pilotage encaissements
+
+```bash
+python3 cfo-init/scripts/portfolio/encaissements_aging.py
+python3 cfo-init/scripts/portfolio/encaissements_aging.py --siren X --detailed
+```
+
+Aging base sur la LME (art. L. 441-10 C. com., delai legal 60 jours) : a jour < 30j, echu 30-60j (tolerance), echu 60-90j (hors LME), > 90j (provision). Le fichier `private/companies/<siren>/factures.json` contient la liste des factures emises :
+
+```json
+{"factures": [{"numero": "F2026-001", "date_emission": "2026-04-10", "montant_ht": 1500, "statut": "emise"}]}
+```
+
+Statuts possibles : `emise` (non encaissee) ou `encaissee`.
+
+### Suivi forfaits vs reel
+
+```bash
+python3 cfo-init/scripts/portfolio/forfait_tracker.py
+python3 cfo-init/scripts/portfolio/forfait_tracker.py --siren X --detailed
+```
+
+Compare les heures consommees avec le forfait contractuel. Deux fichiers par client :
+
+```json
+# forfait.json
+{"forfait_heures": 40, "tjm_reference": 680, "annee": 2026}
+
+# temps-passes.json
+{"saisies": [{"date": "2026-04-01", "collaborateur": "Jean", "heures": 3.5, "tache": "..."}]}
+```
+
+4 statuts : `ok` < 70 %, `vigilance` 70-90 %, `limite_atteinte` 90-100 %, `depassement` > 100 %. Calcul du cout theorique du depassement via le TJM reference.
 
 ## Sources
 

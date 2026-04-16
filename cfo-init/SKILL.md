@@ -256,6 +256,11 @@ L'utilisateur peut invoquer ce skill pour des actions ciblées.
 | "Archive le client SIREN X" | `scripts/portfolio/remove_client.py --siren X --archive` |
 | "Programme les routines de tout le portfolio" | `scripts/portfolio/schedule_all.py [--dry-run]` |
 | "Dashboard portfolio" | `scripts/portfolio/portfolio_dashboard.py --output private/portfolio-dashboard.html [--pdf]` |
+| "Verifie le dossier SIREN X" | `scripts/portfolio/check_dossier.py --siren X` |
+| "Rédige une relance pour SIREN X" | `scripts/portfolio/draft_relance.py --siren X --type premiere` |
+| "Genere la lettre de mission pour SIREN X" | `scripts/portfolio/generate_lettre_mission.py --siren X --honoraires 4500 --exercice 2026` |
+| "Aging des factures du cabinet" | `scripts/portfolio/encaissements_aging.py` |
+| "Suivi des forfaits vs reel" | `scripts/portfolio/forfait_tracker.py` |
 
 Details : [references/portfolio-ec.md](references/portfolio-ec.md).
 

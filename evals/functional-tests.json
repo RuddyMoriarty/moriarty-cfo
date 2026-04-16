@@ -119,6 +119,21 @@
       }
     },
     {
+      "id": "cfo-init-e2e-portfolio-v015",
+      "skill": "cfo-init",
+      "label": "E2E v0.1.5 : relances + lettres mission + encaissements + forfaits",
+      "executable": {
+        "type": "python",
+        "script": "evals/_helpers/e2e_portfolio_v015.py"
+      },
+      "assertions": {
+        "exit_code": 0,
+        "must_contain_in_output": ["e2e_v015_ok=5", "modules=relances,lettres_mission,encaissements,forfaits"],
+        "must_not_contain_in_output": ["ERREUR", "traceback", "Traceback"],
+        "max_duration_seconds": 30
+      }
+    },
+    {
       "id": "cfo-init-e2e-portfolio",
       "skill": "cfo-init",
       "label": "E2E portfolio EC : init cabinet + 3 clients + list + schedule_all + dashboard + archive",

@@ -52,14 +52,22 @@ def load_catalog() -> dict:
 
 
 def load_company(siren: str) -> dict:
-    """Charge private/companies/<siren>/company.json ou private/company.json (mono)."""
-    multi = PRIVATE / "companies" / siren / "company.json"
+    """Charge private/companies/<siren>/company.json (standard).
+
+    Fallback : si private/company.json existe avec le bon SIREN, on le migre
+    automatiquement vers private/companies/<siren>/company.json pour standardiser.
+    """
+    canonical = PRIVATE / "companies" / siren / "company.json"
+    if canonical.exists():
+        return json.loads(canonical.read_text(encoding="utf-8"))
     mono = PRIVATE / "company.json"
-    if multi.exists():
-        return json.loads(multi.read_text(encoding="utf-8"))
     if mono.exists():
         d = json.loads(mono.read_text(encoding="utf-8"))
         if d.get("siren") == siren:
+            # Migration auto vers le chemin standard
+            canonical.parent.mkdir(parents=True, exist_ok=True)
+            canonical.write_text(json.dumps(d, ensure_ascii=False, indent=2), encoding="utf-8")
+            log("MIGRATE", f"siren={siren} | company.json deplace vers private/companies/{siren}/")
             return d
     print(f"ERREUR: company.json introuvable pour SIREN {siren}", file=sys.stderr)
     sys.exit(1)

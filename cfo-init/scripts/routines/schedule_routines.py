@@ -197,7 +197,12 @@ def main() -> int:
     if company_path.exists():
         denomination = json.loads(company_path.read_text(encoding="utf-8")).get("denomination", args.siren)
     elif mono_path.exists():
-        denomination = json.loads(mono_path.read_text(encoding="utf-8")).get("denomination", args.siren)
+        d = json.loads(mono_path.read_text(encoding="utf-8"))
+        denomination = d.get("denomination", args.siren)
+        # Migration auto vers le chemin standard
+        if d.get("siren") == args.siren:
+            company_path.parent.mkdir(parents=True, exist_ok=True)
+            company_path.write_text(json.dumps(d, ensure_ascii=False, indent=2), encoding="utf-8")
     else:
         denomination = args.siren
 

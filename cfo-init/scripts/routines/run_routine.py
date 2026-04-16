@@ -75,13 +75,16 @@ def save_routines_for_siren(siren: str, data: dict) -> None:
 
 
 def load_company(siren: str) -> dict:
-    multi = PRIVATE / "companies" / siren / "company.json"
+    """Charge private/companies/<siren>/company.json, migre depuis private/ si besoin."""
+    canonical = PRIVATE / "companies" / siren / "company.json"
+    if canonical.exists():
+        return json.loads(canonical.read_text(encoding="utf-8"))
     mono = PRIVATE / "company.json"
-    if multi.exists():
-        return json.loads(multi.read_text(encoding="utf-8"))
     if mono.exists():
         d = json.loads(mono.read_text(encoding="utf-8"))
         if d.get("siren") == siren:
+            canonical.parent.mkdir(parents=True, exist_ok=True)
+            canonical.write_text(json.dumps(d, ensure_ascii=False, indent=2), encoding="utf-8")
             return d
     print(f"ERREUR: company.json introuvable pour SIREN {siren}", file=sys.stderr)
     sys.exit(1)
@@ -249,13 +252,16 @@ def run_routine(siren: str, routine_id: str, period: str | None) -> int:
     out_path.parent.mkdir(parents=True, exist_ok=True)
     out_path.write_text(content, encoding="utf-8")
 
-    # Mise à jour de routines.json
+    # Mise a jour de routines.json : etat "running" (les skills de la chaine
+    # doivent encore remplir les donnees business). Le harnais Claude Code
+    # passera l'etat en "done" apres succes ou "failed" si un skill echoue.
     now_iso = dt.datetime.now(dt.timezone.utc).astimezone().isoformat(timespec="seconds")
     for r in routines_data.get("routines", []):
         if r.get("id") == routine_id:
             r["last_run"] = now_iso
-            r["state"] = "done"
+            r["state"] = "running"
             r["last_artefact"] = str(out_path_str)
+            r["retry_count"] = r.get("retry_count", 0)
             break
     save_routines_for_siren(siren, routines_data)
 
@@ -267,8 +273,13 @@ def run_routine(siren: str, routine_id: str, period: str | None) -> int:
     print("Ces skills doivent :")
     print("  1. Lire l'artefact ecrit")
     print("  2. Collecter les donnees business necessaires (balance, CRM, bilans)")
-    print("  3. Remplir les placeholders business restants ({ca_mois}, {ebe_pct}, etc.)")
+    print("  3. Remplir les placeholders business restants (ca_mois, ebe_pct, etc.)")
     print("  4. Ecraser le fichier avec la version finale")
+    print("  5. Mettre state=done dans routines.json (ou state=failed si erreur)")
+    print("")
+    print("En cas d'echec, le harnais doit :")
+    print("  - Mettre state=failed et incrementer retry_count dans routines.json")
+    print("  - Si retry_count < 3 : reprogrammer via schedule_routines.py --refresh")
     return 0
 
 

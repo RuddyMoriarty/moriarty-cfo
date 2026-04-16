@@ -15,6 +15,8 @@ def main() -> int:
         "run_routine.py",
         "list_routines.py",
         "purge_routines.py",
+        "confirm_scheduled.py",
+        "mark_routine.py",
     }
     found = 0
     errors = []

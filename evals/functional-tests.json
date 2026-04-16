@@ -52,7 +52,7 @@
       },
       "assertions": {
         "exit_code": 0,
-        "must_contain_in_output": ["scripts_ok=5"],
+        "must_contain_in_output": ["scripts_ok=7"],
         "must_not_contain_in_output": ["SyntaxError", "traceback"],
         "max_duration_seconds": 10
       }
@@ -115,6 +115,51 @@
         "exit_code": 0,
         "must_contain_in_output": ["templates_ok=2"],
         "must_not_contain_in_output": ["Traceback", "Error", "Exception"],
+        "max_duration_seconds": 10
+      }
+    },
+    {
+      "id": "cfo-init-fct-jours-feries",
+      "skill": "cfo-init",
+      "label": "Jours feries France dynamiques (Paques + fetes fixes, 2024-2035)",
+      "executable": {
+        "type": "python",
+        "script": "evals/_helpers/check_jours_feries.py"
+      },
+      "assertions": {
+        "exit_code": 0,
+        "must_contain_in_output": ["jours_feries_ok=12", "easter_verified=7"],
+        "must_not_contain_in_output": ["ERREUR", "traceback"],
+        "max_duration_seconds": 10
+      }
+    },
+    {
+      "id": "cfo-init-fct-date-cloture-formats",
+      "skill": "cfo-init",
+      "label": "compute_entity_routines accepte date_cloture YYYY-MM-DD et MM-DD",
+      "executable": {
+        "type": "python",
+        "script": "evals/_helpers/check_date_cloture_parsing.py"
+      },
+      "assertions": {
+        "exit_code": 0,
+        "must_contain_in_output": ["date_formats_ok=2"],
+        "must_not_contain_in_output": ["ERREUR", "traceback"],
+        "max_duration_seconds": 15
+      }
+    },
+    {
+      "id": "cfo-init-fct-confirm-scheduled",
+      "skill": "cfo-init",
+      "label": "confirm_scheduled.py met a jour l'index pending_schedule -> scheduled",
+      "executable": {
+        "type": "python",
+        "script": "evals/_helpers/check_confirm_scheduled.py"
+      },
+      "assertions": {
+        "exit_code": 0,
+        "must_contain_in_output": ["confirm_scheduled_ok=2", "states_verified"],
+        "must_not_contain_in_output": ["ERREUR", "traceback"],
         "max_duration_seconds": 10
       }
     }

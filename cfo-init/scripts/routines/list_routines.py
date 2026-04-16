@@ -48,13 +48,16 @@ def load_routines_for_siren(siren: str) -> dict:
 
 
 def load_company(siren: str) -> dict:
-    multi = PRIVATE / "companies" / siren / "company.json"
+    """Charge private/companies/<siren>/company.json, migre depuis private/ si besoin."""
+    canonical = PRIVATE / "companies" / siren / "company.json"
+    if canonical.exists():
+        return json.loads(canonical.read_text(encoding="utf-8"))
     mono = PRIVATE / "company.json"
-    if multi.exists():
-        return json.loads(multi.read_text(encoding="utf-8"))
     if mono.exists():
         d = json.loads(mono.read_text(encoding="utf-8"))
         if d.get("siren") == siren:
+            canonical.parent.mkdir(parents=True, exist_ok=True)
+            canonical.write_text(json.dumps(d, ensure_ascii=False, indent=2), encoding="utf-8")
             return d
     return {"denomination": siren}
 

@@ -1,6 +1,6 @@
 [project]
 name = "moriarty-cfo"
-version = "0.1.5"
+version = "0.1.6"
 description = "Suite de 10 skills Claude pour CFO/DAF français, PME/TPE et cabinets d'expertise comptable."
 readme = "README.md"
 requires-python = ">=3.9"

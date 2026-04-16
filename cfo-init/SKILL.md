@@ -49,10 +49,24 @@ Pour adapter le ton et la profondeur du skill, je dois savoir :
 Répondez "EC" ou "PME".
 ```
 
-**Traitement** :
-- Si "EC" → `audience_type = "ec_collaborateur"`, portfolio multi-clients activé, ton technique.
-- Si "PME" → `audience_type = "pme_dirigeant"`, mono-société, vocabulaire vulgarisé.
-- Stocker dans `private/profile.json` (voir [references/audience-detection.md](references/audience-detection.md)).
+**Traitement via scripts CLI (symetriques)** :
+
+```bash
+# Mode EC (cabinet expert-comptable)
+python3 cfo-init/scripts/portfolio/init_cabinet.py \
+  --siren <SIREN_CABINET> --denomination "CABINET X SELARL" \
+  --forme selarl --ville Paris
+
+# Mode PME (dirigeant / CFO interne)
+python3 cfo-init/scripts/init_pme.py \
+  --siren <SIREN_SOCIETE> --denomination "ACME SAS" \
+  --taille pe --cloture 2026-12-31 --role cfo
+```
+
+- Si "EC" → `init_cabinet.py` cree `private/cabinet.json` + `profile.json` (`audience_type=ec_collaborateur`) + `companies/index.json` vide (portfolio multi-clients, ton technique).
+- Si "PME" → `init_pme.py` cree `profile.json` (`audience_type=pme_dirigeant`, `pme_role`) + `companies/<siren>/company.json` minimal (mono-societe, vocabulaire vulgarise).
+
+Voir [references/audience-detection.md](references/audience-detection.md) pour les regles de bascule de ton par skill.
 
 **Renvoi détaillé** : [references/audience-detection.md](references/audience-detection.md) pour les règles complètes de bascule de ton et la liste des skills activés selon l'audience.
 
@@ -256,6 +270,7 @@ L'utilisateur peut invoquer ce skill pour des actions ciblées.
 | "Archive le client SIREN X" | `scripts/portfolio/remove_client.py --siren X --archive` |
 | "Programme les routines de tout le portfolio" | `scripts/portfolio/schedule_all.py [--dry-run]` |
 | "Dashboard portfolio" | `scripts/portfolio/portfolio_dashboard.py --output private/portfolio-dashboard.html [--pdf]` |
+| "Initialise ma societe" (mode PME) | `scripts/init_pme.py --siren X --denomination Y --taille pe --cloture 2026-12-31 --role cfo` |
 | "Verifie le dossier SIREN X" | `scripts/portfolio/check_dossier.py --siren X` |
 | "Rédige une relance pour SIREN X" | `scripts/portfolio/draft_relance.py --siren X --type premiere` |
 | "Genere la lettre de mission pour SIREN X" | `scripts/portfolio/generate_lettre_mission.py --siren X --honoraires 4500 --exercice 2026` |

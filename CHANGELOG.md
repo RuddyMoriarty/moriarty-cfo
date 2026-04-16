@@ -4,6 +4,29 @@ Toutes les évolutions notables de `moriarty-cfo` sont documentées ici.
 
 Le format suit [Keep a Changelog](https://keepachangelog.com/fr/1.1.0/) et le projet adhère au [Semantic Versioning](https://semver.org/lang/fr/).
 
+## [0.1.6], 2026-04-16
+
+Symetrie des points d'entree CLI pour la detection d'audience. Avant cette version, seul le mode EC disposait d'un script dedie (`init_cabinet.py`) ; le mode PME reposait sur un flux conversationnel ou Claude devait ecrire `profile.json` manuellement via Write. Cette version comble l'asymetrie en livrant `init_pme.py` symetrique.
+
+### Added
+
+- `cfo-init/scripts/init_pme.py` : initialise une session mode PME en une commande. Cree `private/profile.json` (`audience_type=pme_dirigeant`, `pme_role` = dirigeant/gerant/cfo/daf/president) et `private/companies/<siren>/company.json` minimal pre-rempli (taille, secteur, cloture, regime fiscal/TVA, effectif). Idempotent avec `--force`. Integre avec le chemin standardise `private/companies/<siren>/` (v0.1.4) : `compute_entity_routines.py` lit directement le fichier produit.
+- Test E2E `cfo-init-e2e-init-pme` : verifie init + idempotence (exit 1 sans `--force`) + integration compute_routines (lit bien le company.json genere).
+
+### Changed
+
+- `cfo-init/SKILL.md` etape 1 : documentation des deux points d'entree CLI symetriques (`init_cabinet.py` pour EC, `init_pme.py` pour PME). Plus de trou fonctionnel.
+- `cfo-init/SKILL.md` commandes secondaires : ajout de "Initialise ma societe" (mode PME) mappant sur `init_pme.py`.
+
+### Rationale
+
+L'asymetrie precedente creait plusieurs problemes :
+- Pas de CLI claire pour la documentation utilisateur PME.
+- Tests E2E du mode PME dependaient d'une creation manuelle de `profile.json` dans le helper (voir `e2e_onboarding.py`).
+- Claude devait decider lui-meme du schema a ecrire pour `profile.json` (risque de derive).
+
+Avec `init_pme.py`, les deux modes utilisent le meme pattern : commande explicite, exit codes standardises, meme structure de fichiers produits (`profile.json` + `companies/<siren>/company.json`).
+
 ## [0.1.5], 2026-04-16
 
 Completion du mode EC Portfolio : relances, lettres de mission, pilotage encaissements, suivi forfaits vs reel. Les 4 sous-modules reportes de v0.1.4 sont livres.

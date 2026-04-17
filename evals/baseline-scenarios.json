@@ -1,0 +1,92 @@
+{
+  "_meta": {
+    "description": "Scenarios pour mesure baseline : meme tache lancee avec et sans skill activé. Chaque scenario a une tache user typique (phrase naturelle CFO/DAF), un skill attendu (expected_skill), et une checklist de reference (steps que Claude devrait accomplir).",
+    "version": "0.2.2",
+    "methodology_ref": "evals/baseline-comparison.md"
+  },
+  "scenarios": [
+    {
+      "id": "baseline-cfo-init-onboarding",
+      "skill": "cfo-init",
+      "user_prompt": "J'ai une PME de 25 salaries qui cloture au 31/12. SIREN 552120222. Lance l'onboarding et donne-moi le calendrier fiscal des 90 prochains jours.",
+      "reference_checklist": [
+        "Identifier l'audience (PME vs cabinet EC)",
+        "Charger le profil SIREN via Pappers ou INSEE",
+        "Classifier la taille (TPE/PE/ME/ETI) selon effectif et CA",
+        "Generer le calendrier fiscal depuis la date de cloture 31/12",
+        "Lister les 3-5 prochaines echeances prioritaires"
+      ],
+      "difficulty": "easy",
+      "time_budget_without_skill_seconds": 180,
+      "time_budget_with_skill_seconds": 60
+    },
+    {
+      "id": "baseline-cfo-tresorerie-bfr",
+      "skill": "cfo-tresorerie",
+      "user_prompt": "Calcule mon BFR et ratios DSO/DPO/DIO. Creances clients 200 k€, dettes fournisseurs 100 k€, stocks 50 k€, CA TTC 1,2 M€, achats TTC 400 k€, cout des ventes 300 k€, secteur services B2B. Benchmarke vs mediane du secteur.",
+      "reference_checklist": [
+        "Calculer DSO, DPO, DIO en jours",
+        "Calculer BFR en € et en jours de CA",
+        "Calculer Cash Conversion Cycle",
+        "Comparer aux benchmarks Banque de France/INSEE du secteur",
+        "Proposer 2-3 leviers d'optimisation chiffres"
+      ],
+      "difficulty": "medium",
+      "time_budget_without_skill_seconds": 300,
+      "time_budget_with_skill_seconds": 90
+    },
+    {
+      "id": "baseline-cfo-fiscalite-cir",
+      "skill": "cfo-fiscalite",
+      "user_prompt": "Ma PME industrie a paye 300 k€ de salaires chercheurs (2 ingenieurs docteurs + 3 ingenieurs) et sous-traite 50 k€ a un laboratoire agree en 2026. Estime le CIR eligible et rappelle les conditions CGI art. 244 quater B.",
+      "reference_checklist": [
+        "Identifier le CGI article 244 quater B",
+        "Inclure le forfait frais de fonctionnement 43 %",
+        "Majorer salaires docteurs (x2 premieres 24 mois)",
+        "Integrer la sous-traitance agreee (plafond 2 M€)",
+        "Appliquer le taux CIR 30 % jusqu'a 100 M€",
+        "Calculer le montant final estime du CIR"
+      ],
+      "difficulty": "hard",
+      "time_budget_without_skill_seconds": 420,
+      "time_budget_with_skill_seconds": 120
+    },
+    {
+      "id": "baseline-cfo-csrd-scope",
+      "skill": "cfo-csrd-esg",
+      "user_prompt": "Je dirige une entreprise non cotee de 300 salaries, CA 50 M€, bilan 30 M€. Suis-je concernee par CSRD ? Dans quelle wave ? Quels ESRS dois-je preparer ?",
+      "reference_checklist": [
+        "Determiner le scope CSRD (wave 1/2/3/4/hors_scope)",
+        "Appliquer les 2/3 criteres taille (effectif, CA, bilan)",
+        "Citer la directive 2022/2464",
+        "Lister les ESRS applicables (E1-E5, S1-S4, G1)",
+        "Proposer une roadmap de preparation avec jalons"
+      ],
+      "difficulty": "medium",
+      "time_budget_without_skill_seconds": 360,
+      "time_budget_with_skill_seconds": 90
+    },
+    {
+      "id": "baseline-cfo-financement-diagnostic",
+      "skill": "cfo-financement-croissance",
+      "user_prompt": "PME industrie 25 salaries, 3 M€ de CA, projet de R&D 200 k€ sur machine-outil 4.0. Quels financements publics et prives sont eligibles ? Prepare-moi le top 3 avec le dossier minimum a constituer.",
+      "reference_checklist": [
+        "Diagnostic arbre de decision (montant, duree, dilutif ou non)",
+        "Identifier les aides BPI (France 2030, Deftech, PIR...)",
+        "Identifier les aides regionales et ADEME si applicables",
+        "Citer l'eligibilite CIR / CII",
+        "Top 3 solutions priorisees avec taux et delai",
+        "Proposer passerelle Moriarty pour audit approfondi"
+      ],
+      "difficulty": "hard",
+      "time_budget_without_skill_seconds": 480,
+      "time_budget_with_skill_seconds": 120
+    }
+  ],
+  "expected_deltas": {
+    "tool_calls_reduction_target": 0.5,
+    "tokens_reduction_target": 0.4,
+    "forgotten_steps_reduction_target": 0.8,
+    "note": "Cibles inspirees du PDF Anthropic Ch. 3 §3. Un skill bien design doit diviser par 2 les tool_calls et par 1.6 les tokens."
+  }
+}

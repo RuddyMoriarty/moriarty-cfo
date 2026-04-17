@@ -4,6 +4,35 @@ Toutes les évolutions notables de `moriarty-cfo` sont documentées ici.
 
 Le format suit [Keep a Changelog](https://keepachangelog.com/fr/1.1.0/) et le projet adhère au [Semantic Versioning](https://semver.org/lang/fr/).
 
+## [0.2.2], 2026-04-17
+
+Roadmap v0.2 Module B : baseline comparison (framework). Mesure empirique du gain des skills vs Claude brut sur 5 scenarios CFO realistes. Le framework est pret et teste en dry-run ; l'execution reelle necessite `ANTHROPIC_API_KEY` et coute environ 0,50 € par session.
+
+### Added
+
+- `evals/baseline-scenarios.json` : 5 scenarios CFO couvrant 5 skills (init, tresorerie, fiscalite, csrd, financement) avec difficulty variee (easy/medium/hard) et checklists de reference (3 a 6 steps chacune).
+- `evals/measure_baseline.py` : runner qui lance chaque scenario dans 2 conditions (avec / sans skill), capture tokens, tool_calls et couverture de la checklist via heuristique ≥ 2 mots-cles. Skip proprement en l'absence du SDK anthropic ou de `ANTHROPIC_API_KEY`.
+- `evals/_helpers/check_baseline_scenarios.py` : test statique de validation de la structure des scenarios (skills existants, checklists non vides, budgets temps coherents).
+- `evals/baseline-comparison.md` : methodologie etoffee, cibles -50 % tool_calls et -40 % tokens, mode d'emploi pour executer les runs reels.
+
+### Changed
+
+`evals/functional-tests.json` enrichi de 2 tests baseline (structure + dry-run) qui tournent en CI sans necessiter de cle API. Le test dry-run verifie que le runner charge les scenarios et produit un JSON structurellement valide.
+
+### Metriques
+
+- 73 tests fonctionnels (etait 71), +3 %
+- 349/349 tests globaux (100 %)
+- 5 scenarios baseline prets a mesurer sur 5 skills distincts
+- 0 dependance additionnelle en CI (anthropic SDK optionnel)
+- 0 warning lint
+
+### Note
+
+Les mesures reelles (tokens consommes, tool_calls, couverture checklist) seront commitees dans `evals/baseline-results.json` apres une session de mesure avec cle API. Le framework est conçu pour que chaque release majeure refreshe cette mesure et trace la courbe d'amelioration du bundle.
+
+v0.2 finalise : Module A (erreurs, v0.2.0), Module C (snapshots, v0.2.1), Module B (baseline, v0.2.2). Prochaine etape : v0.3 selon priorites utilisateur.
+
 ## [0.2.1], 2026-04-17
 
 Roadmap v0.2 Module C : snapshot regression. Les outputs des scripts purement deterministes (math, pas de date/heure, pas de random) sont figes dans `evals/_snapshots/` et compares avec une tolerance de 0,5 % pour les floats. Toute derive silencieuse (ex: un `cir_estime` qui passerait de 85 800 a 94 380 apres un refacto) est detectee au test suivant.

@@ -411,8 +411,71 @@
       "label": "Fct : scope_emissions_estimator calcule tCO2e scope 1+2+3",
       "executable": {"type": "python", "script": "evals/_helpers/fct_skill_scripts.py", "args": ["--skill", "cfo-csrd-esg", "--script", "scope_emissions_estimator"]},
       "assertions": {"exit_code": 0, "must_contain_in_output": ["fct_cfo_csrd_esg_scope_emissions_estimator_ok=1"], "must_not_contain_in_output": ["ERREUR"], "max_duration_seconds": 15}
+    },
+    {
+      "id": "cfo-comptabilite-fct-fec",
+      "skill": "cfo-comptabilite",
+      "label": "Fct : prepare_fec_export genere un FEC pipe-delimite 18 colonnes",
+      "executable": {"type": "python", "script": "evals/_helpers/fct_skill_scripts.py", "args": ["--skill", "cfo-comptabilite", "--script", "prepare_fec_export"]},
+      "assertions": {"exit_code": 0, "must_contain_in_output": ["fct_cfo_comptabilite_prepare_fec_export_ok=1"], "must_not_contain_in_output": ["ERREUR"], "max_duration_seconds": 15}
+    },
+    {
+      "id": "cfo-tresorerie-fct-forecast13w",
+      "skill": "cfo-tresorerie",
+      "label": "Fct : forecast_13w produit 13 semaines + niveau d'alerte calibre",
+      "executable": {"type": "python", "script": "evals/_helpers/fct_skill_scripts.py", "args": ["--skill", "cfo-tresorerie", "--script", "forecast_13w"]},
+      "assertions": {"exit_code": 0, "must_contain_in_output": ["fct_cfo_tresorerie_forecast_13w_ok=1"], "must_not_contain_in_output": ["ERREUR"], "max_duration_seconds": 15}
+    },
+    {
+      "id": "cfo-reporting-fct-dashboard",
+      "skill": "cfo-reporting",
+      "label": "Fct : generate_dashboard produit un HTML avec placeholders remplaces",
+      "executable": {"type": "python", "script": "evals/_helpers/fct_skill_scripts.py", "args": ["--skill", "cfo-reporting", "--script", "generate_dashboard"]},
+      "assertions": {"exit_code": 0, "must_contain_in_output": ["fct_cfo_reporting_generate_dashboard_ok=1"], "must_not_contain_in_output": ["ERREUR"], "max_duration_seconds": 20}
+    },
+    {
+      "id": "cfo-controle-gestion-fct-profitability",
+      "skill": "cfo-controle-gestion",
+      "label": "Fct : profitability_analyzer calcule Pareto + top/bottom N depuis ventes CSV",
+      "executable": {"type": "python", "script": "evals/_helpers/fct_skill_scripts.py", "args": ["--skill", "cfo-controle-gestion", "--script", "profitability_analyzer"]},
+      "assertions": {"exit_code": 0, "must_contain_in_output": ["fct_cfo_controle_gestion_profitability_analyzer_ok=1"], "must_not_contain_in_output": ["ERREUR"], "max_duration_seconds": 15}
+    },
+    {
+      "id": "cfo-budget-forecast-fct-rolling",
+      "skill": "cfo-budget-forecast",
+      "label": "Fct : rolling_forecast produit atterrissage depuis budget + reel YTD",
+      "executable": {"type": "python", "script": "evals/_helpers/fct_skill_scripts.py", "args": ["--skill", "cfo-budget-forecast", "--script", "rolling_forecast"]},
+      "assertions": {"exit_code": 0, "must_contain_in_output": ["fct_cfo_budget_forecast_rolling_forecast_ok=1"], "must_not_contain_in_output": ["ERREUR"], "max_duration_seconds": 15}
+    },
+    {
+      "id": "cfo-fiscalite-fct-tva",
+      "skill": "cfo-fiscalite",
+      "label": "Fct : tva_checker croise balance comptable vs CA3 declaree",
+      "executable": {"type": "python", "script": "evals/_helpers/fct_skill_scripts.py", "args": ["--skill", "cfo-fiscalite", "--script", "tva_checker"]},
+      "assertions": {"exit_code": 0, "must_contain_in_output": ["fct_cfo_fiscalite_tva_checker_ok=1"], "must_not_contain_in_output": ["ERREUR"], "max_duration_seconds": 15}
+    },
+    {
+      "id": "cfo-risques-fct-mapping",
+      "skill": "cfo-risques-conformite",
+      "label": "Fct : risk_mapping_generator produit matrice 5x5 + top 10 risques depuis CSV",
+      "executable": {"type": "python", "script": "evals/_helpers/fct_skill_scripts.py", "args": ["--skill", "cfo-risques-conformite", "--script", "risk_mapping_generator"]},
+      "assertions": {"exit_code": 0, "must_contain_in_output": ["fct_cfo_risques_conformite_risk_mapping_generator_ok=1"], "must_not_contain_in_output": ["ERREUR"], "max_duration_seconds": 15}
+    },
+    {
+      "id": "cfo-financement-fct-valuation",
+      "skill": "cfo-financement-croissance",
+      "label": "Fct : valuation_calculator triangulation DCF + multiples EBITDA",
+      "executable": {"type": "python", "script": "evals/_helpers/fct_skill_scripts.py", "args": ["--skill", "cfo-financement-croissance", "--script", "valuation_calculator"]},
+      "assertions": {"exit_code": 0, "must_contain_in_output": ["fct_cfo_financement_croissance_valuation_calculator_ok=1"], "must_not_contain_in_output": ["ERREUR"], "max_duration_seconds": 15}
+    },
+    {
+      "id": "cfo-csrd-fct-materiality",
+      "skill": "cfo-csrd-esg",
+      "label": "Fct : double_materiality_assessor selectionne sujets materiels + standards ESRS",
+      "executable": {"type": "python", "script": "evals/_helpers/fct_skill_scripts.py", "args": ["--skill", "cfo-csrd-esg", "--script", "double_materiality_assessor"]},
+      "assertions": {"exit_code": 0, "must_contain_in_output": ["fct_cfo_csrd_esg_double_materiality_assessor_ok=1"], "must_not_contain_in_output": ["ERREUR"], "max_duration_seconds": 15}
     }
   ],
 
-  "_note": "10 skills avec 3 tests chacun (smoke + 2 fct reels). Cible prochaine (v0.2) : couvrir le 3e script de chaque skill + ajouter scenarios d'erreur (fixtures invalides, args manquants)."
+  "_note": "Couverture fonctionnelle complete : 10 skills avec smoke test + 2 ou 3 tests fonctionnels reels. Tous les 27 scripts Python sont exerces au moins une fois. Cible prochaine (v0.2) : scenarios d'erreur (fixtures invalides, args manquants) + baseline comparison avec/sans skill."
 }

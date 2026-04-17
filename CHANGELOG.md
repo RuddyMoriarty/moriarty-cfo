@@ -4,6 +4,39 @@ Toutes les évolutions notables de `moriarty-cfo` sont documentées ici.
 
 Le format suit [Keep a Changelog](https://keepachangelog.com/fr/1.1.0/) et le projet adhère au [Semantic Versioning](https://semver.org/lang/fr/).
 
+## [0.1.9], 2026-04-16
+
+Couverture fonctionnelle complete : le 3e script de chaque skill est exerce. Tous les 27 scripts Python du bundle (hors cfo-init) sont desormais valides par un test fonctionnel reel avec fixture et assertions.
+
+### Added
+
+9 nouveaux tests fonctionnels (le 3e script de chaque skill) :
+
+- **cfo-comptabilite/prepare_fec_export** : FEC pipe-delimite 18 colonnes, header `JournalCode|EcritureNum`, 2 ecritures equilibrees dans la fixture.
+- **cfo-tresorerie/forecast_13w** : 13 semaines generees, niveau d'alerte dans `{healthy_vert, vigilance_jaune, plan_action_orange, urgence_rouge}`.
+- **cfo-reporting/generate_dashboard** : HTML A4 landscape avec placeholders `{{CA_HT}}`, `{{DSO_JOURS}}` etc. remplaces depuis un `kpis.json` fixture.
+- **cfo-controle-gestion/profitability_analyzer** : Pareto + top/bottom N depuis 5 ventes fixtures (Alpha/Beta/Gamma/Delta).
+- **cfo-budget-forecast/rolling_forecast** : atterrissage depuis budget + reel YTD 6 mois, niveau_alerte produit.
+- **cfo-fiscalite/tva_checker** : croisement balance (comptes 44566/44571/44562) vs CA3 declaree, flag `coherent`.
+- **cfo-risques-conformite/risk_mapping_generator** : matrice 5x5 + top 10 risques depuis CSV 5 risques (probabilite x impact).
+- **cfo-financement-croissance/valuation_calculator** : triangulation DCF + multiples EBITDA (3 multiples), `ev_avg` positif.
+- **cfo-csrd-esg/double_materiality_assessor** : selection de sujets materiels depuis 5 sujets ESRS (E1/E2/E3/S1/G1).
+
+### Metriques
+
+- 49 tests fonctionnels (etait 40), +22 %
+- 325/325 tests globaux (100 %)
+- Couverture scripts : 27/27 (100 %) vs 18/27 en v0.1.8
+- Couverture skills : 10/10 avec 3+ tests chacun
+- 0 lint warning
+
+### Roadmap v0.2
+
+Points ouverts pour la prochaine version :
+- Scenarios d'erreur (fixtures invalides, args manquants) : mesurer la robustesse des scripts face aux edge cases.
+- Baseline comparison avec/sans skill : quantifier le gain en tokens/tool calls sur des scenarios representatifs.
+- Tests de non-regression sur outputs (snapshot comparaisons) : detecter les changements silencieux de format JSON.
+
 ## [0.1.8], 2026-04-16
 
 Tests fonctionnels reels sur les 9 skills hors cfo-init. Chaque skill passe maintenant de 1 test smoke (compile + help) a 3 tests (smoke + 2 scripts exerces avec fixtures et assertions sur outputs structures). Cible initiale "3 tests reels par skill" atteinte.

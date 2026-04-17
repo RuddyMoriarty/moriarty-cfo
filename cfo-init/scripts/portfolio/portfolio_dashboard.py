@@ -202,10 +202,18 @@ def export_pdf(html_path: Path, pdf_path: Path) -> bool:
 
 
 def main() -> int:
+    global PRIVATE
     parser = argparse.ArgumentParser(description="Dashboard HTML du portfolio EC")
-    parser.add_argument("--output", type=Path, default=PRIVATE / "portfolio-dashboard.html")
+    parser.add_argument("--output", type=Path, default=None,
+                        help="Fichier HTML de sortie (default: <private>/portfolio-dashboard.html)")
     parser.add_argument("--pdf", action="store_true", help="Exporte aussi en PDF via Chrome")
+    parser.add_argument("--private-dir", type=Path, default=None,
+                        help="Repertoire prive (default: <repo>/private)")
     args = parser.parse_args()
+    if args.private_dir is not None:
+        PRIVATE = args.private_dir
+    if args.output is None:
+        args.output = PRIVATE / "portfolio-dashboard.html"
 
     if not TEMPLATE_PATH.exists():
         print(f"ERREUR: template introuvable : {TEMPLATE_PATH}", file=sys.stderr)

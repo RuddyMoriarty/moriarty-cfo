@@ -4,6 +4,61 @@ Toutes les évolutions notables de `moriarty-cfo` sont documentées ici.
 
 Le format suit [Keep a Changelog](https://keepachangelog.com/fr/1.1.0/) et le projet adhère au [Semantic Versioning](https://semver.org/lang/fr/).
 
+## [0.3.4], 2026-04-17
+
+Coverage booster : 77.5 % → **82.7 %** (+5.2 pts). Les 13 scripts sous 70 % passent a 5. Refactor `--private-dir` sur 6 scripts portfolio pour rendre les fixtures testables isolement. Helper dedie `fct_lowcov_scripts.py` avec 13 tests qui couvrent les branches principales.
+
+### Changed
+
+**Refactor `--private-dir` sur 6 scripts** : `list_clients`, `remove_client`, `schedule_all`, `portfolio_dashboard`, `init_cabinet`, `encaissements_aging`, `forfait_tracker`. Le pattern est minimal : ajout d'un argparse + `global PRIVATE` puis `PRIVATE = args.private_dir` si fourni. Default inchange : `<repo>/private`.
+
+Benefice : tests isolees dans `tempfile.TemporaryDirectory` sans polluer le vrai `private/`. Benefice cote utilisateur : permet d'utiliser un autre dossier prive (ex: partage reseau chiffre, NAS, Cloud perso).
+
+**Amelioration fonctionnelle** : `encaissements_aging` accepte desormais `--ref-date YYYY-MM-DD` pour tester l'aging a une date historique (au lieu d'utiliser `date.today()` uniquement).
+
+### Added
+
+- **`evals/_helpers/fct_lowcov_scripts.py`** (13 tests) : helper dedie qui couvre les branches principales des scripts sous 70 %. Chaque test setup fixtures complets + exerce plusieurs modes (json, text, detailed, --force, SIREN invalide, --archive vs --delete, etc).
+- Fct test `cfo-init-fct-lowcov-all` dans `functional-tests.json` : lance les 13 tests en batch via `--all`, 30 s timeout.
+
+### Metriques
+
+| Metrique | Avant v0.3.4 | Apres v0.3.4 | Delta |
+|---|---|---|---|
+| Coverage globale | 77.5 % | **82.7 %** | +5.2 pts |
+| Scripts < 70 % | 11 | **5** | -6 (-55 %) |
+| Lignes non couvertes | 813 | **625** | -188 |
+| Tests fonctionnels | 67 | **68** | +1 (mais 13 scripts exerces en plus) |
+| Tests globaux | 343 | **344** | +1 |
+
+### Progression par script (les plus gros gains)
+
+| Script | v0.3.2 | v0.3.4 | Gain |
+|---|---|---|---|
+| `validate_close_checklist` | 56.4 % | 88.5 % | +32 pts |
+| `encaissements_aging` | 59.0 % | 89.8 % | +31 pts |
+| `remove_client` | 65.0 % | 92.1 % | +27 pts |
+| `forfait_tracker` | 57.7 % | 81.0 % | +23 pts |
+| `list_clients` | 65.2 % | 88.4 % | +23 pts |
+| `generate_closing_journal` | 52.5 % | 71.3 % | +19 pts |
+| `portfolio_dashboard` | 56.4 % | 72.7 % | +16 pts |
+
+### Scripts encore sous 70 %
+
+5 scripts avec des branches qui necessitent un mock reseau ou Chrome headless :
+
+- `fetch_sirene.py` 62.1 % : OAuth INSEE + HTTP reel
+- `init_progress.py` 61.2 % : `--unlock`/`--incr` volontairement non testes dans `lowcov` pour eviter de polluer `private/cfo-progress.json` (partage avec `e2e_onboarding`, qui couvre ces branches en natif)
+- `fetch_pappers.py` 64.8 % : `fetch_via_api` necessite `PAPPERS_API_KEY`
+- `schedule_all.py` 65.3 % : execution non dry-run (chaine compute + schedule)
+- `generate_dashboard.py` 68.1 % : PDF export via Chrome headless
+
+Cible v0.4 : atteindre 85 % en ajoutant des mocks `urllib.request` + skip de l'export PDF.
+
+### Documentation
+
+`docs/coverage-snapshot.md` mis a jour avec les nouveaux chiffres par script + tableau de progression.
+
 ## [0.3.3], 2026-04-17
 
 Preparation a la soumission marketplace. Ajout du `plugin.json` a la racine du repo : manifest complet decrivant le bundle (metadonnees, 10 skills, 51 commandes CLI, exigences, installation, securite, qualite). Documente le workflow de publication dans `docs/PUBLISHING.md` et genere 2 HTML de demonstration representatifs dans `docs/demo/`.

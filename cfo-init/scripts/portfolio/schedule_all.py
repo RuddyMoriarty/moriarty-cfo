@@ -66,10 +66,15 @@ def run_schedule(siren: str) -> tuple[bool, int]:
 
 
 def main() -> int:
+    global PRIVATE
     parser = argparse.ArgumentParser(description="Programme les routines pour tout le portfolio")
     parser.add_argument("--dry-run", action="store_true", help="N'ecrit rien, affiche seulement")
     parser.add_argument("--level", type=int, default=2, help="Niveau de notifications (1-4)")
+    parser.add_argument("--private-dir", type=Path, default=None,
+                        help="Repertoire prive (default: <repo>/private)")
     args = parser.parse_args()
+    if args.private_dir is not None:
+        PRIVATE = args.private_dir
 
     index = load_index()
     clients = [c for c in index.get("clients", []) if c.get("status") == "actif"]

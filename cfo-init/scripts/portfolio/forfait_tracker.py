@@ -113,7 +113,12 @@ def main() -> int:
     parser.add_argument("--siren", help="Limite a un seul client")
     parser.add_argument("--detailed", action="store_true", help="Detail des saisies")
     parser.add_argument("--json", action="store_true", help="Sortie JSON")
+    parser.add_argument("--private-dir", type=Path, default=None,
+                        help="Repertoire prive (default: <repo>/private)")
     args = parser.parse_args()
+    global PRIVATE
+    if args.private_dir is not None:
+        PRIVATE = args.private_dir
 
     index = load_index()
     if args.siren:

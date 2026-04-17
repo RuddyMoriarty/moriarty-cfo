@@ -49,10 +49,15 @@ def load_routines_count(siren: str) -> int:
 
 
 def main() -> int:
+    global PRIVATE
     parser = argparse.ArgumentParser(description="Liste les clients du portfolio EC")
     parser.add_argument("--detailed", action="store_true", help="Mode detaille")
     parser.add_argument("--status", choices=["actif", "archive", "all"], default="all")
+    parser.add_argument("--private-dir", type=Path, default=None,
+                        help="Repertoire prive (default: <repo>/private)")
     args = parser.parse_args()
+    if args.private_dir is not None:
+        PRIVATE = args.private_dir
 
     index = load_index()
     clients = index.get("clients", [])

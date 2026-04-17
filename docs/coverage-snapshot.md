@@ -1,92 +1,78 @@
-# Coverage snapshot, v0.3.2
+# Coverage snapshot, v0.3.4
 
-Snapshot du rapport `coverage.py` pour illustrer la couverture reelle des 27 scripts du bundle. A regenerer apres chaque evolution majeure via `python3 evals/run_coverage.py`.
+Snapshot du rapport `coverage.py` apres le coverage booster. Le cycle precedent (v0.3.2) mesurait 77.5 %. En v0.3.4, **82.7 %** sur 3638 lignes de code executable, 625 lignes non couvertes.
+
+## Progression depuis v0.3.2
+
+| Metrique | v0.3.2 | v0.3.4 | Delta |
+|---|---|---|---|
+| Coverage globale | 77.5 % | **82.7 %** | **+5.2 pts** |
+| Scripts < 70 % | 11 | **5** | -6 (-55 %) |
+| Lignes non couvertes | 813 | **625** | -188 |
 
 ## Resultat global
 
-**77.5 % de couverture** sur 3608 lignes de code executable, 813 lignes non couvertes.
+**82.7 %** de couverture sur 3638 lignes, 625 lignes non couvertes.
 
-## Detail par skill
+## Gains majeurs v0.3.4
 
-### Couverture forte (>= 85 %)
+Refactor `--private-dir` sur 6 scripts portfolio + helper dedie `fct_lowcov_scripts.py` (13 tests) ont permis :
 
-| Script | Stmts | Miss | Cover | Notes |
-|--------|-------|------|-------|-------|
-| `cfo-financement-croissance/moriarty_link.py` | 29 | 0 | **100.0%** | Script le plus simple |
-| `cfo-tresorerie/forecast_12m.py` | 61 | 1 | 98.4% | - |
-| `cfo-controle-gestion/pricing_simulator.py` | 39 | 1 | 97.4% | - |
-| `cfo-csrd-esg/scope_emissions_estimator.py` | 59 | 2 | 96.6% | - |
-| `cfo-financement-croissance/valuation_calculator.py` | 54 | 2 | 96.3% | - |
-| `cfo-init/compute_calendar.py` | 187 | 11 | 94.1% | Script complexe bien couvert |
-| `cfo-reporting/extract_variances.py` | 62 | 4 | 93.5% | Durci en v0.2.0 |
-| `cfo-controle-gestion/profitability_analyzer.py` | 74 | 5 | 93.2% | - |
-| `cfo-controle-gestion/variance_analyzer.py` | 43 | 3 | 93.0% | - |
-| `cfo-risques/internal_control_checklist.py` | 28 | 2 | 92.9% | - |
-| `cfo-financement/diagnostic_financement.py` | 40 | 3 | 92.5% | - |
-| `cfo-risques/veille_scheduler.py` | 39 | 3 | 92.3% | - |
-| `cfo-budget-forecast/budget_builder.py` | 54 | 5 | 90.7% | Durci en v0.2.0 |
-| `cfo-csrd-esg/double_materiality_assessor.py` | 55 | 6 | 89.1% | - |
-| `cfo-risques/risk_mapping_generator.py` | 58 | 7 | 87.9% | Durci en v0.2.0 |
-| `cfo-fiscalite/cir_estimator.py` | 40 | 5 | 87.5% | - |
-| `cfo-fiscalite/is_simulator.py` | 40 | 5 | 87.5% | - |
-| `cfo-budget-forecast/capex_analyzer.py` | 62 | 8 | 87.1% | - |
-| `cfo-fiscalite/tva_checker.py` | 69 | 9 | 87.0% | Durci en v0.2.0 |
-| `cfo-init/portfolio/generate_lettre_mission.py` | 92 | 12 | 87.0% | - |
-| `cfo-tresorerie/bfr_calculator.py` | 73 | 10 | 86.3% | Durci en v0.2.0 |
-| `cfo-init/routines/compute_entity_routines.py` | 176 | 26 | 85.2% | - |
+| Script | v0.3.2 | v0.3.4 | Gain |
+|--------|--------|--------|------|
+| `cfo-init/portfolio/remove_client.py` | 65.0 % | **92.1 %** | +27 pts |
+| `cfo-init/portfolio/list_clients.py` | 65.2 % | **88.4 %** | +23 pts |
+| `cfo-init/portfolio/encaissements_aging.py` | 59.0 % | **89.8 %** | +31 pts |
+| `cfo-init/portfolio/forfait_tracker.py` | 57.7 % | **81.0 %** | +23 pts |
+| `cfo-comptabilite/validate_close_checklist.py` | 56.4 % | **88.5 %** | +32 pts |
+| `cfo-comptabilite/generate_closing_journal.py` | 52.5 % | **71.3 %** | +19 pts |
+| `cfo-init/portfolio/portfolio_dashboard.py` | 56.4 % | **72.7 %** | +16 pts |
+| `cfo-init/portfolio/init_cabinet.py` | 69.9 % | **73.3 %** | +3 pts |
 
-### Couverture moyenne (70 % a 85 %)
+## Scripts encore sous 70 %
 
-| Script | Stmts | Miss | Cover |
-|--------|-------|------|-------|
-| `cfo-budget-forecast/rolling_forecast.py` | 66 | 10 | 84.8% |
-| `cfo-csrd-esg/csrd_scope_calculator.py` | 38 | 7 | 81.6% |
-| `cfo-init/routines/schedule_routines.py` | 130 | 25 | 80.8% |
-| `cfo-reporting/cfo_unified_dashboard.py` | 154 | 31 | 79.9% |
-| `cfo-reporting/compute_kpis.py` | 82 | 18 | 78.0% |
-| `cfo-comptabilite/prepare_fec_export.py` | 88 | 21 | 76.1% |
-| `cfo-tresorerie/forecast_13w.py` | 82 | 21 | 74.4% |
+5 scripts restent sous le seuil, tous avec des branches qui necessitent un mock reseau ou Chrome headless :
 
-### Couverture faible (< 70 %), a ameliorer en priorite
+| Script | Cover | Branche non couverte typique |
+|--------|-------|------------------------------|
+| `cfo-init/fetch_sirene.py` | 62.1 % | OAuth INSEE + fetch_via_annuaire reseau reel |
+| `cfo-init/init_progress.py` | 61.2 % | `--unlock` et `--incr` qui modifient `private/cfo-progress.json` (partage avec e2e) |
+| `cfo-init/fetch_pappers.py` | 64.8 % | `fetch_via_api` necessite `PAPPERS_API_KEY` |
+| `cfo-init/portfolio/schedule_all.py` | 65.3 % | Execution non dry-run (appelle compute_entity_routines + schedule_routines) |
+| `cfo-reporting/generate_dashboard.py` | 68.1 % | `export_pdf` via Chrome headless |
 
-| Script | Stmts | Miss | Cover | Branches non couvertes typiques |
-|--------|-------|------|-------|---------------------------------|
-| `cfo-init/portfolio/init_cabinet.py` | 83 | 25 | 69.9% | Erreurs template chargement |
-| `cfo-init/portfolio/list_clients.py` | 66 | 23 | 65.2% | Mode detailed |
-| `cfo-reporting/generate_dashboard.py` | 69 | 24 | 65.2% | Chrome headless PDF gen |
-| `cfo-init/portfolio/remove_client.py` | 60 | 21 | 65.0% | Mode --delete |
-| `cfo-init/portfolio/schedule_all.py` | 92 | 37 | 59.8% | Iteration portfolio entier |
-| `cfo-init/portfolio/encaissements_aging.py` | 117 | 48 | 59.0% | Rendu HTML + main |
-| `cfo-init/portfolio/forfait_tracker.py` | 97 | 41 | 57.7% | Rendu HTML + main |
-| `cfo-init/fetch_pappers.py` | 71 | 30 | 57.7% | Mode --mode api (pas de cle API en CI) |
-| `cfo-init/portfolio/portfolio_dashboard.py` | 156 | 68 | 56.4% | Blocs HTML complexes |
-| `cfo-comptabilite/validate_close_checklist.py` | 78 | 34 | 56.4% | Checks avances (cut-off, provisions) |
-| `cfo-comptabilite/generate_closing_journal.py` | 101 | 48 | 52.5% | Mode annuel, ajustements |
+## Scripts a 100 % ou presque
 
-## Lecture
-
-Les scripts avec les plus gros trous sont ceux qui ont :
-
-1. **De la generation HTML complexe** (dashboards portfolio, aging, forfait) : les branches de rendu sont peu testees car les tests fonctionnels valident l'existence du fichier HTML, pas chaque bloc de template.
-2. **Des modes avances** (fetch en mode api, closing annuel) : non couverts car ils necessitent des cles API ou des fixtures plus riches.
-3. **Du main() avec option --output vs stdout** : une seule branche testee sur les deux.
+| Script | Cover |
+|--------|-------|
+| `cfo-financement-croissance/moriarty_link.py` | **100.0 %** |
+| `cfo-tresorerie/forecast_12m.py` | 98.4 % |
+| `cfo-controle-gestion/pricing_simulator.py` | 97.4 % |
+| `cfo-csrd-esg/scope_emissions_estimator.py` | 96.6 % |
+| `cfo-financement-croissance/valuation_calculator.py` | 96.3 % |
+| `cfo-init/compute_calendar.py` | 94.1 % |
+| `cfo-reporting/extract_variances.py` | 93.5 % |
+| `cfo-controle-gestion/profitability_analyzer.py` | 93.2 % |
+| `cfo-controle-gestion/variance_analyzer.py` | 93.0 % |
+| `cfo-risques-conformite/internal_control_checklist.py` | 92.9 % |
+| `cfo-financement-croissance/diagnostic_financement.py` | 92.5 % |
+| `cfo-risques-conformite/veille_scheduler.py` | 92.3 % |
+| `cfo-init/portfolio/remove_client.py` | 92.1 % |
 
 ## Cible v0.4
 
-- Atteindre 85 % global (actuellement 77.5 %) en ajoutant des fixtures :
-  - Pour les dashboards portfolio : tester le mode --detailed et les alertes vides
-  - Pour les closures : tester le mode annuel avec fixtures bilan + compte de resultat
-  - Pour les fetches : ajouter un test avec mock API (sans vraie cle)
-- Aucun script en dessous de 70 %.
-- Couverture des 5 scripts durcis en v0.2.0 (bfr, extract_variances, tva_checker, risk_mapping, moriarty_link) >= 95 %. Trois y sont deja (87 %, 93 %, 87 %), les deux autres oscillent (86 %, 100 %).
+- Atteindre 85 % global (actuellement 82.7 %), soit fermer 3 pts.
+- Les 5 scripts < 70 % restants : necessitent des mocks reseau (urllib.request patchs) + Chrome headless (skip ou mock). Non critique, les branches sont `except` ou modes avances rarement utilises.
+
+## Infrastructure
+
+Refactor majeur v0.3.4 : 6 scripts portfolio acceptent desormais `--private-dir <path>` pour isoler les fixtures de test du vrai repertoire `private/`. Pattern `global PRIVATE` + override par argparse. Testabilite et portabilite ameliorees sans changer l'API publique (default reste `<repo>/private`).
 
 ## Reproduction
 
 ```bash
 pip install coverage
-python3 evals/run_coverage.py                # Rapport texte
+python3 evals/run_coverage.py                # Rapport texte, ~20 secondes
 python3 evals/run_coverage.py --html         # + HTML dans htmlcov/
-python3 evals/run_coverage.py --threshold 70 # Fail si coverage < 70 %
+python3 evals/run_coverage.py --threshold 80 # Fail si coverage < 80 %
 ```
-
-Le runner `evals/run_coverage.py` est stdlib-compatible pour son import mais necessite `coverage` installe pour fonctionner. Il skip proprement sinon.

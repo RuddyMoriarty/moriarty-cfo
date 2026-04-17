@@ -2,7 +2,7 @@
   "$schema": "https://anthropic.com/schemas/claude-plugin/v1.json",
   "name": "moriarty-cfo",
   "display_name": "Moriarty CFO",
-  "version": "0.3.3",
+  "version": "0.3.4",
   "type": "plugin-bundle",
   "description_short": "10 skills Claude pour CFO/DAF francais : PME, TPE, et collaborateurs de cabinets d'expertise comptable.",
   "description_long": "Plugin bundle Claude qui transforme votre instance en CFO externe pour PME/TPE francaises ou en collaborateur Senior chez un cabinet d'expertise comptable. Couvre l'integralite du perimetre CFO francais 2026 : comptabilite (cloture mensuelle J+5, liasse fiscale, FEC), tresorerie (cashflow 13 semaines, BFR, benchmarks Banque de France), reporting (dashboard executif HTML A4, board pack, flash mensuel), controle de gestion (pricing, Pareto, variance analysis), budget (3 scenarios ponderes 20/60/20, rolling forecast), fiscalite (IS, TVA, CIR/CII avec references CGI), risques et conformite (COSO ERM, LCB-FT, RGPD), financement (diagnostic aides publiques BPI, valorisation DCF + multiples), et CSRD/ESG (wave determination, double materialite, scope 1/2/3). Inclut un mode EC portfolio multi-clients avec dashboard hebdomadaire des alertes + lettres de mission NP 2300/2400 + suivi forfaits et encaissements LME.",
@@ -93,9 +93,9 @@
   },
 
   "quality": {
-    "tests_total": 343,
-    "tests_functional": 67,
-    "scripts_coverage_pct": 77.5,
+    "tests_total": 344,
+    "tests_functional": 68,
+    "scripts_coverage_pct": 82.7,
     "lint_warnings": 0,
     "ci_provider": "github-actions",
     "ci_status_badge": "https://github.com/RuddyMoriarty/moriarty-cfo/actions/workflows/evals.yml/badge.svg"

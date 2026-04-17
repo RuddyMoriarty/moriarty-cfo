@@ -60,13 +60,18 @@ def sync_cabinet_remove(siren: str) -> None:
 
 
 def main() -> int:
+    global PRIVATE
     parser = argparse.ArgumentParser(description="Archive ou supprime un client")
     parser.add_argument("--siren", required=True)
     group = parser.add_mutually_exclusive_group()
     group.add_argument("--archive", action="store_true", help="Passe status=archive (defaut)")
     group.add_argument("--delete", action="store_true", help="Supprime definitivement les fichiers")
     parser.add_argument("--force", action="store_true", help="Requis pour --delete")
+    parser.add_argument("--private-dir", type=Path, default=None,
+                        help="Repertoire prive (default: <repo>/private)")
     args = parser.parse_args()
+    if args.private_dir is not None:
+        PRIVATE = args.private_dir
 
     if args.delete and not args.force:
         print("ERREUR: --delete requiert --force (destructif)", file=sys.stderr)

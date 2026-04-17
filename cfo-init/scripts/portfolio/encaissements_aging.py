@@ -99,14 +99,28 @@ def compute_aging_client(siren: str, today: date) -> dict:
 
 
 def main() -> int:
+    global PRIVATE
     parser = argparse.ArgumentParser(description="Aging des encaissements du portfolio EC")
     parser.add_argument("--siren", help="Limite a un seul client (par defaut: tout le portfolio)")
     parser.add_argument("--detailed", action="store_true", help="Liste les factures de chaque bucket")
     parser.add_argument("--json", action="store_true", help="Sortie JSON")
+    parser.add_argument("--ref-date", type=str, default=None,
+                        help="Date de reference ISO YYYY-MM-DD (default: today)")
+    parser.add_argument("--private-dir", type=Path, default=None,
+                        help="Repertoire prive (default: <repo>/private)")
     args = parser.parse_args()
+    if args.private_dir is not None:
+        PRIVATE = args.private_dir
 
     index = load_index()
-    today = date.today()
+    if args.ref_date:
+        try:
+            today = date.fromisoformat(args.ref_date)
+        except ValueError:
+            print(f"ERREUR: --ref-date '{args.ref_date}' invalide (attendu YYYY-MM-DD)", file=sys.stderr)
+            return 2
+    else:
+        today = date.today()
 
     if args.siren:
         clients = [c for c in index.get("clients", []) if c.get("siren") == args.siren]

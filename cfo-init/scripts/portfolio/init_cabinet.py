@@ -78,7 +78,12 @@ def main() -> int:
     parser.add_argument("--force", action="store_true", help="Ecrase cabinet.json si existe")
     parser.add_argument("--fetch", action="store_true",
                         help="Enrichit avec l'API Annuaire Entreprises (gratuite, sans auth)")
+    parser.add_argument("--private-dir", type=Path, default=None,
+                        help="Repertoire prive (default: <repo>/private)")
     args = parser.parse_args()
+    global PRIVATE
+    if args.private_dir is not None:
+        PRIVATE = args.private_dir
 
     enrichment: dict = {}
     if args.fetch:

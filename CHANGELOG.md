@@ -4,6 +4,47 @@ Toutes les évolutions notables de `moriarty-cfo` sont documentées ici.
 
 Le format suit [Keep a Changelog](https://keepachangelog.com/fr/1.1.0/) et le projet adhère au [Semantic Versioning](https://semver.org/lang/fr/).
 
+## [0.3.3], 2026-04-17
+
+Preparation a la soumission marketplace. Ajout du `plugin.json` a la racine du repo : manifest complet decrivant le bundle (metadonnees, 10 skills, 51 commandes CLI, exigences, installation, securite, qualite). Documente le workflow de publication dans `docs/PUBLISHING.md` et genere 2 HTML de demonstration representatifs dans `docs/demo/`.
+
+### Added
+
+- **`plugin.json`** (v0.3.3, 16 champs obligatoires) : manifest conforme a un format marketplace presume Anthropic (les specs publiques evoluent, ce fichier sera ajuste quand elles sortent). Contient :
+  - Metadonnees : name, version, description_short, description_long (paragraphe exhaustif), author, license, homepage, repository, issues
+  - 2 audiences declarees : pme_dirigeant + ec_collaborateur
+  - 10 skills avec tier et role
+  - CLI : 51 commandes, 12 categories, entrypoint `./cfo`
+  - Requirements : Python 3.9+, stdlib only, variables d'env optionnelles (PAPPERS_API_KEY, INSEE_CONSUMER_KEY, ANTHROPIC_API_KEY)
+  - Installation : git clone + curl one-liner (2.5 MB, pas de reseau au runtime)
+  - Security : private/ gitignore, zero envoi, hash SHA-256 pour passerelle Moriarty, RGPD compliant
+  - Quality : 343 tests, 77.5 % coverage, 0 warning lint, CI verte
+
+- **`docs/PUBLISHING.md`** : guide de publication detaille avec liste de ce qui est pret, ce qui reste a faire (captures screenshots, video demo 2 min, baseline reelle, communication LinkedIn/Reddit/presse), quality gates avant soumission, metriques a suivre post-publication.
+
+- **`docs/demo/`** : 2 HTML de demonstration pre-generes avec des fixtures realistes (SIREN 552120222 Societe Generale, ACME Industrie SAS) :
+  - `screenshot-unified-dashboard.html` : dashboard PME complet avec alertes J-3 TVA, 6 KPIs (CA, EBITDA, DSO, BFR, tresorerie, cash niveau), tableau 5 echeances, routines, progression
+  - `screenshot-portfolio-dashboard.html` : dashboard cabinet EC avec 5 clients (TPE/PE/ME, missions presentation/examen/audit/social-paie), repartition par taille, alertes par echeance
+
+- **Test CI `evals/_helpers/check_plugin_manifest.py`** (8 checks) :
+  - `plugin.json` existe et est du JSON valide
+  - 16 champs obligatoires presents
+  - Version coherente avec `pyproject.toml`
+  - 10 skills declares correspondent aux 10 dossiers cfo-* sur disque
+  - Entrypoint `./cfo` existe et est executable
+  - Fichiers demo (2 HTML + 2 POC) presents
+  - Compteurs plausibles (tests >= 300, CLI >= 40, coverage >= 50)
+
+### Metriques
+
+- 67 tests fonctionnels (etait 66)
+- 343/343 tests globaux (100 %)
+- 0 warning lint
+
+### Status soumission
+
+**Non soumis** au Anthropic Skills Marketplace : specs publiques en cours d'elaboration cote Anthropic. Le manifest est pret a etre adapte quand elles sortent. Le bundle est actuellement distribue via GitHub public + install.sh one-liner.
+
 ## [0.3.2], 2026-04-17
 
 Infrastructure coverage.py. Mesure empirique de la couverture reelle des 27 scripts du bundle. **Resultat : 77.5 % de couverture sur 3608 lignes**, avec 4 scripts a 100 % ou plus de 95 % et 11 scripts en dessous de 70 % a renforcer en v0.4.

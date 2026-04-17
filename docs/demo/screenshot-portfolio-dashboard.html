@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<title>Portfolio EC -- CABINET DEMO EC & ASSOCIES</title>
+<style>
+  @page { size: A4 landscape; margin: 10mm; }
+  * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Dosis', 'Helvetica Neue', sans-serif; }
+  body { background: #F6F6F6; color: #002E72; padding: 16px; }
+  h1 { font-size: 24px; border-bottom: 2px solid #E14F0A; padding-bottom: 6px; margin-bottom: 12px; }
+  .meta { color: #666; font-size: 13px; margin-bottom: 16px; }
+
+  .stats {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 12px;
+    margin-bottom: 20px;
+  }
+  .stat {
+    background: #fff;
+    padding: 14px 16px;
+    border-left: 3px solid #002E72;
+  }
+  .stat-label { font-size: 11px; color: #666; text-transform: uppercase; letter-spacing: 0.5px; }
+  .stat-value { font-size: 24px; font-weight: 700; color: #002E72; margin-top: 4px; }
+
+  h2 { font-size: 16px; color: #002E72; margin: 16px 0 8px; }
+
+  .resume {
+    background: #fff;
+    padding: 12px 16px;
+    border-left: 3px solid #E14F0A;
+    margin-bottom: 16px;
+    font-size: 13px;
+  }
+
+  .alerte {
+    background: #fff;
+    padding: 10px 14px;
+    margin-bottom: 6px;
+    font-size: 12px;
+  }
+  .alerte.rouge { border-left: 4px solid #C00; }
+  .alerte.orange { border-left: 4px solid #F80; }
+  .alerte.jaune { border-left: 4px solid #CA0; }
+  .alerte-label { font-weight: 600; }
+
+  table { width: 100%; border-collapse: collapse; background: #fff; font-size: 12px; }
+  th { background: #99B8E0; color: #002E72; padding: 6px 8px; text-align: left; font-weight: 600; }
+  td { padding: 6px 8px; border-bottom: 1px solid #eee; }
+  tr:hover { background: #F0F6FF; }
+
+  .badge { display: inline-block; padding: 2px 8px; border-radius: 3px; font-size: 11px; font-weight: 600; }
+  .badge-actif { background: #DFE9D2; color: #060; }
+  .badge-archive { background: #F0F0F0; color: #666; }
+
+  .footer { margin-top: 16px; display: flex; height: 10px; }
+  .footer-left { width: 50%; background: #002E72; }
+  .footer-right { width: 50%; background: #E14F0A; }
+</style>
+</head>
+<body>
+
+<h1>Portfolio EC -- CABINET DEMO EC & ASSOCIES</h1>
+<div class="meta">SIREN cabinet 789456123 -- Genere le 2026-04-17T21:14:16+02:00 -- moriarty-cfo v0.1.4</div>
+
+<div class="stats">
+  <div class="stat"><div class="stat-label">Clients actifs</div><div class="stat-value">5</div></div>
+  <div class="stat"><div class="stat-label">Clients archives</div><div class="stat-value">0</div></div>
+  <div class="stat"><div class="stat-label">Routines programmees</div><div class="stat-value">0</div></div>
+  <div class="stat"><div class="stat-label">Alertes 7 jours</div><div class="stat-value">0</div></div>
+</div>
+
+<h2>Resume de la semaine</h2>
+<div class="resume">5 client(s) actif(s). Aucune echeance urgente ce mois-ci.</div>
+
+<h2>Alertes echeances</h2>
+<div class="alerte jaune">(aucune echeance dans les 30 prochains jours)</div>
+
+<h2>Tableau du portfolio</h2>
+<table>
+  <thead>
+    <tr>
+      <th>SIREN</th>
+      <th>Denomination</th>
+      <th>Taille</th>
+      <th>Mission</th>
+      <th>Referent</th>
+      <th>Routines</th>
+      <th>Prochaine echeance</th>
+      <th>Statut</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr><td>552120222</td><td>BOULANGERIE MARTIN SAS</td><td>tpe</td><td>presentation</td><td>Jean Dupont</td><td>0</td><td>-</td><td><span class="badge badge-actif">actif</span></td></tr>
+<tr><td>732005678</td><td>CONSEIL CROISSANCE SAS</td><td>pe</td><td>presentation</td><td>Pierre Blanc</td><td>0</td><td>-</td><td><span class="badge badge-actif">actif</span></td></tr>
+<tr><td>555010111</td><td>GARAGE LEFEVRE</td><td>tpe</td><td>social_paie</td><td>Jean Dupont</td><td>0</td><td>-</td><td><span class="badge badge-actif">actif</span></td></tr>
+<tr><td>451001234</td><td>MENUISERIE DUBOIS SARL</td><td>pe</td><td>examen_limite</td><td>Marie Lefort</td><td>0</td><td>-</td><td><span class="badge badge-actif">actif</span></td></tr>
+<tr><td>884009876</td><td>TECH INNOVATIONS SA</td><td>me</td><td>audit</td><td>Sophie Dupuis</td><td>0</td><td>-</td><td><span class="badge badge-actif">actif</span></td></tr>
+  </tbody>
+</table>
+
+<div class="footer"><div class="footer-left"></div><div class="footer-right"></div></div>
+
+</body>
+</html>

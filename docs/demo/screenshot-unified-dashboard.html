@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<title>Dashboard CFO unifie, ACME INDUSTRIE SAS</title>
+<style>
+  @page { size: A4 portrait; margin: 12mm; }
+  * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Helvetica Neue', Arial, sans-serif; }
+  body { background: #F6F6F6; color: #002E72; padding: 20px; max-width: 900px; margin: 0 auto; }
+
+  header { border-bottom: 3px solid #E14F0A; padding-bottom: 10px; margin-bottom: 18px; }
+  header h1 { font-size: 22px; font-weight: 700; }
+  header .meta { color: #666; font-size: 12px; margin-top: 4px; }
+  header .tag { display: inline-block; background: #002E72; color: #fff; padding: 2px 8px; border-radius: 3px; font-size: 10px; margin-right: 4px; }
+
+  section { background: #fff; padding: 14px 18px; margin-bottom: 14px; border-left: 3px solid #002E72; page-break-inside: avoid; }
+  section h2 { font-size: 15px; color: #002E72; margin-bottom: 10px; font-weight: 700; }
+  section.alert { border-left-color: #C00; background: #FFF5F5; }
+  section.warning { border-left-color: #F80; background: #FFF9F0; }
+
+  .kpi-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-bottom: 12px; }
+  .kpi { background: #F6F6F6; padding: 10px; border-left: 2px solid #002E72; }
+  .kpi.good { border-left-color: #060; }
+  .kpi.warning { border-left-color: #F80; }
+  .kpi.critical { border-left-color: #C00; }
+  .kpi-label { font-size: 10px; color: #666; text-transform: uppercase; letter-spacing: 0.5px; }
+  .kpi-value { font-size: 18px; font-weight: 700; color: #002E72; margin-top: 2px; }
+  .kpi-unit { font-size: 12px; color: #999; margin-left: 3px; font-weight: 400; }
+  .kpi-note { font-size: 10px; color: #999; margin-top: 4px; font-style: italic; }
+
+  table { width: 100%; border-collapse: collapse; font-size: 12px; }
+  th { text-align: left; background: #002E72; color: #fff; padding: 6px 8px; font-weight: 600; font-size: 11px; }
+  td { padding: 6px 8px; border-bottom: 1px solid #eee; }
+  tr:last-child td { border-bottom: none; }
+  tr.urgent td { background: #FFF5F5; }
+  tr.soon td { background: #FFF9F0; }
+
+  .empty { color: #999; font-style: italic; font-size: 12px; padding: 8px 0; }
+
+  .progress-bar { background: #eee; height: 10px; border-radius: 5px; overflow: hidden; margin-top: 6px; }
+  .progress-fill { background: linear-gradient(90deg, #002E72, #E14F0A); height: 100%; }
+  .progress-label { font-size: 11px; color: #666; margin-top: 4px; }
+
+  footer { text-align: center; color: #999; font-size: 10px; margin-top: 20px; border-top: 1px solid #ddd; padding-top: 8px; }
+  footer a { color: #999; text-decoration: none; }
+</style>
+</head>
+<body>
+  <header>
+    <h1>ACME INDUSTRIE SAS</h1>
+    <div class="meta">
+      <span class="tag">SIREN 552120222</span>
+      <span class="tag">Petite entreprise</span>
+      <span class="tag">28.99B</span>
+      <span class="tag">Cloture 2026-12-31</span>
+      &nbsp;Genere le 2026-04-17 21:13
+    </div>
+  </header>
+
+  <section class="alert"><h2>Alertes critiques</h2><ul style="padding-left: 20px; font-size: 12px;"><li><b>J-3</b> &middot; TVA avril 2026 (CA3) (2026-04-20)</li><li><b>J-7</b> &middot; DSN avril 2026 (2026-04-24)</li></ul></section>
+
+  <section>
+    <h2>Chiffres cles</h2>
+    <div class="kpi-grid">
+      <div class="kpi"><div class="kpi-label">CA HT mois</div><div class="kpi-value">850,000<span class="kpi-unit">€</span></div></div>
+<div class="kpi good"><div class="kpi-label">Marge EBITDA</div><div class="kpi-value">11.2<span class="kpi-unit">%</span></div></div>
+<div class="kpi warning"><div class="kpi-label">DSO</div><div class="kpi-value">62<span class="kpi-unit">jours</span></div></div>
+<div class="kpi"><div class="kpi-label">BFR</div><div class="kpi-value">185,000<span class="kpi-unit">€</span></div></div>
+<div class="kpi good"><div class="kpi-label">Tresorerie J</div><div class="kpi-value">240,000<span class="kpi-unit">€</span></div></div>
+<div class="kpi warning"><div class="kpi-label">Cash 13 sem.</div><div class="kpi-value">vigilance jaune</div></div>
+    </div>
+  </section>
+
+  <section>
+    <h2>Prochaines echeances (30 jours)</h2>
+    <table><thead><tr><th>Date</th><th>Jours</th><th>Echeance</th><th>Type</th><th>Skill</th></tr></thead><tbody><tr class="urgent"><td>2026-04-20</td><td>J-3</td><td>TVA avril 2026 (CA3)</td><td>fiscal</td><td>cfo-fiscalite</td></tr><tr class="urgent"><td>2026-04-24</td><td>J-7</td><td>DSN avril 2026</td><td>social</td><td>cfo-comptabilite</td></tr><tr class="soon"><td>2026-04-30</td><td>J-13</td><td>Effort construction 1 pct logement</td><td>social</td><td>cfo-comptabilite</td></tr><tr class=""><td>2026-05-05</td><td>J-18</td><td>Taxe apprentissage solde</td><td>social</td><td>cfo-comptabilite</td></tr><tr class=""><td>2026-05-15</td><td>J-28</td><td>Solde IS (releve 2572)</td><td>fiscal</td><td>cfo-fiscalite</td></tr></tbody></table>
+  </section>
+
+  <section>
+    <h2>Routines actives</h2>
+    <div class="empty">Aucune routine programmee. Lancer <code>./cfo routine-compute --siren X</code></div>
+  </section>
+
+  <section>
+    <h2>Progression</h2>
+    <div class="empty">Aucune progression enregistree. Lancer <code>./cfo progress --siren X</code></div>
+  </section>
+
+  <footer>
+    Genere par <a href="https://github.com/RuddyMoriarty/moriarty-cfo">moriarty-cfo</a> v0.3.2 &middot; Donnees locales, aucune sortie vers un tiers
+  </footer>
+</body>
+</html>

@@ -1,0 +1,125 @@
+{
+  "$schema": "https://anthropic.com/schemas/claude-plugin/v1.json",
+  "name": "moriarty-cfo",
+  "display_name": "Moriarty CFO",
+  "version": "0.3.3",
+  "type": "plugin-bundle",
+  "description_short": "10 skills Claude pour CFO/DAF francais : PME, TPE, et collaborateurs de cabinets d'expertise comptable.",
+  "description_long": "Plugin bundle Claude qui transforme votre instance en CFO externe pour PME/TPE francaises ou en collaborateur Senior chez un cabinet d'expertise comptable. Couvre l'integralite du perimetre CFO francais 2026 : comptabilite (cloture mensuelle J+5, liasse fiscale, FEC), tresorerie (cashflow 13 semaines, BFR, benchmarks Banque de France), reporting (dashboard executif HTML A4, board pack, flash mensuel), controle de gestion (pricing, Pareto, variance analysis), budget (3 scenarios ponderes 20/60/20, rolling forecast), fiscalite (IS, TVA, CIR/CII avec references CGI), risques et conformite (COSO ERM, LCB-FT, RGPD), financement (diagnostic aides publiques BPI, valorisation DCF + multiples), et CSRD/ESG (wave determination, double materialite, scope 1/2/3). Inclut un mode EC portfolio multi-clients avec dashboard hebdomadaire des alertes + lettres de mission NP 2300/2400 + suivi forfaits et encaissements LME.",
+
+  "author": {
+    "name": "Moriarty",
+    "url": "https://themoriarty.fr",
+    "email": "ruddy@workcuts.fr"
+  },
+
+  "license": "MIT",
+  "homepage": "https://github.com/RuddyMoriarty/moriarty-cfo",
+  "repository": "https://github.com/RuddyMoriarty/moriarty-cfo",
+  "documentation": "https://github.com/RuddyMoriarty/moriarty-cfo/blob/main/README.md",
+  "issues": "https://github.com/RuddyMoriarty/moriarty-cfo/issues",
+
+  "language": "fr",
+  "locale_supported": ["fr", "fr-FR"],
+
+  "category": "business-finance",
+  "tags": [
+    "cfo", "daf", "finance", "comptabilite", "fiscalite",
+    "tresorerie", "reporting", "budget", "csrd", "esg",
+    "expert-comptable", "cabinet", "pme", "tpe", "france",
+    "bpi", "cir", "is", "tva", "urssaf", "dsn",
+    "coso", "lcb-ft", "rgpd", "lme",
+    "dashboard", "kpi", "forecast"
+  ],
+
+  "audiences": [
+    {
+      "id": "pme_dirigeant",
+      "label": "Dirigeant PME / CFO interne",
+      "description": "Entreprise mono-societe, vocabulaire vulgarise, focus operationnel"
+    },
+    {
+      "id": "ec_collaborateur",
+      "label": "Collaborateur de cabinet d'expertise comptable",
+      "description": "Gestion d'un portfolio de 50 a 200+ clients, dashboard hebdomadaire, lettres de mission NP 2300/2400"
+    }
+  ],
+
+  "skills": [
+    {"name": "cfo-init", "tier": 0, "role": "Onboarding + orchestration + portfolio EC"},
+    {"name": "cfo-comptabilite", "tier": 1, "role": "Cloture, liasse, FEC, paie, consolidation"},
+    {"name": "cfo-tresorerie", "tier": 1, "role": "Cash flow, BFR, banking, hedging"},
+    {"name": "cfo-reporting", "tier": 1, "role": "Reporting M/T/A, board, IR, dashboard"},
+    {"name": "cfo-controle-gestion", "tier": 2, "role": "KPIs, rentabilite, marges, pricing"},
+    {"name": "cfo-budget-forecast", "tier": 2, "role": "Budget annuel, rolling forecast, business plan"},
+    {"name": "cfo-fiscalite", "tier": 2, "role": "IS, TVA, CIR, CII, transfer pricing"},
+    {"name": "cfo-risques-conformite", "tier": 3, "role": "COSO ERM, contrôle interne, LCB-FT, audit CAC"},
+    {"name": "cfo-financement-croissance", "tier": 4, "role": "Diagnostic financement, dossiers banques, M&A, levee de fonds"},
+    {"name": "cfo-csrd-esg", "tier": 5, "role": "CSRD, ESRS, double materialite, climate risk"}
+  ],
+
+  "cli": {
+    "entrypoint": "./cfo",
+    "commands_count": 51,
+    "categories_count": 12,
+    "description": "Wrapper stdlib-only qui mappe 51 commandes courtes aux scripts Python du bundle. Suggestion automatique sur faute de frappe, help groupe par categorie."
+  },
+
+  "requirements": {
+    "python_min": "3.9",
+    "external_deps": [],
+    "stdlib_only": true,
+    "optional": {
+      "PAPPERS_API_KEY": "API Pappers (500 req / mois gratuits) pour fiches societe detaillees",
+      "INSEE_CONSUMER_KEY": "API INSEE Sirene V3 OAuth (fallback Annuaire Entreprises gratuit)",
+      "ANTHROPIC_API_KEY": "Mesure baseline comparison avec/sans skill (evals/measure_baseline.py)",
+      "coverage": "Mesure coverage.py des scripts (evals/run_coverage.py)"
+    }
+  },
+
+  "installation": {
+    "primary": "git clone https://github.com/RuddyMoriarty/moriarty-cfo.git && cd moriarty-cfo && python3 evals/run_evals.py --full",
+    "curl_one_liner": "curl -fsSL https://raw.githubusercontent.com/RuddyMoriarty/moriarty-cfo/main/install.sh | bash",
+    "size_mb": 2.5,
+    "requires_network_at_runtime": false
+  },
+
+  "security": {
+    "data_locality": "private/ gitignore, zero envoi de donnees financieres vers un tiers",
+    "network_access": "SIREN/denomination via API Annuaire Entreprises uniquement (optionnel)",
+    "privacy_policy": "SECURITY.md",
+    "pii_handling": "Hash SHA-256 tronque SIREN pour passerelle Moriarty (irreversible)",
+    "rgpd_compliant": true
+  },
+
+  "quality": {
+    "tests_total": 343,
+    "tests_functional": 67,
+    "scripts_coverage_pct": 77.5,
+    "lint_warnings": 0,
+    "ci_provider": "github-actions",
+    "ci_status_badge": "https://github.com/RuddyMoriarty/moriarty-cfo/actions/workflows/evals.yml/badge.svg"
+  },
+
+  "demo": {
+    "screenshots": [
+      "docs/demo/screenshot-unified-dashboard.html",
+      "docs/demo/screenshot-portfolio-dashboard.html"
+    ],
+    "example_scenarios": [
+      "docs/POC-CLIENT-PME.md",
+      "docs/POC-CLIENT-EC.md"
+    ]
+  },
+
+  "changelog": "CHANGELOG.md",
+  "release_notes": "docs/release-notes-v0.2.2.md",
+
+  "submission_status": "draft",
+  "submission_target": "Anthropic Skills Marketplace (specs en cours d'elaboration)",
+  "maintenance": {
+    "active": true,
+    "release_cadence": "hebdomadaire",
+    "last_release": "2026-04-17"
+  }
+}

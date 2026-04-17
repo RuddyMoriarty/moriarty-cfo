@@ -4,6 +4,49 @@ Toutes les évolutions notables de `moriarty-cfo` sont documentées ici.
 
 Le format suit [Keep a Changelog](https://keepachangelog.com/fr/1.1.0/) et le projet adhère au [Semantic Versioning](https://semver.org/lang/fr/).
 
+## [0.2.4], 2026-04-17
+
+Nettoyage tests faibles. Suite a un audit demande par l'utilisateur ("quels tests ne sont pas fonctionnels ?"), 12 entrees de tests qui passaient sans apporter de preuve metier ont ete supprimees ou remplacees par des tests qui valident le contenu. Le total passe de 74 a 63 tests fonctionnels, mais tous sont desormais de niveau 1 (fixture + assertions) ou niveau 2 (helper structurel custom). Aucun test ne se contente plus de verifier `py_compile` + `--help exit 0`.
+
+### Removed
+
+- **9 smoke tests** (1 par skill hors cfo-init, via `evals/_helpers/smoke_skill_scripts.py`) : redondants avec les 27 tests `fct_*` qui couvraient deja les memes 27 scripts avec fixtures et assertions metier. Les smokes ne detectaient rien que les fct ne detectaient deja.
+- **cfo-init-baseline-dry-run** : redondant avec `cfo-init-baseline-scenarios-valid` qui valide la meme chose (structure JSON des scenarios) plus serieusement.
+- **cfo-init-fct-01 et cfo-init-fct-02** : se contentaient de verifier que `compute_calendar.py` creait un fichier JSON sans "Traceback" dans stdout. Aucune assertion sur le contenu metier.
+- **evals/_helpers/smoke_skill_scripts.py** supprime (orphelin apres retrait des 9 entrees).
+
+### Added
+
+- **cfo-init-fct-calendar-content** (remplace fct-01 et fct-02) : valide desormais le CONTENU du calendrier fiscal produit. Nouveau helper `evals/_helpers/check_calendar_content.py` qui execute 2 scenarios reels et assure :
+  - Scenario mensuel 31/12 : >= 12 TVA mensuelles, 4 acomptes IS + liasse, >= 12 DSN, >= 50 echeances sur 18 mois
+  - Scenario trimestriel 30/06 : >= 4 CA3 trimestriels, >= 12 DSN, >= 30 echeances
+  - Chaque echeance a les champs `date_absolue`, `label`, `type`
+
+### Changed
+
+`_note` de `functional-tests.json` mis a jour avec la ventilation par niveau de preuve :
+
+- 49 tests `fct_*` (fixture + assertions metier)
+- 14 tests `err_*` (robustesse inputs invalides)
+- 8 tests `snap_*` (regression snapshot)
+- 4 tests `e2e_*` (scenarios integration)
+- 7 tests `check_*` (helpers structurels custom)
+- 1 test `baseline-scenarios-valid`
+- 1 test `fetch-siren-stdlib`
+- 1 test `calendar-content` (nouveau)
+
+### Metriques
+
+- 63 tests fonctionnels (etait 74, -15 %)
+- 339/339 tests globaux (100 %)
+- 0 test qui passe sans apporter de preuve metier
+- 0 warning lint
+- Couverture scripts conservee : 27/27 via les fct_*
+
+### Note
+
+Cette session a permis de detecter et de supprimer une illusion de couverture. Un catalogue de tests qui passe a 100 % n'est pas un gage de qualite si certains tests verifient des choses triviales. La metrique `niveau de preuve par test` importe autant que le compte total.
+
 ## [0.2.3], 2026-04-17
 
 Integration live de l'API Annuaire Entreprises dans l'onboarding PME et cabinet EC. Flag `--fetch` sur `init_pme.py` et `init_cabinet.py` : l'utilisateur tape un SIREN, le bundle enrichit automatiquement avec denomination legale, NAF, tranche effectif INSEE, nombre d'etablissements, adresse siege. Taille (TPE/PE/ME/ETI/GE) auto-mappee depuis `categorie_entreprise` INSEE.

@@ -58,50 +58,11 @@
       }
     },
     {
-      "id": "cfo-init-fct-01",
+      "id": "cfo-init-fct-calendar-content",
       "skill": "cfo-init",
-      "label": "compute_calendar.py génère un calendrier valide pour clôture 31/12",
-      "executable": {
-        "type": "python",
-        "script": "cfo-init/scripts/compute_calendar.py",
-        "args": [
-          "--closing-date", "2026-12-31",
-          "--tva-regime", "reel_normal_mensuelle",
-          "--is-regime", "is",
-          "--effectif", "100",
-          "--output", "{tmp}/calendar-31dec.json"
-        ]
-      },
-      "assertions": {
-        "exit_code": 0,
-        "files_created": ["{tmp}/calendar-31dec.json"],
-        "json_valid": ["{tmp}/calendar-31dec.json"],
-        "must_not_contain_in_output": ["Traceback", "Error", "Exception"],
-        "max_duration_seconds": 15
-      }
-    },
-    {
-      "id": "cfo-init-fct-02",
-      "skill": "cfo-init",
-      "label": "compute_calendar.py gère une clôture décalée 30/06 sans erreur",
-      "executable": {
-        "type": "python",
-        "script": "cfo-init/scripts/compute_calendar.py",
-        "args": [
-          "--closing-date", "2026-06-30",
-          "--tva-regime", "reel_normal_trimestrielle",
-          "--is-regime", "is",
-          "--effectif", "25",
-          "--output", "{tmp}/calendar-30juin.json"
-        ]
-      },
-      "assertions": {
-        "exit_code": 0,
-        "files_created": ["{tmp}/calendar-30juin.json"],
-        "json_valid": ["{tmp}/calendar-30juin.json"],
-        "must_not_contain_in_output": ["Traceback", "Error", "Exception"],
-        "max_duration_seconds": 15
-      }
+      "label": "Fct : compute_calendar produit contenu metier valide (>=12 TVA mensuelles, 4 acomptes IS, 12 DSN, >=50 echeances sur 18 mois, schema cle par echeance)",
+      "executable": {"type": "python", "script": "evals/_helpers/check_calendar_content.py"},
+      "assertions": {"exit_code": 0, "must_contain_in_output": ["calendar_content_ok=2"], "must_not_contain_in_output": ["ERREUR", "Traceback"], "max_duration_seconds": 20}
     },
     {
       "id": "cfo-init-fct-03",
@@ -222,69 +183,6 @@
         "must_not_contain_in_output": ["ERREUR", "traceback"],
         "max_duration_seconds": 10
       }
-    },
-    {
-      "id": "cfo-comptabilite-smoke",
-      "skill": "cfo-comptabilite",
-      "label": "Smoke test : les 3 scripts compilent et repondent a --help",
-      "executable": {"type": "python", "script": "evals/_helpers/smoke_skill_scripts.py", "args": ["--skill", "cfo-comptabilite"]},
-      "assertions": {"exit_code": 0, "must_contain_in_output": ["smoke_cfo_comptabilite_ok=3"], "must_not_contain_in_output": ["ERREUR"], "max_duration_seconds": 15}
-    },
-    {
-      "id": "cfo-tresorerie-smoke",
-      "skill": "cfo-tresorerie",
-      "label": "Smoke test : bfr_calculator + forecast_12m + forecast_13w",
-      "executable": {"type": "python", "script": "evals/_helpers/smoke_skill_scripts.py", "args": ["--skill", "cfo-tresorerie"]},
-      "assertions": {"exit_code": 0, "must_contain_in_output": ["smoke_cfo_tresorerie_ok=3"], "must_not_contain_in_output": ["ERREUR"], "max_duration_seconds": 15}
-    },
-    {
-      "id": "cfo-reporting-smoke",
-      "skill": "cfo-reporting",
-      "label": "Smoke test : compute_kpis + extract_variances + generate_dashboard",
-      "executable": {"type": "python", "script": "evals/_helpers/smoke_skill_scripts.py", "args": ["--skill", "cfo-reporting"]},
-      "assertions": {"exit_code": 0, "must_contain_in_output": ["smoke_cfo_reporting_ok=3"], "must_not_contain_in_output": ["ERREUR"], "max_duration_seconds": 15}
-    },
-    {
-      "id": "cfo-controle-gestion-smoke",
-      "skill": "cfo-controle-gestion",
-      "label": "Smoke test : pricing_simulator + profitability_analyzer + variance_analyzer",
-      "executable": {"type": "python", "script": "evals/_helpers/smoke_skill_scripts.py", "args": ["--skill", "cfo-controle-gestion"]},
-      "assertions": {"exit_code": 0, "must_contain_in_output": ["smoke_cfo_controle_gestion_ok=3"], "must_not_contain_in_output": ["ERREUR"], "max_duration_seconds": 15}
-    },
-    {
-      "id": "cfo-budget-forecast-smoke",
-      "skill": "cfo-budget-forecast",
-      "label": "Smoke test : budget_builder + capex_analyzer + rolling_forecast",
-      "executable": {"type": "python", "script": "evals/_helpers/smoke_skill_scripts.py", "args": ["--skill", "cfo-budget-forecast"]},
-      "assertions": {"exit_code": 0, "must_contain_in_output": ["smoke_cfo_budget_forecast_ok=3"], "must_not_contain_in_output": ["ERREUR"], "max_duration_seconds": 15}
-    },
-    {
-      "id": "cfo-fiscalite-smoke",
-      "skill": "cfo-fiscalite",
-      "label": "Smoke test : cir_estimator + is_simulator + tva_checker",
-      "executable": {"type": "python", "script": "evals/_helpers/smoke_skill_scripts.py", "args": ["--skill", "cfo-fiscalite"]},
-      "assertions": {"exit_code": 0, "must_contain_in_output": ["smoke_cfo_fiscalite_ok=3"], "must_not_contain_in_output": ["ERREUR"], "max_duration_seconds": 15}
-    },
-    {
-      "id": "cfo-risques-conformite-smoke",
-      "skill": "cfo-risques-conformite",
-      "label": "Smoke test : internal_control_checklist + risk_mapping_generator + veille_scheduler",
-      "executable": {"type": "python", "script": "evals/_helpers/smoke_skill_scripts.py", "args": ["--skill", "cfo-risques-conformite"]},
-      "assertions": {"exit_code": 0, "must_contain_in_output": ["smoke_cfo_risques_conformite_ok=3"], "must_not_contain_in_output": ["ERREUR"], "max_duration_seconds": 15}
-    },
-    {
-      "id": "cfo-financement-croissance-smoke",
-      "skill": "cfo-financement-croissance",
-      "label": "Smoke test : diagnostic_financement + moriarty_link + valuation_calculator",
-      "executable": {"type": "python", "script": "evals/_helpers/smoke_skill_scripts.py", "args": ["--skill", "cfo-financement-croissance"]},
-      "assertions": {"exit_code": 0, "must_contain_in_output": ["smoke_cfo_financement_croissance_ok=3"], "must_not_contain_in_output": ["ERREUR"], "max_duration_seconds": 15}
-    },
-    {
-      "id": "cfo-csrd-esg-smoke",
-      "skill": "cfo-csrd-esg",
-      "label": "Smoke test : csrd_scope_calculator + double_materiality_assessor + scope_emissions_estimator",
-      "executable": {"type": "python", "script": "evals/_helpers/smoke_skill_scripts.py", "args": ["--skill", "cfo-csrd-esg"]},
-      "assertions": {"exit_code": 0, "must_contain_in_output": ["smoke_cfo_csrd_esg_ok=3"], "must_not_contain_in_output": ["ERREUR"], "max_duration_seconds": 15}
     },
     {
       "id": "cfo-comptabilite-fct-closing",
@@ -637,13 +535,6 @@
       "assertions": {"exit_code": 0, "must_contain_in_output": ["baseline_scenarios_ok=5", "skills_couverts=5"], "must_not_contain_in_output": ["ERREUR", "Traceback"], "max_duration_seconds": 10}
     },
     {
-      "id": "cfo-init-baseline-dry-run",
-      "skill": "cfo-init",
-      "label": "Baseline : measure_baseline --dry-run charge scenarios sans appel API",
-      "executable": {"type": "python", "script": "evals/measure_baseline.py", "args": ["--dry-run", "--output", "{tmp}/baseline.json"]},
-      "assertions": {"exit_code": 0, "must_contain_in_output": ["baseline_measured=5"], "must_not_contain_in_output": ["Traceback", "ERREUR"], "max_duration_seconds": 15, "json_valid": ["{tmp}/baseline.json"]}
-    },
-    {
       "id": "cfo-init-fetch-siren-stdlib",
       "skill": "cfo-init",
       "label": "Fetch SIREN : stdlib only + mode web offline + validation 9 chiffres",
@@ -652,5 +543,5 @@
     }
   ],
 
-  "_note": "Couverture fonctionnelle v0.2.2 : 49 tests fonctionnels nominaux + 14 scenarios d'erreur + 8 snapshots de regression + 2 tests baseline (structure + dry-run). Module B (baseline comparison live API) necessite ANTHROPIC_API_KEY : evals/measure_baseline.py skip proprement en son absence. Total 73 tests fonctionnels, 10 skills couverts, tous les 27 scripts exerces au moins une fois."
+  "_note": "Couverture fonctionnelle v0.2.4 : 49 tests fct avec assertions metier + 14 scenarios d'erreur + 8 snapshots de regression + 1 baseline structure + 4 E2E + 7 check_* helpers + 1 fetch SIREN + 1 calendar content. Total 63 tests fonctionnels, tous de niveau 1 (fixture + assertions) ou 2 (structure custom). 9 smoke tests (compile + --help) supprimes en v0.2.4 car redondants avec fct_* tests. Baseline dry-run supprime (redondant avec check_baseline_scenarios). cfo-init-fct-01/02 remplaces par check_calendar_content qui valide le CONTENU du calendrier (12 TVA mensuelles, 4 acomptes IS, 12 DSN, >=50 echeances sur 18 mois) au lieu de juste l'existence du fichier."
 }

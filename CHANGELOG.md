@@ -4,6 +4,47 @@ Toutes les évolutions notables de `moriarty-cfo` sont documentées ici.
 
 Le format suit [Keep a Changelog](https://keepachangelog.com/fr/1.1.0/) et le projet adhère au [Semantic Versioning](https://semver.org/lang/fr/).
 
+## [0.3.5], 2026-04-17
+
+Fixes remontes par le POC PME en conditions reelles. Sur 10 scenarios deroules, 10 frottements remontes dont 3 bloquants. Les 3 bloqueurs sont resolus en code, les 7 autres corriges dans le POC. Resultat : **10/10 scenarios passent maintenant bout en bout sans intervention**.
+
+### Fixed (bloquants detectes via POC)
+
+- **`forecast_13w.py`** : ajout des flags `--encaissements-moyen` et `--decaissements-moyen` (mode rapide pour POC / demo / premier chiffrage). Avant : il fallait imperativement fournir un CSV de projections, bloquant pour une premiere prise en main. Le POC disait d'utiliser ces flags mais ils n'existaient pas.
+
+- **`diagnostic_financement.py`** : remplacement de `float("inf")` par `999_999_999` dans la solution factoring. `Infinity` dans le JSON de sortie n'est pas conforme au standard JSON strict et certains parseurs le rejettent. Signale par le POC lors du `json.load()` du resultat.
+
+- **`init_pme.py`** : messages "Etapes suivantes recommandees" mis a jour pour utiliser la syntaxe `./cfo` (calendar, progress --init, routine-compute) au lieu des chemins Python longs qui dataient d'avant le CLI v0.3.0. Les commandes affichees sont desormais copiables / collables sans modification.
+
+### Changed
+
+**`docs/POC-CLIENT-PME.md` reecrit integralement** apres deroulement manuel de bout en bout. Corrections :
+
+| Scenario | Ancien POC | Nouveau POC (verifie) |
+|----------|-----------|----------------------|
+| 2 calendar | `e['date']`, `e.get('nature')` | `e['date_absolue']`, `e.get('type')` |
+| 5 dashboard | `--output` | `--output-html` |
+| 7 cir | `base_cir_eligible`, `references_cgi` | `total_depenses_eligibles`, `taux_applique`, `cir_estime`, `warnings` |
+| 9 csrd | `directive_applicable`, `premier_exercice_reporting` | `premier_exercice_reporté` (accent !), `label`, `statut` |
+| 10 diag | `--besoin-eur`, `--duree-mois`, `--projet`, `--effectif`, `--secteur`, `--dilutif-ok non`, `d['solutions_top_3'][].type` | `--montant`, `--horizon {ct|mlt|lt}`, `--projet-rd` ou `--projet-industriel` (flags), `d['top_3'][].nom/horizon/max_montant`, `aides_publiques_eligibles` (bool) |
+
+Note pedagogique ajoutee sur le SIREN 552120222 (Societe Generale) : le `--fetch` renvoie vraiment "SOCIETE GENERALE 10 000+ salaries", ce qui peut surprendre. Le POC precise desormais que c'est normal et pedagogique.
+
+Scenario 4 enrichi avec 2 variantes : mode rapide (nouveau) et mode detaille avec CSV de projections.
+
+Scenario 10 enrichi avec liste complete des flags disponibles.
+
+### Metriques
+
+- 344/344 tests globaux (100 %)
+- 10/10 scenarios POC PME passent bout en bout sans intervention manuelle
+- 3 bugs bloquants fixes en code
+- 7 divergences doc vs code fixees dans le POC
+
+### Enseignement
+
+Le deroulement manuel d'un POC revele toujours des frottements invisibles a la CI. 9 divergences noms de champs + 1 flag manquant etaient passees au travers de 344 tests automatises. Le next step est de faire de meme pour POC-CLIENT-EC.md (non deroule dans cette session).
+
 ## [0.3.4], 2026-04-17
 
 Coverage booster : 77.5 % → **82.7 %** (+5.2 pts). Les 13 scripts sous 70 % passent a 5. Refactor `--private-dir` sur 6 scripts portfolio pour rendre les fixtures testables isolement. Helper dedie `fct_lowcov_scripts.py` avec 13 tests qui couvrent les branches principales.

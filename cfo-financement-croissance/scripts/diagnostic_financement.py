@@ -16,7 +16,7 @@ from pathlib import Path
 SOLUTIONS = {
     "decouvert": {"horizon": "ct", "max_montant": 500_000, "cout_pct": 7, "delai_jours": 7, "dilutif": False},
     "dailly": {"horizon": "ct", "max_montant": 2_000_000, "cout_pct": 5, "delai_jours": 14, "dilutif": False},
-    "factoring": {"horizon": "permanent", "max_montant": float("inf"), "cout_pct": 2, "delai_jours": 30, "dilutif": False},
+    "factoring": {"horizon": "permanent", "max_montant": 999_999_999, "cout_pct": 2, "delai_jours": 30, "dilutif": False},
     "bancaire_mlt": {"horizon": "mlt", "max_montant": 5_000_000, "cout_pct": 5.5, "delai_jours": 60, "dilutif": False},
     "bpi_pret": {"horizon": "mlt", "max_montant": 5_000_000, "cout_pct": 4, "delai_jours": 90, "dilutif": False},
     "bpi_subvention": {"horizon": "mlt", "max_montant": 200_000, "cout_pct": 0, "delai_jours": 120, "dilutif": False},

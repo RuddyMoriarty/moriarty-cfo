@@ -179,9 +179,10 @@ def main() -> int:
         print(f"  Cloture : {args.cloture}")
     print()
     print("Etapes suivantes recommandees :")
-    print("  1. Calendrier fiscal : python3 cfo-init/scripts/compute_calendar.py --closing-date X --output private/companies/" + args.siren + "/calendar-fiscal.json")
-    print("  2. Achievements : python3 cfo-init/scripts/init_progress.py --siren " + args.siren + " --audience pme")
-    print("  3. Routines : python3 cfo-init/scripts/routines/compute_entity_routines.py --siren " + args.siren)
+    cloture = args.cloture or f"{datetime.now().year}-12-31"
+    print(f"  1. Calendrier fiscal : ./cfo calendar --closing-date {cloture} --tva-regime reel_normal_mensuelle --is-regime is --effectif {args.effectif or 25} --output private/companies/{args.siren}/calendar-fiscal.json")
+    print(f"  2. Achievements     : ./cfo progress --init --siren {args.siren} --audience pme")
+    print(f"  3. Routines         : ./cfo routine-compute --siren {args.siren}")
     return 0
 
 

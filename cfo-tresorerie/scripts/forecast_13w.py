@@ -114,6 +114,10 @@ def main() -> int:
     parser.add_argument("--historique", type=Path, default=None)
     parser.add_argument("--projections", type=Path, default=None,
                         help="CSV : date,type(enc|dec),montant,libelle")
+    parser.add_argument("--encaissements-moyen", type=float, default=None,
+                        help="Mode rapide : encaissement hebdomadaire moyen (€)")
+    parser.add_argument("--decaissements-moyen", type=float, default=None,
+                        help="Mode rapide : decaissement hebdomadaire moyen (€)")
     parser.add_argument("--seuil-tension", type=float, default=50000,
                         help="Seuil alerte orange (défaut : 50k€)")
     parser.add_argument("--date-depart", default=None, help="YYYY-MM-DD (défaut: aujourd'hui)")
@@ -125,6 +129,15 @@ def main() -> int:
 
     projections = parse_csv_if_exists(args.projections)
     allocate_to_weeks(projections, weeks)
+
+    # Mode rapide : si --encaissements-moyen / --decaissements-moyen fournis,
+    # appliquer uniformement sur les 13 semaines (pour POC / demo / test rapide)
+    if args.encaissements_moyen is not None:
+        for w in weeks:
+            w["encaissements"] += args.encaissements_moyen
+    if args.decaissements_moyen is not None:
+        for w in weeks:
+            w["decaissements"] += args.decaissements_moyen
 
     compute_soldes(weeks, args.solde_initial)
     alerts = detect_alerts(weeks, args.seuil_tension)

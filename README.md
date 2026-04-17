@@ -137,6 +137,15 @@ cp .env.example .env
 
 ---
 
+## Tester le bundle en 30 minutes
+
+Deux guides de POC guides pas a pas selon votre profil :
+
+- **[docs/POC-CLIENT-PME.md](docs/POC-CLIENT-PME.md)** : 10 scenarios pour dirigeants et CFO internes de PME/TPE. De l'init au dashboard, en passant par BFR, CIR, budget 3 scenarios et CSRD. Aucune cle API requise.
+- **[docs/POC-CLIENT-EC.md](docs/POC-CLIENT-EC.md)** : 10 scenarios pour collaborateurs Senior/Manager de cabinet EC. Portfolio multi-clients, planification batch routines, dashboard hebdo, lettres de mission, encaissements LME, suivi forfaits.
+
+Chacun prend 30 a 45 minutes avec des fixtures fictives realistes avant de basculer sur vos vraies donnees. Ouvrez une issue si un scenario echoue ou si un calcul parait errone.
+
 ## Exemples d'utilisation
 
 ### Workflows métier

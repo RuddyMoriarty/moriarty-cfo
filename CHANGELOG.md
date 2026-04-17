@@ -4,6 +4,44 @@ Toutes les évolutions notables de `moriarty-cfo` sont documentées ici.
 
 Le format suit [Keep a Changelog](https://keepachangelog.com/fr/1.1.0/) et le projet adhère au [Semantic Versioning](https://semver.org/lang/fr/).
 
+## [0.2.3], 2026-04-17
+
+Integration live de l'API Annuaire Entreprises dans l'onboarding PME et cabinet EC. Flag `--fetch` sur `init_pme.py` et `init_cabinet.py` : l'utilisateur tape un SIREN, le bundle enrichit automatiquement avec denomination legale, NAF, tranche effectif INSEE, nombre d'etablissements, adresse siege. Taille (TPE/PE/ME/ETI/GE) auto-mappee depuis `categorie_entreprise` INSEE.
+
+### Fixed
+
+**Violation stdlib-only corrigee** : les scripts `cfo-init/scripts/fetch_pappers.py` et `cfo-init/scripts/fetch_sirene.py` importaient `requests` (dependance externe), ce qui violait la politique CLAUDE.md "Python stdlib only" depuis v0.1.0. Ces scripts n'avaient jamais ete testes et auraient plante sur un poste sans `requests` installe.
+
+Les deux scripts sont desormais migres vers `urllib.request` (stdlib) :
+
+- Helper `_http_get_json(url, params, headers)` pour les GET
+- Helper `_http_post_form(url, form_data, headers)` pour les POST form-urlencoded (auth INSEE OAuth)
+- Gestion explicite de `urllib.error.HTTPError`, `URLError`, `TimeoutError`
+- User-Agent `moriarty-cfo/0.2` par defaut
+
+Bug collateral fixe : endpoint API Annuaire Entreprises corrige (`/search` au lieu de `/v3/search`, l'API a supprime le prefixe de version courant 2024). Teste en live sur SIREN 552120222 Societe Generale : 4250 etablissements, NAF 64.19Z correctement extraits.
+
+### Added
+
+- **Flag `--fetch`** sur `init_pme.py` et `init_cabinet.py` : enrichit le company.json ou cabinet.json avec les champs publics INSEE. Degrade proprement si l'API est indisponible.
+- **Auto-mapping taille** : `categorie_entreprise` INSEE (PME/ETI/GE/TPE) -> `classification.taille` du bundle, avec fallback sur la valeur CLI si fournie.
+- **Test fonctionnel** `evals/_helpers/check_fetch_siren.py` (6 checks offline) :
+  - Compile des 2 scripts
+  - Verification stdlib-only (rejette tout import de `requests`, `httpx`, `aiohttp`, `pycurl`)
+  - Mode `--mode web` retourne une instruction WebFetch structurellement valide
+  - Validation SIREN 9 chiffres (rejet SIREN a 5 chiffres)
+
+### Metriques
+
+- 74 tests fonctionnels (etait 73)
+- 350/350 tests globaux (100 %)
+- 2 scripts durcis stdlib-only
+- 0 warning lint
+
+### Note technique
+
+L'API Annuaire Entreprises (https://recherche-entreprises.api.gouv.fr/search) est gratuite, sans authentification, avec un rate limit non documente (observe a environ 1 req/s). Pas de fallback automatique vers les modes api-insee ou api-pappers sauf si les cles d'environnement (INSEE_CONSUMER_KEY, PAPPERS_API_KEY) sont definies.
+
 ## [0.2.2], 2026-04-17
 
 Roadmap v0.2 Module B : baseline comparison (framework). Mesure empirique du gain des skills vs Claude brut sur 5 scenarios CFO realistes. Le framework est pret et teste en dry-run ; l'execution reelle necessite `ANTHROPIC_API_KEY` et coute environ 0,50 € par session.

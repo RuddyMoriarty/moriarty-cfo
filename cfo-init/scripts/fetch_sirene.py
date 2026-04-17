@@ -22,17 +22,32 @@ import json
 import os
 import re
 import sys
+import urllib.error
+import urllib.parse
+import urllib.request
 from pathlib import Path
 
-try:
-    import requests
-except ImportError:
-    requests = None
-
-
-ANNUAIRE_BASE = "https://recherche-entreprises.api.gouv.fr/v3"
+ANNUAIRE_BASE = "https://recherche-entreprises.api.gouv.fr"
 INSEE_TOKEN_URL = "https://api.insee.fr/token"
 INSEE_API_BASE = "https://api.insee.fr/entreprises/sirene/V3.11"
+DEFAULT_TIMEOUT = 15
+
+
+def _http_get_json(url: str, params: dict[str, str] | None = None, headers: dict[str, str] | None = None) -> dict:
+    """GET JSON via urllib (stdlib)."""
+    if params:
+        url = f"{url}?{urllib.parse.urlencode(params)}"
+    req = urllib.request.Request(url, headers=headers or {"User-Agent": "moriarty-cfo/0.2"})
+    with urllib.request.urlopen(req, timeout=DEFAULT_TIMEOUT) as resp:
+        return json.loads(resp.read().decode("utf-8"))
+
+
+def _http_post_form(url: str, form_data: dict[str, str], headers: dict[str, str]) -> dict:
+    """POST form-urlencoded via urllib (stdlib)."""
+    data = urllib.parse.urlencode(form_data).encode("utf-8")
+    req = urllib.request.Request(url, data=data, headers=headers, method="POST")
+    with urllib.request.urlopen(req, timeout=DEFAULT_TIMEOUT) as resp:
+        return json.loads(resp.read().decode("utf-8"))
 
 
 TRANCHES_EFFECTIF = {
@@ -63,26 +78,22 @@ def validate_siren(siren: str) -> str:
 
 
 def get_insee_token(consumer_key: str, consumer_secret: str) -> str:
-    if requests is None:
-        raise RuntimeError("Module 'requests' non installé")
     auth = base64.b64encode(f"{consumer_key}:{consumer_secret}".encode()).decode()
-    resp = requests.post(
+    result = _http_post_form(
         INSEE_TOKEN_URL,
-        headers={"Authorization": f"Basic {auth}"},
-        data={"grant_type": "client_credentials"},
-        timeout=10,
+        form_data={"grant_type": "client_credentials"},
+        headers={
+            "Authorization": f"Basic {auth}",
+            "Content-Type": "application/x-www-form-urlencoded",
+        },
     )
-    resp.raise_for_status()
-    return resp.json().get("access_token")
+    return result.get("access_token", "")
 
 
 def fetch_via_insee(siren: str, token: str) -> dict:
-    if requests is None:
-        raise RuntimeError("Module 'requests' non installé")
     url = f"{INSEE_API_BASE}/siren/{siren}"
-    resp = requests.get(url, headers={"Authorization": f"Bearer {token}"}, timeout=15)
-    resp.raise_for_status()
-    data = resp.json().get("uniteLegale", {})
+    result = _http_get_json(url, headers={"Authorization": f"Bearer {token}"})
+    data = result.get("uniteLegale", {})
 
     return {
         "source": "insee_sirene_v3",
@@ -104,12 +115,9 @@ def fetch_via_insee(siren: str, token: str) -> dict:
 
 
 def fetch_via_annuaire(siren: str) -> dict:
-    if requests is None:
-        raise RuntimeError("Module 'requests' non installé")
     url = f"{ANNUAIRE_BASE}/search"
-    resp = requests.get(url, params={"q": siren}, timeout=15)
-    resp.raise_for_status()
-    results = resp.json().get("results", [])
+    result = _http_get_json(url, params={"q": siren})
+    results = result.get("results", [])
     if not results:
         raise ValueError(f"SIREN {siren} introuvable dans l'Annuaire Entreprises")
     r = results[0]
@@ -165,19 +173,21 @@ def main() -> int:
 
     result = None
 
+    network_errors = (urllib.error.HTTPError, urllib.error.URLError, TimeoutError, ValueError, KeyError)
+
     # Tentative selon mode
     if args.mode in ("api-insee", "auto") and consumer_key and consumer_secret:
         try:
             token = get_insee_token(consumer_key, consumer_secret)
             result = fetch_via_insee(siren, token)
-        except Exception as e:
-            print(f"⚠️ INSEE API échec : {e}", file=sys.stderr)
+        except network_errors as e:
+            print(f"⚠️ INSEE API echec : {e}", file=sys.stderr)
 
     if result is None and args.mode in ("api-annuaire", "auto"):
         try:
             result = fetch_via_annuaire(siren)
-        except Exception as e:
-            print(f"⚠️ Annuaire Entreprises échec : {e}", file=sys.stderr)
+        except network_errors as e:
+            print(f"⚠️ Annuaire Entreprises echec : {e}", file=sys.stderr)
 
     if result is None or args.mode == "web":
         result = print_web_fetch_instruction(siren)

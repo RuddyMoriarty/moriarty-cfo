@@ -21,6 +21,7 @@ from __future__ import annotations
 
 import argparse
 import json
+import subprocess
 import sys
 from datetime import datetime, timezone
 from pathlib import Path
@@ -28,6 +29,24 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[3]
 PRIVATE = ROOT / "private"
 TEMPLATE_PATH = ROOT / "cfo-init" / "templates" / "cabinet.template.json"
+
+
+def fetch_enrichment(siren: str) -> dict | None:
+    """Appelle fetch_sirene.py --mode api-annuaire. Retourne dict ou None si echec."""
+    script = ROOT / "cfo-init" / "scripts" / "fetch_sirene.py"
+    proc = subprocess.run(
+        [sys.executable, str(script), "--siren", siren, "--mode", "api-annuaire"],
+        capture_output=True, text=True, timeout=15, cwd=str(ROOT),
+    )
+    if proc.returncode != 0:
+        return None
+    try:
+        data = json.loads(proc.stdout)
+    except json.JSONDecodeError:
+        return None
+    if data.get("mode") == "webfetch_required":
+        return None
+    return data
 
 
 def load_template() -> dict:
@@ -57,7 +76,19 @@ def main() -> int:
     parser.add_argument("--forme", default="", help="Forme juridique (selarl, selas, sarl, sas...)")
     parser.add_argument("--ville", default="", help="Ville principale")
     parser.add_argument("--force", action="store_true", help="Ecrase cabinet.json si existe")
+    parser.add_argument("--fetch", action="store_true",
+                        help="Enrichit avec l'API Annuaire Entreprises (gratuite, sans auth)")
     args = parser.parse_args()
+
+    enrichment: dict = {}
+    if args.fetch:
+        fetched = fetch_enrichment(args.siren)
+        if fetched:
+            enrichment = fetched
+            print(f"✓ Annuaire Entreprises : {fetched.get('denomination', '?')}, "
+                  f"NAF {fetched.get('code_naf', '?')}", file=sys.stderr)
+        else:
+            print("⚠ Annuaire Entreprises indisponible, continue avec valeurs fournies", file=sys.stderr)
 
     PRIVATE.mkdir(parents=True, exist_ok=True)
     cabinet_path = PRIVATE / "cabinet.json"
@@ -73,6 +104,17 @@ def main() -> int:
         template["cabinet"]["forme_juridique"] = args.forme
     if args.ville:
         template["cabinet"]["ville_principale"] = args.ville
+    # Enrichissement Annuaire Entreprises si dispo
+    if enrichment:
+        adresse = enrichment.get("adresse_siege") or {}
+        template["cabinet"]["annuaire_entreprises"] = {
+            "source": enrichment.get("source"),
+            "code_naf": enrichment.get("code_naf"),
+            "nombre_etablissements": enrichment.get("nombre_etablissements"),
+            "adresse_siege": adresse,
+            "etat_administratif": enrichment.get("etat_administratif"),
+            "date_creation": enrichment.get("date_creation"),
+        }
 
     cabinet_path.write_text(
         json.dumps(template, ensure_ascii=False, indent=2) + "\n",

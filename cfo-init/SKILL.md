@@ -55,13 +55,15 @@ Répondez "EC" ou "PME".
 # Mode EC (cabinet expert-comptable)
 python3 cfo-init/scripts/portfolio/init_cabinet.py \
   --siren <SIREN_CABINET> --denomination "CABINET X SELARL" \
-  --forme selarl --ville Paris
+  --forme selarl --ville Paris --fetch  # --fetch enrichit depuis l'API Annuaire
 
 # Mode PME (dirigeant / CFO interne)
 python3 cfo-init/scripts/init_pme.py \
   --siren <SIREN_SOCIETE> --denomination "ACME SAS" \
-  --taille pe --cloture 2026-12-31 --role cfo
+  --taille pe --cloture 2026-12-31 --role cfo --fetch
 ```
+
+**Flag `--fetch`** : interroge l'API Annuaire Entreprises (gratuite, sans auth) pour auto-remplir NAF, tranche effectif INSEE, nombre d'etablissements, adresse siege. Si l'API est indisponible, l'init continue avec les valeurs CLI. Taille (TPE/PE/ME/ETI/GE) est auto-mappee depuis `categorie_entreprise` INSEE.
 
 - Si "EC" → `init_cabinet.py` cree `private/cabinet.json` + `profile.json` (`audience_type=ec_collaborateur`) + `companies/index.json` vide (portfolio multi-clients, ton technique).
 - Si "PME" → `init_pme.py` cree `profile.json` (`audience_type=pme_dirigeant`, `pme_role`) + `companies/<siren>/company.json` minimal (mono-societe, vocabulaire vulgarise).

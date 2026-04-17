@@ -25,15 +25,22 @@ import json
 import os
 import re
 import sys
+import urllib.error
+import urllib.parse
+import urllib.request
 from pathlib import Path
 
-try:
-    import requests
-except ImportError:
-    requests = None
-
-
 PAPPERS_API_BASE = "https://api.pappers.fr/v2"
+DEFAULT_TIMEOUT = 15
+
+
+def _http_get_json(url: str, params: dict[str, str] | None = None, headers: dict[str, str] | None = None) -> dict:
+    """GET JSON avec urllib (stdlib). Leve urllib.error.HTTPError ou URLError en cas d'echec reseau."""
+    if params:
+        url = f"{url}?{urllib.parse.urlencode(params)}"
+    req = urllib.request.Request(url, headers=headers or {"User-Agent": "moriarty-cfo/0.2"})
+    with urllib.request.urlopen(req, timeout=DEFAULT_TIMEOUT) as resp:
+        return json.loads(resp.read().decode("utf-8"))
 
 
 def validate_siren(siren: str) -> str:
@@ -83,14 +90,9 @@ def normalize_pappers_response(data: dict) -> dict:
 
 
 def fetch_via_api(siren: str, api_key: str) -> dict:
-    if requests is None:
-        raise RuntimeError("Module 'requests' non installé. Lancer : pip install requests")
-
     url = f"{PAPPERS_API_BASE}/entreprise"
     params = {"siren": siren, "api_token": api_key}
-    resp = requests.get(url, params=params, timeout=15)
-    resp.raise_for_status()
-    data = resp.json()
+    data = _http_get_json(url, params=params)
     from datetime import datetime, timezone
     data["_fetched_at"] = datetime.now(timezone.utc).isoformat()
     return normalize_pappers_response(data)
@@ -142,8 +144,11 @@ def main() -> int:
     else:
         try:
             result = fetch_via_api(siren, api_key)
-        except Exception as e:
-            print(f"⚠️ API Pappers échec : {e}, fallback WebFetch", file=sys.stderr)
+        except (urllib.error.HTTPError, urllib.error.URLError, TimeoutError) as e:
+            print(f"⚠️ API Pappers echec reseau : {e}, fallback WebFetch", file=sys.stderr)
+            result = print_web_fetch_instruction(siren)
+        except (ValueError, KeyError) as e:
+            print(f"⚠️ API Pappers parsing echec : {e}, fallback WebFetch", file=sys.stderr)
             result = print_web_fetch_instruction(siren)
 
     output = json.dumps(result, indent=2, ensure_ascii=False)

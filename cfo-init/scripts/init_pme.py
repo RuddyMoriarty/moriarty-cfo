@@ -24,6 +24,7 @@ from __future__ import annotations
 
 import argparse
 import json
+import subprocess
 import sys
 from datetime import datetime, timezone
 from pathlib import Path
@@ -34,6 +35,27 @@ PRIVATE = ROOT / "private"
 VALID_ROLES = {"dirigeant", "gerant", "cfo", "daf", "president", "autre"}
 VALID_TAILLES = {"tpe", "pe", "me", "eti", "ge"}
 VALID_TVA = {"franchise", "reel_simplifie", "reel_normal_mensuelle", "reel_normal_trimestrielle"}
+
+# Mapping INSEE categorie_entreprise -> taille bundle
+CATEGORIE_TO_TAILLE = {"PME": "pe", "ETI": "eti", "GE": "ge", "TPE": "tpe"}
+
+
+def fetch_enrichment(siren: str) -> dict | None:
+    """Appelle fetch_sirene.py --mode api-annuaire. Retourne dict ou None si echec."""
+    script = ROOT / "cfo-init" / "scripts" / "fetch_sirene.py"
+    proc = subprocess.run(
+        [sys.executable, str(script), "--siren", siren, "--mode", "api-annuaire"],
+        capture_output=True, text=True, timeout=15, cwd=str(ROOT),
+    )
+    if proc.returncode != 0:
+        return None
+    try:
+        data = json.loads(proc.stdout)
+    except json.JSONDecodeError:
+        return None
+    if data.get("mode") == "webfetch_required":
+        return None  # API indisponible, fallback web uniquement
+    return data
 
 
 def main() -> int:
@@ -53,11 +75,25 @@ def main() -> int:
     parser.add_argument("--notifications-level", type=int, default=1, choices=[1, 2, 3, 4],
                         help="Niveau de notifications (1=essentielles, 4=toutes)")
     parser.add_argument("--force", action="store_true", help="Ecrase profile.json et company.json si existent")
+    parser.add_argument("--fetch", action="store_true",
+                        help="Enrichit avec l'API Annuaire Entreprises (gratuite, sans auth)")
     args = parser.parse_args()
 
     if len(args.siren) != 9 or not args.siren.isdigit():
         print("ERREUR: SIREN doit contenir 9 chiffres", file=sys.stderr)
         return 2
+
+    # Enrichissement API Annuaire Entreprises
+    enrichment: dict = {}
+    if args.fetch:
+        fetched = fetch_enrichment(args.siren)
+        if fetched:
+            enrichment = fetched
+            print(f"✓ Annuaire Entreprises : {fetched.get('denomination', '?')} "
+                  f"(NAF {fetched.get('code_naf', '?')}, {fetched.get('tranche_effectif_label', '?')})",
+                  file=sys.stderr)
+        else:
+            print("⚠ Annuaire Entreprises indisponible, continue avec valeurs fournies", file=sys.stderr)
 
     PRIVATE.mkdir(parents=True, exist_ok=True)
     now_iso = datetime.now(timezone.utc).astimezone().isoformat(timespec="seconds")
@@ -93,6 +129,12 @@ def main() -> int:
         print(f"  {profile_path}")
         return 0
 
+    # Priorite des champs : CLI args > enrichissement Annuaire > defaults bundle
+    # La denomination CLI reste autoritative (l'utilisateur peut vouloir le nom commercial
+    # plutot que la denomination INSEE legale).
+    taille_auto = CATEGORIE_TO_TAILLE.get(enrichment.get("categorie_entreprise") or "", "pe")
+    naf_fetched = enrichment.get("code_naf")
+
     company = {
         "siren": args.siren,
         "denomination": args.denomination,
@@ -101,9 +143,11 @@ def main() -> int:
             "duree_mois": 12,
         },
         "classification": {
-            "taille": args.taille or "pe",
+            "taille": args.taille or taille_auto,
             "secteur_category": args.secteur,
+            "naf_code": naf_fetched,
             "effectif": args.effectif,
+            "effectif_tranche_insee": enrichment.get("tranche_effectif_label"),
             "regime_fiscal": args.is_regime,
             "regime_tva": args.tva_regime or "reel_normal_mensuelle",
             "csrd_wave": "hors_scope",
@@ -113,6 +157,13 @@ def main() -> int:
             "groupe": False,
             "seuil_audit": False,
         },
+        "annuaire_entreprises": {
+            "source": enrichment.get("source"),
+            "nombre_etablissements": enrichment.get("nombre_etablissements"),
+            "adresse_siege": enrichment.get("adresse_siege"),
+            "etat_administratif": enrichment.get("etat_administratif"),
+            "date_creation": enrichment.get("date_creation"),
+        } if enrichment else None,
         "created_at": now_iso,
     }
     company_path.write_text(

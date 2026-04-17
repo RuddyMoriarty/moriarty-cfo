@@ -4,6 +4,41 @@ Toutes les évolutions notables de `moriarty-cfo` sont documentées ici.
 
 Le format suit [Keep a Changelog](https://keepachangelog.com/fr/1.1.0/) et le projet adhère au [Semantic Versioning](https://semver.org/lang/fr/).
 
+## [0.2.1], 2026-04-17
+
+Roadmap v0.2 Module C : snapshot regression. Les outputs des scripts purement deterministes (math, pas de date/heure, pas de random) sont figes dans `evals/_snapshots/` et compares avec une tolerance de 0,5 % pour les floats. Toute derive silencieuse (ex: un `cir_estime` qui passerait de 85 800 a 94 380 apres un refacto) est detectee au test suivant.
+
+### Added
+
+Helper `evals/_helpers/snapshot_compare.py` avec 8 snapshots de reference :
+
+- **cfo-tresorerie/bfr_calculator** : ratios DSO/DPO/DIO + benchmark services B2B
+- **cfo-budget-forecast/capex_analyzer** : NPV / IRR / payback sur 5 ans, WACC 10 %
+- **cfo-fiscalite/is_simulator** : IS 500k € resultat comptable, acomptes trimestriels
+- **cfo-fiscalite/cir_estimator** : CIR eligible pour 200k € salaires chercheurs
+- **cfo-csrd-esg/csrd_scope_calculator** : wave CSRD pour PME 300 salaries 50 M € CA
+- **cfo-financement-croissance/valuation_calculator** : triangulation DCF + multiples EBITDA (6x / 8x / 10x)
+- **cfo-controle-gestion/pricing_simulator** : 3 scenarios avec elasticite -1,5
+- **cfo-financement-croissance/moriarty_link** : hash SIREN SHA-256 tronque + URL UTM stable
+
+Documentation `evals/_snapshots/README.md` : workflow de mise a jour, tolerance, structure.
+
+### Changed
+
+Validation `snapshot_compare.py` testee par perturbation manuelle : une deviation de 10 % sur un champ float est correctement detectee (1 deviation remontee au path exact), et le snapshot est restaure a l'identique apres correction.
+
+### Metriques
+
+- 71 tests fonctionnels (etait 63), +13 %
+- 347/347 tests globaux (100 %)
+- 8 snapshots de regression dans evals/_snapshots/
+- Couverture snapshots : 7 skills sur 10 (tous ceux avec scripts deterministes)
+- 0 warning lint
+
+### Note
+
+Les 3 skills non couverts par les snapshots (cfo-init, cfo-comptabilite, cfo-reporting) ont des outputs dependants de la date courante ou de l'environnement (calendrier fiscal lie a today(), balance comptable dynamique). Module B (baseline comparison avec/sans skill) arrive en v0.2.2.
+
 ## [0.2.0], 2026-04-17
 
 Roadmap v0.2 Module A : scenarios d'erreur. Le bundle passe de "tests du chemin nominal uniquement" a "robustesse validee contre les inputs malformes". 5 scripts durcis pour rejeter proprement les donnees invalides au lieu de crasher ou d'accepter silencieusement.

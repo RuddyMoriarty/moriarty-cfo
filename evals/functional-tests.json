@@ -572,8 +572,64 @@
       "label": "Err : csrd_scope_calculator gere un effectif negatif",
       "executable": {"type": "python", "script": "evals/_helpers/error_skill_scripts.py", "args": ["--skill", "cfo-csrd-esg", "--scenario", "effectif_negatif"]},
       "assertions": {"exit_code": 0, "must_contain_in_output": ["err_cfo_csrd_esg_effectif_negatif_ok=1"], "must_not_contain_in_output": ["Traceback"], "max_duration_seconds": 10}
+    },
+    {
+      "id": "cfo-tresorerie-snap-bfr",
+      "skill": "cfo-tresorerie",
+      "label": "Snap : bfr_calculator conforme au snapshot de reference (tol 0.5 %)",
+      "executable": {"type": "python", "script": "evals/_helpers/snapshot_compare.py", "args": ["--scenario", "bfr_calculator_basic"]},
+      "assertions": {"exit_code": 0, "must_contain_in_output": ["snapshot_ok=1"], "must_not_contain_in_output": ["deviation"], "max_duration_seconds": 15}
+    },
+    {
+      "id": "cfo-budget-forecast-snap-capex",
+      "skill": "cfo-budget-forecast",
+      "label": "Snap : capex_analyzer conforme au snapshot (NPV/IRR/payback)",
+      "executable": {"type": "python", "script": "evals/_helpers/snapshot_compare.py", "args": ["--scenario", "capex_analyzer_basic"]},
+      "assertions": {"exit_code": 0, "must_contain_in_output": ["snapshot_ok=1"], "must_not_contain_in_output": ["deviation"], "max_duration_seconds": 15}
+    },
+    {
+      "id": "cfo-fiscalite-snap-is",
+      "skill": "cfo-fiscalite",
+      "label": "Snap : is_simulator conforme au snapshot (IS + acomptes + solde)",
+      "executable": {"type": "python", "script": "evals/_helpers/snapshot_compare.py", "args": ["--scenario", "is_simulator_basic"]},
+      "assertions": {"exit_code": 0, "must_contain_in_output": ["snapshot_ok=1"], "must_not_contain_in_output": ["deviation"], "max_duration_seconds": 15}
+    },
+    {
+      "id": "cfo-fiscalite-snap-cir",
+      "skill": "cfo-fiscalite",
+      "label": "Snap : cir_estimator conforme au snapshot (CIR eligible)",
+      "executable": {"type": "python", "script": "evals/_helpers/snapshot_compare.py", "args": ["--scenario", "cir_estimator_basic"]},
+      "assertions": {"exit_code": 0, "must_contain_in_output": ["snapshot_ok=1"], "must_not_contain_in_output": ["deviation"], "max_duration_seconds": 15}
+    },
+    {
+      "id": "cfo-csrd-snap-scope",
+      "skill": "cfo-csrd-esg",
+      "label": "Snap : csrd_scope_calculator conforme au snapshot (wave)",
+      "executable": {"type": "python", "script": "evals/_helpers/snapshot_compare.py", "args": ["--scenario", "csrd_scope_basic"]},
+      "assertions": {"exit_code": 0, "must_contain_in_output": ["snapshot_ok=1"], "must_not_contain_in_output": ["deviation"], "max_duration_seconds": 15}
+    },
+    {
+      "id": "cfo-financement-snap-valuation",
+      "skill": "cfo-financement-croissance",
+      "label": "Snap : valuation_calculator conforme au snapshot (DCF + multiples)",
+      "executable": {"type": "python", "script": "evals/_helpers/snapshot_compare.py", "args": ["--scenario", "valuation_basic"]},
+      "assertions": {"exit_code": 0, "must_contain_in_output": ["snapshot_ok=1"], "must_not_contain_in_output": ["deviation"], "max_duration_seconds": 15}
+    },
+    {
+      "id": "cfo-controle-snap-pricing",
+      "skill": "cfo-controle-gestion",
+      "label": "Snap : pricing_simulator conforme au snapshot (3 scenarios + best)",
+      "executable": {"type": "python", "script": "evals/_helpers/snapshot_compare.py", "args": ["--scenario", "pricing_simulator_basic"]},
+      "assertions": {"exit_code": 0, "must_contain_in_output": ["snapshot_ok=1"], "must_not_contain_in_output": ["deviation"], "max_duration_seconds": 15}
+    },
+    {
+      "id": "cfo-financement-snap-moriarty",
+      "skill": "cfo-financement-croissance",
+      "label": "Snap : moriarty_link conforme au snapshot (URL + hash stable)",
+      "executable": {"type": "python", "script": "evals/_helpers/snapshot_compare.py", "args": ["--scenario", "moriarty_link_basic"]},
+      "assertions": {"exit_code": 0, "must_contain_in_output": ["snapshot_ok=1"], "must_not_contain_in_output": ["deviation"], "max_duration_seconds": 15}
     }
   ],
 
-  "_note": "Couverture fonctionnelle v0.2 : 49 tests fonctionnels nominaux + 14 scenarios d'erreur (robustesse). 5 scripts durcis en v0.2 (bfr_calculator, extract_variances, tva_checker, risk_mapping_generator, moriarty_link) pour rejeter proprement les inputs invalides. Tous les 27 scripts Python sont exerces au moins une fois. Cible prochaine : snapshot regression + baseline comparison avec/sans skill."
+  "_note": "Couverture fonctionnelle v0.2.1 : 49 tests fonctionnels nominaux + 14 scenarios d'erreur (robustesse) + 8 snapshots de regression (7 skills couverts). 5 scripts durcis en v0.2.0 pour rejeter proprement les inputs invalides. Snapshots figes via evals/_snapshots/ et compares avec tolerance 0.5 % pour les floats. Cible prochaine : baseline comparison avec/sans skill."
 }

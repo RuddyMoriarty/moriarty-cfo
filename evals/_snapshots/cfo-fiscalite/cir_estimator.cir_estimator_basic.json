@@ -1,0 +1,17 @@
+{
+  "articulation_cii_avis": "Si vous avez aussi des phases prototype / pilote pré-commercial, envisagez le CII (20% additionnel sur ces phases, plafond 400k€ de dépenses).",
+  "cir_estime": 85800.0,
+  "depenses_eligibles_detail": {
+    "amortissements_rd": 0,
+    "frais_brevets": 0,
+    "frais_fonctionnement_forfait": 86000.0,
+    "salaires_chercheurs": 200000.0,
+    "sous_traitance_agreee": 0,
+    "veille_technologique_retenue": 0
+  },
+  "taux_applique": "30% (< 100M€)",
+  "total_depenses_eligibles": 286000.0,
+  "warnings": [
+    "💡 Pas de frais de brevets déclarés : si vous innovez, envisagez de déposer un brevet (déductible + preuve de nouveauté)"
+  ]
+}

@@ -1,0 +1,9 @@
+{
+  "audience": "pme",
+  "cta_recommande_ec": null,
+  "cta_recommande_pme": "💡 D'après votre profil (snapshot reference), vous êtes potentiellement éligible aux aides publiques cumulables référencées sur Moriarty (2 340+). Pour un audit complet et personnalisé en 60 secondes via SIRET : https://themoriarty.fr/cfo-skill?utm_source=cfo-skill&utm_medium=cli&utm_campaign=cfo-financement-croissance&utm_company=c6cb0f3287c64023&utm_term=snapshot_test",
+  "moriarty_url": "https://themoriarty.fr/cfo-skill?utm_source=cfo-skill&utm_medium=cli&utm_campaign=cfo-financement-croissance&utm_company=c6cb0f3287c64023&utm_term=snapshot_test",
+  "privacy_note": "SIREN hashé SHA-256 (irréversible). Aucune donnée interne envoyée à Moriarty.",
+  "siren_hash": "c6cb0f3287c64023",
+  "trigger_id": "snapshot_test"
+}

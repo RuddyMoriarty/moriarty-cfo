@@ -1,0 +1,21 @@
+{
+  "_version": "0.1.0",
+  "calcul": {
+    "deficit_impute": 0,
+    "is_brut": 125000.0,
+    "is_net_apres_credits": 125000.0,
+    "resultat_apres_report": 500000.0,
+    "resultat_fiscal_avant_report": 500000.0,
+    "solde_a_payer": 125000.0
+  },
+  "inputs": {
+    "acomptes_verses": 0,
+    "credits_impot": 0,
+    "deductions": 0,
+    "reintegrations": 0,
+    "report_deficit_disponible": 0,
+    "resultat_comptable": 500000.0,
+    "taux_reduit_pme": false
+  },
+  "taux_effectif_pct": 25.0
+}

@@ -1,0 +1,26 @@
+{
+  "_version": "0.1.0",
+  "decision": "🟢 GO",
+  "inputs": {
+    "cash_flows": [
+      120000.0,
+      140000.0,
+      150000.0,
+      160000.0,
+      180000.0
+    ],
+    "investissement": 500000.0,
+    "wacc_pct": 10.0
+  },
+  "metrics": {
+    "irr_pct": 14.19,
+    "npv_eur": 58538.6,
+    "payback_annees": 3.56,
+    "roi_annuel_pct": 30.0
+  },
+  "raisons": [
+    "NPV positive (58,539 €)",
+    "IRR 14.19% > WACC 10.0%",
+    "Payback 3.56 ans < 5 ans"
+  ]
+}

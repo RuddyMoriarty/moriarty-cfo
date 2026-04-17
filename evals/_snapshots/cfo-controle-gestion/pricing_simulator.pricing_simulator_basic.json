@@ -1,0 +1,102 @@
+{
+  "_version": "0.1.0",
+  "best_scenario": {
+    "label": "+15%",
+    "marge": 91875.0,
+    "prix": 114.99999999999999,
+    "variation_marge_pct": 53.1
+  },
+  "inputs": {
+    "cout_variable_unitaire": 40.0,
+    "elasticite_estimée": -1.5,
+    "prix_actuel": 100.0,
+    "volume_actuel": 1000.0
+  },
+  "scenarios": [
+    {
+      "ca_actuel": 100000.0,
+      "ca_nouveau": 76500.0,
+      "marge_actuelle": 60000.0,
+      "marge_nouvelle": 42500.0,
+      "prix_actuel": 100.0,
+      "prix_nouveau": 90.0,
+      "scenario_label": "-10%",
+      "variation_ca_eur": -23500.0,
+      "variation_ca_pct": -23.5,
+      "variation_marge_eur": -17500.0,
+      "variation_marge_pct": -29.2,
+      "variation_prix_pct": -10.0,
+      "variation_volume_pct": -15.0,
+      "volume_actuel": 1000.0,
+      "volume_nouveau_estime": 850.0
+    },
+    {
+      "ca_actuel": 100000.0,
+      "ca_nouveau": 87875.0,
+      "marge_actuelle": 60000.0,
+      "marge_nouvelle": 50875.0,
+      "prix_actuel": 100.0,
+      "prix_nouveau": 95.0,
+      "scenario_label": "-5%",
+      "variation_ca_eur": -12125.0,
+      "variation_ca_pct": -12.1,
+      "variation_marge_eur": -9125.0,
+      "variation_marge_pct": -15.2,
+      "variation_prix_pct": -5.0,
+      "variation_volume_pct": -7.5,
+      "volume_actuel": 1000.0,
+      "volume_nouveau_estime": 925.0
+    },
+    {
+      "ca_actuel": 100000.0,
+      "ca_nouveau": 112875.0,
+      "marge_actuelle": 60000.0,
+      "marge_nouvelle": 69875.0,
+      "prix_actuel": 100.0,
+      "prix_nouveau": 105.0,
+      "scenario_label": "+5%",
+      "variation_ca_eur": 12875.0,
+      "variation_ca_pct": 12.9,
+      "variation_marge_eur": 9875.0,
+      "variation_marge_pct": 16.5,
+      "variation_prix_pct": 5.0,
+      "variation_volume_pct": 7.5,
+      "volume_actuel": 1000.0,
+      "volume_nouveau_estime": 1075.0
+    },
+    {
+      "ca_actuel": 100000.0,
+      "ca_nouveau": 126500.0,
+      "marge_actuelle": 60000.0,
+      "marge_nouvelle": 80500.0,
+      "prix_actuel": 100.0,
+      "prix_nouveau": 110.00000000000001,
+      "scenario_label": "+10%",
+      "variation_ca_eur": 26500.0,
+      "variation_ca_pct": 26.5,
+      "variation_marge_eur": 20500.0,
+      "variation_marge_pct": 34.2,
+      "variation_prix_pct": 10.0,
+      "variation_volume_pct": 15.0,
+      "volume_actuel": 1000.0,
+      "volume_nouveau_estime": 1150.0
+    },
+    {
+      "ca_actuel": 100000.0,
+      "ca_nouveau": 140875.0,
+      "marge_actuelle": 60000.0,
+      "marge_nouvelle": 91875.0,
+      "prix_actuel": 100.0,
+      "prix_nouveau": 114.99999999999999,
+      "scenario_label": "+15%",
+      "variation_ca_eur": 40875.0,
+      "variation_ca_pct": 40.9,
+      "variation_marge_eur": 31875.0,
+      "variation_marge_pct": 53.1,
+      "variation_prix_pct": 15.0,
+      "variation_volume_pct": 22.5,
+      "volume_actuel": 1000.0,
+      "volume_nouveau_estime": 1225.0
+    }
+  ]
+}

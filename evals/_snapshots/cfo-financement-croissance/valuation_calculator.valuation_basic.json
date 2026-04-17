@@ -1,0 +1,32 @@
+{
+  "_version": "0.1.0",
+  "dcf": {
+    "enterprise_value": 1530.0,
+    "growth_perpetual_pct": 2.0,
+    "method": "DCF",
+    "pv_cash_flows": 488.0,
+    "pv_valeur_terminale": 1042.0,
+    "wacc_pct": 12.0
+  },
+  "multiples": {
+    "ev_ebitda_avg": 1600.0,
+    "ev_ebitda_high": 2000.0,
+    "ev_ebitda_low": 1200.0,
+    "ev_revenue_avg": 2000.0,
+    "ev_revenue_high": 3000.0,
+    "ev_revenue_low": 1000.0,
+    "method": "Multiples"
+  },
+  "triangulation": {
+    "ajustements": {
+      "cash_excedentaire": 0,
+      "net_debt": 0,
+      "provisions": 0
+    },
+    "equity_value_avg": 1710.0,
+    "ev_avg": 1710.0,
+    "ev_max": 2000.0,
+    "ev_min": 1530.0
+  },
+  "warning": "Toute valorisation est sensible aux hypothèses. Toujours présenter une fourchette avec sensibilités. Pour opérations réelles : cabinet de transaction services."
+}

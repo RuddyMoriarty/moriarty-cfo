@@ -1,0 +1,35 @@
+{
+  "_version": "0.1.0",
+  "benchmark": {
+    "benchmark_dio": [
+      0,
+      15
+    ],
+    "benchmark_dpo": [
+      30,
+      50
+    ],
+    "benchmark_dso": [
+      45,
+      65
+    ],
+    "dio": "✗ au-dessus de médiane (à améliorer)",
+    "dpo": "✓ meilleur que médiane",
+    "dso": "~ dans la norme",
+    "secteur": "services_btob"
+  },
+  "gain_potentiel": {
+    "eur_liberables": 0.0,
+    "jours_total": 0,
+    "note": "Estimation basée sur application des leviers identifiés"
+  },
+  "leviers": [],
+  "ratios": {
+    "bfr": 150000.0,
+    "bfr_en_jours_ca": 45.6,
+    "ccc": 30.4,
+    "dio": 60.8,
+    "dpo": 91.2,
+    "dso": 60.8
+  }
+}

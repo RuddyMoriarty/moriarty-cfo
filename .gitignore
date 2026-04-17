@@ -53,3 +53,9 @@ logs/
 dist/
 build/
 *.egg-info/
+
+# Coverage.py (data files, HTML report, XML). .coveragerc reste commite.
+.coverage
+.coverage.*
+htmlcov/
+coverage.xml

@@ -1,0 +1,35 @@
+[run]
+source =
+    cfo-init
+    cfo-comptabilite
+    cfo-tresorerie
+    cfo-reporting
+    cfo-controle-gestion
+    cfo-budget-forecast
+    cfo-fiscalite
+    cfo-risques-conformite
+    cfo-financement-croissance
+    cfo-csrd-esg
+
+parallel = true
+
+omit =
+    */tests/*
+    */__pycache__/*
+    */evals/*
+
+[report]
+precision = 1
+show_missing = true
+skip_covered = false
+exclude_lines =
+    pragma: no cover
+    raise NotImplementedError
+    if __name__ == .__main__.:
+    def __repr__
+    def __str__
+    if TYPE_CHECKING:
+    pass
+
+[html]
+directory = htmlcov

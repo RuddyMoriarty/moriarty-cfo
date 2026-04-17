@@ -4,6 +4,57 @@ Toutes les évolutions notables de `moriarty-cfo` sont documentées ici.
 
 Le format suit [Keep a Changelog](https://keepachangelog.com/fr/1.1.0/) et le projet adhère au [Semantic Versioning](https://semver.org/lang/fr/).
 
+## [0.3.2], 2026-04-17
+
+Infrastructure coverage.py. Mesure empirique de la couverture reelle des 27 scripts du bundle. **Resultat : 77.5 % de couverture sur 3608 lignes**, avec 4 scripts a 100 % ou plus de 95 % et 11 scripts en dessous de 70 % a renforcer en v0.4.
+
+### Added
+
+- **`.coveragerc`** a la racine : configuration INI qui restreint la mesure aux 10 skills (source = cfo-init, cfo-comptabilite, ...) et active parallel = true + omit pour les tests.
+- **`evals/_coverage_bootstrap/sitecustomize.py`** : hook Python qui appelle `coverage.process_startup()` dans chaque subprocess Python spawne par les tests fonctionnels. Active uniquement si `COVERAGE_PROCESS_START` est defini. Necessaire pour tracer les scripts appeles via subprocess.
+- **`evals/run_coverage.py`** : wrapper qui lance `coverage run --parallel-mode evals/run_evals.py --functional`, puis `coverage combine` et `coverage report`. Modes `--html` (rapport HTML dans `htmlcov/`) et `--threshold N` (echec si coverage < N %). Skip proprement si `coverage` n'est pas installe.
+- **`docs/coverage-snapshot.md`** : rapport commite des 27 scripts, ventile en 3 buckets (> 85 %, 70 % a 85 %, < 70 %) avec les branches typiques non couvertes. A regenerer apres chaque release majeure.
+- **Test CI `evals/_helpers/check_coverage_setup.py`** (6 checks statiques, sans avoir besoin que coverage soit installe) :
+  - `.coveragerc` existe et est parse comme INI valide
+  - 10 skills listes dans `source =`
+  - `parallel = true` active
+  - `sitecustomize.py` contient `coverage.process_startup()` et check `COVERAGE_PROCESS_START`
+  - `evals/run_coverage.py` compile
+
+### Changed
+
+- **`.gitignore`** enrichi : `.coverage`, `.coverage.*`, `htmlcov/`, `coverage.xml` ignores. `.coveragerc` reste commite (config partagee).
+
+### Resultat empirique
+
+```
+Total : 3608 lignes, 813 non couvertes = 77.5 %
+
+4 scripts a >= 95 % : moriarty_link (100 %), forecast_12m (98.4 %),
+  pricing_simulator (97.4 %), scope_emissions_estimator (96.6 %),
+  valuation_calculator (96.3 %)
+
+11 scripts < 70 % a renforcer en v0.4 :
+  generate_closing_journal (52.5 %), validate_close_checklist (56.4 %),
+  portfolio_dashboard (56.4 %), fetch_pappers (57.7 %),
+  forfait_tracker (57.7 %), encaissements_aging (59.0 %),
+  schedule_all (59.8 %), remove_client (65.0 %),
+  list_clients (65.2 %), generate_dashboard (65.2 %),
+  init_cabinet (69.9 %)
+```
+
+### Metriques
+
+- 66 tests fonctionnels (etait 65)
+- 342/342 tests globaux (100 %)
+- 77.5 % de couverture reelle des scripts
+- 0 warning lint
+- Cible v0.4 : >= 85 % global, aucun script < 70 %
+
+### Note infrastructure
+
+`coverage` n'est PAS ajoute comme dependance obligatoire : le bundle reste stdlib-only pour l'utilisateur final. Seul le developpeur qui veut verifier la coverage doit `pip install coverage` localement.
+
 ## [0.3.1], 2026-04-17
 
 Dashboard CFO unifie pour mode PME. Un seul HTML A4 portrait agrege dans un livrable du lundi matin : alertes critiques, 5 KPIs, prochaines echeances 30 jours, routines actives, progression achievements. Complete le `portfolio-dashboard` deja present pour le mode EC.

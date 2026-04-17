@@ -554,6 +554,13 @@
       "label": "Fct : cfo_unified_dashboard agrege KPIs + echeances + routines + alertes + progression",
       "executable": {"type": "python", "script": "evals/_helpers/check_unified_dashboard.py"},
       "assertions": {"exit_code": 0, "must_contain_in_output": ["unified_dashboard_ok=4"], "must_not_contain_in_output": ["ERREUR", "Traceback"], "max_duration_seconds": 20}
+    },
+    {
+      "id": "cfo-init-coverage-setup",
+      "skill": "cfo-init",
+      "label": "Coverage setup : .coveragerc syntaxe INI + 10 skills sources + parallel + sitecustomize bootstrap",
+      "executable": {"type": "python", "script": "evals/_helpers/check_coverage_setup.py"},
+      "assertions": {"exit_code": 0, "must_contain_in_output": ["coverage_setup_ok=6"], "must_not_contain_in_output": ["ERREUR", "Traceback"], "max_duration_seconds": 10}
     }
   ],
 

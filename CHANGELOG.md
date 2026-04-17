@@ -4,6 +4,47 @@ Toutes les évolutions notables de `moriarty-cfo` sont documentées ici.
 
 Le format suit [Keep a Changelog](https://keepachangelog.com/fr/1.1.0/) et le projet adhère au [Semantic Versioning](https://semver.org/lang/fr/).
 
+## [0.3.1], 2026-04-17
+
+Dashboard CFO unifie pour mode PME. Un seul HTML A4 portrait agrege dans un livrable du lundi matin : alertes critiques, 5 KPIs, prochaines echeances 30 jours, routines actives, progression achievements. Complete le `portfolio-dashboard` deja present pour le mode EC.
+
+### Added
+
+- **`cfo-reporting/scripts/cfo_unified_dashboard.py`** (v0.3.1, stdlib only) :
+  - Lit `private/companies/<siren>/{company,calendar-fiscal,routines,bfr,fc13,kpis}.json`
+  - Aggregation automatique dans un HTML unique
+  - Degrade proprement : chaque section manquante affiche "Lancer <code>./cfo X</code>" au lieu de crasher
+  - Detection automatique des alertes : echeances < 7 jours + routines en echec
+  - Coloration KPIs selon seuils (DSO < 45 vert, < 75 orange, > 75 rouge ; EBITDA >= 10 % vert)
+  - Accessible via `./cfo unified-dashboard --siren 552120222`
+
+- **`cfo-reporting/templates/unified-dashboard.html`** : template A4 portrait avec 5 sections (header + alertes + KPI grid 6 cellules + tableau echeances + bloc routines + progress bar achievements), charte Moriarty
+
+- **Test fonctionnel `evals/_helpers/check_unified_dashboard.py`** (4 checks) :
+  - Scenario complet avec fixtures : 10 sections obligatoires presentes, zero placeholder non substitue
+  - Degradation gracieuse : >= 3 instructions "Lancer ./cfo X" si donnees manquantes
+  - Validation SIREN 9 chiffres
+  - Rejet repertoire client inexistant avec instruction `init-pme`
+
+### Changed
+
+- `./cfo` CLI enrichi : ajout de la commande `unified-dashboard` dans la categorie Reporting (51 commandes au total au lieu de 50)
+
+### Metriques
+
+- 65 tests fonctionnels (etait 64)
+- 341/341 tests globaux (100 %)
+- 51 commandes CLI (etait 50)
+- 0 warning lint
+
+### Utilisation
+
+```bash
+./cfo unified-dashboard --siren 552120222
+# Genere private/companies/552120222/unified-dashboard.html
+# Contient : alertes J-3 TVA urgente, DSO 62 j (orange), BFR 150k€, 3 echeances 30 j
+```
+
 ## [0.3.0], 2026-04-17
 
 CLI unifiee `./cfo`. 50 commandes courtes mappees aux scripts Python du bundle, groupees en 12 categories. Divise par 5 la charge cognitive d'utilisation : au lieu de `python3 cfo-init/scripts/portfolio/init_cabinet.py --siren X`, desormais `./cfo init-cabinet --siren X`.

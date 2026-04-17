@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<title>Dashboard CFO unifie, {{DENOMINATION}}</title>
+<style>
+  @page { size: A4 portrait; margin: 12mm; }
+  * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Helvetica Neue', Arial, sans-serif; }
+  body { background: #F6F6F6; color: #002E72; padding: 20px; max-width: 900px; margin: 0 auto; }
+
+  header { border-bottom: 3px solid #E14F0A; padding-bottom: 10px; margin-bottom: 18px; }
+  header h1 { font-size: 22px; font-weight: 700; }
+  header .meta { color: #666; font-size: 12px; margin-top: 4px; }
+  header .tag { display: inline-block; background: #002E72; color: #fff; padding: 2px 8px; border-radius: 3px; font-size: 10px; margin-right: 4px; }
+
+  section { background: #fff; padding: 14px 18px; margin-bottom: 14px; border-left: 3px solid #002E72; page-break-inside: avoid; }
+  section h2 { font-size: 15px; color: #002E72; margin-bottom: 10px; font-weight: 700; }
+  section.alert { border-left-color: #C00; background: #FFF5F5; }
+  section.warning { border-left-color: #F80; background: #FFF9F0; }
+
+  .kpi-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-bottom: 12px; }
+  .kpi { background: #F6F6F6; padding: 10px; border-left: 2px solid #002E72; }
+  .kpi.good { border-left-color: #060; }
+  .kpi.warning { border-left-color: #F80; }
+  .kpi.critical { border-left-color: #C00; }
+  .kpi-label { font-size: 10px; color: #666; text-transform: uppercase; letter-spacing: 0.5px; }
+  .kpi-value { font-size: 18px; font-weight: 700; color: #002E72; margin-top: 2px; }
+  .kpi-unit { font-size: 12px; color: #999; margin-left: 3px; font-weight: 400; }
+  .kpi-note { font-size: 10px; color: #999; margin-top: 4px; font-style: italic; }
+
+  table { width: 100%; border-collapse: collapse; font-size: 12px; }
+  th { text-align: left; background: #002E72; color: #fff; padding: 6px 8px; font-weight: 600; font-size: 11px; }
+  td { padding: 6px 8px; border-bottom: 1px solid #eee; }
+  tr:last-child td { border-bottom: none; }
+  tr.urgent td { background: #FFF5F5; }
+  tr.soon td { background: #FFF9F0; }
+
+  .empty { color: #999; font-style: italic; font-size: 12px; padding: 8px 0; }
+
+  .progress-bar { background: #eee; height: 10px; border-radius: 5px; overflow: hidden; margin-top: 6px; }
+  .progress-fill { background: linear-gradient(90deg, #002E72, #E14F0A); height: 100%; }
+  .progress-label { font-size: 11px; color: #666; margin-top: 4px; }
+
+  footer { text-align: center; color: #999; font-size: 10px; margin-top: 20px; border-top: 1px solid #ddd; padding-top: 8px; }
+  footer a { color: #999; text-decoration: none; }
+</style>
+</head>
+<body>
+  <header>
+    <h1>{{DENOMINATION}}</h1>
+    <div class="meta">
+      <span class="tag">SIREN {{SIREN}}</span>
+      <span class="tag">{{TAILLE_LABEL}}</span>
+      <span class="tag">{{NAF_CODE}}</span>
+      <span class="tag">Cloture {{CLOTURE}}</span>
+      &nbsp;Genere le {{GENERATED_AT}}
+    </div>
+  </header>
+
+  {{ALERTS_SECTION}}
+
+  <section>
+    <h2>Chiffres cles</h2>
+    <div class="kpi-grid">
+      {{KPIS_GRID}}
+    </div>
+  </section>
+
+  <section>
+    <h2>Prochaines echeances (30 jours)</h2>
+    {{DEADLINES_TABLE}}
+  </section>
+
+  <section>
+    <h2>Routines actives</h2>
+    {{ROUTINES_BLOCK}}
+  </section>
+
+  <section>
+    <h2>Progression</h2>
+    {{PROGRESS_BLOCK}}
+  </section>
+
+  <footer>
+    Genere par <a href="https://github.com/RuddyMoriarty/moriarty-cfo">moriarty-cfo</a> v{{VERSION}} &middot; Donnees locales, aucune sortie vers un tiers
+  </footer>
+</body>
+</html>

@@ -80,6 +80,7 @@ COMMANDS: dict[str, dict[str, tuple[str, str]]] = {
         "kpis": ("cfo-reporting/scripts/compute_kpis.py", "Calcul KPIs P&L + ratios depuis balance"),
         "variances": ("cfo-reporting/scripts/extract_variances.py", "Top variances budget vs reel"),
         "dashboard": ("cfo-reporting/scripts/generate_dashboard.py", "Dashboard HTML A4 CFO executif"),
+        "unified-dashboard": ("cfo-reporting/scripts/cfo_unified_dashboard.py", "Dashboard PME unifie : alertes + KPIs + echeances + routines"),
     },
     "Controle de gestion (marges, pricing)": {
         "pricing": ("cfo-controle-gestion/scripts/pricing_simulator.py", "Simulateur pricing 3 scenarios"),

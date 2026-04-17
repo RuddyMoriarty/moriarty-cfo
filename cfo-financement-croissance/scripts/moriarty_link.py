@@ -50,10 +50,20 @@ def main() -> int:
                         help="Résumé court du contexte (ex: 'PME industrie 25 sal, R&D 200k€')")
     args = parser.parse_args()
 
-    link = generate_link(args.siren, args.skill_origin, args.trigger_id)
+    # Validation : un SIREN valide est 9 chiffres (INSEE). On hash quand meme
+    # mais on refuse les formats manifestement invalides (privacy vs utilite).
+    siren_clean = args.siren.strip().replace(" ", "")
+    if not (siren_clean.isdigit() and len(siren_clean) == 9):
+        print(
+            f"❌ SIREN invalide : '{args.siren}'. Attendu : 9 chiffres (format INSEE).",
+            file=sys.stderr,
+        )
+        return 1
+
+    link = generate_link(siren_clean, args.skill_origin, args.trigger_id)
 
     result = {
-        "siren_hash": hash_siren(args.siren),
+        "siren_hash": hash_siren(siren_clean),
         "moriarty_url": link,
         "audience": args.audience,
         "trigger_id": args.trigger_id,

@@ -93,8 +93,19 @@ def main() -> int:
     parser.add_argument("--output", type=Path, default=None)
     args = parser.parse_args()
 
-    balance = load_balance(args.balance)
-    ca3 = json.loads(args.ca3.read_text(encoding="utf-8"))
+    if not args.balance.exists():
+        print(f"❌ Fichier balance introuvable : {args.balance}", file=sys.stderr)
+        return 1
+    if not args.ca3.exists():
+        print(f"❌ Fichier CA3 introuvable : {args.ca3}", file=sys.stderr)
+        return 1
+
+    try:
+        balance = load_balance(args.balance)
+        ca3 = json.loads(args.ca3.read_text(encoding="utf-8"))
+    except (OSError, json.JSONDecodeError) as e:
+        print(f"❌ Erreur de lecture : {e}", file=sys.stderr)
+        return 1
 
     result = check_tva_coherence(balance, ca3, args.tolerance_pct)
 

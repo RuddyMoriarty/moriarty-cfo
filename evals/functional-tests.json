@@ -474,8 +474,106 @@
       "label": "Fct : double_materiality_assessor selectionne sujets materiels + standards ESRS",
       "executable": {"type": "python", "script": "evals/_helpers/fct_skill_scripts.py", "args": ["--skill", "cfo-csrd-esg", "--script", "double_materiality_assessor"]},
       "assertions": {"exit_code": 0, "must_contain_in_output": ["fct_cfo_csrd_esg_double_materiality_assessor_ok=1"], "must_not_contain_in_output": ["ERREUR"], "max_duration_seconds": 15}
+    },
+    {
+      "id": "cfo-init-err-siren-invalide",
+      "skill": "cfo-init",
+      "label": "Err : init_pme refuse un SIREN a 5 chiffres",
+      "executable": {"type": "python", "script": "evals/_helpers/error_skill_scripts.py", "args": ["--skill", "cfo-init", "--scenario", "siren_invalide"]},
+      "assertions": {"exit_code": 0, "must_contain_in_output": ["err_cfo_init_siren_invalide_ok=1"], "must_not_contain_in_output": ["Traceback"], "max_duration_seconds": 10}
+    },
+    {
+      "id": "cfo-init-err-date-cloture-invalide",
+      "skill": "cfo-init",
+      "label": "Err : compute_calendar refuse une date hors format ISO",
+      "executable": {"type": "python", "script": "evals/_helpers/error_skill_scripts.py", "args": ["--skill", "cfo-init", "--scenario", "date_cloture_invalide"]},
+      "assertions": {"exit_code": 0, "must_contain_in_output": ["err_cfo_init_date_cloture_invalide_ok=1"], "must_not_contain_in_output": ["Traceback"], "max_duration_seconds": 10}
+    },
+    {
+      "id": "cfo-comptabilite-err-balance-vide",
+      "skill": "cfo-comptabilite",
+      "label": "Err : validate_close_checklist gere balance CSV vide sans crash",
+      "executable": {"type": "python", "script": "evals/_helpers/error_skill_scripts.py", "args": ["--skill", "cfo-comptabilite", "--scenario", "balance_vide"]},
+      "assertions": {"exit_code": 0, "must_contain_in_output": ["err_cfo_comptabilite_balance_vide_ok=1"], "must_not_contain_in_output": ["Traceback"], "max_duration_seconds": 10}
+    },
+    {
+      "id": "cfo-comptabilite-err-fec-fichier-absent",
+      "skill": "cfo-comptabilite",
+      "label": "Err : prepare_fec_export rejette un fichier introuvable",
+      "executable": {"type": "python", "script": "evals/_helpers/error_skill_scripts.py", "args": ["--skill", "cfo-comptabilite", "--scenario", "fec_fichier_absent"]},
+      "assertions": {"exit_code": 0, "must_contain_in_output": ["err_cfo_comptabilite_fec_fichier_absent_ok=1"], "must_not_contain_in_output": ["Traceback"], "max_duration_seconds": 10}
+    },
+    {
+      "id": "cfo-tresorerie-err-bfr-ca-zero",
+      "skill": "cfo-tresorerie",
+      "label": "Err : bfr_calculator rejette un CA TTC = 0 (division par zero)",
+      "executable": {"type": "python", "script": "evals/_helpers/error_skill_scripts.py", "args": ["--skill", "cfo-tresorerie", "--scenario", "bfr_ca_zero"]},
+      "assertions": {"exit_code": 0, "must_contain_in_output": ["err_cfo_tresorerie_bfr_ca_zero_ok=1"], "must_not_contain_in_output": ["Traceback"], "max_duration_seconds": 10}
+    },
+    {
+      "id": "cfo-tresorerie-err-forecast-args-manquants",
+      "skill": "cfo-tresorerie",
+      "label": "Err : forecast_13w gere l'absence d'arguments sans crash",
+      "executable": {"type": "python", "script": "evals/_helpers/error_skill_scripts.py", "args": ["--skill", "cfo-tresorerie", "--scenario", "forecast_args_manquants"]},
+      "assertions": {"exit_code": 0, "must_contain_in_output": ["err_cfo_tresorerie_forecast_args_manquants_ok=1"], "must_not_contain_in_output": ["Traceback"], "max_duration_seconds": 10}
+    },
+    {
+      "id": "cfo-reporting-err-variances-csv-malforme",
+      "skill": "cfo-reporting",
+      "label": "Err : extract_variances rejette un CSV sans colonne budget/montant",
+      "executable": {"type": "python", "script": "evals/_helpers/error_skill_scripts.py", "args": ["--skill", "cfo-reporting", "--scenario", "variances_csv_malforme"]},
+      "assertions": {"exit_code": 0, "must_contain_in_output": ["err_cfo_reporting_variances_csv_malforme_ok=1"], "must_not_contain_in_output": ["Traceback"], "max_duration_seconds": 10}
+    },
+    {
+      "id": "cfo-controle-gestion-err-profitability-csv-vide",
+      "skill": "cfo-controle-gestion",
+      "label": "Err : profitability_analyzer gere un CSV ventes vide",
+      "executable": {"type": "python", "script": "evals/_helpers/error_skill_scripts.py", "args": ["--skill", "cfo-controle-gestion", "--scenario", "profitability_csv_vide"]},
+      "assertions": {"exit_code": 0, "must_contain_in_output": ["err_cfo_controle_gestion_profitability_csv_vide_ok=1"], "must_not_contain_in_output": ["Traceback"], "max_duration_seconds": 10}
+    },
+    {
+      "id": "cfo-budget-forecast-err-pnl-vide",
+      "skill": "cfo-budget-forecast",
+      "label": "Err : budget_builder rejette un P&L N-1 vide",
+      "executable": {"type": "python", "script": "evals/_helpers/error_skill_scripts.py", "args": ["--skill", "cfo-budget-forecast", "--scenario", "budget_pnl_vide"]},
+      "assertions": {"exit_code": 0, "must_contain_in_output": ["err_cfo_budget_forecast_budget_pnl_vide_ok=1"], "must_not_contain_in_output": ["Traceback"], "max_duration_seconds": 10}
+    },
+    {
+      "id": "cfo-fiscalite-err-tva-fichier-absent",
+      "skill": "cfo-fiscalite",
+      "label": "Err : tva_checker rejette un fichier balance introuvable sans crash",
+      "executable": {"type": "python", "script": "evals/_helpers/error_skill_scripts.py", "args": ["--skill", "cfo-fiscalite", "--scenario", "tva_fichier_absent"]},
+      "assertions": {"exit_code": 0, "must_contain_in_output": ["err_cfo_fiscalite_tva_fichier_absent_ok=1"], "must_not_contain_in_output": ["Traceback"], "max_duration_seconds": 10}
+    },
+    {
+      "id": "cfo-fiscalite-err-cir-negatif",
+      "skill": "cfo-fiscalite",
+      "label": "Err : cir_estimator gere des depenses R&D negatives",
+      "executable": {"type": "python", "script": "evals/_helpers/error_skill_scripts.py", "args": ["--skill", "cfo-fiscalite", "--scenario", "cir_negatif"]},
+      "assertions": {"exit_code": 0, "must_contain_in_output": ["err_cfo_fiscalite_cir_negatif_ok=1"], "must_not_contain_in_output": ["Traceback"], "max_duration_seconds": 10}
+    },
+    {
+      "id": "cfo-risques-err-mapping-csv-invalide",
+      "skill": "cfo-risques-conformite",
+      "label": "Err : risk_mapping_generator rejette un CSV sans probabilite/impact",
+      "executable": {"type": "python", "script": "evals/_helpers/error_skill_scripts.py", "args": ["--skill", "cfo-risques-conformite", "--scenario", "mapping_csv_invalide"]},
+      "assertions": {"exit_code": 0, "must_contain_in_output": ["err_cfo_risques_conformite_mapping_csv_invalide_ok=1"], "must_not_contain_in_output": ["Traceback"], "max_duration_seconds": 10}
+    },
+    {
+      "id": "cfo-financement-err-moriarty-siren-invalide",
+      "skill": "cfo-financement-croissance",
+      "label": "Err : moriarty_link rejette un SIREN a 5 chiffres (format INSEE)",
+      "executable": {"type": "python", "script": "evals/_helpers/error_skill_scripts.py", "args": ["--skill", "cfo-financement-croissance", "--scenario", "moriarty_siren_invalide"]},
+      "assertions": {"exit_code": 0, "must_contain_in_output": ["err_cfo_financement_croissance_moriarty_siren_invalide_ok=1"], "must_not_contain_in_output": ["Traceback"], "max_duration_seconds": 10}
+    },
+    {
+      "id": "cfo-csrd-err-effectif-negatif",
+      "skill": "cfo-csrd-esg",
+      "label": "Err : csrd_scope_calculator gere un effectif negatif",
+      "executable": {"type": "python", "script": "evals/_helpers/error_skill_scripts.py", "args": ["--skill", "cfo-csrd-esg", "--scenario", "effectif_negatif"]},
+      "assertions": {"exit_code": 0, "must_contain_in_output": ["err_cfo_csrd_esg_effectif_negatif_ok=1"], "must_not_contain_in_output": ["Traceback"], "max_duration_seconds": 10}
     }
   ],
 
-  "_note": "Couverture fonctionnelle complete : 10 skills avec smoke test + 2 ou 3 tests fonctionnels reels. Tous les 27 scripts Python sont exerces au moins une fois. Cible prochaine (v0.2) : scenarios d'erreur (fixtures invalides, args manquants) + baseline comparison avec/sans skill."
+  "_note": "Couverture fonctionnelle v0.2 : 49 tests fonctionnels nominaux + 14 scenarios d'erreur (robustesse). 5 scripts durcis en v0.2 (bfr_calculator, extract_variances, tva_checker, risk_mapping_generator, moriarty_link) pour rejeter proprement les inputs invalides. Tous les 27 scripts Python sont exerces au moins une fois. Cible prochaine : snapshot regression + baseline comparison avec/sans skill."
 }

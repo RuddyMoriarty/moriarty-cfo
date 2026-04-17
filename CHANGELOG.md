@@ -4,6 +4,47 @@ Toutes les évolutions notables de `moriarty-cfo` sont documentées ici.
 
 Le format suit [Keep a Changelog](https://keepachangelog.com/fr/1.1.0/) et le projet adhère au [Semantic Versioning](https://semver.org/lang/fr/).
 
+## [0.2.0], 2026-04-17
+
+Roadmap v0.2 Module A : scenarios d'erreur. Le bundle passe de "tests du chemin nominal uniquement" a "robustesse validee contre les inputs malformes". 5 scripts durcis pour rejeter proprement les donnees invalides au lieu de crasher ou d'accepter silencieusement.
+
+### Added
+
+Helper `evals/_helpers/error_skill_scripts.py` avec 14 scenarios de robustesse (au moins 1 par skill) :
+
+- **cfo-init** : SIREN < 9 chiffres rejete (init_pme), date de cloture hors ISO rejetee (compute_calendar).
+- **cfo-comptabilite** : balance CSV vide non crashante (validate_close_checklist), fichier introuvable rejete (prepare_fec_export).
+- **cfo-tresorerie** : CA TTC = 0 rejete (bfr_calculator), forecast_13w sans args geres.
+- **cfo-reporting** : CSV sans colonne budget rejete (extract_variances).
+- **cfo-controle-gestion** : CSV ventes vide gere (profitability_analyzer).
+- **cfo-budget-forecast** : P&L N-1 vide rejete (budget_builder).
+- **cfo-fiscalite** : fichier balance introuvable rejete sans crash (tva_checker), R&D negative signalee (cir_estimator).
+- **cfo-risques-conformite** : CSV sans probabilite/impact rejete (risk_mapping_generator).
+- **cfo-financement-croissance** : SIREN invalide rejete avant hash (moriarty_link).
+- **cfo-csrd-esg** : effectif negatif gere (csrd_scope_calculator).
+
+### Changed
+
+5 scripts durcis avec validation explicite des inputs :
+
+- `cfo-tresorerie/bfr_calculator.py` : exit 1 si `--ca-ttc <= 0` (evite division par zero silencieuse dans DSO/BFR).
+- `cfo-reporting/extract_variances.py` : `load_csv_as_dict` leve `ValueError` si le CSV manque les colonnes `compte`/`montant` ; main attrape `FileNotFoundError` et `ValueError`.
+- `cfo-fiscalite/tva_checker.py` : verifie l'existence des fichiers balance et CA3 avant lecture ; rejette explicitement au lieu de crasher sur `AttributeError`.
+- `cfo-risques-conformite/risk_mapping_generator.py` : verifie l'existence du CSV risques et les colonnes requises (`probabilite`, `impact`).
+- `cfo-financement-croissance/moriarty_link.py` : validation SIREN 9 chiffres (format INSEE) avant hash.
+
+### Metriques
+
+- 63 tests fonctionnels (etait 49), +28 %
+- 339/339 tests globaux (100 %)
+- 14 scenarios d'erreur exerces dans CI
+- 5 scripts durcis contre 0 en v0.1.9
+- 0 warning lint (ruff)
+
+### Note
+
+Modules B (baseline comparison) et C (snapshot regression) arrivent en v0.2.1 et v0.2.2.
+
 ## [0.1.9], 2026-04-16
 
 Couverture fonctionnelle complete : le 3e script de chaque skill est exerce. Tous les 27 scripts Python du bundle (hors cfo-init) sont desormais valides par un test fonctionnel reel avec fixture et assertions.

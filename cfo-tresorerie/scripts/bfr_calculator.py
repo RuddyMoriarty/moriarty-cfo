@@ -139,6 +139,14 @@ def main() -> int:
     parser.add_argument("--output", type=Path, default=None)
     args = parser.parse_args()
 
+    # Validation business : CA TTC = 0 rend les ratios DSO/BFR/jours_ca impossibles a calculer.
+    if args.ca_ttc <= 0:
+        print(
+            "❌ CA TTC invalide (doit etre > 0). Impossible de calculer DSO/BFR en jours.",
+            file=sys.stderr,
+        )
+        return 1
+
     ratios = compute_ratios(
         args.creances_clients, args.dettes_fournisseurs, args.stocks,
         args.ca_ttc, args.achats_ttc, args.cout_ventes,

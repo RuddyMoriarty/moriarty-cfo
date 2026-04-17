@@ -16,10 +16,21 @@ from pathlib import Path
 
 
 def load_csv_as_dict(path: Path) -> dict[str, float]:
-    """Charge un CSV au format compte,montant en dict."""
+    """Charge un CSV au format compte,montant en dict.
+
+    Leve ValueError si aucune colonne reconnue pour le compte ou le montant.
+    """
     result = {}
     with path.open(encoding="utf-8", newline="") as f:
         reader = csv.DictReader(f)
+        cols = reader.fieldnames or []
+        has_compte = any(c in cols for c in ("compte", "CompteNum", "poste"))
+        has_montant = "montant" in cols
+        if not has_compte or not has_montant:
+            raise ValueError(
+                f"CSV {path.name} invalide : colonnes attendues 'compte'|'CompteNum'|'poste' "
+                f"et 'montant'. Trouve : {cols}"
+            )
         for row in reader:
             try:
                 compte = row.get("compte") or row.get("CompteNum") or row.get("poste")
@@ -68,8 +79,15 @@ def main() -> int:
     parser.add_argument("--output", type=Path, default=None)
     args = parser.parse_args()
 
-    budget = load_csv_as_dict(args.budget)
-    reel = load_csv_as_dict(args.reel)
+    try:
+        budget = load_csv_as_dict(args.budget)
+        reel = load_csv_as_dict(args.reel)
+    except FileNotFoundError as e:
+        print(f"❌ Fichier introuvable : {e.filename}", file=sys.stderr)
+        return 1
+    except ValueError as e:
+        print(f"❌ {e}", file=sys.stderr)
+        return 1
 
     variances = compute_variances(budget, reel, args.seuil_eur, args.seuil_pct, args.top_n)
 

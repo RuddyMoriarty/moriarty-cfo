@@ -48,9 +48,23 @@ def main() -> int:
     parser.add_argument("--output", type=Path, default=None)
     args = parser.parse_args()
 
+    if not args.risques.exists():
+        print(f"❌ Fichier risques introuvable : {args.risques}", file=sys.stderr)
+        return 1
+
     risques = []
     with args.risques.open(encoding="utf-8", newline="") as f:
         reader = csv.DictReader(f)
+        cols = reader.fieldnames or []
+        required = {"probabilite", "impact"}
+        missing = required - set(cols)
+        if missing:
+            print(
+                f"❌ Colonnes manquantes dans {args.risques.name} : {sorted(missing)}. "
+                f"Attendu au minimum probabilite,impact (trouve : {cols})",
+                file=sys.stderr,
+            )
+            return 1
         for row in reader:
             try:
                 proba = int(row.get("probabilite", 0))

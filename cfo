@@ -1,0 +1,209 @@
+#!/usr/bin/env python3
+"""
+cfo, CLI unifiee pour moriarty-cfo.
+
+Wrapper qui mappe une sous-commande courte a un script Python sous-jacent.
+L'ensemble des arguments apres la sous-commande est forward vers le script
+sans modification. Exit code et sorties preserves.
+
+Usage :
+  ./cfo <commande> [args...]
+  ./cfo --help                     Liste les commandes par categorie
+  ./cfo <commande> --help          Aide detaillee du script sous-jacent
+  ./cfo --version                  Version du bundle (depuis pyproject.toml)
+
+Exemples :
+  ./cfo init-pme --siren 552120222 --denomination "ACME SAS" --fetch
+  ./cfo calendar --closing-date 2026-12-31 --tva-regime reel_normal_mensuelle \
+      --is-regime is --effectif 25 --output /tmp/cal.json
+  ./cfo portfolio add --siren 552120222 --denomination "Client X" --taille pe
+  ./cfo forecast-13w --solde-initial 150000 --encaissements-moyen 80000 \
+      --decaissements-moyen 75000
+  ./cfo bfr --creances-clients 200000 --dettes-fournisseurs 100000 \
+      --ca-ttc 1200000 --achats-ttc 400000 --output /tmp/bfr.json
+"""
+
+from __future__ import annotations
+
+import os
+import sys
+from pathlib import Path
+
+ROOT = Path(__file__).resolve().parent
+
+# ----------------------------------------------------------------------
+# Mapping commande -> (script_relative_path, short_description)
+# Groupes ordonnes par categorie pour l'affichage de --help.
+# ----------------------------------------------------------------------
+
+COMMANDS: dict[str, dict[str, tuple[str, str]]] = {
+    "Onboarding (cfo-init)": {
+        "init-pme": ("cfo-init/scripts/init_pme.py", "Initialise une session PME (dirigeant / CFO interne)"),
+        "init-cabinet": ("cfo-init/scripts/portfolio/init_cabinet.py", "Initialise un cabinet EC (mode portfolio)"),
+        "calendar": ("cfo-init/scripts/compute_calendar.py", "Calcule le calendrier fiscal sur 18 mois"),
+        "fetch-sirene": ("cfo-init/scripts/fetch_sirene.py", "Enrichit depuis l'API Annuaire Entreprises ou INSEE"),
+        "fetch-pappers": ("cfo-init/scripts/fetch_pappers.py", "Enrichit depuis l'API Pappers (si PAPPERS_API_KEY)"),
+        "progress": ("cfo-init/scripts/init_progress.py", "Initialise la barre de progression et les achievements"),
+    },
+    "Portfolio EC (cabinet, multi-clients)": {
+        "portfolio-add": ("cfo-init/scripts/portfolio/add_client.py", "Ajoute un client a l'index portfolio"),
+        "portfolio-list": ("cfo-init/scripts/portfolio/list_clients.py", "Liste les clients du portfolio"),
+        "portfolio-remove": ("cfo-init/scripts/portfolio/remove_client.py", "Archive ou supprime un client"),
+        "portfolio-schedule-all": ("cfo-init/scripts/portfolio/schedule_all.py", "Programme les routines de tout le portfolio"),
+        "portfolio-dashboard": ("cfo-init/scripts/portfolio/portfolio_dashboard.py", "Genere le dashboard HTML hebdomadaire"),
+        "portfolio-check-dossier": ("cfo-init/scripts/portfolio/check_dossier.py", "Verifie la completude d'un dossier client"),
+        "portfolio-relance": ("cfo-init/scripts/portfolio/draft_relance.py", "Redige un mail de relance pieces manquantes"),
+        "portfolio-lettre-mission": ("cfo-init/scripts/portfolio/generate_lettre_mission.py", "Genere une lettre de mission versionnee"),
+        "portfolio-aging": ("cfo-init/scripts/portfolio/encaissements_aging.py", "Aging encaissements clients (LME)"),
+        "portfolio-forfait": ("cfo-init/scripts/portfolio/forfait_tracker.py", "Suivi forfait heures vs reel par client"),
+    },
+    "Routines recurrentes": {
+        "routine-compute": ("cfo-init/scripts/routines/compute_entity_routines.py", "Calcule les routines applicables a une entite"),
+        "routine-schedule": ("cfo-init/scripts/routines/schedule_routines.py", "Genere les payloads scheduled-tasks"),
+        "routine-list": ("cfo-init/scripts/routines/list_routines.py", "Liste les routines actives"),
+        "routine-run": ("cfo-init/scripts/routines/run_routine.py", "Execute une routine (substitue placeholders)"),
+        "routine-mark": ("cfo-init/scripts/routines/mark_routine.py", "Marque une routine done ou failed"),
+        "routine-confirm": ("cfo-init/scripts/routines/confirm_scheduled.py", "Confirme la programmation MCP"),
+        "routine-purge": ("cfo-init/scripts/routines/purge_routines.py", "Nettoie les routines terminees"),
+    },
+    "Comptabilite (cloture, FEC)": {
+        "closing": ("cfo-comptabilite/scripts/generate_closing_journal.py", "Ecritures automatiques de cloture"),
+        "close-check": ("cfo-comptabilite/scripts/validate_close_checklist.py", "Checklist validation cloture"),
+        "fec": ("cfo-comptabilite/scripts/prepare_fec_export.py", "Export FEC pipe-delimite 18 colonnes"),
+    },
+    "Tresorerie (cash, BFR)": {
+        "bfr": ("cfo-tresorerie/scripts/bfr_calculator.py", "Calcul BFR + DSO/DPO/DIO + benchmark"),
+        "forecast-13w": ("cfo-tresorerie/scripts/forecast_13w.py", "Forecast tresorerie 13 semaines"),
+        "forecast-12m": ("cfo-tresorerie/scripts/forecast_12m.py", "Forecast tresorerie 12 mois x 3 scenarios"),
+    },
+    "Reporting (KPIs, board)": {
+        "kpis": ("cfo-reporting/scripts/compute_kpis.py", "Calcul KPIs P&L + ratios depuis balance"),
+        "variances": ("cfo-reporting/scripts/extract_variances.py", "Top variances budget vs reel"),
+        "dashboard": ("cfo-reporting/scripts/generate_dashboard.py", "Dashboard HTML A4 CFO executif"),
+    },
+    "Controle de gestion (marges, pricing)": {
+        "pricing": ("cfo-controle-gestion/scripts/pricing_simulator.py", "Simulateur pricing 3 scenarios"),
+        "profitability": ("cfo-controle-gestion/scripts/profitability_analyzer.py", "Pareto produits/clients"),
+        "variance": ("cfo-controle-gestion/scripts/variance_analyzer.py", "Decomposition ecart volume/prix/mix"),
+    },
+    "Budget et forecast": {
+        "budget": ("cfo-budget-forecast/scripts/budget_builder.py", "Budget annuel 3 scenarios ponderes 20/60/20"),
+        "capex": ("cfo-budget-forecast/scripts/capex_analyzer.py", "NPV / IRR / payback CAPEX"),
+        "rolling": ("cfo-budget-forecast/scripts/rolling_forecast.py", "Atterrissage rolling forecast"),
+    },
+    "Fiscalite (IS, TVA, CIR)": {
+        "cir": ("cfo-fiscalite/scripts/cir_estimator.py", "Estimation Credit Impot Recherche"),
+        "is": ("cfo-fiscalite/scripts/is_simulator.py", "Simulateur IS + acomptes + solde"),
+        "tva": ("cfo-fiscalite/scripts/tva_checker.py", "Croisement balance vs CA3 TVA"),
+    },
+    "Risques et conformite": {
+        "risk-map": ("cfo-risques-conformite/scripts/risk_mapping_generator.py", "Cartographie COSO ERM 5x5"),
+        "internal-control": ("cfo-risques-conformite/scripts/internal_control_checklist.py", "Checklist controle interne"),
+        "veille": ("cfo-risques-conformite/scripts/veille_scheduler.py", "Programmation veille reglementaire"),
+    },
+    "Financement et croissance": {
+        "diag-financement": ("cfo-financement-croissance/scripts/diagnostic_financement.py", "Top 3 solutions financement"),
+        "valuation": ("cfo-financement-croissance/scripts/valuation_calculator.py", "Valorisation DCF + multiples"),
+        "moriarty-link": ("cfo-financement-croissance/scripts/moriarty_link.py", "Lien Moriarty avec hash SIREN"),
+    },
+    "CSRD / ESG": {
+        "csrd-scope": ("cfo-csrd-esg/scripts/csrd_scope_calculator.py", "Determination wave CSRD"),
+        "materiality": ("cfo-csrd-esg/scripts/double_materiality_assessor.py", "Evaluation double materialite ESRS"),
+        "emissions": ("cfo-csrd-esg/scripts/scope_emissions_estimator.py", "Emissions Scope 1 / 2 / 3 tCO2e"),
+    },
+}
+
+
+def flat_command_map() -> dict[str, str]:
+    """Aplatit COMMANDS en {cmd_name: script_path}."""
+    flat: dict[str, str] = {}
+    for cmds in COMMANDS.values():
+        for name, (path, _desc) in cmds.items():
+            flat[name] = path
+    return flat
+
+
+def read_version() -> str:
+    """Lit la version depuis pyproject.toml (sans tomllib pour supporter Python 3.9)."""
+    pyproj = ROOT / "pyproject.toml"
+    if not pyproj.exists():
+        return "unknown"
+    for line in pyproj.read_text(encoding="utf-8").splitlines():
+        line = line.strip()
+        if line.startswith("version"):
+            # version = "0.2.4"
+            return line.split("=", 1)[1].strip().strip('"').strip("'")
+    return "unknown"
+
+
+def print_help() -> None:
+    version = read_version()
+    print(f"cfo, moriarty-cfo CLI v{version}")
+    print()
+    print("Usage :")
+    print("  ./cfo <commande> [args...]            Lance la commande")
+    print("  ./cfo <commande> --help               Aide detaillee du script")
+    print("  ./cfo --help                          Cette aide")
+    print("  ./cfo --version                       Version du bundle")
+    print("  ./cfo --list                          Liste plate (scripting)")
+    print()
+    print("Commandes par categorie :")
+    for category, cmds in COMMANDS.items():
+        print(f"\n  {category}")
+        for name, (_path, desc) in sorted(cmds.items()):
+            print(f"    {name:<28} {desc}")
+    print()
+    print("Docs : https://github.com/RuddyMoriarty/moriarty-cfo")
+
+
+def print_list() -> None:
+    """Format machine-readable : une commande par ligne."""
+    for category, cmds in COMMANDS.items():
+        for name in sorted(cmds.keys()):
+            print(name)
+
+
+def main(argv: list[str]) -> int:
+    if len(argv) == 0 or argv[0] in {"-h", "--help", "help"}:
+        print_help()
+        return 0
+
+    if argv[0] in {"-v", "--version", "version"}:
+        print(f"moriarty-cfo v{read_version()}")
+        return 0
+
+    if argv[0] == "--list":
+        print_list()
+        return 0
+
+    cmd = argv[0]
+    flat = flat_command_map()
+    if cmd not in flat:
+        print(f"cfo: commande inconnue : {cmd}", file=sys.stderr)
+        print("Lancer ./cfo --help pour voir les commandes disponibles.", file=sys.stderr)
+        # Suggestions fuzzy (commencer par les prefixes communs)
+        suggestions = [c for c in flat.keys() if cmd.split("-")[0] in c][:5]
+        if suggestions:
+            print(f"Vouliez-vous dire : {', '.join(suggestions)} ?", file=sys.stderr)
+        return 2
+
+    script_path = ROOT / flat[cmd]
+    if not script_path.exists():
+        print(f"cfo: script introuvable : {script_path}", file=sys.stderr)
+        return 1
+
+    # Forward tous les args suivants au script. On utilise execvp pour remplacer
+    # le process courant (preserve exit code + signal propagation + tty).
+    # Sur systemes sans execvp (Windows), fallback subprocess.
+    args = [sys.executable, str(script_path)] + argv[1:]
+    try:
+        os.execvp(sys.executable, args)
+    except OSError:
+        # Fallback Windows ou systeme sans execvp : subprocess
+        import subprocess
+        proc = subprocess.run(args)
+        return proc.returncode
+
+
+if __name__ == "__main__":
+    sys.exit(main(sys.argv[1:]))

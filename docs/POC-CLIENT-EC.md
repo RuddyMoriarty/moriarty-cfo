@@ -22,7 +22,7 @@ Aucune cle API requise. Optionnel : `PAPPERS_API_KEY` si compte Pappers (500 req
 **But** : creer la fiche cabinet et l'index portfolio vide.
 
 ```bash
-python3 cfo-init/scripts/portfolio/init_cabinet.py \
+./cfo init-cabinet \
   --siren 123456789 \
   --denomination "CABINET DURAND & ASSOCIES" \
   --forme selarl \
@@ -40,27 +40,27 @@ python3 cfo-init/scripts/portfolio/init_cabinet.py \
 **But** : alimenter l'index avec une base de test variee (TPE / PE / ME, secteurs varies, missions differentes).
 
 ```bash
-python3 cfo-init/scripts/portfolio/add_client.py \
+./cfo portfolio-add \
   --siren 552120222 --denomination "BOULANGERIE MARTIN" \
   --taille tpe --secteur commerce --cloture 2026-12-31 \
   --mission presentation --referent "Jean Dupont"
 
-python3 cfo-init/scripts/portfolio/add_client.py \
+./cfo portfolio-add \
   --siren 451001234 --denomination "MENUISERIE DUBOIS SARL" \
   --taille pe --secteur industrie --cloture 2026-06-30 \
   --mission examen_limite --referent "Marie Lefort"
 
-python3 cfo-init/scripts/portfolio/add_client.py \
+./cfo portfolio-add \
   --siren 732005678 --denomination "CONSEIL CROISSANCE SAS" \
   --taille pe --secteur services_btob --cloture 2026-12-31 \
   --mission presentation --referent "Pierre Blanc"
 
-python3 cfo-init/scripts/portfolio/add_client.py \
+./cfo portfolio-add \
   --siren 884009876 --denomination "TECH INNOVATIONS SA" \
   --taille me --secteur saas_techno --cloture 2026-12-31 \
   --mission audit --referent "Sophie Dupuis"
 
-python3 cfo-init/scripts/portfolio/add_client.py \
+./cfo portfolio-add \
   --siren 555010111 --denomination "GARAGE LEFEVRE" \
   --taille tpe --secteur commerce --cloture 2026-03-31 \
   --mission social_paie --referent "Jean Dupont"
@@ -74,13 +74,13 @@ python3 cfo-init/scripts/portfolio/add_client.py \
 
 ```bash
 # Vue compacte
-python3 cfo-init/scripts/portfolio/list_clients.py
+./cfo portfolio-list
 
 # Vue detaillee
-python3 cfo-init/scripts/portfolio/list_clients.py --detailed
+./cfo portfolio-list --detailed
 
 # Filtrer sur un statut
-python3 cfo-init/scripts/portfolio/list_clients.py --status actif
+./cfo portfolio-list --status actif
 ```
 
 **Ce que vous verifiez** : tableau avec colonnes `SIREN | Denomination | Taille | Mission | Prochaine echeance | Routines`. La vue detaillee liste les routines par client.
@@ -91,10 +91,10 @@ python3 cfo-init/scripts/portfolio/list_clients.py --status actif
 
 ```bash
 # Dry-run d'abord (aucune ecriture)
-python3 cfo-init/scripts/portfolio/schedule_all.py --dry-run
+./cfo portfolio-schedule-all --dry-run
 
 # Execution reelle
-python3 cfo-init/scripts/portfolio/schedule_all.py
+./cfo portfolio-schedule-all
 ```
 
 **Ce que vous verifiez** : le script itere sur les 5 clients, appelle `compute_entity_routines.py` + `schedule_routines.py` pour chacun, affiche un resume `X clients, Y routines programmees, Z deja a jour`. Les `private/companies/<siren>/routines.json` sont mis a jour.
@@ -104,7 +104,7 @@ python3 cfo-init/scripts/portfolio/schedule_all.py
 **But** : generer la vue d'ensemble hebdomadaire pour le Manager.
 
 ```bash
-python3 cfo-init/scripts/portfolio/portfolio_dashboard.py \
+./cfo portfolio-dashboard \
   --output /tmp/portfolio-dashboard.html
 
 open /tmp/portfolio-dashboard.html      # macOS
@@ -136,7 +136,7 @@ inventaires,oui
 rapprochements_bancaires,non
 CSV
 
-python3 cfo-init/scripts/portfolio/check_dossier.py \
+./cfo portfolio-check-dossier \
   --siren 552120222 \
   --mission presentation \
   --pieces-declarees /tmp/pieces-declarees.csv \
@@ -159,7 +159,7 @@ for p in d['manquantes']:
 **But** : produire un mail de relance formule professionnellement pour un client en retard sur ses pieces.
 
 ```bash
-python3 cfo-init/scripts/portfolio/draft_relance.py \
+./cfo portfolio-relance \
   --siren 552120222 \
   --type premiere \
   --pieces-manquantes "PV AG" "Lettre d'affirmation" "Rapprochements bancaires" \
@@ -176,7 +176,7 @@ cat /tmp/relance.txt
 **But** : generer une lettre de mission NP 2300 ou 2400 pret a signer.
 
 ```bash
-python3 cfo-init/scripts/portfolio/generate_lettre_mission.py \
+./cfo portfolio-lettre-mission \
   --siren 884009876 \
   --type np_2400 \
   --honoraires 18000 \
@@ -202,7 +202,7 @@ F004,Tech Innovations,2025-11-30,22000,2025-12-30,en_attente
 F005,Garage Lefevre,2026-03-01,1200,2026-03-31,en_attente
 CSV
 
-python3 cfo-init/scripts/portfolio/encaissements_aging.py \
+./cfo portfolio-aging \
   --factures /tmp/factures.csv \
   --ref-date 2026-04-17 \
   --output /tmp/aging.json
@@ -232,7 +232,7 @@ siren,denomination,forfait_heures,heures_consommees,statut
 555010111,Garage Lefevre,20,20,actif
 CSV
 
-python3 cfo-init/scripts/portfolio/forfait_tracker.py \
+./cfo portfolio-forfait \
   --forfaits /tmp/forfaits.csv \
   --seuil-vigilance 80 \
   --seuil-limite 100 \

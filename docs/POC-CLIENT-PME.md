@@ -22,7 +22,7 @@ Aucune cle API requise pour ce POC. Optionnel : `PAPPERS_API_KEY` si vous avez u
 **But** : creer votre profil PME en une commande, avec donnees publiques auto-remplies depuis l'INSEE.
 
 ```bash
-python3 cfo-init/scripts/init_pme.py \
+./cfo init-pme \
   --siren 552120222 \
   --denomination "ACME SAS" \
   --role cfo \
@@ -42,7 +42,7 @@ python3 cfo-init/scripts/init_pme.py \
 **But** : obtenir votre calendrier d'echeances fiscales et sociales pour les 18 prochains mois.
 
 ```bash
-python3 cfo-init/scripts/compute_calendar.py \
+./cfo calendar \
   --closing-date 2026-12-31 \
   --tva-regime reel_normal_mensuelle \
   --is-regime is \
@@ -64,7 +64,7 @@ for e in d['echeances'][:5]:
 **But** : mesurer votre cycle de conversion de cash et le benchmarker.
 
 ```bash
-python3 cfo-tresorerie/scripts/bfr_calculator.py \
+./cfo bfr \
   --creances-clients 200000 --dettes-fournisseurs 100000 \
   --ca-ttc 1200000 --achats-ttc 400000 \
   --stocks 50000 --cout-ventes 300000 \
@@ -89,7 +89,7 @@ for k, v in d['benchmark'].items():
 **But** : projeter votre position cash semaine par semaine et identifier un point bas.
 
 ```bash
-python3 cfo-tresorerie/scripts/forecast_13w.py \
+./cfo forecast-13w \
   --solde-initial 150000 \
   --encaissements-moyen 80000 \
   --decaissements-moyen 75000 \
@@ -125,7 +125,7 @@ cat > /tmp/kpis.json <<'JSON'
 }
 JSON
 
-python3 cfo-reporting/scripts/generate_dashboard.py \
+./cfo dashboard \
   --kpis /tmp/kpis.json \
   --output /tmp/dashboard-march.html
 
@@ -150,7 +150,7 @@ charge_externes,1200000
 charge_amortissements,400000
 CSV
 
-python3 cfo-budget-forecast/scripts/budget_builder.py \
+./cfo budget \
   --pnl-n1 /tmp/pnl-n1.csv \
   --growth-ca 12 \
   --growth-charges 8 \
@@ -174,7 +174,7 @@ print(f\"Pondere 20/60/20 : CA {p['ca_ht_annuel']:,.0f} € / EBITDA {p['ebitda_
 **But** : estimer le Credit Impot Recherche eligible a partir de vos salaires chercheurs.
 
 ```bash
-python3 cfo-fiscalite/scripts/cir_estimator.py \
+./cfo cir \
   --salaires-chercheurs 200000 \
   --frais-fonctionnement-pct 43 \
   --sous-traitance-agreee 50000 \
@@ -210,7 +210,7 @@ R009,Greve transporteur,logistique,3,2,logistique
 R010,Litige client,juridique,3,3,juridique
 CSV
 
-python3 cfo-risques-conformite/scripts/risk_mapping_generator.py \
+./cfo risk-map \
   --risques /tmp/risques.csv \
   --output /tmp/risk-map.json
 
@@ -232,7 +232,7 @@ for r in d['top_10_risques'][:3]:
 **But** : savoir si votre societe est concernee par la CSRD et dans quelle wave.
 
 ```bash
-python3 cfo-csrd-esg/scripts/csrd_scope_calculator.py \
+./cfo csrd-scope \
   --effectif 300 \
   --ca-eur 50000000 \
   --bilan-eur 30000000 \
@@ -254,7 +254,7 @@ print(f\"Premier exercice : {d.get('premier_exercice_reporting')}\")
 **But** : identifier les solutions de financement eligibles pour un projet chiffre.
 
 ```bash
-python3 cfo-financement-croissance/scripts/diagnostic_financement.py \
+./cfo diag-financement \
   --besoin-eur 200000 \
   --duree-mois 36 \
   --projet "R&D machine-outil 4.0" \

@@ -137,6 +137,25 @@ cp .env.example .env
 
 ---
 
+## CLI unifiee `./cfo`
+
+Depuis v0.3.0, toutes les commandes sont accessibles via un wrapper unique `./cfo` a la racine du repo. Zero dependance, stdlib only, compatible Python 3.9+.
+
+```bash
+./cfo --help                                    # Liste toutes les commandes par categorie
+./cfo --version                                 # Version du bundle
+./cfo --list                                    # Liste plate (pour scripting)
+
+./cfo init-pme --siren 552120222 --fetch        # Au lieu de python3 cfo-init/scripts/init_pme.py
+./cfo calendar --closing-date 2026-12-31 ...    # Au lieu de compute_calendar.py
+./cfo portfolio-add --siren X --denomination Y
+./cfo bfr --creances-clients ... --ca-ttc ...
+./cfo forecast-13w --solde-initial 150000 ...
+./cfo dashboard --kpis /tmp/kpis.json --output /tmp/board.html
+```
+
+50 commandes mappees, groupees en 12 categories (onboarding, portfolio EC, routines, comptabilite, tresorerie, reporting, controle de gestion, budget, fiscalite, risques, financement, CSRD/ESG). Suggestion automatique sur faute de frappe (`./cfo forecas` propose `forecast-13w`, `forecast-12m`).
+
 ## Tester le bundle en 30 minutes
 
 Deux guides de POC guides pas a pas selon votre profil :

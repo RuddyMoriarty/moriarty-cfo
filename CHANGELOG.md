@@ -4,6 +4,49 @@ Toutes les évolutions notables de `moriarty-cfo` sont documentées ici.
 
 Le format suit [Keep a Changelog](https://keepachangelog.com/fr/1.1.0/) et le projet adhère au [Semantic Versioning](https://semver.org/lang/fr/).
 
+## [0.3.0], 2026-04-17
+
+CLI unifiee `./cfo`. 50 commandes courtes mappees aux scripts Python du bundle, groupees en 12 categories. Divise par 5 la charge cognitive d'utilisation : au lieu de `python3 cfo-init/scripts/portfolio/init_cabinet.py --siren X`, desormais `./cfo init-cabinet --siren X`.
+
+### Added
+
+- **`./cfo` a la racine du repo** : wrapper Python stdlib-only, executable (`chmod +x cfo`). Usage :
+  - `./cfo --help` liste les 50 commandes groupees en 12 categories (Onboarding, Portfolio EC, Routines, Comptabilite, Tresorerie, Reporting, Controle de gestion, Budget, Fiscalite, Risques, Financement, CSRD/ESG)
+  - `./cfo --version` lit la version depuis `pyproject.toml`
+  - `./cfo --list` format plat machine-readable
+  - `./cfo <cmd> --help` forward vers le script sous-jacent via `os.execvp` (preserve exit code, signal propagation, tty)
+  - Suggestions automatiques sur faute de frappe : `./cfo forecas` propose `forecast-13w, forecast-12m`
+  - Fallback subprocess.run si `os.execvp` indisponible (Windows)
+
+- **Test CI** `evals/_helpers/check_cli.py` (6 sous-checks) :
+  - `--help` liste les 12 categories attendues
+  - `--version` affiche un numero semver valide
+  - `--list` retourne >= 40 commandes avec les critiques (init-pme, calendar, bfr, budget, cir, is, tva)
+  - Commande inconnue : exit 2 + suggestion
+  - Dispatch `--help` : `./cfo calendar --help` forward a `compute_calendar.py --help`
+  - Dispatch exec : `./cfo bfr ...` produit un JSON avec `dso` et `bfr`
+
+### Changed
+
+- **README.md** : nouvelle section "CLI unifiee `./cfo`" avant "Tester le bundle en 30 minutes"
+- **docs/POC-CLIENT-PME.md** : 10 commandes Python3 longues remplacees par la syntaxe `./cfo <cmd>`
+- **docs/POC-CLIENT-EC.md** : 17 commandes Python3 longues remplacees par la syntaxe `./cfo <cmd>`
+
+### Breaking changes
+
+Aucun. Les scripts Python restent utilisables directement via `python3 cfo-X/scripts/Y.py`. Le wrapper `./cfo` est additif.
+
+### Metriques
+
+- 64 tests fonctionnels (etait 63, +1 pour le CLI)
+- 340/340 tests globaux (100 %)
+- 50 commandes wrappees, 12 categories
+- 0 warning lint
+
+### Pourquoi semver 0.3.0 et pas 0.2.5
+
+Le CLI est une nouvelle surface utilisateur significative qui change l'experience d'installation et d'utilisation. Les POC guides sont reecrits autour de cette nouvelle interface. Semver mineur > patch.
+
 ## [0.2.4], 2026-04-17
 
 Nettoyage tests faibles. Suite a un audit demande par l'utilisateur ("quels tests ne sont pas fonctionnels ?"), 12 entrees de tests qui passaient sans apporter de preuve metier ont ete supprimees ou remplacees par des tests qui valident le contenu. Le total passe de 74 a 63 tests fonctionnels, mais tous sont desormais de niveau 1 (fixture + assertions) ou niveau 2 (helper structurel custom). Aucun test ne se contente plus de verifier `py_compile` + `--help exit 0`.

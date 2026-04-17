@@ -540,6 +540,13 @@
       "label": "Fetch SIREN : stdlib only + mode web offline + validation 9 chiffres",
       "executable": {"type": "python", "script": "evals/_helpers/check_fetch_siren.py"},
       "assertions": {"exit_code": 0, "must_contain_in_output": ["fetch_siren_ok=6"], "must_not_contain_in_output": ["ERREUR", "Traceback"], "max_duration_seconds": 15}
+    },
+    {
+      "id": "cfo-init-cli-wrapper",
+      "skill": "cfo-init",
+      "label": "CLI ./cfo : 50 commandes, --help, --version, --list, dispatch, suggestion typo",
+      "executable": {"type": "python", "script": "evals/_helpers/check_cli.py"},
+      "assertions": {"exit_code": 0, "must_contain_in_output": ["cli_ok=6"], "must_not_contain_in_output": ["ERREUR", "Traceback"], "max_duration_seconds": 15}
     }
   ],
 

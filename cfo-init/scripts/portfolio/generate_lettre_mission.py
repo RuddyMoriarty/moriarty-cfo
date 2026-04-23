@@ -111,8 +111,31 @@ def main() -> int:
 
     template_path = TEMPLATES_DIR / f"lettre-mission-{mission.replace('_', '-')}.md"
     if not template_path.exists():
-        print(f"ERREUR: pas de template pour mission {mission} (attendu {template_path.name})", file=sys.stderr)
-        return 1
+        # Fallback sur le template presentation (le plus generique) + warning
+        fallback = TEMPLATES_DIR / "lettre-mission-presentation.md"
+        if not fallback.exists():
+            print(f"ERREUR: pas de template pour mission {mission} (attendu {template_path.name})", file=sys.stderr)
+            return 1
+        print(
+            f"⚠ Pas de template specialise pour mission {mission}. Utilisation du template presentation par defaut.",
+            file=sys.stderr,
+        )
+        print(
+            "⚠ ACTION REQUISE : adapter manuellement la lettre aux normes applicables a votre mission :",
+            file=sys.stderr,
+        )
+        hints = {
+            "audit_legal_cac": "NEP 2300 (CNCC) - mission CAC",
+            "cir_cii": "CGI art. 244 quater B et B bis, BOI-BIC-RICI-10",
+            "conseil_financier": "mission libre, pas de norme OEC specifique",
+            "csrd_esrs": "directive 2022/2464, ESRS E1-E5 / S1-S4 / G1",
+            "m_and_a": "mission ingenierie financiere, clauses specifiques cap-table",
+            "juridique": "reserve aux professions du droit sauf SIC",
+            "aides_publiques": "controle de moralite fiscale + conformite BPI/regions",
+        }
+        hint = hints.get(mission, "consulter les normes OEC / CNCC applicables")
+        print(f"⚠ Reference : {hint}", file=sys.stderr)
+        template_path = fallback
 
     lettres_dir = PRIVATE / "companies" / args.siren / "lettres-mission"
     lettres_dir.mkdir(parents=True, exist_ok=True)

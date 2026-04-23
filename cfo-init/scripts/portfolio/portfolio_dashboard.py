@@ -116,14 +116,20 @@ def compute_alerts(clients: list, today: date) -> list:
 
 def build_alerts_html(alerts: list) -> str:
     if not alerts:
-        return '<div class="alerte jaune">(aucune echeance dans les 30 prochains jours)</div>'
+        return (
+            '<div class="empty">Aucune echeance dans les 30 prochains jours.</div>'
+        )
     lines = []
     for a in alerts:
         label = f"{a['denomination']} (SIREN {a['siren']})"
-        msg = f"Echeance dans {a['days']} jour(s) - {a['deadline']}"
+        meta = f"J-{a['days']} &middot; {a['deadline']}"
         lines.append(
             f'<div class="alerte {a["couleur"]}">'
-            f'<span class="alerte-label">{label}</span> : {msg}'
+            f'<div class="bar"></div>'
+            f'<div class="body">'
+            f'<span class="alerte-label">{label}</span>'
+            f'<span class="alerte-meta">{meta}</span>'
+            f'</div>'
             f'</div>'
         )
     return "\n".join(lines)
@@ -134,16 +140,17 @@ def build_clients_rows(clients: list) -> str:
     for c in sorted(clients, key=lambda x: x.get("denomination", "")):
         siren = c.get("siren", "?")
         deadline_iso, days = load_next_deadline(siren)
-        deadline_str = f"{deadline_iso} ({days}j)" if deadline_iso else "-"
+        deadline_str = f"{deadline_iso} ({days} j)" if deadline_iso else "—"
         status_class = "badge-actif" if c.get("status") == "actif" else "badge-archive"
+        taille = c.get("taille", "?")
         rows.append(
             "<tr>"
-            f"<td>{siren}</td>"
-            f"<td>{c.get('denomination', '?')}</td>"
-            f"<td>{c.get('taille', '?')}</td>"
-            f"<td>{c.get('mission_type', '?')}</td>"
-            f"<td>{c.get('referent') or '-'}</td>"
-            f"<td>{load_routines_count(siren)}</td>"
+            f'<td class="siren">{siren}</td>'
+            f'<td class="denom">{c.get("denomination", "?")}</td>'
+            f'<td><span class="badge badge-taille">{taille}</span></td>'
+            f'<td>{c.get("mission_type", "?")}</td>'
+            f'<td>{c.get("referent") or "—"}</td>'
+            f'<td>{load_routines_count(siren)}</td>'
             f"<td>{deadline_str}</td>"
             f'<td><span class="badge {status_class}">{c.get("status", "?")}</span></td>'
             "</tr>"

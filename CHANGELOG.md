@@ -4,6 +4,47 @@ Toutes les évolutions notables de `moriarty-cfo` sont documentées ici.
 
 Le format suit [Keep a Changelog](https://keepachangelog.com/fr/1.1.0/) et le projet adhère au [Semantic Versioning](https://semver.org/lang/fr/).
 
+## [0.3.6], 2026-04-17
+
+Redesign complet des 3 dashboards HTML + POC EC deroule en conditions reelles + fallback template lettre de mission.
+
+### Changed (design)
+
+Les 3 templates HTML (`portfolio-dashboard.html`, `unified-dashboard.html`, `dashboard-cfo.html`) sont reecrits avec un design moderne sobre respectant strictement la charte Moriarty (4 couleurs officielles) :
+
+- **Palette** : `#002E72` (bleu marine principal), `#99B8E0` (bleu ciel secondaire), `#F6F6F6` (fond), `#E14F0A` (orange terre battue accent). Plus `#C62828` pour les alertes critiques (rouge choisi pour s'accorder tonalement avec l'orange terre battue).
+- **Typo** : system-ui/Inter (au lieu de Dosis). Hiérarchie claire : titres `--navy` 600, labels uppercase tracking 0.08em, chiffres en `font-variant-numeric: tabular-nums` pour l'alignement.
+- **Grille** : cards aerees (padding 18-22px), bordures subtiles `rgba(navy, 0.12)`, accent 3px a gauche pour le rythme visuel.
+- **Composants** : badges pill tres discrets, hover `rgba(sky, 0.15)`, empty states dashes au lieu de fond colore.
+- **Footer** : lien GitHub + mention "donnees locales".
+- Suppression des styles obsoletes : gradients heavy, dark mode inutile, couleurs hors charte (purple/indigo/neon).
+
+### Fixed
+
+**Deroulement manuel POC EC (10/10 scenarios)** : 10 frottements detectes, 7 bloquants dans la doc + 1 gap fonctionnel en code :
+
+- `portfolio-add --mission audit` invalide : doit etre `audit_legal_cac` (POC corrige).
+- `portfolio-check-dossier` : POC decrivait `--mission --pieces-declarees --output` inexistants. Vrais args : juste `--siren --strict --json`, les pieces sont lues depuis `private/companies/<siren>/pieces.json` (POC reecrit pour utiliser ce format).
+- `portfolio-relance --pieces-manquantes --echeance-mission` inexistants : vrais args = `--date-echeance --jours-delai`, les pieces manquantes sont calculees depuis `pieces.json` (POC corrige).
+- `portfolio-lettre-mission --type --duree-annees --output` inexistants : vrais args = `--honoraires --exercice --representant-client --new-version`, la version s'auto-incremente (POC corrige).
+- `portfolio-aging` : POC demandait CSV, vrai format = `private/companies/<siren>/factures.json` (POC corrige avec exemple).
+- `portfolio-forfait` : POC demandait CSV direct, vrais fichiers = `forfait.json` + `temps-passes.json` (POC corrige avec exemple).
+- `portfolio-dashboard` : POC disait `index.json` vide `[]`, vrai format `{"_meta":...,"clients":[]}` (POC corrige).
+
+**Gap fonctionnel** (`generate_lettre_mission.py`) : seuls 3 templates sur 10 missions supportees. Pour les 7 manquants (`audit_legal_cac`, `cir_cii`, `conseil_financier`, `csrd_esrs`, `m_and_a`, `juridique`, `aides_publiques`), le script tombait en erreur bloquante. Fix : fallback sur le template `presentation` avec warning explicite pointant vers les normes a consulter (NEP 2300 CNCC pour CAC, CGI 244 quater B pour CIR, directive 2022/2464 pour CSRD, etc). L'utilisateur peut generer une lettre fonctionnelle a adapter plutot que d'etre bloque.
+
+### Changed (doc)
+
+- **`docs/POC-CLIENT-EC.md` reecrit integralement** apres deroulement manuel bout en bout. Tous les 10 scenarios passent desormais sans intervention.
+- Demos HTML regenerees dans `docs/demo/` avec le nouveau design.
+
+### Metriques
+
+- 344/344 tests globaux (100 %)
+- 10/10 scenarios POC EC passent bout en bout
+- 10/10 scenarios POC PME passent bout en bout (depuis v0.3.5)
+- 0 warning lint
+
 ## [0.3.5], 2026-04-17
 
 Fixes remontes par le POC PME en conditions reelles. Sur 10 scenarios deroules, 10 frottements remontes dont 3 bloquants. Les 3 bloqueurs sont resolus en code, les 7 autres corriges dans le POC. Resultat : **10/10 scenarios passent maintenant bout en bout sans intervention**.

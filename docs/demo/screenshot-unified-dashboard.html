@@ -2,58 +2,241 @@
 <html lang="fr">
 <head>
 <meta charset="UTF-8">
-<title>Dashboard CFO unifie, ACME INDUSTRIE SAS</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Dashboard CFO unifie — ACME INDUSTRIE SAS</title>
 <style>
+  :root {
+    /* Charte Moriarty : 4 couleurs officielles */
+    --navy:   #002E72;
+    --sky:    #99B8E0;
+    --bg:     #F6F6F6;
+    --orange: #E14F0A;
+    --white:  #FFFFFF;
+    --red:    #C62828;
+
+    --border: rgba(0, 46, 114, 0.12);
+    --muted:  rgba(0, 46, 114, 0.6);
+  }
+
   @page { size: A4 portrait; margin: 12mm; }
-  * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Helvetica Neue', Arial, sans-serif; }
-  body { background: #F6F6F6; color: #002E72; padding: 20px; max-width: 900px; margin: 0 auto; }
 
-  header { border-bottom: 3px solid #E14F0A; padding-bottom: 10px; margin-bottom: 18px; }
-  header h1 { font-size: 22px; font-weight: 700; }
-  header .meta { color: #666; font-size: 12px; margin-top: 4px; }
-  header .tag { display: inline-block; background: #002E72; color: #fff; padding: 2px 8px; border-radius: 3px; font-size: 10px; margin-right: 4px; }
+  *, *::before, *::after { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; }
+  body {
+    background: var(--bg);
+    color: var(--navy);
+    font-family: -apple-system, BlinkMacSystemFont, "Inter", "Segoe UI", Roboto, sans-serif;
+    font-size: 13px;
+    line-height: 1.5;
+    padding: 28px 36px;
+    max-width: 900px;
+    margin: 0 auto;
+    -webkit-font-smoothing: antialiased;
+  }
 
-  section { background: #fff; padding: 14px 18px; margin-bottom: 14px; border-left: 3px solid #002E72; page-break-inside: avoid; }
-  section h2 { font-size: 15px; color: #002E72; margin-bottom: 10px; font-weight: 700; }
-  section.alert { border-left-color: #C00; background: #FFF5F5; }
-  section.warning { border-left-color: #F80; background: #FFF9F0; }
+  /* ---------- Header ---------- */
+  header.topbar {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    padding-bottom: 18px;
+    border-bottom: 1px solid var(--sky);
+    margin-bottom: 24px;
+  }
+  .brand { display: flex; align-items: center; gap: 14px; }
+  .brand-mark {
+    width: 6px;
+    height: 36px;
+    background: var(--orange);
+  }
+  .brand-text h1 {
+    margin: 0;
+    font-size: 22px;
+    font-weight: 600;
+    color: var(--navy);
+    letter-spacing: -0.01em;
+  }
+  .tags {
+    margin-top: 8px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+  .tag {
+    display: inline-block;
+    padding: 2px 10px;
+    background: var(--bg);
+    border: 1px solid var(--border);
+    font-size: 10px;
+    color: var(--muted);
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+  }
+  .meta {
+    text-align: right;
+    font-size: 11px;
+    color: var(--muted);
+    line-height: 1.6;
+  }
+  .meta .date { color: var(--navy); font-weight: 500; }
 
-  .kpi-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-bottom: 12px; }
-  .kpi { background: #F6F6F6; padding: 10px; border-left: 2px solid #002E72; }
-  .kpi.good { border-left-color: #060; }
-  .kpi.warning { border-left-color: #F80; }
-  .kpi.critical { border-left-color: #C00; }
-  .kpi-label { font-size: 10px; color: #666; text-transform: uppercase; letter-spacing: 0.5px; }
-  .kpi-value { font-size: 18px; font-weight: 700; color: #002E72; margin-top: 2px; }
-  .kpi-unit { font-size: 12px; color: #999; margin-left: 3px; font-weight: 400; }
-  .kpi-note { font-size: 10px; color: #999; margin-top: 4px; font-style: italic; }
+  /* ---------- Sections ---------- */
+  section {
+    background: var(--white);
+    border: 1px solid var(--border);
+    padding: 18px 22px;
+    margin-bottom: 16px;
+    page-break-inside: avoid;
+  }
+  section.alert {
+    border-left: 3px solid var(--red);
+  }
+  section.alert h2 { color: var(--red); }
 
+  section h2 {
+    margin: 0 0 14px;
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--navy);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+  }
+
+  .alert ul {
+    margin: 0;
+    padding-left: 18px;
+    font-size: 12px;
+    color: var(--navy);
+  }
+  .alert li { margin-bottom: 4px; }
+
+  /* ---------- KPI grid ---------- */
+  .kpi-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+  }
+  .kpi {
+    background: var(--bg);
+    border-left: 2px solid var(--navy);
+    padding: 12px 14px;
+  }
+  .kpi.good     { border-left-color: var(--navy); }
+  .kpi.warning  { border-left-color: var(--orange); }
+  .kpi.critical { border-left-color: var(--red); }
+
+  .kpi-label {
+    font-size: 10px;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    font-weight: 600;
+  }
+  .kpi-value {
+    font-size: 20px;
+    font-weight: 600;
+    color: var(--navy);
+    margin-top: 4px;
+    letter-spacing: -0.01em;
+    line-height: 1.1;
+  }
+  .kpi-unit {
+    font-size: 12px;
+    color: var(--muted);
+    margin-left: 4px;
+    font-weight: 400;
+  }
+  .kpi-note {
+    font-size: 10px;
+    color: var(--muted);
+    margin-top: 5px;
+    font-style: italic;
+  }
+  .kpi-note code {
+    font-family: "SF Mono", Menlo, Consolas, monospace;
+    background: var(--white);
+    border: 1px solid var(--border);
+    padding: 1px 5px;
+    color: var(--navy);
+    font-style: normal;
+  }
+
+  /* ---------- Table ---------- */
   table { width: 100%; border-collapse: collapse; font-size: 12px; }
-  th { text-align: left; background: #002E72; color: #fff; padding: 6px 8px; font-weight: 600; font-size: 11px; }
-  td { padding: 6px 8px; border-bottom: 1px solid #eee; }
-  tr:last-child td { border-bottom: none; }
-  tr.urgent td { background: #FFF5F5; }
-  tr.soon td { background: #FFF9F0; }
+  thead th {
+    text-align: left;
+    padding: 9px 12px;
+    font-weight: 600;
+    font-size: 10px;
+    color: var(--navy);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    background: var(--bg);
+    border-bottom: 2px solid var(--sky);
+  }
+  tbody td {
+    padding: 9px 12px;
+    border-bottom: 1px solid var(--border);
+    color: var(--navy);
+  }
+  tbody tr:last-child td { border-bottom: none; }
+  tbody tr.urgent td { background: rgba(198, 40, 40, 0.06); }
+  tbody tr.soon td   { background: rgba(225, 79, 10, 0.06); }
 
-  .empty { color: #999; font-style: italic; font-size: 12px; padding: 8px 0; }
+  .empty {
+    color: var(--muted);
+    font-style: italic;
+    font-size: 12px;
+    padding: 12px 0;
+  }
 
-  .progress-bar { background: #eee; height: 10px; border-radius: 5px; overflow: hidden; margin-top: 6px; }
-  .progress-fill { background: linear-gradient(90deg, #002E72, #E14F0A); height: 100%; }
-  .progress-label { font-size: 11px; color: #666; margin-top: 4px; }
+  /* ---------- Progress bar ---------- */
+  .progress-bar {
+    background: var(--bg);
+    border: 1px solid var(--border);
+    height: 8px;
+    overflow: hidden;
+    margin-top: 6px;
+  }
+  .progress-fill {
+    background: linear-gradient(90deg, var(--navy), var(--orange));
+    height: 100%;
+  }
+  .progress-label {
+    font-size: 11px;
+    color: var(--muted);
+    margin-bottom: 6px;
+  }
 
-  footer { text-align: center; color: #999; font-size: 10px; margin-top: 20px; border-top: 1px solid #ddd; padding-top: 8px; }
-  footer a { color: #999; text-decoration: none; }
+  footer {
+    text-align: center;
+    color: var(--muted);
+    font-size: 10px;
+    margin-top: 20px;
+    padding-top: 12px;
+    border-top: 1px solid var(--sky);
+  }
+  footer a { color: var(--muted); text-decoration: none; }
+  footer .brand-accent { color: var(--orange); font-weight: 600; }
 </style>
 </head>
 <body>
-  <header>
-    <h1>ACME INDUSTRIE SAS</h1>
+  <header class="topbar">
+    <div class="brand">
+      <div class="brand-mark"></div>
+      <div class="brand-text">
+        <h1>ACME INDUSTRIE SAS</h1>
+        <div class="tags">
+          <span class="tag">SIREN 552120222</span>
+          <span class="tag">Petite entreprise</span>
+          <span class="tag">28.99B</span>
+          <span class="tag">Cloture 2026-12-31</span>
+        </div>
+      </div>
+    </div>
     <div class="meta">
-      <span class="tag">SIREN 552120222</span>
-      <span class="tag">Petite entreprise</span>
-      <span class="tag">28.99B</span>
-      <span class="tag">Cloture 2026-12-31</span>
-      &nbsp;Genere le 2026-04-17 21:13
+      <div class="date">2026-04-23 14:02</div>
+      <div>Dashboard CFO unifie</div>
     </div>
   </header>
 
@@ -87,7 +270,9 @@
   </section>
 
   <footer>
-    Genere par <a href="https://github.com/RuddyMoriarty/moriarty-cfo">moriarty-cfo</a> v0.3.2 &middot; Donnees locales, aucune sortie vers un tiers
+    Genere par <span class="brand-accent">moriarty-cfo</span> v0.3.5 &middot;
+    donnees locales &middot;
+    <a href="https://github.com/RuddyMoriarty/moriarty-cfo">github.com/RuddyMoriarty/moriarty-cfo</a>
   </footer>
 </body>
 </html>

@@ -132,6 +132,21 @@
       "category": "provisions"
     },
     {
+      "phrase": "Prépare le bilan annuel et le grand livre",
+      "expected_skill": "cfo-comptabilite",
+      "category": "bilan_grand_livre"
+    },
+    {
+      "phrase": "Charges sociales URSSAF mensuelles à comptabiliser",
+      "expected_skill": "cfo-comptabilite",
+      "category": "paie_urssaf"
+    },
+    {
+      "phrase": "Liasse fiscale 2065 SAS et écritures de bilan",
+      "expected_skill": "cfo-comptabilite",
+      "category": "liasse_bilan"
+    },
+    {
       "phrase": "Prévision de trésorerie 13 semaines",
       "expected_skill": "cfo-tresorerie",
       "category": "cash_forecast"

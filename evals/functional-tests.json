@@ -575,6 +575,20 @@
       "label": "Coverage booster : 13 tests dedies aux scripts < 70 pct (init_cabinet, list, remove, schedule_all, portfolio_dashboard, aging, forfait, init_progress, fetch_pappers, fetch_sirene, generate_dashboard, validate_close_checklist, generate_closing_journal)",
       "executable": {"type": "python", "script": "evals/_helpers/fct_lowcov_scripts.py", "args": ["--all"]},
       "assertions": {"exit_code": 0, "must_contain_in_output": ["fct_lowcov_ok=13"], "must_not_contain_in_output": ["ERREUR", "Traceback"], "max_duration_seconds": 30}
+    },
+    {
+      "id": "cfo-init-anthropic-compliance",
+      "skill": "cfo-init",
+      "label": "Anthropic Skills Guide : audit conformite des 10 skills (folder kebab-case, SKILL.md exact, frontmatter valide, description WHAT+WHEN < 1024 chars sans XML, body < 5000 mots, pas de README.md interne)",
+      "executable": {"type": "python", "script": "evals/_helpers/check_anthropic_compliance.py"},
+      "assertions": {"exit_code": 0, "must_contain_in_output": ["compliance_ok=10"], "must_not_contain_in_output": ["FAIL", "Traceback"], "max_duration_seconds": 10}
+    },
+    {
+      "id": "cfo-init-user-safety",
+      "skill": "cfo-init",
+      "label": "Workflow anti-perte d'usager : detecte under/over triggering par skill (>= 10 phrases test, score moyen >= 2, pass rate >= 80 pct, anti-triggers max < 2)",
+      "executable": {"type": "python", "script": "evals/_helpers/check_user_safety.py"},
+      "assertions": {"exit_code": 0, "must_contain_in_output": ["user_safety_ok=10"], "must_not_contain_in_output": ["Traceback"], "max_duration_seconds": 10}
     }
   ],
 
